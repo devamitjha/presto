@@ -1,0 +1,46 @@
+@import "../../assets/styles/theme";
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: Arial, sans-serif;
+
+  .avatar-group {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid $white;
+      margin-left: -18px;
+      box-shadow: 0 0 0 1px $gray200;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    .more-count {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: $black;
+      color: $white;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: -18px;
+      font-weight: bold;
+    }
+  }
+
+  .trust-text {
+    @extend .heading-6;
+    margin: 0;
+  }
+}

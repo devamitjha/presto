@@ -8,6 +8,13 @@ import 'slick-carousel/slick/slick-theme.css';
 import Image1 from '../assets/images/banner-1.jpg';
 import Image2 from '../assets/images/banner-1.jpg';
 import Image3 from '../assets/images/banner-1.jpg';
+import { ButtonWithIcon } from './common/Button';
+
+const BookNowIcon = (
+  <svg width="12" height="15" viewBox="0 0 12 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5.99935 14.333L1.19935 10.733C1.03268 10.6108 0.902127 10.4552 0.807682 10.2663C0.713238 10.0775 0.666016 9.87745 0.666016 9.66634V1.66634C0.666016 1.29967 0.796571 0.985786 1.05768 0.724675C1.31879 0.463563 1.63268 0.333008 1.99935 0.333008H9.99935C10.366 0.333008 10.6799 0.463563 10.941 0.724675C11.2021 0.985786 11.3327 1.29967 11.3327 1.66634V9.66634C11.3327 9.87745 11.2855 10.0775 11.191 10.2663C11.0966 10.4552 10.966 10.6108 10.7993 10.733L5.99935 14.333ZM5.99935 12.6663L9.99935 9.66634V1.66634H1.99935V9.66634L5.99935 12.6663ZM5.29935 8.99967L9.06602 5.23301L8.13268 4.26634L5.29935 7.09968L3.89935 5.69967L2.93268 6.63301L5.29935 8.99967Z" />
+  </svg>
+);
 
 function NavNextArrow(props) {
   const {onClick } = props;
@@ -31,9 +38,9 @@ function NavPrevArrow(props) {
 
 const HeroSlider = () => {
   const images = [
-    { src: Image1, alt: 'Modern Gold Necklace Design' },
-    { src: Image2, alt: 'Elegant Diamond Rings' },
-    { src: Image3, alt: 'New Arrival Bridal Set' }
+    { src: Image1, title: 'Look Good, Feel Great' },
+    { src: Image2, title: 'Look Good, Feel Great' },
+    { src: Image3, title: 'Look Good, Feel Great' }
   ];
 
   const settings = {
@@ -55,7 +62,11 @@ const HeroSlider = () => {
       <Slider {...settings}>
         {images.map((img, index) => (
           <div className="slider-item" key={index}>
-            <img src={img.src} alt={img.alt} />
+            <img src={img.src} alt={img.title} />
+            <div className="hero-title">
+                <h3>Look Good, Feel Great</h3>
+                <ButtonWithIcon title="Book Appointment" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" />
+            </div>            
           </div>
         ))}
       </Slider>

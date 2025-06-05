@@ -1,7 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router';
-import "./Header.scss";
+import { NavLink, Link } from 'react-router';
 import { Button, ButtonWithIcon } from "./common/Button";
+import "./Header.scss";
+import Logo from "../assets/images/logo.png"
 
 const ContactIcon = (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +20,11 @@ const Header = () => {
   return (
     <section className="header">
       <div className="navigation">
-        <div className="section-logo">Logo</div>
+        <div className="section-logo">
+          <Link to="/">
+            <img src={Logo} alt="pressto" width="170px" height="37px"/>
+          </Link>
+        </div>
         <div className="section-nav">
           <nav>
             <ul>
