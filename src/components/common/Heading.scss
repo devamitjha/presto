@@ -1,0 +1,6 @@
+@import "../../assets/styles/theme";
+.heading{
+    @extend .heading-5;
+     margin-bottom:2rem;
+     text-align: center;
+}

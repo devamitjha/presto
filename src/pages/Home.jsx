@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import HeroSlider from "../components/HeroSlider";
 import "./Home.scss";
 import Client from '../components/Client';
+import SixColumnlayout from '../components/SixColumnlayout';
 
 
 const Home = () => {
@@ -15,7 +16,9 @@ const Home = () => {
         <link rel="canonical" href="https://www.yoursite.com" />
       </Helmet>
       <HeroSlider />
-      <Client/>
+      <Client />
+      <SixColumnlayout/>
+      <SixColumnlayout/>
     </section>
   )
 }
