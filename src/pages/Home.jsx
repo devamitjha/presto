@@ -4,6 +4,8 @@ import HeroSlider from "../components/HeroSlider";
 import "./Home.scss";
 import Client from '../components/Client';
 import SixColumnlayout from '../components/SixColumnlayout';
+import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
+import Experties from '../components/Experties';
 
 
 const Home = () => {
@@ -17,8 +19,9 @@ const Home = () => {
       </Helmet>
       <HeroSlider />
       <Client />
-      <SixColumnlayout/>
-      <SixColumnlayout/>
+      <SixColumnlayout />
+      <Experties/>
+      <SixColumnlayoutCenter/>
     </section>
   )
 }

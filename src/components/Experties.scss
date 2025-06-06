@@ -1,0 +1,36 @@
+@import "../assets/styles/theme";
+.section-experties{
+    padding:0 3rem;
+    display: block;
+    .section-container{
+        width:100%;
+        overflow: hidden;
+        .experties-slider{
+            .item{
+                text-align: center;
+                padding:0 2rem;
+                .image-conteiner{
+                    padding:1.25rem;
+                    img{
+                        display: block;
+                        object-fit: cover;
+                        width: 120px;
+                        height: 120px;
+                        aspect-ratio: 1 / 1;
+                        margin:auto;
+                    }
+                }
+                
+                .slider-title{
+                    @extend .heading-6;
+                    margin-top:1.25rem;
+                    margin-bottom: .5rem;
+                }
+                .slider-text{
+                    @extend .body-3;
+                    color:$gray700;
+                }
+            }
+        }
+    }
+}

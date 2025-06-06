@@ -47,6 +47,19 @@
                 }
             }
         }
+        &.center{
+            .title-container{
+                @extend .d-flex;
+                flex-direction: column;
+                .btn{
+                    width:130px;
+                    &.outlined{
+                        border-color: $white;
+                        color:$white;
+                    }
+                }
+            }
+        }
     }
 }
 
