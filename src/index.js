@@ -6,16 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
     <Provider store={store}>
-      <ToastContainer position="top-right" closeOnClick />
-      <HelmetProvider>
+        <ToastContainer position="top-right" closeOnClick />      
         <App />
-      </HelmetProvider>
     </Provider>
   
 );
