@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router';
-import { Button, ButtonWithIcon } from "./common/Button";
+import { ButtonWithIcon } from "./common/Button";
 import "./Header.scss";
 import Logo from "../assets/images/logo.png"
 

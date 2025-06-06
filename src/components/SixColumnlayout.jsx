@@ -13,7 +13,7 @@ const SixColumnlayout = () => {
           <Heading title="Roll Out with Freedom" />
           <div className="row">
               <div className="item">
-                  <img src={sixCol} width="868px" heigh="868px" title="roll out" />
+                  <img src={sixCol} width="868px" heigh="868px" alt="roll out" />
                   <div className="title-container">
                       <h4>Play holi your Way</h4>
                       <p>Celebrate Festivals with zero worries coz pressto got you covered all time</p>
@@ -21,7 +21,7 @@ const SixColumnlayout = () => {
                   </div>
               </div>
               <div className="item">
-                  <img src={sixCol2} width="868px" heigh="868px" title="roll out with freedom" />
+                  <img src={sixCol2} width="868px" heigh="868px" alt="roll out with freedom" />
                   <div className="title-container black">
                       <h4>Pressto Pre paid Cards</h4>
                       <p>Say bye to frequent payments use Pressto cards and keep tab of all accounts in 1</p>
