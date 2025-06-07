@@ -6,7 +6,7 @@ import Client from '../components/Client';
 import SixColumnlayout from '../components/SixColumnlayout';
 import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
 import Experties from '../components/Experties';
-
+import AwardsSection from '../components/AwardsSection';
 
 const Home = () => {
   return (
@@ -21,7 +21,8 @@ const Home = () => {
       <Client />
       <SixColumnlayout />
       <Experties/>
-      <SixColumnlayoutCenter/>
+      <SixColumnlayoutCenter />
+      <AwardsSection/>
     </section>
   )
 }
