@@ -18,7 +18,15 @@ const Experties = () => {
         speed: 500,
         arrows: false,
         slidesToShow: 4,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1450,
+                settings: {
+                    slidesToShow: 3,
+                }
+            },
+        ]
     };
   return (
       <section className="section-experties">

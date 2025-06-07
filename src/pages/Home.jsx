@@ -28,10 +28,12 @@ import Experience4 from "../assets/images/exp-4.jpg";
 import Experience5 from "../assets/images/exp-5.jpg";
 import GoogleReviews from '../components/GoogleReviews';
 import RealSlider from '../components/RealSlider';
+import useWindowSize from "../hooks/useWindowSize"
 
 //in the spot light
 
 const SectionSpotlight = () => {
+  const { width } = useWindowSize();
   return (
     <section className="section-container spotlight">
       <Heading title="In the Spotlight" />
@@ -39,9 +41,12 @@ const SectionSpotlight = () => {
         <div className="item">
           <img src={Spotlight} alt="spotlight1" width="" height="" />
         </div>
-        <div className="item">
-          <img src={Spotlight2} alt="spotlight2" width="" height="" />
-        </div>
+        {
+          width > 1600 && <div className="item">
+            <img src={Spotlight2} alt="spotlight2" width="" height="" />
+          </div>
+        }
+        
         <div className="item">
           <img src={Spotlight2} alt="spotlight2" width="" height="" />
         </div>

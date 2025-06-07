@@ -2,6 +2,9 @@
 .section-experties{
     padding:0 3rem;
     display: block;
+    @media(max-width:1600px){
+        padding:0;
+    }
     .section-container{
         width:100%;
         overflow: hidden;
