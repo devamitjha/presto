@@ -130,5 +130,17 @@
         }
            
     }
+
+    //realStories
+    &.realStories{
+        .real-container{
+            padding:0 5rem;
+            @extend .d-flex;
+            gap:2rem;
+            .real{
+               width:350px;
+            }
+        }
+    }
     
 }

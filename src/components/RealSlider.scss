@@ -1,0 +1,42 @@
+@import "../assets/styles/theme";
+.realSlider{
+    display: block;
+    width:350px;
+    overflow: hidden;
+    .slider-item{
+        border-radius: 1rem;
+        overflow: hidden;
+        border:none;
+        img{
+            width:100%;
+            height:100%;
+            object-fit: cover;
+        }
+    }
+    .slick-slider{
+        .prevArrow{
+            width:32px;
+            height:32px;
+            @extend .d-flex;
+            background-color: rgba($white, .5);
+            position:absolute;
+            border-radius: 100%;
+            z-index: 99;
+            right:50px;
+            bottom:24px;
+            cursor: pointer;
+        }
+        .nextArrow{
+            width:32px;
+            height:32px;
+            @extend .d-flex;
+            background-color: rgba($white, .5);
+            position:absolute;
+            border-radius: 100%;
+            z-index: 99;
+            right:10px;
+            bottom:24px;
+            cursor: pointer;
+        }
+    }
+}

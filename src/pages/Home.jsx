@@ -26,6 +26,8 @@ import Experience2 from "../assets/images/exp-2.jpg";
 import Experience3 from "../assets/images/exp-3.jpg";
 import Experience4 from "../assets/images/exp-4.jpg";
 import Experience5 from "../assets/images/exp-5.jpg";
+import GoogleReviews from '../components/GoogleReviews';
+import RealSlider from '../components/RealSlider';
 
 //in the spot light
 
@@ -98,7 +100,7 @@ const CarePartner = () => {
 // Luxary experience
 const LuxaryExperience = () => {
   return (
-      <section className="section-container luxaryExperience">
+    <section className="section-container luxaryExperience">
       <Heading title="Luxury Experience Indeed" />
       <div className="luxaryExperience-item">
         <div className="item">
@@ -107,7 +109,7 @@ const LuxaryExperience = () => {
         <div className="item">
           <img src={Experience2} alt="Experience2" width="" height="" />
         </div>
-        <div className="item collage">          
+        <div className="item collage">
           <div className="image-collage">
             <div className="grid">
               <img src={Experience3} alt="Experience3" width="" height="" />
@@ -131,6 +133,19 @@ const LuxaryExperience = () => {
       </div>
     </section>
   )
+};
+
+// real and Review
+const RealStories = () => {
+  return (
+    <section className="section-container realStories">
+      <Heading title="Real Stories, Real Trust" />      
+      <div className="real-container">
+        <RealSlider/>
+        <GoogleReviews/>
+      </div>
+    </section>
+  )
 }
 
 const Home = () => {
@@ -146,7 +161,8 @@ const Home = () => {
       <Client />
       <SixColumnlayout />
       <Experties/>
-      <SixColumnlayoutCenter />
+      <SixColumnlayoutCenter /> 
+      <RealStories/>
       <SectionSpotlight />
       <CarePartner />
       <LuxaryExperience/>
