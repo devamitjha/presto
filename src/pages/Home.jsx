@@ -17,7 +17,7 @@ import { Button } from '../components/common/Button';
 
 //in the spot light
 
-const SectionSpotlight = () => {
+const SectionSpotlight = () => { 
   return (
     <section className="section-container spotlight">
       <Heading title="In the Spotlight" />
@@ -66,7 +66,9 @@ const CarePartner = () => {
     <section className="section-container care-partner">
       <Heading title="Our Care Partners" />
       <div className="care-partner-container">
-          <div className="item"></div>
+        <div className="item">
+          <img src={Spotlight2} alt="spotlight2" width="" height=""/>
+        </div>
       </div>
     </section>
   )
