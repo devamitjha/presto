@@ -15,21 +15,33 @@ import Spotlight5 from "../assets/images/sp-5.jpg";
 import Spotlight6 from "../assets/images/sp-6.jpg";
 import { Button } from '../components/common/Button';
 
+import Gucci from "../assets/images/gucci.png";
+import Hermes from "../assets/images/hermes.png";
+import Ferragamo from "../assets/images/ferragamo.png";
+import Louis from "../assets/images/louis.png";
+import Balenciaga from "../assets/images/balenciaga.png";
+
+import Experience1 from "../assets/images/exp-1.jpg";
+import Experience2 from "../assets/images/exp-2.jpg";
+import Experience3 from "../assets/images/exp-3.jpg";
+import Experience4 from "../assets/images/exp-4.jpg";
+import Experience5 from "../assets/images/exp-5.jpg";
+
 //in the spot light
 
-const SectionSpotlight = () => { 
+const SectionSpotlight = () => {
   return (
     <section className="section-container spotlight">
       <Heading title="In the Spotlight" />
       <div className="spotlight-item">
         <div className="item">
-          <img src={Spotlight} alt="spotlight1" width="" height=""/>
+          <img src={Spotlight} alt="spotlight1" width="" height="" />
         </div>
         <div className="item">
-          <img src={Spotlight2} alt="spotlight2" width="" height=""/>
+          <img src={Spotlight2} alt="spotlight2" width="" height="" />
         </div>
         <div className="item">
-          <img src={Spotlight2} alt="spotlight2" width="" height=""/>
+          <img src={Spotlight2} alt="spotlight2" width="" height="" />
         </div>
         <div className="item collage">
           <div className="info">
@@ -37,27 +49,24 @@ const SectionSpotlight = () => {
           </div>
           <div className="image-collage">
             <div className="grid">
-              <img src={Spotlight3} alt="spotlight3" width="" height=""/>
+              <img src={Spotlight3} alt="spotlight3" width="" height="" />
             </div>
             <div className="grid">
-               <img src={Spotlight4} alt="spotlight4" width="" height=""/>
+              <img src={Spotlight4} alt="spotlight4" width="" height="" />
             </div>
             <div className="grid">
-              <img src={Spotlight5} alt="spotlight5" width="" height=""/>
+              <img src={Spotlight5} alt="spotlight5" width="" height="" />
             </div>
             <div className="grid">
-              <img src={Spotlight6} alt="spotlight6" width="" height=""/>
-            </div>              
+              <img src={Spotlight6} alt="spotlight6" width="" height="" />
+            </div>
           </div>
-           <Button title="View Gallery" className="btn btn-md base-btn outlined overflowHidden"/>
-        </div>       
-      </div>
-      <div className="viewAll">
-        <Button title="View All" className="btn btn-md base-btn secondary overflowHidden"/>
+          <Button title="View Gallery" className="btn btn-md base-btn outlined overflowHidden" />
+        </div>
       </div>
     </section>
   )
-}
+};
 
 //care partner
 
@@ -67,7 +76,57 @@ const CarePartner = () => {
       <Heading title="Our Care Partners" />
       <div className="care-partner-container">
         <div className="item">
-          {/* <img src={Spotlight2} alt="spotlight2" width="" height=""/> */}
+          <img src={Gucci} alt="Gucci" width="148px" height="148px" />
+        </div>
+        <div className="item">
+          <img src={Hermes} alt="Hermes" width="148px" height="148px" />
+        </div>
+        <div className="item">
+          <img src={Ferragamo} alt="Ferragamo" width="148px" height="148px" />
+        </div>
+        <div className="item">
+          <img src={Louis} alt="Louis" width="148px" height="148px" />
+        </div>
+        <div className="item">
+          <img src={Balenciaga} alt="Balenciaga" width="148px" height="148px" />
+        </div>
+      </div>
+    </section>
+  )
+};
+
+// Luxary experience
+const LuxaryExperience = () => {
+  return (
+      <section className="section-container luxaryExperience">
+      <Heading title="Luxury Experience Indeed" />
+      <div className="luxaryExperience-item">
+        <div className="item">
+          <img src={Experience1} alt="Experience1" width="" height="" />
+        </div>
+        <div className="item">
+          <img src={Experience2} alt="Experience2" width="" height="" />
+        </div>
+        <div className="item collage">          
+          <div className="image-collage">
+            <div className="grid">
+              <img src={Experience3} alt="Experience3" width="" height="" />
+            </div>
+            <div className="grid">
+              <img src={Experience4} alt="Experience4" width="" height="" />
+            </div>
+            <div className="grid">
+              <img src={Experience5} alt="Experience5" width="" height="" />
+            </div>
+            <div className="grid content">
+              <div className="info">
+                <h4>About Us</h4>
+                <p>Best in Class Dry Cleaning for Luxury and Branded Clothes, You know who has been the face of the town.</p>
+              </div>
+              <Button title="Know More" className="btn btn-md base-btn outlined overflowHidden" />
+            </div>
+          </div>
+          
         </div>
       </div>
     </section>
@@ -89,7 +148,8 @@ const Home = () => {
       <Experties/>
       <SixColumnlayoutCenter />
       <SectionSpotlight />
-      <CarePartner/>
+      <CarePartner />
+      <LuxaryExperience/>
     </section>
   )
 }
