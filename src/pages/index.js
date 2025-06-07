@@ -1,0 +1,11 @@
+export { default as Home } from './Home';
+export { default as About } from './About';
+export { default as Store } from './Store';
+export { default as Service } from './Service';
+export { default as PrepaidCard } from './PrepaidCard';
+export { default as Blog } from './Blog';
+export { default as Contact } from './Contact';
+export { default as Login } from './Login';
+export { default as Register } from './Register';
+export { default as MyAccount } from './MyAccount';
+export { default as PageNotFound } from './PageNotFound';
