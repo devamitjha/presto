@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import './GoogleReviews.scss';
 import Google from "../assets/images/google.jpg";
 
@@ -54,7 +55,7 @@ const GoogleReviews = () => {
         ))}
       </div>
       <div className="review-footer">
-        <a href="#" className="leave-note">Experienced Presto? Leave us a Note Here &gt;</a>
+        <Link to="/" className="leave-note">Experienced Presto? Leave us a Note Here &gt;</Link>
         <button className="write-review">WRITE REVIEW</button>
       </div>
     </div>
