@@ -7,14 +7,13 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
+import logoBw from "../assets/images/logo-bw.png"
 
 const Footer = () => {
   return (
     <div className="footer">
       <div className="item social">
-          <h1 className="logo">
-            Logo<span className="wave">~</span>
-          </h1>
+        <img className="logo" src={logoBw } alt="logobw"/>
           <p className="follow-label">FOLLOW US</p>
           <div className="social-icons">
             <Facebook />
