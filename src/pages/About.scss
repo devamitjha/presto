@@ -1,0 +1,190 @@
+@import "../assets/styles/theme";
+
+.aboutpage{
+    padding: 0 1.5rem;
+    .main-banner{
+        border-radius: 16px;
+        overflow: hidden;
+        display: block;
+        width:100%;
+        img{
+            display: block;
+            width:100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 2 / 1;
+        }
+    }    
+    .client{
+        @extend .d-flex;
+        gap:1rem;
+        margin:5.5rem 3.5rem;
+        .item{
+            @extend .d-flex;
+            //flex:1;
+            justify-content: start;
+            gap:.5rem;
+            h4{
+                @extend .heading-2;
+            }
+            span{
+                @extend .heading-6;
+            }
+            &.flex-2{
+                flex:2;
+            }
+        }
+    }
+    .visionary-section {
+        background-color: $white;
+
+        .section-title {
+            @extend .heading-6;
+            @extend .text-center;
+            margin-bottom: $xl;
+            color: $primary-900;
+        }
+
+        .visionary-content {
+            @extend .d-flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: start;
+            gap: $xl;
+                .image-container {
+                    flex: 1 1 40%;
+                    img {
+                        width: 100%;
+                        border-radius: $lg;
+                        object-fit: cover;
+                        box-shadow: $elevation-4;
+                        aspect-ratio: 868 / 780;
+                        height: auto;
+                    }
+
+                    .caption {
+                        margin-top: $sm;
+                        @extend .heading-6;
+                        color: $gray700;
+
+                        strong {
+                            display: block;
+                            font-weight: 600;
+                            color: $black;
+                            margin-bottom: 2px;
+                        }
+
+                        span {
+                            font-size: 14px;
+                            color: $gray500;
+                        }
+                    }
+                }
+
+            .text-content {
+                flex: 1 1 55%;
+                display: flex;
+                flex-direction: column;
+                gap: $lg;
+                padding:2rem;              
+
+                .block {                    
+                    max-width:440px;
+                    width:90%;
+                    h3 {
+                        @extend .heading-6;
+                        color: $black;
+                        margin-bottom: $sm;
+                    }
+
+                    p {
+                        @extend .body-2;
+                        color: $gray700;
+                    }
+                    &.mission{
+                        margin:2rem 0 8rem 0;
+                    }
+                }
+            }
+        }
+    }
+    .section-pressto-map{
+        .pressto-map{
+            border-radius: 16px;
+            overflow: hidden;
+            display: block;
+            width:100%;
+            img{
+                display: block;
+                width:100%;
+                height: 100%;
+                object-fit: cover;
+                aspect-ratio: 2 / 1;
+            }
+        }
+    }
+
+    //section-standBy
+    .what-we-stand-by {
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap:2rem;
+
+            .grid-item {
+                position: relative;
+                width: 100%;
+                box-shadow: $elevation-3;
+                border-radius: 1em;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+                .overlay {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    text-align: center;
+                    padding:1.5rem;
+                    color: $white;
+                    background-image: linear-gradient(transparent, rgba($black, .35));
+                    @extend .heading-6;
+                }
+            }
+        }
+    }
+
+    //section-luxaryExperience-item
+    .section-luxaryExperience-item{
+        @extend .d-flex;
+        justify-content: space-between;
+        gap:2rem;
+        .exp-item{
+            width:50%;
+             @extend .d-flex;
+             img{
+                border-radius: 1rem;
+             }
+             .exp-content{
+                padding:0 1.5rem;
+                h3{
+                    @extend .heading-6;
+                    margin:0 0 1rem 0;
+                }
+                p{
+                    @extend .body-2;
+                     margin:0 0 1rem 0;
+                }
+                .btn{
+                    background-color: $black;
+                    width:60%;
+                }
+             }
+        }
+    }
+    
+
+}
