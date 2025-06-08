@@ -49,17 +49,17 @@ const SectionSpotlight = () => {
       <Heading title="In the Spotlight" />
       <div className="spotlight-item">
         <div className="item">
-          <img src={Spotlight} alt="Showcase Image 1" />
+          <img src={Spotlight} alt="Showcase1" />
         </div>
 
         {width > 1600 && (
           <div className="item">
-            <img src={Spotlight2} alt="Showcase Image 2" />
+            <img src={Spotlight2} alt="Showcase2" />
           </div>
         )}
 
         <div className="item">
-          <img src={Spotlight2} alt="Showcase Image 3" />
+          <img src={Spotlight2} alt="Showcase3" />
         </div>
 
         <div className="item collage">
