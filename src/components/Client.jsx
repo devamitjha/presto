@@ -15,7 +15,7 @@ const Client = () => {
         </div>
         <div className="item">
             <h4>100000+</h4>
-            <span>Delighted Clients</span>
+            <span>Delighted Customers</span>
         </div>
         <div className="item">
             <TrustBadge />

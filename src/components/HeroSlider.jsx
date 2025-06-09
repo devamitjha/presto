@@ -65,7 +65,7 @@ const HeroSlider = () => {
             <img src={img.src} alt={img.title} />
             <div className="hero-title">
                 <h3>Look Good, Feel Great</h3>
-                <ButtonWithIcon title="Book Appointment" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" />
+                <ButtonWithIcon title="Schedule Pickup" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" />
             </div>            
           </div>
         ))}
