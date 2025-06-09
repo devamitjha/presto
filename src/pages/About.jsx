@@ -122,7 +122,9 @@ const About = () => {
         <Heading title="Experience Pressto" />
         <div className="section-luxaryExperience-item">
           <div className="exp-item">
-            <img src={Exp6} alt="exp6" width="416" height="416" />
+            <div className="img-container">
+              <img src={Exp6} alt="exp6" width="416" height="416" />
+            </div>
             <div className="exp-content">
               <h3>Locate Store Near you</h3>
               <p>Find your nearest Pressto and step into effortless, premium care</p>
@@ -130,7 +132,9 @@ const About = () => {
             </div>
           </div>
           <div className="exp-item">
-            <img src={Exp7} alt="exp7" width="416" height="416" />
+            <div className="img-container">
+              <img src={Exp7} alt="exp7" width="416" height="416" />
+            </div>
             <div className="exp-content">
               <h3>Pickup & Drop</h3>
               <p>Schedule a pickup and let premium care come to you.</p>
