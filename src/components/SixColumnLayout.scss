@@ -8,8 +8,11 @@
             @extend .d-flex;
             justify-content: space-between;
             gap:1.5rem;
-            .item{
+            .animated-item{
                 width:50%;
+            }
+            .item{
+                width:100%;
                 overflow: hidden;
                 border-radius: 1rem;
                 position: relative;

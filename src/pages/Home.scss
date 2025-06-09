@@ -15,6 +15,10 @@
             @media(max-width:1600px){
                 padding:0;
             }
+            .animated-item{
+                flex:1;
+                border:none;
+            }
             .item{
                 border:1px solid $black;
                 border-radius: 1rem;

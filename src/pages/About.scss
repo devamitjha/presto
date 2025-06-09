@@ -26,6 +26,9 @@
             gap:.5rem;
             h4{
                 @extend .heading-2;
+                span{
+                     @extend .heading-2;
+                }
             }
             span{
                 @extend .heading-6;

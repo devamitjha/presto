@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
 import Heading from '../components/common/Heading';
+import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
 import "./About.scss";
 import AboutBanner from "../assets/images/about.jpg"
 import leader from '../assets/images/leader.jpg';
@@ -104,7 +105,7 @@ const About = () => {
       <section className="client">
         <div className="item">
             <span>Pioneering Sustainable Care Since </span>
-            <h4>2008</h4>
+            <h4> <ScrollAnimatedNumber value={2008} /></h4>
         </div>
       </section>
       <VisionaryMan />

@@ -5,13 +5,14 @@ import Heading from './common/Heading';
 import sixCol from "../assets/images/six-col-1.jpg";
 import sixCol2 from "../assets/images/six-col-2.jpg";
 import { ArrowUpRight } from 'lucide-react';
+import StaggerOnView from "../components/common/StaggerOnView"
 
 
 const SixColumnlayout = () => {
   return (
     <section className="section-container six-columns">
           <Heading title="Roll Out with Freedom" />
-          <div className="row">
+          <StaggerOnView className="row">
               <div className="item">
                   <img src={sixCol} width="868px" heigh="868px" alt="roll out" />
                   <div className="title-container">
@@ -28,7 +29,7 @@ const SixColumnlayout = () => {
                       <Link to="/" className="link">Get Card <span className="icon-box"><ArrowUpRight /></span></Link>
                   </div>
               </div>
-          </div>
+          </StaggerOnView>
     </section>
   )
 }
