@@ -6,12 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import ScrollToTop from './components/common/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
     <Provider store={store}>
-        <ToastContainer position="top-right" closeOnClick />      
+        <ToastContainer position="top-right" closeOnClick />
+         <ScrollToTop />
         <App />
     </Provider>
   
