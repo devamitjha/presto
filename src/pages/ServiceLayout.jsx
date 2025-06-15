@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import { Outlet, useNavigate } from 'react-router';
 import ServiceBanner from "../assets/images/service-main.jpg";
 import "./service.scss";
-import { Button } from '../components/common/Button';
 
 const HelmetMeta = () => {
   return (

@@ -43,6 +43,7 @@ const StoreLocator = ({ city }) => {
       console.error("City geocoding error:", error);
     }
   };
+  console.log(cityCenter);
 
   useEffect(() => {
     fetchCityCoordinates();
