@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router';
+import { NavLink, Link , useNavigate} from 'react-router';
 import { ButtonWithIcon } from "./common/Button";
 import "./Header.scss";
 import Logo from "../assets/images/logo.png"
@@ -17,6 +17,14 @@ const BookNowIcon = (
 );
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const goToContactPage = () => {
+    navigate('/contact');
+  };
+  const goToBookNowPage = () => {
+    navigate('/book-now');
+  };
   return (
     <section className="header">
       <div className="navigation">
@@ -37,8 +45,8 @@ const Header = () => {
           </nav>
         </div>
         <div className="section-contact">
-          <ButtonWithIcon title="Contact Us" icon={ContactIcon} className="btn btn-md base-btn outlined overflowHidden" />
-          <ButtonWithIcon title="Book Now" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden"/>
+          <ButtonWithIcon title="Contact Us" icon={ContactIcon} className="btn btn-md base-btn outlined overflowHidden" GoTo={goToContactPage } />
+          <ButtonWithIcon title="Book Now" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage }/>
         </div>
       </div>
     </section>

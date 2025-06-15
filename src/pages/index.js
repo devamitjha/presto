@@ -7,6 +7,7 @@ export { default as Restoration } from './Restoration';
 export { default as PrepaidCard } from './PrepaidCard';
 export { default as Blog } from './Blog';
 export { default as Contact } from './Contact';
+export { default as BookNow } from './BookNow';
 export { default as Login } from './Login';
 export { default as Register } from './Register';
 export { default as MyAccount } from './MyAccount';
