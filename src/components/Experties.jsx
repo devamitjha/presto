@@ -45,7 +45,7 @@ const Experties = ({ title, data = [], item }) => {
       {
         breakpoint: 1450,
         settings: {
-          slidesToShow: slidesToShow ==5 ? 4 : 3,
+          slidesToShow: slidesToShow === 5 ? 4 : 3,
         }
       }
     ]
