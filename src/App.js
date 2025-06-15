@@ -2,6 +2,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   ScrollRestoration,
+  Navigate
 } from 'react-router';
 
 import Layout from './Layout';
@@ -9,7 +10,9 @@ import {
   Home,
   About,
   Store,
-  Service,
+  ServiceLayout,
+  DryCleaning,
+  Restoration,
   PrepaidCard,
   Blog,
   Contact,
@@ -34,7 +37,15 @@ function App() {
         // Category listing
         { path: '/about', element: <About /> },
         { path: '/store', element: <Store /> },
-        { path: '/service', element: <Service /> },
+         {
+            path: "service",
+            element: <ServiceLayout />,
+            children: [
+              { index: true, element: <Navigate to="/service/dry-cleaning" replace /> }, 
+              { path: "dry-cleaning", element: <DryCleaning /> },
+              { path: "shoes-and-bag-restoration", element: <Restoration /> },
+            ],
+          }, 
         { path: '/prepaid-card', element: <PrepaidCard /> },
         { path: '/contact', element: <Contact /> },
         { path: '/login', element: <Login /> },

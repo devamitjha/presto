@@ -1,7 +1,9 @@
 export { default as Home } from './Home';
 export { default as About } from './About';
 export { default as Store } from './Store';
-export { default as Service } from './Service';
+export { default as ServiceLayout } from './ServiceLayout';
+export { default as DryCleaning } from './DryCleaning';
+export { default as Restoration } from './Restoration';
 export { default as PrepaidCard } from './PrepaidCard';
 export { default as Blog } from './Blog';
 export { default as Contact } from './Contact';

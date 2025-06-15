@@ -25,11 +25,7 @@ import Spotlight4 from '../assets/images/sp-4.jpg';
 import Spotlight5 from '../assets/images/sp-5.jpg';
 import Spotlight6 from '../assets/images/sp-6.jpg';
 
-import Gucci from '../assets/images/gucci.png';
-import Hermes from '../assets/images/hermes.png';
-import Ferragamo from '../assets/images/ferragamo.png';
-import Louis from '../assets/images/louis.png';
-import Balenciaga from '../assets/images/balenciaga.png';
+
 
 import Experience1 from '../assets/images/exp-1.jpg';
 import Experience2 from '../assets/images/exp-2.jpg';
@@ -38,6 +34,10 @@ import Experience4 from '../assets/images/exp-4.jpg';
 import Experience5 from '../assets/images/exp-5.jpg';
 
 import useWindowSize from '../hooks/useWindowSize';
+
+import { expertiseData } from '../api/expertiseData';
+import { brandRecognition } from '../api/brandRecognition';
+import { carePartners } from '../api/carePartners';
 
 
 // Spotlight Section
@@ -82,29 +82,6 @@ const SectionSpotlight = () => {
 };
 
 
-// Care Partner Section
-const CarePartner = () => {
-  const partners = [
-    { src: Gucci, alt: 'Gucci' },
-    { src: Hermes, alt: 'Hermes' },
-    { src: Ferragamo, alt: 'Ferragamo' },
-    { src: Louis, alt: 'Louis Vuitton' },
-    { src: Balenciaga, alt: 'Balenciaga' }
-  ];
-
-  return (
-    <section className="section-container care-partner">
-      <Heading title="Our Care Partners" />
-      <div className="care-partner-container">
-        {partners.map((brand, index) => (
-          <div className="item" key={index}>
-            <img src={brand.src} alt={brand.alt} width="148px" height="148px" />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
 
 
 // Luxury Experience Section
@@ -173,12 +150,13 @@ const Home = () => {
       <HeroSlider />
       <Client />
       <SixColumnlayout />
-      <Experties />
+      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
       <SixColumnlayoutCenter image={[serviceTshirt, serviceBag]}/>
       <RealStories />
       <SectionSpotlight />
-      <CarePartner />
+      <Experties title="The Prestige We've Pressed" data={carePartners} item="5"/>
       <LuxaryExperience />
+      <Experties title="Brand Recognition" data={brandRecognition} item="5"/>      
     </section>
   );
 };

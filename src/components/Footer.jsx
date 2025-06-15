@@ -7,7 +7,7 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
-import logoBw from "../assets/images/logo-bw.png"
+import logoBw from "../assets/images/footer-logo.png"
 
 const Footer = () => {
   return (
