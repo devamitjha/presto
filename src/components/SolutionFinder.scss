@@ -1,0 +1,46 @@
+@import "../assets/styles/theme";
+.solution-finder {
+  text-align: center;
+  margin-bottom: 3em;
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 2rem;
+  }
+
+  .dropdowns {
+    display: flex;
+    justify-content: center;
+    gap:2%;
+    flex-wrap: wrap;
+    max-width: 768px;
+    width:90%;
+    margin: 0 auto;
+  }
+
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    background: #f9fafa;    
+    border-radius: 4px;
+    width:48%;
+
+    label {
+      font-size: 12px;
+      text-align: left;
+      color: $gray600;
+      margin-bottom: 4px;
+      padding: 1rem;
+    }
+
+    select {
+      padding: 8px 12px;
+      border: none;
+      border-bottom: 2px solid $gray200;
+      background: transparent;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.before-after-carousel {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 900px;
+
+  .slider-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .react-compare-image {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }  
+
+  .slick-prev,
+  .slick-next {
+    z-index: 10;
+  }
+}
