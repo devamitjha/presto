@@ -44,10 +44,11 @@ const StoreLocator = ({ city }) => {
     }
   };
   console.log(cityCenter);
+  console.log(fetchCityCoordinates());
 
-  useEffect(() => {
-    fetchCityCoordinates();
-  }, [city]);
+  // useEffect(() => {
+  //   fetchCityCoordinates();
+  // }, [city]);
 
   const handleSearch = () => {
     const result = allStores.filter(store => store.pincode === pincode);
