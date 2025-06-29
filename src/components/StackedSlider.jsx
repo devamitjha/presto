@@ -4,32 +4,16 @@ import 'swiper/css';
 import 'swiper/css/effect-cards';
 import "./StackedSlider.scss";
 
-// Slider Image
-import Slider1 from "../assets/images/service/slider-1.jpg";
-import Slider2 from "../assets/images/service/slider-2.jpg";
-import Slider3 from "../assets/images/service/slider-3.jpg";
+
 import { EffectCards } from 'swiper/modules';
 
-// Sample data - replace with your own
-const sliderData = [
-  {    
-    image: Slider1,
-    title: "Slider 1"
-  },
-  {    
-    image: Slider2,
-    title: "Slider 2"
-  },
-  {    
-    image: Slider3,
-    title: "Slider 3"
-  }
-];
 
-const StackedSlider = () => { 
+
+const StackedSlider = ({sliderData}) => {  
   return (
     <div className="slider-wrapper">
       <Swiper
+        initialSlide={1}
         effect={'cards'}
         grabCursor={true}
         modules={[EffectCards]}

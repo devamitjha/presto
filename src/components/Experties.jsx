@@ -38,7 +38,7 @@ const Experties = ({ title, data = [], item }) => {
     speed: 500,
     arrows: true,
     slidesToShow,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
     nextArrow: <NavNextArrow />,
     prevArrow: <NavPrevArrow />,
     responsive: [

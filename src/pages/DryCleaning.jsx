@@ -4,11 +4,19 @@ import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
 import BeforeAfterSliderCarousel from '../components/BeforeAfterSliderCarousel';
 
+//slider
+import Slider1 from "../assets/images/service/DryCleaning/slider-1.jpg";
+import Slider2 from "../assets/images/service/DryCleaning/slider-2.jpg";
+import Slider3 from "../assets/images/service/DryCleaning/slider-3.jpg";
+import Slider4 from "../assets/images/service/DryCleaning/slider-4.jpg";
+
 
 import sl1 from "../assets/images/service/sl-1.jpg";
 import sl2 from "../assets/images/service/sl-2.jpg";
 import sl3 from "../assets/images/service/sl-3.jpg";
 import sl4 from "../assets/images/service/sl-4.jpg";
+
+
 import CenterBanner from "../assets/images/service/dry-center-banner.jpg";
 import Experties from '../components/Experties';
 import SolutionFinder from '../components/SolutionFinder';
@@ -20,6 +28,25 @@ const items = [
   { img: sl2, title: "Speed", info:"Quick turnarounds, without cutting corners - because your time is valuable."},
   { img: sl3, title: "Service", info:"Thoughtful care, personalised for you - from pick-up to delivery."},
   { img: sl4, title: "Transparency", info:"No surprises, just honesty, you’ll always know what we’re doing and why."},
+];
+
+const sliderData = [
+  {    
+    image: Slider2,
+    title: "Slider 2"
+  },
+  {    
+    image: Slider1,
+    title: "Slider 1"
+  },  
+  {    
+    image: Slider3,
+    title: "Slider 3"
+  },
+  {    
+    image: Slider4,
+    title: "Slider 4"
+  }
 ];
 
 const WhatWeStandBy = () => {
@@ -49,14 +76,15 @@ const DryCleaning = () => {
     <>
       <div className="section-container">
         <Heading title="Carry the Mint Look" />
-        <StackedSlider />      
+        <StackedSlider sliderData={sliderData}/>      
       </div>
       <div className="section-container px-0">
         <div className="center-banner">
           <img src={CenterBanner} alt="center banner" width="1920" height="728" />
           <div className="info">
             <h4>Beyond Clean</h4>
-            <p>The Pressto Dry Clean Difference At Pressto, dry cleaning is more than just a service - it's a science. Our advanced, fabric-specific process gently lifts stains and refreshes garments without compromising texture, colour, or structure. With eco-friendly solvents and expert care at every step, your clothes return not only impeccably clean but truly cared for.</p>
+            <p>The Pressto Dry Clean Difference
+At Pressto, dry cleaning is more than just a service - it’s a science. Our advanced, fabric-specific process gently lifts stains and refreshes garments without compromising texture, colour, or structure. With eco-friendly solvents and expert care at every step, your clothes return not only impeccably clean but truly cared for.</p>
           </div>
         </div>
       </div>

@@ -13,17 +13,23 @@ import { Button } from '../components/common/Button';
 
 import './Home.scss';
 
+//hero slider
+import Image1 from '../assets/images/mainbanner/banner-1.jpg';
+import Image2 from '../assets/images/mainbanner/banner-2.jpg';
+import Image3 from '../assets/images/mainbanner/banner-3.jpg';
+
 //services 
 import serviceTshirt from "../assets/images/service-tshirt.jpg";
 import serviceBag from "../assets/images/service-bag.jpg";
 
 // Assets
-import Spotlight from '../assets/images/sp-1.jpg';
-import Spotlight2 from '../assets/images/sp-2.jpg';
-import Spotlight3 from '../assets/images/sp-3.jpg';
-import Spotlight4 from '../assets/images/sp-4.jpg';
-import Spotlight5 from '../assets/images/sp-5.jpg';
-import Spotlight6 from '../assets/images/sp-6.jpg';
+import Spotlight from '../assets/images/spotlight/sp-1.jpg';
+import Spotlight2 from '../assets/images/spotlight/sp-2.jpg';
+import Spotlight3 from '../assets/images/spotlight/sp-3.jpg';
+import Spotlight4 from '../assets/images/spotlight/sp-4.jpg';
+import Spotlight5 from '../assets/images/spotlight/sp-5.jpg';
+import Spotlight6 from '../assets/images/spotlight/sp-6.jpg';
+import Spotlight7 from '../assets/images/spotlight/sp-7.jpg';
 
 
 
@@ -59,7 +65,7 @@ const SectionSpotlight = () => {
         )}
 
         <div className="item">
-          <img src={Spotlight2} alt="Showcase3" />
+          <img src={Spotlight3} alt="Showcase3" />
         </div>
 
         <div className="item collage">
@@ -68,7 +74,7 @@ const SectionSpotlight = () => {
             sharp skill, and an eye for detail. It’s not just what we do, it’s how we do it, with quiet precision and pride in every fold
           </div>
           <div className="image-collage">
-            {[Spotlight3, Spotlight4, Spotlight5, Spotlight6].map((img, index) => (
+            {[Spotlight4, Spotlight5, Spotlight6, Spotlight7].map((img, index) => (
               <div className="grid" key={index}>
                 <img src={img} alt={`Spotlight Collage ${index + 1}`} />
               </div>
@@ -129,6 +135,12 @@ const RealStories = () => (
   </section>
 );
 
+ const heroImages = [
+    { src: Image1, title: 'Look Good, Feel Great' },
+    { src: Image2, title: 'Look Good, Feel Great' },
+    { src: Image3, title: 'Look Good, Feel Great' }
+ ];
+
 
 // Main Home Component
 const Home = () => {
@@ -147,7 +159,7 @@ const Home = () => {
         <link rel="canonical" href="https://www.pressto.in" />
       </Helmet>
 
-      <HeroSlider />
+      <HeroSlider heroImages={heroImages}/>
       <Client />
       <SixColumnlayout />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>

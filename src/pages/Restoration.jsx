@@ -4,6 +4,12 @@ import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
 import BeforeAfterSliderCarousel from '../components/BeforeAfterSliderCarousel';
 
+//slider
+import Slider1 from "../assets/images/service/Restoration/slider-1.jpg";
+import Slider2 from "../assets/images/service/Restoration/slider-2.jpg";
+import Slider3 from "../assets/images/service/Restoration/slider-3.jpg";
+
+
 
 import sl1 from "../assets/images/service/sl-1.jpg";
 import sl2 from "../assets/images/service/sl-2.jpg";
@@ -22,6 +28,22 @@ const items = [
   { img: sl4, title: "Transparency", info:"No surprises, just honesty, you’ll always know what we’re doing and why."},
 ];
 
+
+
+const sliderData = [
+  {    
+    image: Slider2,
+    title: "Slider 2"
+  },
+  {    
+    image: Slider1,
+    title: "Slider 1"
+  }, 
+  {    
+    image: Slider3,
+    title: "Slider 3"
+  }
+];
 const WhatWeStandBy = () => {
   return (
     <section className="section-container">
@@ -49,14 +71,15 @@ const Restoration = () => {
     <>
       <div className="section-container">
         <Heading title="Carry the Mint Look" />
-        <StackedSlider />      
+        <StackedSlider sliderData={sliderData} />      
       </div>
       <div className="section-container px-0">
         <div className="center-banner">
           <img src={CenterBanner} alt="center banner" width="1920" height="728" />
           <div className="info">
-            <h4>Shoes & Bag Headline</h4>
-            <p>Beyond Repair: The Pressto Restoration Promise From scuffed leather to faded fabrics, we bring your favourite shoes and bags back to life, the right way. With specialised techniques and careful restoration, we preserve their original charm while extending their lifespan. Because some things aren't just accessories - they're part of your story.</p>
+            <h4>Beyond Repair</h4>
+            <p>The Pressto Restoration Promise
+From scuffed leather to faded fabrics, we bring your favourite shoes and bags back to life, the right way. With specialised techniques and careful restoration, we preserve their original charm while extending their lifespan. Because some things aren’t just accessories - they’re part of your story.</p>
           </div>
         </div>
       </div>

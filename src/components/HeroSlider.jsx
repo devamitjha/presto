@@ -5,9 +5,7 @@ import './HeroSlider.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import Image1 from '../assets/images/banner-1.jpg';
-import Image2 from '../assets/images/banner-1.jpg';
-import Image3 from '../assets/images/banner-1.jpg';
+  
 import { ButtonWithIcon } from './common/Button';
 
 const BookNowIcon = (
@@ -36,12 +34,10 @@ function NavPrevArrow(props) {
   );
 }
 
-const HeroSlider = () => {
-  const images = [
-    { src: Image1, title: 'Look Good, Feel Great' },
-    { src: Image2, title: 'Look Good, Feel Great' },
-    { src: Image3, title: 'Look Good, Feel Great' }
-  ];
+
+
+
+const HeroSlider = ({heroImages}) => { 
 
   const settings = {
     dots: true,
@@ -60,7 +56,7 @@ const HeroSlider = () => {
   return (
     <div className="hero-slider">
       <Slider {...settings}>
-        {images.map((img, index) => (
+        {heroImages.map((img, index) => (
           <div className="slider-item" key={index}>
             <img src={img.src} alt={img.title} />
             <div className="hero-title">

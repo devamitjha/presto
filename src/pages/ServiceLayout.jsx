@@ -1,9 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from "react-helmet";
 import { NavLink, Outlet, useLocation } from 'react-router';
-import DryCleaning from "../assets/images/service/dry-Cleaning.jpg";
-import Restoration from "../assets/images/service/restoration.jpg";
+import HeroSlider from '../components/HeroSlider';
 import "./service.scss";
+
+//hero slider
+import dc1 from '../assets/images/service/DryCleaning/dc1.jpg';
+import dc2 from '../assets/images/service/DryCleaning/dc2.jpg';
+import dc3 from '../assets/images/service/DryCleaning/dc3.jpg';
+import dc4 from '../assets/images/service/DryCleaning/dc4.jpg';
+
+import res1 from '../assets/images/service/Restoration/res1.jpg';
+import res2 from '../assets/images/service/Restoration/res2.jpg';
+import res3 from '../assets/images/service/Restoration/res3.jpg';
+
 
 const HelmetMeta = () => (
   <Helmet>
@@ -13,6 +23,19 @@ const HelmetMeta = () => (
     <link rel="canonical" href="https://www.yoursite.com" />
   </Helmet>
 );
+
+const dryCleaningSlider = [
+    { src: dc1, title: 'Look Good, Feel Great' },
+    { src: dc2, title: 'Look Good, Feel Great' },
+    { src: dc3, title: 'Look Good, Feel Great' },
+    { src: dc4, title: 'Look Good, Feel Great' }
+];
+const restorationSlider = [
+    { src: res1, title: 'Look Good, Feel Great' },
+    { src: res2, title: 'Look Good, Feel Great' },
+    { src: res3, title: 'Look Good, Feel Great' }
+ ];
+
 
 const ServiceLayout = () => {
   const location = useLocation();
@@ -38,15 +61,14 @@ const ServiceLayout = () => {
   return (
     <div className="servicePage px-0">
       <HelmetMeta />
-        <div className="main-banner">
+      <div className="main-banner">
           {location.pathname.includes('dry-cleaning') && (
-            <img src={DryCleaning} alt="DryCleaning" width="1872" height="936" />
+            <HeroSlider heroImages={dryCleaningSlider}/>
           )}
-
           {location.pathname.includes('shoes-and-bag-restoration') && (
-            <img src={Restoration} alt="Restoration" width="1872" height="936" />
-          )}
-        </div>     
+            <HeroSlider heroImages={restorationSlider}/>
+        )}   
+      </div>
       <div className="service-tab">
         <NavLink
           ref={dryCleaningRef}
