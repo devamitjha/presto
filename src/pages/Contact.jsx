@@ -7,14 +7,14 @@ import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
 
 //experience
-import Exp6 from "../assets/images/exp-6.jpg";
-import Exp7 from "../assets/images/exp-7.jpg";
+import Exp6 from "../assets/images/exp/exp-6.jpg";
+import Exp7 from "../assets/images/exp/exp-7.jpg";
 import { Button } from '../components/common/Button';
 import Experties from '../components/Experties';
 
 //services 
-import whatwedo1 from "../assets/images/whatwedo1.jpg";
-import whatwedo2 from "../assets/images/whatwedo2.jpg";
+import whatwedo1 from "../assets/images/contact/whatwedo1.jpg";
+import whatwedo2 from "../assets/images/contact/whatwedo2.jpg";
 import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
 
