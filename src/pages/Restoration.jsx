@@ -85,7 +85,7 @@ From scuffed leather to faded fabrics, we bring your favourite shoes and bags ba
       </div>
       <div className="section-container">
         <Heading title="Find Solution to your Problem" />
-        <SolutionFinder/>
+        <SolutionFinder selected="restoration"/>
         <BeforeAfterSliderCarousel />
       </div>
       <WhatWeStandBy />

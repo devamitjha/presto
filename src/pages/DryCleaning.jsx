@@ -90,7 +90,7 @@ At Pressto, dry cleaning is more than just a service - it’s a science. Our adv
       </div>
       <div className="section-container">
         <Heading title="Find Solution to your Problem" />
-        <SolutionFinder/>
+        <SolutionFinder selected="dry-cleaning"/>
         <BeforeAfterSliderCarousel />
       </div>
       <WhatWeStandBy />

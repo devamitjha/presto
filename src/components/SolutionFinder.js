@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './SolutionFinder.scss';
 
-const SolutionFinder = () => {
-  const [service, setService] = useState('');
+const SolutionFinder = ({selected}) => {
+  const [service, setService] = useState(selected);
   const [material, setMaterial] = useState('');
 
   return (
