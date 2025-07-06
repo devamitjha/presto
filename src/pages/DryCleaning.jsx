@@ -4,6 +4,16 @@ import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
 import BeforeAfterSliderCarousel from '../components/BeforeAfterSliderCarousel';
 
+//cleaning
+import Cleaning1 from "../assets/images/beforeAfter/cleaning/1.jpg";
+import Cleaning2 from "../assets/images/beforeAfter/cleaning/2.jpg";
+import Cleaning3 from "../assets/images/beforeAfter/cleaning/3.jpg";
+import Cleaning4 from "../assets/images/beforeAfter/cleaning/4.jpg";
+import Cleaning5 from "../assets/images/beforeAfter/cleaning/5.jpg";
+import Cleaning6 from "../assets/images/beforeAfter/cleaning/6.jpg";
+import Cleaning7 from "../assets/images/beforeAfter/cleaning/7.jpg";
+import Cleaning8 from "../assets/images/beforeAfter/cleaning/8.jpg";
+
 //slider
 import Slider1 from "../assets/images/service/DryCleaning/slider-1.jpg";
 import Slider2 from "../assets/images/service/DryCleaning/slider-2.jpg";
@@ -49,6 +59,19 @@ const sliderData = [
   }
 ];
 
+
+
+const beforeAfterImage = [
+  {image: Cleaning1, title: "Cleaning 1"},
+  {image: Cleaning2, title: "Cleaning 2"},
+  {image: Cleaning3, title: "Cleaning 3"},
+  {image: Cleaning4, title: "Cleaning 4"},
+  {image: Cleaning5, title: "Cleaning 5"},
+  {image: Cleaning6, title: "Cleaning 6"},
+  {image: Cleaning7, title: "Cleaning 7"},
+  {image: Cleaning8, title: "Cleaning 8"},
+];
+
 const WhatWeStandBy = () => {
   return (
     <section className="section-container">
@@ -91,7 +114,7 @@ At Pressto, dry cleaning is more than just a service - it’s a science. Our adv
       <div className="section-container">
         <Heading title="Find Solution to your Problem" />
         <SolutionFinder selected="dry-cleaning"/>
-        <BeforeAfterSliderCarousel />
+        <BeforeAfterSliderCarousel imageData={beforeAfterImage} />
       </div>
       <WhatWeStandBy />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />

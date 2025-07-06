@@ -4,12 +4,14 @@ import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
 import BeforeAfterSliderCarousel from '../components/BeforeAfterSliderCarousel';
 
+//restoration
+import Restoration1 from "../assets/images/beforeAfter/restoring/1.jpg";
+import Restoration2 from "../assets/images/beforeAfter/restoring/2.jpg";
+
 //slider
 import Slider1 from "../assets/images/service/Restoration/slider-1.jpg";
 import Slider2 from "../assets/images/service/Restoration/slider-2.jpg";
 import Slider3 from "../assets/images/service/Restoration/slider-3.jpg";
-
-
 
 import sl1 from "../assets/images/service/sl-1.jpg";
 import sl2 from "../assets/images/service/sl-2.jpg";
@@ -44,6 +46,13 @@ const sliderData = [
     title: "Slider 3"
   }
 ];
+
+const beforeAfterImage = [
+  {image: Restoration1, title: "Restoration 1"},
+  {image: Restoration2, title: "Restoration 2"},
+];
+
+
 const WhatWeStandBy = () => {
   return (
     <section className="section-container">
@@ -86,7 +95,7 @@ From scuffed leather to faded fabrics, we bring your favourite shoes and bags ba
       <div className="section-container">
         <Heading title="Find Solution to your Problem" />
         <SolutionFinder selected="restoration"/>
-        <BeforeAfterSliderCarousel />
+        <BeforeAfterSliderCarousel imageData={beforeAfterImage} />
       </div>
       <WhatWeStandBy />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
