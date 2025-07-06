@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import StackedSlider from '../components/StackedSlider'
 import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
@@ -95,6 +95,7 @@ const WhatWeStandBy = () => {
 
 
 const DryCleaning = () => {
+   const [active, isActive ] = useState(false);
   return (
     <>
       <div className="section-container">
@@ -113,7 +114,7 @@ At Pressto, dry cleaning is more than just a service - it’s a science. Our adv
       </div>
       <div className="section-container">
         <Heading title="Find Solution to your Problem" />
-        <SolutionFinder selected="dry-cleaning"/>
+        {active && <SolutionFinder selected="dry-cleaning" />}
         <BeforeAfterSliderCarousel imageData={beforeAfterImage} />
       </div>
       <WhatWeStandBy />

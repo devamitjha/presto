@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setService } from '../redux/slices//beforeAfterSlice';
 import './SolutionFinder.scss';
 
-const SolutionFinder = ({selected}) => {
-  const [service, setService] = useState(selected);
+const SolutionFinder = ({ selected }) => {
+  const dispatch = useDispatch();
+  const selectedService = useSelector((state) => state.service.selectedService) || selected;
   const [material, setMaterial] = useState('');
+
+  const setCurrentService = (e) => {
+    dispatch(setService(e.target.value));
+  };
+  
 
   return (
     <div className="solution-finder">
@@ -12,8 +20,8 @@ const SolutionFinder = ({selected}) => {
           <label htmlFor="service">Select Service</label>
           <select
             id="service"
-            value={service}
-            onChange={(e) => setService(e.target.value)}
+            value={selectedService}
+            onChange={setCurrentService}
           >
             <option value="">Select</option>
             <option value="dry-cleaning">Dry Cleaning</option>

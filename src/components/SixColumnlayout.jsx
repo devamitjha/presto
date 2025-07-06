@@ -5,7 +5,9 @@ import Heading from './common/Heading';
 import sixCol from "../assets/images/rollout/six-col-1.jpg";
 import sixCol2 from "../assets/images/rollout/six-col-2.jpg";
 import { ArrowUpRight, Download } from 'lucide-react';
-import StaggerOnView from "../components/common/StaggerOnView"
+import StaggerOnView from "../components/common/StaggerOnView";
+
+import SamplePDF from "../assets/images/sample-pdf.pdf";
 
 
 const SixColumnlayout = () => {
@@ -18,15 +20,17 @@ const SixColumnlayout = () => {
                   <div className="title-container">
                       <h4>Care Beyond Clean</h4>
                       <p>Get a premium umbrella on bill 10K and above</p>
-                      <Link to="/" className="link">Avail Now <span className="icon-box"><ArrowUpRight /></span></Link>
+                      <Link to="/book-now" className="link">Avail Now <span className="icon-box"><ArrowUpRight /></span></Link>
                   </div>
               </div>
               <div className="item">
                   <img src={sixCol2} width="868px" heigh="868px" alt="roll out with freedom" />
                   <div className="title-container black">
-                      <h4>Know all about us</h4>
-                      <p>A complete guide about Pressto  and how we do it!</p>
-                      <Link to="/" className="link">Download brochure <span className="icon-box"><Download /></span></Link>
+                    <h4>Know all about us</h4>
+                    <p>A complete guide about Pressto  and how we do it!</p>
+                    <a href={SamplePDF} download className="link">
+                        Download brochure <span className="icon-box"><Download /></span>
+                    </a>
                   </div>
               </div>
           </StaggerOnView>

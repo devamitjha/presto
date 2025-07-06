@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -40,7 +41,7 @@ const LocateUsMap = () => {
                 <h3>We are now at 30+ Locations</h3>
                 <p>Best in Class Dry Cleaning for Luxury and Branded Clothes, You know who has been the face of the town.</p>  
           </div>
-          <button className="find-stores-btn">FIND STORES</button>        
+          <Link to="/store" className="find-stores-btn">FIND STORES</Link>        
         </div>
       </div>
     </div>

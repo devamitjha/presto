@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { MoveRight, MoveLeft } from 'lucide-react';
+import {useNavigate} from 'react-router';
 import './HeroSlider.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -37,7 +38,11 @@ function NavPrevArrow(props) {
 
 
 
-const HeroSlider = ({heroImages}) => { 
+const HeroSlider = ({ heroImages }) => { 
+  const navigate = useNavigate();
+  const goToBookNowPage = () => {
+    navigate('/book-now');
+  };
 
   const settings = {
     dots: true,
@@ -61,7 +66,7 @@ const HeroSlider = ({heroImages}) => {
             <img src={img.src} alt={img.title} />
             <div className="hero-title">
                 <h3>Look Good, Feel Great</h3>
-                <ButtonWithIcon title="Schedule Pickup" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" />
+                <ButtonWithIcon title="Schedule Pickup" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage } />
             </div>            
           </div>
         ))}

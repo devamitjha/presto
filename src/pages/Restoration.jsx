@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import StackedSlider from '../components/StackedSlider'
 import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
@@ -76,6 +76,7 @@ const WhatWeStandBy = () => {
 
 
 const Restoration = () => {
+  const [active, isActive ] = useState(false);
   return (
     <>
       <div className="section-container">
@@ -94,7 +95,7 @@ From scuffed leather to faded fabrics, we bring your favourite shoes and bags ba
       </div>
       <div className="section-container">
         <Heading title="Find Solution to your Problem" />
-        <SolutionFinder selected="restoration"/>
+        {active && <SolutionFinder selected="restoration" />}
         <BeforeAfterSliderCarousel imageData={beforeAfterImage} />
       </div>
       <WhatWeStandBy />

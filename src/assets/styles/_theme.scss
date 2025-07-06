@@ -395,7 +395,10 @@ $amiri:"Amiri", serif;
                 box-shadow:none;
                 cursor:unset;
             }
-        }    
+        } 
+        &.black{
+             background-color: $black;    
+        }   
     }
     &.secondary {
         background-color: $gray500;

@@ -46,7 +46,7 @@ const Header = () => {
         </div>
         <div className="section-contact">
           <ButtonWithIcon title="Contact Us" icon={ContactIcon} className="btn btn-md base-btn outlined overflowHidden" GoTo={goToContactPage } />
-          <ButtonWithIcon title="Book Now" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage }/>
+          <ButtonWithIcon title="Book Now" icon={BookNowIcon} className="btn btn-md base-btn primary black" GoTo={goToBookNowPage }/>
         </div>
       </div>
     </section>

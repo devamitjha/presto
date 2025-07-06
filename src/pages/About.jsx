@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
+import {useNavigate} from 'react-router';
 import Heading from '../components/common/Heading';
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
 import "./About.scss";
@@ -96,6 +97,13 @@ const WhatWeStandBy = () => {
 };
 
 const About = () => {
+  const navigate = useNavigate();
+  const goToStoretPage = () => {
+      navigate('/store');
+  };
+  const goToBookNowPage = () => {
+      navigate('/book-now');
+  };
   return (
     <div className="aboutpage">
       <HelmetMeta/>
@@ -129,7 +137,7 @@ const About = () => {
             <div className="exp-content">
               <h3>Locate Store Near you</h3>
               <p>Find your nearest Pressto and step into effortless, premium care</p>
-               <Button title="Find Now" className="btn btn-md base-btn secondary overflowHidden" />
+               <Button title="Find Now" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToStoretPage}/>
             </div>
           </div>
           <div className="exp-item">
@@ -139,7 +147,7 @@ const About = () => {
             <div className="exp-content">
               <h3>Pickup & Drop</h3>
               <p>Schedule a pickup and let premium care come to you.</p>
-               <Button title="Book an Appointment" className="btn btn-md base-btn secondary overflowHidden" />
+               <Button title="Book an Appointment" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage}/>
             </div>
           </div>
         </div>

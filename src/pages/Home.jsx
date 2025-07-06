@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import {useNavigate} from 'react-router';
 
 import HeroSlider from '../components/HeroSlider';
 import Client from '../components/Client';
@@ -92,6 +93,10 @@ const SectionSpotlight = () => {
 
 // Luxury Experience Section
 const LuxaryExperience = () => {
+  const navigate = useNavigate();
+  const goToContactPage = () => {
+      navigate('/contact');
+  };
   return (
     <section className="section-container luxaryExperience">
       <Heading title="Luxury Experience Indeed" />
@@ -114,7 +119,7 @@ const LuxaryExperience = () => {
                 <h4>About Us</h4>
                 <p>Best in Class Dry Cleaning for Luxury and Branded Clothes, You know who has been the face of the town.</p>
               </div>
-              <Button title="Know More" className="btn btn-md base-btn outlined overflowHidden" />
+              <Button title="Know More" className="btn btn-md base-btn outlined overflowHidden" GoTo={goToContactPage }/>
             </div>
           </div>
         </div>
@@ -129,8 +134,8 @@ const RealStories = () => (
   <section className="section-container realStories">
     <Heading title="Real Stories, Real Trust" />
     <div className="real-container">
-      <RealSlider />
       <GoogleReviews />
+      <RealSlider />
     </div>
   </section>
 );
@@ -143,7 +148,7 @@ const RealStories = () => (
 
 
 // Main Home Component
-const Home = () => {
+const Home = () => {  
   return (
     <section className="home">
       <Helmet>
