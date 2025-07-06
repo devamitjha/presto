@@ -76,7 +76,7 @@ const WhatWeStandBy = () => {
 
 
 const Restoration = () => {
-  const [active, isActive ] = useState(false);
+  const [active] = useState(false);
   return (
     <>
       <div className="section-container">
