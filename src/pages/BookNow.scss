@@ -7,51 +7,57 @@
     .step-indicator {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 20px;
-
+        margin-bottom: 2rem;
         div {
-        flex: 1;
-        height: 3px;
-        background: #e0e0e0;
-        margin: 0 5px;
-        &.active {
-            background: #000;
+            flex: 1;
+            height: 5px;
+            background: #e0e0e0;
+            margin: 0 5px;
+            &.active {
+                background: #000;
+            }
         }
-        }
+    }
+   
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+        box-shadow: 0 0 0px 1000px white inset !important; 
+        -webkit-box-shadow: 0 0 0px 1000px #f8f8f8 inset !important;
+        -webkit-text-fill-color: #000 !important; 
+        transition: background-color 5000s ease-in-out 0s;
     }
 
     .form-step {
         display: flex;
         flex-direction: column;
         gap: 20px;
-
-        h2 {
-        text-align: center;
-        font-size: 18px;
-        }
-
         input {
-        background: #f8f8f8;
-        border: none;
-        border-bottom: 1px solid #333;
-        padding: 12px;
-        outline: none;
-        font-size: 14px;
+            background-color: #f8f8f8;
+            border: none;
+            border-bottom: 1px solid #333;
+            padding: 12px;
+            outline: none;
+            font-size: 14px;
+            height:56px;            
         }
 
         .next-btn {
             @extend .d-flex;
             background: #eee;
             padding: 12px;
-            border-radius: 24px;
+            border-radius: 9999px;
             border: none;
             font-weight: bold;
             cursor: pointer;
             color: #888;
             height:56px;
+            width:210px;
+            margin:1rem auto 0;
             font-size:1rem;
             text-transform: uppercase;
-            margin-top:1rem;
             &:not(:disabled) {
                 background: #000;
                 color: #fff;
@@ -60,40 +66,58 @@
     }
     //contact
     .input-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-
-    input {
-        flex: 1;
-        background: #f8f8f8;
-        border: none;
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        background-color: #f8f8f8;
         border-bottom: 1px solid #333;
-        padding: 12px;
-        font-size: 14px;
-        outline: none;
-    }
-
-    &.with-button {
-        .side-button {
-        margin-left: -70px;
-        background: none;
-        border: none;
-        font-size: 12px;
-        font-weight: bold;
-        color: #333;
-        cursor: pointer;
+        padding-right:16px;
+        input {
+            flex: 1;
+            background: #f8f8f8;
+            border: none;        
+            padding: 12px;
+            font-size: 14px;
+            outline: none;
         }
-    }
+
+        &.with-button {
+            .side-button {
+                background: none;
+                border: none;
+                font-size: 12px;
+                font-weight: bold;
+                color: #333;
+                cursor: pointer;
+            }
+        }
 
     &.with-icon {
+        position: relative;
         svg {
-        position: absolute;
-        right: 12px;
-        color: #888;
+            position: absolute;
+            right: 12px;
+            color: #888;
+            }
+        }
+        .input-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            cursor: pointer;
+        }
+
+        input,
+        .custom-datepicker {
+            padding-right: 30px;
         }
     }
+    input[type='time']::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
     }
 
     .buttons {
@@ -233,5 +257,58 @@
         margin:4rem 0;
         text-align: center;
         color:$gray700;
+        font-weight: 400;
+    }
+
+    .input-group.floating-label {
+
+        .input-wrapper {
+            position: relative;
+            width:100%;
+            input,
+                .custom-datepicker {
+                    width: 100%;
+                    padding: 12px 40px 12px 12px;
+                    font-size: 14px;
+                    border: none;
+                    background: #f8f8f8;
+                    outline: none;
+
+                    &.filled + label,
+                    &:focus + label {
+                        top: -8px;
+                        left: 4px;
+                        font-size: 12px;
+                        color: #000;
+                    }
+                }
+
+                label {
+                    position: absolute;
+                    left: 12px;
+                    top: 20px;
+                    font-size: 14px;
+                    color: #888;
+                    background: #f8f8f8;
+                    padding: 0 4px;
+                    transition: all 0.2s ease;
+                    pointer-events: none;
+                    &.floating{
+                        top: -8px;
+                        left: 4px;
+                        font-size: 12px;
+                        color: #000;
+                    }
+                }
+
+                .input-icon {
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #888;
+                    cursor: pointer;
+                }
+            }
     }
 }
