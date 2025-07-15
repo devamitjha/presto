@@ -14,10 +14,7 @@ const BookNowIcon = (
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-
-  const goToContactPage = () => {
-    navigate('/contact');
-  };
+  
   const goToBookNowPage = () => {
     navigate('/book-now');
   };

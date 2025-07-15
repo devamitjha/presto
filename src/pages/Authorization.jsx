@@ -31,7 +31,7 @@ const HelmetMeta = () => {
       
 
 const Authorization = () => {
-   const [step, setStep] = useState("mobile");
+  const [step, setStep] = useState("mobile");
   const [mobile, setMobile] = useState("");
   const [otp, setOtp] = useState("");
   const [formData, setFormData] = useState({
@@ -92,83 +92,86 @@ const Authorization = () => {
   };
 
   return (
-    <div className="auth-flow">
-      {step === "mobile" && (
-        <div className="card">
-          <h2>Enter Mobile Number</h2>
-          <input
-            type="text"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-            placeholder="Mobile Number"
-          />
-          <button onClick={handleMobileSubmit}>Continue</button>
-        </div>
-      )}
+    <section className="section-container">
+      <HelmetMeta/>
+      <div className="auth-flow">
+        {step === "mobile" && (
+          <div className="card">
+            <h2>Enter Mobile Number</h2>
+            <input
+              type="text"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              placeholder="Mobile Number"
+            />
+            <button onClick={handleMobileSubmit}>Continue</button>
+          </div>
+        )}
 
-      {step === "form" && (
-        <div className="card">
-          <h2>Create Account</h2>
-          <input
-            type="text"
-            placeholder="First Name"
-            value={formData.firstName}
-            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            value={formData.lastName}
-            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Phone"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Address"
-            value={formData.address}
-            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Pincode"
-            value={formData.pincode}
-            onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
-          />
-          <button onClick={handleFormSubmit}>Send OTP</button>
-        </div>
-      )}
+        {step === "form" && (
+          <div className="card">
+            <h2>Create Account</h2>
+            <input
+              type="text"
+              placeholder="First Name"
+              value={formData.firstName}
+              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Phone"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Address"
+              value={formData.address}
+              onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Pincode"
+              value={formData.pincode}
+              onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
+            />
+            <button onClick={handleFormSubmit}>Send OTP</button>
+          </div>
+        )}
 
-      {step === "otp" && (
-        <div className="card">
-          <h2>Enter OTP</h2>
-          <input
-            type="text"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-          />
-          <button onClick={handleOtpVerify}>Verify OTP</button>
-        </div>
-      )}
+        {step === "otp" && (
+          <div className="card">
+            <h2>Enter OTP</h2>
+            <input
+              type="text"
+              placeholder="Enter OTP"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+            />
+            <button onClick={handleOtpVerify}>Verify OTP</button>
+          </div>
+        )}
 
-      {step === "done" && (
-        <div className="card">
-          <h2>Success!</h2>
-          <p>Redirecting to your profile...</p>
-        </div>
-      )}
-    </div>
+        {step === "done" && (
+          <div className="card">
+            <h2>Success!</h2>
+            <p>Redirecting to your profile...</p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 
