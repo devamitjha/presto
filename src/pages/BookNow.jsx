@@ -61,7 +61,7 @@ const BookNow = () => {
     } else if (step === 2) {
       if (!formData.city.trim()) newErrors.city = 'City is required';
       if (!formData.address.trim()) newErrors.address = 'Address is required';
-      else if (/[^a-zA-Z0-9\s,.-]/.test(formData.address)) newErrors.address = 'Address contains invalid characters';
+      //else if (/[^a-zA-Z0-9\s,.-]/.test(formData.address)) newErrors.address = 'Address contains invalid characters';
       if (!formData.pickupDate) newErrors.pickupDate = 'Pickup date is required';
       if (!formData.pickupTime) newErrors.pickupTime = 'Pickup time is required';
     } else if (step === 3) {
@@ -141,20 +141,19 @@ const BookNow = () => {
     <div className="book-now-page mt-5">
       <HelmetMeta />
       <div className="section-container">
-        <Heading title="BOOK SERVICE" />
-        <div className="multi-step-form">
-          {step === 1 && <h2 className="stepTitle">Personal Details</h2>}
-          {step === 2 && <h2 className="stepTitle">Address Details</h2>}
-          {step === 3 && <h2 className="stepTitle">Choose Service</h2>}
-          <div className="step-indicator">
-            <div className={step === 1 ? 'active' : ''}></div>
-            <div className={step === 2 ? 'active' : ''}></div>
-            <div className={step === 3 ? 'active' : ''}></div>
-          </div>
+        <Heading title="BOOK SERVICE" />                 
           {isSubmitted ? (
             <SuccessMessage />
-          ) : (
-            <>
+          ) : (              
+            <div className="multi-step-form"> 
+                {step === 1 && <h2 className="stepTitle">Personal Details</h2>}
+                {step === 2 && <h2 className="stepTitle">Address Details</h2>}
+                {step === 3 && <h2 className="stepTitle">Choose Service</h2>}
+                <div className="step-indicator">
+                  <div className={step === 1 ? 'active' : ''}></div>
+                  <div className={step === 2 ? 'active' : ''}></div>
+                  <div className={step === 3 ? 'active' : ''}></div>
+                </div>
               {step === 1 && (
                 <PersonalDetails formData={formData} handleChange={handleChange} nextStep={nextStep} errors={errors} />
               )}
@@ -164,9 +163,9 @@ const BookNow = () => {
               {step === 3 && (
                 <Review formData={formData} setFormData={setFormData} prevStep={prevStep} handleSubmit={handleSubmit} />
               )}
-            </>
+            </div>
           )}
-        </div>
+       
         <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
         <div className="section-container">
           <Heading title="Experience Pressto" />

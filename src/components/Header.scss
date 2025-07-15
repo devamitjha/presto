@@ -78,4 +78,78 @@
             }
         }
     }
+    .user-dropdown {
+        position: relative;
+        display: inline-block;
+
+            .user-icon {
+                cursor: pointer;
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                @extend .d-flex;
+                border:1px solid $gray400;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                width: 240px;
+                background: white;
+                padding: 16px;
+                border-radius: 10px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                transform:translateX(-50%);
+                transition: opacity 0.3s ease;
+                z-index: 999;
+
+                h3 {
+                    margin: 0;
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+
+                p {
+                    font-size: 14px;
+                    color: #555;
+                    margin: 8px 0 16px;
+                }
+
+                .buttons {
+                    display: flex;
+                    gap: 10px;
+
+                .login {
+                    flex: 1;
+                    background-color: $black;
+                    color: white;
+                    border: none;
+                    padding: 8px 0;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    text-align: center;
+                    &:hover {
+                        background-color: $black;
+                    }
+                }
+
+                .register {
+                    flex: 1;
+                    background-color: #f1f1f1;
+                    color: #333;
+                    border: none;
+                    padding: 8px 0;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    text-align: center;
+                    &:hover {
+                        background-color: #ddd;
+                    }
+                }
+            }
+        }
+
+       
+    }
 }

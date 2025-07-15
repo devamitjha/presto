@@ -30,15 +30,24 @@ const Review = ({ formData, setFormData, prevStep, handleSubmit }) => {
         </div>
       ))}
 
-      <textarea
-        placeholder="Add Instructions"
-        value={formData.instructions || ''}
-        onChange={handleInstructionsChange}
-      />
+     
+
+      <div className="input-group floating-label with-button">
+        <div className="input-wrapper instructions">
+            <textarea
+              placeholder="Add Instructions"
+              value={formData.instructions || ''}
+              onChange={handleInstructionsChange}
+              id="instructions"
+              className={formData.instructions ? 'filled' : ''}
+            />
+          <label htmlFor="instructions">Add Insutructions</label>
+        </div>
+      </div>
 
       <div className="buttons">
-        <button className="prev-btn" onClick={prevStep}>Back</button>
-        <button className="submit-btn" onClick={handleSubmit}>Submit</button>
+        {/* <button className="prev-btn" onClick={prevStep}>Back</button> */}
+        <button className="next-btn submit" onClick={handleSubmit}>Submit</button>
       </div>
     </div>
   );

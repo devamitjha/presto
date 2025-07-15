@@ -1,14 +1,9 @@
-import React from 'react';
+import React, { useState } from "react";
 import { NavLink, Link , useNavigate} from 'react-router';
 import { ButtonWithIcon } from "./common/Button";
 import "./Header.scss";
 import Logo from "../assets/images/logo.png"
-
-const ContactIcon = (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M11.3 12C9.91111 12 8.53889 11.6972 7.18333 11.0917C5.82778 10.4861 4.59444 9.62778 3.48333 8.51667C2.37222 7.40556 1.51389 6.17222 0.908333 4.81667C0.302778 3.46111 0 2.08889 0 0.7C0 0.5 0.0666667 0.333333 0.2 0.2C0.333333 0.0666667 0.5 0 0.7 0H3.4C3.55556 0 3.69444 0.0527778 3.81667 0.158333C3.93889 0.263889 4.01111 0.388889 4.03333 0.533333L4.46667 2.86667C4.48889 3.04444 4.48333 3.19444 4.45 3.31667C4.41667 3.43889 4.35556 3.54444 4.26667 3.63333L2.65 5.26667C2.87222 5.67778 3.13611 6.075 3.44167 6.45833C3.74722 6.84167 4.08333 7.21111 4.45 7.56667C4.79444 7.91111 5.15556 8.23056 5.53333 8.525C5.91111 8.81944 6.31111 9.08889 6.73333 9.33333L8.3 7.76667C8.4 7.66667 8.53056 7.59167 8.69167 7.54167C8.85278 7.49167 9.01111 7.47778 9.16667 7.5L11.4667 7.96667C11.6222 8.01111 11.75 8.09167 11.85 8.20833C11.95 8.325 12 8.45556 12 8.6V11.3C12 11.5 11.9333 11.6667 11.8 11.8C11.6667 11.9333 11.5 12 11.3 12Z" />
-  </svg>
-);
+import { User } from 'lucide-react';
 
 const BookNowIcon = (
   <svg width="12" height="15" viewBox="0 0 12 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -17,6 +12,7 @@ const BookNowIcon = (
 );
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const goToContactPage = () => {
@@ -41,11 +37,27 @@ const Header = () => {
               <li><NavLink to="/store" end>Stores</NavLink></li>
               <li><NavLink to="/service/dry-cleaning" end>Services</NavLink></li>
               <li><NavLink to="/blog" end>Blog</NavLink></li>
+              <li><NavLink to="/contact" end>Contact Us</NavLink></li>
             </ul>
           </nav>
         </div>
         <div className="section-contact">
-          <ButtonWithIcon title="Contact Us" icon={ContactIcon} className="btn btn-md base-btn outlined overflowHidden" GoTo={goToContactPage } />
+          <div className="user-dropdown" onMouseEnter={() => setIsOpen(true)}  onMouseLeave={() => setIsOpen(false)}>            
+            <div className="user-icon">
+              <User/>
+            </div>
+           
+            {isOpen && (
+              <div className="dropdown-menu">
+                <h3>Your Account</h3>
+                <p>Track your Orders, Edit Profile and much more..</p>
+                <div className="buttons">
+                  <Link className="login" to="/authorization">Login</Link>
+                  <Link className="register" to="/authorization">Register</Link>
+                </div>
+              </div>
+            )}
+          </div>
           <ButtonWithIcon title="Book Now" icon={BookNowIcon} className="btn btn-md base-btn primary black" GoTo={goToBookNowPage }/>
         </div>
       </div>

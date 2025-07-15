@@ -99,8 +99,8 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors, ha
       </div>
 
       <div className="buttons">
-        <button onClick={prevStep}>Back</button>
-        <button onClick={nextStep}>Next</button>
+        <button onClick={prevStep} className="next-btn">Back</button>
+        <button onClick={nextStep} className="next-btn">Next</button>
       </div>
     </div>
   );

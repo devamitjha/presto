@@ -1,0 +1,57 @@
+@import "../assets/styles/theme";
+.auth-flow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f0f2f5;
+
+  .card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 320px;
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: #222;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+
+      &:focus {
+        border-color: $black;
+        outline: none;
+      }
+    }
+
+    button {
+      width: 100%;
+      background-color: $black;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+
+    p {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 14px;
+    }
+  }
+}

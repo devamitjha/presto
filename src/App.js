@@ -17,8 +17,7 @@ import {
   Blog,
   Contact,
   BookNow,
-  Login,
-  Register,
+  Authorization,
   PageNotFound,
 } from './pages';
 
@@ -50,8 +49,7 @@ function App() {
         { path: '/prepaid-card', element: <PrepaidCard /> },
         { path: '/contact', element: <Contact /> },
         { path: '/book-now', element: <BookNow /> },
-        { path: '/login', element: <Login /> },
-        { path: '/register', element: <Register /> },
+        { path: '/authorization', element: <Authorization /> },
         { path: '/blog', element: <Blog /> },
         // Fallback
         { path: '*', element: <PageNotFound /> },
