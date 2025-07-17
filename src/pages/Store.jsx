@@ -17,6 +17,7 @@ import StarShine from "../assets/images/star_shine.svg";
 import Redeem from "../assets/images/redeem.svg";
 import Cleaning from "../assets/images/cleaning.svg";
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
+import StoreList from '../components/StoreLists';
 
 const HelmetMeta = () => {
   return (
@@ -113,17 +114,11 @@ const Store = () => {
       <section className="section-container">  
         <Heading title="Store Locator" />
         <div className="section-tab">
-          <p>With a legacy built on precision, care, and innovation, Pressto today operates across 45 locations in 3 major cities. From day one, we’ve led the way in responsible garment care - blending global standards with thoughtful, eco-conscious practices. Because for us, premium isn’t just about how it looks, but how it lasts.</p>
-          <div className="tab-item">
-            <ul>
-              <li>Delhi</li>
-              <li>Mumbai</li>
-              <li>Bangalore</li>
-            </ul>
-          </div>
+          <p>With a legacy built on precision, care, and innovation, Pressto today operates across 45 locations in 3 major cities. From day one, we’ve led the way in responsible garment care - blending global standards with thoughtful, eco-conscious practices. Because for us, premium isn’t just about how it looks, but how it lasts.</p>          
         </div>
-        <StoreLocator city="Delhi" />       
+        <StoreLocator/>       
       </section>
+      {/* <StoreList/> */}
        <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
       <SixColumnlayoutCenter image={[serviceTshirt, serviceBag]} />
       <Benefits />

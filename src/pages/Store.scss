@@ -205,47 +205,31 @@
             flex-direction: column;
             align-items: start;            
             h4{
-                @extend .heading-2;
+                @extend .heading-3;
                 font-weight: 400;
                 margin-bottom:1.5rem;
             }
             .input-container{
                 position: relative;
                 width:100%;
-                height:56px;
-                background-color: $gray100;
-                border-bottom:1px solid $black;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
-                .search-input{
-                    width:100%;
-                    height:100%;
-                    background-color: transparent;
-                    border:none;
-                    padding:5px 65px 5px 8px; 
-                    &:hover{
-                        outline: none;
-                        border: none;
+                display: flex;
+                gap: 1rem; 
+                align-items: flex-end;
+                justify-content: space-between;
+                .stateOption,
+                .cityOption {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    label {
+                        margin-bottom: 0.4rem;
+                        @extend .body-3;
                     }
-                    &::placeholder{
-                        color:$gray600;
-                    }
-                }
-                button{
-                    border:none;
-                    width:56px;
-                    height:56px;
-                    @extend .d-flex; 
-                    position:absolute;
-                    top:0;
-                    right:0;
-                    background-color: transparent;
-                    cursor: pointer;
-                    svg{
-                        color:$gray600;
-                    }
-                    &:hover{
-                        outline:none;
+                    select {
+                        padding: 0.5rem 1rem;
+                        border: 1px solid #ccc;
+                        border-radius: 6px;
+                        @extend .body-3;
                     }
                 }
             }
