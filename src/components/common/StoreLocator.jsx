@@ -92,7 +92,7 @@ const StoreLocator = () => {
       setFilteredStores([]);
       setActiveStore(null); // ✅ reset map center
     }
-  }, [selectedState]);
+  }, [selectedState, stores]);
 
   // When city changes
   useEffect(() => {
