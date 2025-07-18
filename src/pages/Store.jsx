@@ -17,7 +17,6 @@ import StarShine from "../assets/images/star_shine.svg";
 import Redeem from "../assets/images/redeem.svg";
 import Cleaning from "../assets/images/cleaning.svg";
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
-import StoreList from '../components/StoreLists';
 
 const HelmetMeta = () => {
   return (
@@ -118,7 +117,6 @@ const Store = () => {
         </div>
         <StoreLocator/>       
       </section>
-      {/* <StoreList/> */}
        <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
       <SixColumnlayoutCenter image={[serviceTshirt, serviceBag]} />
       <Benefits />
