@@ -3,6 +3,17 @@ import axios from "axios";
 import Papa from "papaparse";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import { Link } from "react-router";
+import {
+  MapPin,
+  Building,
+  Phone,
+  Clock,
+  CalendarDays, 
+  Navigation,
+  Star, StarHalf, Star as StarEmpty
+} from "lucide-react";
+import Rating from 'react-rating';
 import Mumbai from "../../assets/images/store/Mumbai.jpg";
 import Delhi from "../../assets/images/store/Delhi.jpg";
 import Bangalore from "../../assets/images/store/Bangalore.jpg";
@@ -28,6 +39,7 @@ const MapCenterUpdater = ({ lat, lng }) => {
 
   return null;
 };
+
 
 const StoreLocator = () => {
   const [stores, setStores] = useState([]);
@@ -125,6 +137,8 @@ const StoreLocator = () => {
       ? [parseFloat(cityCenterStore.latitude), parseFloat(cityCenterStore.longitude)]
       : defaultPosition;
 
+  console.log(stores);
+
   return (
     <div className="section-map">
       <div className="section-store-map">
@@ -150,8 +164,9 @@ const StoreLocator = () => {
                 position={[parseFloat(store.latitude), parseFloat(store.longitude)]}
               >
                 <Popup>
-                  <strong>{store["Store Name"]}</strong><br />
-                  {store.address || ""}
+                  <strong>{store["place_name"]}</strong><br />
+                  {store.address || ""}<br />
+                  <strong>Contact: {store["phone"]}</strong>
                 </Popup>
               </Marker>
             ))}
@@ -193,65 +208,123 @@ const StoreLocator = () => {
             </select>
           </div>
         </div>
+            {
+              filteredStores.length>0 ?             
+                <ul className="store-list-dropdown">
+                  {filteredStores.map((store, i) => {
+                    const formatTime = (time) => {
+                      if (!time || time.toLowerCase() === "closed") return "Closed";
+                      const [start, end] = time.split("-");
+                      const format = (t) => {
+                        const [h, m] = t.split(":").map(Number);
+                        const ampm = h >= 12 ? "PM" : "AM";
+                        const hour = h % 12 || 12;
+                        return `${hour.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')} ${ampm}`;
+                      };
+                      return `${format(start)} to ${format(end)}`;
+                    };
 
-        <ul>
-          {filteredStores.map((store, i) => (
-            <li
-              key={i}
-              style={{ cursor: "pointer", marginBottom: "0.5rem" }}
-              onClick={() => {
-                if (
-                  store.latitude &&
-                  store.longitude &&
-                  !isNaN(parseFloat(store.latitude)) &&
-                  !isNaN(parseFloat(store.longitude))
-                ) {
-                  setActiveStore(store);
-                } else {
-                  alert("This store does not have valid coordinates.");
-                }
-              }}
-            >
-              <strong>{store["Store Name"]}</strong> - {store.city}, {store.State}
-            </li>
-          ))}
-        </ul>
+                    const monToFri = store.Hours_Monday === "Closed" ? "Closed" : formatTime(store.Hours_Monday);
+                    const saturday = formatTime(store.Hours_Saturday);
+                    const sunday = formatTime(store.Hours_Sunday);
 
-        <div className="alternative">
-          <span className="or">Or</span>
-          <div className="topStore">
-            <div className="store-info">
-              <div className="store-image">
-                <img src={Mumbai} alt="Mumbai Store" width="120" height="120" />
-              </div>
-              <div className="details">
-                <p>Mumbai</p>
-                <span>{cityStoreCounts["Maharashtra"] || 0} Stores</span>
-              </div>
-            </div>
-            <div className="store-info">
-              <div className="store-image">
-                <img src={Delhi} alt="Delhi Store" width="120" height="120" />
-              </div>
-              <div className="details">
-                <p>Delhi</p>
-                <span>{cityStoreCounts["Delhi NCR"] || 0} Stores</span>
-              </div>
-            </div>
-            <div className="store-info">
-              <div className="store-image">
-                <img src={Bangalore} alt="Bangalore Store" width="120" height="120" />
-              </div>
-              <div className="details">
-                <p>Karnataka</p>
-                <span>{cityStoreCounts["Karnataka"] || 0} Stores</span>
-              </div>
-            </div>
-          </div>
-          <p>
-            When you choose Pressto, you're not just extending the life of your clothes; you're making a conscious choice for the planet too.
-          </p>
-        </div>
+                    return (
+                      <li
+                        key={i}
+                        style={{ cursor: "pointer", marginBottom: "0.5rem" }}
+                        onClick={() => {
+                          if (
+                            store.latitude &&
+                            store.longitude &&
+                            !isNaN(parseFloat(store.latitude)) &&
+                            !isNaN(parseFloat(store.longitude))
+                          ) {
+                            setActiveStore(store);
+                          } else {
+                            alert("This store does not have valid coordinates.");
+                          }
+                        }}
+                      >   <div className="city-list-container">        
+                            <div className="store-name">
+                              <div className="title">{store.place_name}</div>
+                              <div className="sub-title">{store.store_location}</div>
+                            </div>
+                            <p><span className="icon-box"><MapPin size={18} /></span><span className="address">{store.address}</span></p>
+                            <p><span className="icon-box"><Building size={18} /></span>City: {store.city}, {store.State}</p>
+                            <p><span className="icon-box"><Phone size={18} /></span>Contact: {store.phone}</p>
+                            <div className="open-hours">
+                              <p><span className="icon-box">
+                              <Clock size={18} /></span>
+                              <strong>Open Hours:</strong></p>
+                              <p><span className="icon-box"><CalendarDays size={16} /></span>Mon to Fri: {monToFri}</p>
+                              <p><span className="icon-box"> <CalendarDays size={16} /></span>Sat: {saturday}</p>
+                              <p><span className="icon-box"><CalendarDays size={16} /></span>Sun: {sunday}</p>
+                            </div>
+                            <div className="direction-review">
+                              {store.google_review_rating && (
+                                <div className="google-review">
+                                  <span className="rating-count">Rating:{store.google_review_rating}/{store.google_review_count}</span>                         
+                                  <span className="rating-stars">
+                                    <Rating
+                                      initialRating={parseFloat(store.google_review_rating)}
+                                      emptySymbol={<StarEmpty size={16} color="#00a5b8" />} 
+                                      fullSymbol={<Star size={16} color="#00a5b8" fill="#00a5b8" />} 
+                                      placeholderSymbol={<StarHalf size={16} color="#00a5b8" />}
+                                      readonly
+                                      fractions={2}
+                                    />
+                                    </span>
+                                </div>                               
+                              )}                                      
+                              {store.direction && (
+                                <div className="direction-link">
+                                  <span><Navigation className="inline-block mr-2" size={18} /></span>
+                                  <Link to={store.direction} target="_blank">Get Direction</Link>
+                                </div>
+                              )}       
+                            </div>  
+                          </div>  
+                            
+                      </li>
+                    );
+                  })}
+                </ul> :            
+                <div className="alternative">
+                  <span className="or">Or</span>
+                  <div className="topStore">
+                    <div className="store-info">
+                      <div className="store-image">
+                        <img src={Mumbai} alt="Mumbai Store" width="120" height="120" />
+                      </div>
+                      <div className="details">
+                        <p>Mumbai</p>
+                        <span>{cityStoreCounts["Maharashtra"] || 0} Stores</span>
+                      </div>
+                    </div>
+                    <div className="store-info">
+                      <div className="store-image">
+                        <img src={Delhi} alt="Delhi Store" width="120" height="120" />
+                      </div>
+                      <div className="details">
+                        <p>Delhi</p>
+                        <span>{cityStoreCounts["Delhi NCR"] || 0} Stores</span>
+                      </div>
+                    </div>
+                    <div className="store-info">
+                      <div className="store-image">
+                        <img src={Bangalore} alt="Bangalore Store" width="120" height="120" />
+                      </div>
+                      <div className="details">
+                        <p>Karnataka</p>
+                        <span>{cityStoreCounts["Karnataka"] || 0} Stores</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    When you choose Pressto, you're not just extending the life of your clothes; you're making a conscious choice for the planet too.
+                  </p>
+                </div>
+            }
       </div>
     </div>
   );

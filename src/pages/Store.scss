@@ -192,6 +192,11 @@
        align-items: start;
        width:100%;
        gap:2rem;
+       .leaflet-bottom{
+        &.leaflet-right{
+            display:none!important;
+        }
+       }
        .section-store-map{
             width:70%;
             height:100%;
@@ -308,6 +313,105 @@
                     color:$gray600;
                     font-weight: 500;
                     margin:0;
+                }
+            }
+            .store-list-dropdown{
+                list-style: none;
+                margin:16px 0 0;
+                padding:0;
+                max-height:450px;
+                overflow: hidden;
+                overflow-y: scroll;
+                padding-bottom:8px;
+                li{
+                    padding:16px 0;                   
+                    .city-list-container{
+                        .store-name{
+                            @extend .d-flex;
+                            flex-direction: column;
+                            justify-content: start;
+                            align-items: start;
+                            margin-bottom:8px;
+                            .title{
+                                @extend .body-1;
+                                font-weight: 500;
+                            }
+                            .sub-title{
+                                @extend .body-3;
+                                font-weight: 500;
+                            }
+                        }
+                        p{
+                            @extend .d-flex;
+                            justify-content: flex-start;
+                            width:100%;
+                            @extend .body-2;
+                            .icon-box{
+                                @extend .d-flex;
+                                width:56px;
+                                height:20px;
+                            }
+                            .address{
+                                width:calc(100% - 70px);
+                            }                            
+                        }
+                        .open-hours{
+                            @extend .d-flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            align-items: start;
+                            width:100%;
+                            margin:16px 0!important;
+                            @extend .body-2;
+                            p{
+                                @extend .d-flex;
+                                align-items: start;
+                                justify-content: flex-start;
+                            }
+                        }
+                        .direction-review{
+                            @extend .d-flex;
+                            justify-content: space-between;
+                            background-color:$gray100;
+                            padding:8px 16px;
+                            border-radius: 8px;
+                            gap:16px;
+                            position: relative;
+                            &:after{
+                                content:"";
+                                position: absolute;
+                                width:1px;
+                                height:100%;
+                                background-color:$gray400;
+                                left:50%;
+                                top:50%;
+                                transform:translate(-50%, -50%);
+                                z-index: 2;
+                            }
+                            .google-review{
+                                @extend .d-flex;
+                                justify-content: space-between;
+                                @extend .body-2;
+                                width:49%;
+                                padding-right: 16px;
+                            }
+                            .direction-link{
+                                @extend .d-flex;
+                                justify-content: end;
+                                @extend .body-2;
+                                width:49%;
+                                gap:8px;
+                                margin-top:0!important;
+                                padding-left: 16px;
+                                position: relative;
+                                z-index: 5;
+                                span{
+                                    @extend .d-flex;
+                                }
+                            }
+                        }   
+                        
+                    }                    
                 }
             }
        }       
