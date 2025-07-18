@@ -96,14 +96,17 @@ const StoreLocator = () => {
 
   // When city changes
   useEffect(() => {
-    if (selectedState && selectedCity) {
-      const filtered = stores.filter(
-        (s) => s.State === selectedState && s.city === selectedCity
-      );
-      setFilteredStores(filtered);
-      setActiveStore(null); // ✅ reset map center
+    const filtered = stores.filter(
+      (s) => s.State === selectedState && s.city === selectedCity
+    );
+    setFilteredStores(filtered);
+  
+    if (filtered.length > 0 && filtered[0].Latitude && filtered[0].Longitude) {
+      setActiveStore(filtered[0]);
+    } else {
+      setActiveStore(null);
     }
-  }, [selectedCity]);
+  }, [selectedCity, selectedState, stores]);
 
   const defaultPosition = [19.0760, 72.8777];
 
