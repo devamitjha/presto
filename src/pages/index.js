@@ -6,6 +6,7 @@ export { default as DryCleaning } from './DryCleaning';
 export { default as Restoration } from './Restoration';
 export { default as PrepaidCard } from './PrepaidCard';
 export { default as Blog } from './Blog';
+export { default as BlogDetail } from './BlogDetail';
 export { default as Contact } from './Contact';
 export { default as BookNow } from './BookNow';
 export { default as Authorization } from './Authorization';

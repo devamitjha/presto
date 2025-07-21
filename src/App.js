@@ -19,6 +19,7 @@ import {
   BookNow,
   Authorization,
   PageNotFound,
+  BlogDetail
 } from './pages';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         { path: '/book-now', element: <BookNow /> },
         { path: '/authorization', element: <Authorization /> },
         { path: '/blog', element: <Blog /> },
+        { path: '/blog/:id', element: <BlogDetail /> },
         // Fallback
         { path: '*', element: <PageNotFound /> },
       ],
