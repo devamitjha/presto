@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { NavLink, Link , useNavigate} from 'react-router';
+import { NavLink, Link, useNavigate } from 'react-router';
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ButtonWithIcon } from "./common/Button";
 import "./Header.scss";
-import Logo from "../assets/images/logo.png"
+import Logo from "../assets/images/logo.png";
 import { User } from 'lucide-react';
 
 const BookNowIcon = (
@@ -14,16 +15,40 @@ const BookNowIcon = (
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  
+
+  // Track scroll progress
+  const { scrollY } = useScroll();
+
+  // Control opacity between 0 and 1 from scroll 0 to 100px
+  const bgOpacity = useTransform(scrollY, [0, 100], [0, 1]);
+
+  // Derived styles
+  const bgColor = useTransform(bgOpacity, (o) => `rgba(255, 255, 255, ${o})`);
+  const boxShadow = useTransform(
+    bgOpacity,
+    (o) => `0 2px 10px rgba(0,0,0,${o * 0.1})`
+  );
+
   const goToBookNowPage = () => {
     navigate('/book-now');
   };
+
   return (
-    <section className="header">
+    <motion.section
+      className="header sticky-header"
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
+        backgroundColor: bgColor,
+        boxShadow: boxShadow,
+        backdropFilter: "blur(10px)",
+      }}
+    >
       <div className="navigation">
         <div className="section-logo">
           <Link to="/">
-            <img src={Logo} alt="pressto" width="170px" height="37px"/>
+            <img src={Logo} alt="pressto" width="170px" height="37px" />
           </Link>
         </div>
         <div className="section-nav">
@@ -39,11 +64,15 @@ const Header = () => {
           </nav>
         </div>
         <div className="section-contact">
-          <div className="user-dropdown" onMouseEnter={() => setIsOpen(true)}  onMouseLeave={() => setIsOpen(false)}>            
+          <div
+            className="user-dropdown"
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
+          >
             <div className="user-icon">
-              <User/>
+              <User />
             </div>
-           
+
             {isOpen && (
               <div className="dropdown-menu">
                 <h3>Your Account</h3>
@@ -55,11 +84,11 @@ const Header = () => {
               </div>
             )}
           </div>
-          <ButtonWithIcon title="Book Now" icon={BookNowIcon} className="btn btn-md base-btn primary black" GoTo={goToBookNowPage }/>
+          <ButtonWithIcon title="Book Now" icon={BookNowIcon} className="btn btn-md base-btn primary black" GoTo={goToBookNowPage} />
         </div>
       </div>
-    </section>
-  )
-}
+    </motion.section>
+  );
+};
 
-export default Header
+export default Header;

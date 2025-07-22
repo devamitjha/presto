@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import {useNavigate} from 'react-router';
+import { BottomSheet } from 'react-spring-bottom-sheet';
+import 'react-spring-bottom-sheet/dist/style.css';
 
 import HeroSlider from '../components/HeroSlider';
 import Client from '../components/Client';
@@ -33,7 +35,6 @@ import Spotlight6 from '../assets/images/spotlight/sp-6.jpg';
 import Spotlight7 from '../assets/images/spotlight/sp-7.jpg';
 
 
-
 import Experience1 from '../assets/images/exp-1.jpg';
 import Experience2 from '../assets/images/exp-2.jpg';
 import Experience3 from '../assets/images/exp-3.jpg';
@@ -45,11 +46,22 @@ import useWindowSize from '../hooks/useWindowSize';
 import { expertiseData } from '../api/expertiseData';
 import { brandRecognition } from '../api/brandRecognition';
 import { carePartners } from '../api/carePartners';
+import AnimatedCard from '../components/motionCard/AnimatedCard';
 
 
 // Spotlight Section
 const SectionSpotlight = () => {
+  const [open, setOpen] = useState(false)
   const { width } = useWindowSize();
+  const spolightItem = [
+    { id: 1, img: Spotlight, description: 'Details for item one.' },
+    { id: 2, img: Spotlight2, description: 'Details for item one.' },
+    { id: 3, img: Spotlight3, description: 'Details for item one.' },
+    { id: 4, img: Spotlight4, description: 'Details for item one.' },
+    { id: 5, img: Spotlight5, description: 'Details for item one.' },
+    { id: 6, img: Spotlight6, description: 'Details for item one.' },
+    { id: 7, img: Spotlight7, description: 'Details for item one.' },
+  ];
 
   return (
     <section className="section-container spotlight">
@@ -81,9 +93,30 @@ const SectionSpotlight = () => {
               </div>
             ))}
           </div>
-          <Button title="View Gallery" className="btn btn-md base-btn outlined overflowHidden" />
+          <div title="View Gallery" className="btn btn-md base-btn outlined overflowHidden" onClick={() => setOpen(true)}>View Gallery</div>
         </div>
       </div>
+      <BottomSheet
+        open={open}
+        onDismiss={() => setOpen(false)}
+        defaultSnap={({ snapPoints, lastSnap }) =>
+            lastSnap ?? Math.min(...snapPoints)
+        }
+        // snapPoints={({ maxHeight }) => [
+        //     maxHeight - maxHeight / 2.5,
+        //     maxHeight * 0.7,
+        // ]}
+        className="custom-bottom-sheet"
+        header={<div className="sheetHeader">Gallery</div>}
+        footer={<div className="sheetFooter">© Pressto Gallery</div>}
+      >
+        <div className="sheetBody" style={{ marginTop: 0 }}>
+          {/* Gallery content inside sheet */}
+          <div className="sheet-gallery-grid">
+            <AnimatedCard spolightItem={spolightItem}/>
+          </div>
+        </div>
+      </BottomSheet>
     </section>
   );
 };

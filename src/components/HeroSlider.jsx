@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { MoveRight, MoveLeft } from 'lucide-react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 import {useNavigate} from 'react-router';
 import './HeroSlider.scss';
 import 'slick-carousel/slick/slick.css';
@@ -21,7 +21,7 @@ function NavNextArrow(props) {
     <div
       className="navNext"
       onClick={onClick}
-    > <MoveRight /></div>
+    > <ChevronRight /></div>
   );
 }
 
@@ -31,7 +31,7 @@ function NavPrevArrow(props) {
     <div
       className="navPrev"
       onClick={onClick}
-    ><MoveLeft /></div>
+    ><ChevronLeft /></div>
   );
 }
 
@@ -52,7 +52,7 @@ const HeroSlider = ({ heroImages }) => {
     autoplaySpeed: 4000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     pauseOnHover: true,
     nextArrow: <NavNextArrow />,
     prevArrow: <NavPrevArrow />
