@@ -28,7 +28,7 @@ const StaggerOnView = ({ children, className = '' }) => {
       animate={isInView ? 'show' : 'hidden'}
     >
       {React.Children.map(children, (child) =>
-        <motion.div variants={itemVariants} className="animated-item">{child}</motion.div>
+        <motion.div variants={itemVariants} className="animated-item col-6">{child}</motion.div>
       )}
     </motion.div>
   );

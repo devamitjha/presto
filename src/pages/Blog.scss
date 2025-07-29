@@ -1,51 +1,160 @@
 @import "../assets/styles/theme";
-.blog-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem;
-  
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
+.blogPage{
+  .excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  h3{
+    font-size:1.5rem;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .blog-tab{
+      @extend .d-flex;
+      gap:2rem;
+      .btn{
+          padding:0 2rem;
+          &.secondary{
+              background-color: $black;
+          }
+          &.active{
+              background-color: $black;
+              color:$white;
+          }
+      }
+  }
+  .section-top{
+    .blog-hero{
+      .blog-title-info{
+        width:100%;
+        padding:20px;
+        left:0;
+        bottom:0;
+        background-image: linear-gradient(180deg, rgba(255,255,255,0), rgba(0,0,0,.5));
+        color:$white;
+        h3{
+          @extend .heading-2;
+          margin:0;
+        }
+        .details{
+          @extend .body-2;
+          margin:16px 0;
+        }
+        .tags{
+          span{
+            + span{
+              margin-left:20px
+            }
+          }
+        }
+        .blog-meta{
+          @extend .d-flex;
+          justify-content: start;
+          margin-top:8px;
+          .editor{
+            margin-left:20px
+          }
+        }
+      }
     }
-  
-    .post-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
+    .blog-grid-container{
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-flow: dense;
+        gap: 1rem;
+        > :nth-child(5),
+        > :nth-child(9) {
+          grid-column: span 2;
+        }
+      }
     }
-  
-    .post-card {
-      background: #f9f9f9;
-      border-radius: 10px;
-      overflow: hidden;
-      width: 300px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-  
-      &:hover {
-        transform: translateY(-5px);
+    .popular-container{
+      .popular-row{
+        + .popular-row{
+            margin-top:2rem;
+          }
       }
-  
-      .post-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
+      .popular-img-thumb{
+        border-radius: .5rem;
+        overflow: hidden;
       }
-  
-      .post-title {
-        font-size: 1.25rem;
-        padding: 1rem;
-        color: #333;
-      }
-  
-      .post-excerpt {
-        padding: 0 1rem 1rem;
-        font-size: 0.95rem;
-        color: #666;
-      }
+        .popular-info{
+          h3{
+            font-size:1.5rem;
+            font-weight: 400;
+          }
+          p{
+            font-size:1rem;
+            margin:0;
+            line-height: 1.3;
+          }
+          .readmore{
+            margin:.5rem 0;
+            text-decoration: underline;
+          }
+          .meta{
+            @extend .d-flex;
+            justify-content: space-between;
+            font-size:.85rem;
+            .time{
+              margin-left:.5rem;
+            }
+          }
+        }        
     }
   }
+  .blog-container {       
+      h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+    
+      .post-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+      }
+    
+      .post-card {
+        background: #f9f9f9;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 300px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+    
+        &:hover {
+          transform: translateY(-5px);
+        }
+    
+        .post-image {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+    
+        .post-title {
+          font-size: 1.25rem;
+          padding: 1rem;
+          color: #333;
+        }
+    
+        .post-excerpt {
+          padding: 0 1rem 1rem;
+          font-size: 0.95rem;
+          color: #666;
+        }
+      }
+  }
+}
   

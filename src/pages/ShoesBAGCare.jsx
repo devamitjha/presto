@@ -53,7 +53,7 @@ const PopularPosts = () => {
 
   useEffect(() => {
     axios
-      .get('https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?per_page=3&_embed')
+      .get('https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?categories=3&per_page=3&_embed')
       .then((res) => {
         const sorted = res.data.sort((a, b) => (b.views || 0) - (a.views || 0));
         setPopular(sorted);
@@ -123,12 +123,12 @@ const AllPosts = ({ posts }) => {
   });
 };
 
-const Blog = () => {
+const ShoesBAGCare = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios
-      .get('https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?_embed')
+      .get('https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?categories=3&_embed')
       .then((res) => setPosts(res.data))
       .catch((err) => console.error('Error fetching blog posts:', err));
   }, []);
@@ -157,4 +157,5 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default ShoesBAGCare;
+
