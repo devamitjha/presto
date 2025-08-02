@@ -30,20 +30,36 @@ const Authorization = () => {
   });
 
   // 1. Validate and send OTP using MSG91
+  
   const handleSendOtp = async () => {
-    if (!mobile || mobile.length !== 10) {
+    if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
       toast.error("Please enter a valid 10-digit mobile number.", { autoClose: 2500 });
       return;
     }
 
     try {
-      await axios.post("/api/send-otp-msg91", { mobile });
-      setStep("login-otp");
+      const response = await fetch('https://www.presstoindia.com/send-otp.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // ✅ include session cookie
+        body: JSON.stringify({ mobile: `+91${mobile}` })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success("OTP sent successfully!", { autoClose: 2500 });
+        setStep("login-otp");
+      } else {
+        toast.error(result.message || "Failed to send OTP.", { autoClose: 2500 });
+      }
     } catch (error) {
       console.error(error);
       toast.error("Failed to send OTP. Please try again.", { autoClose: 2500 });
     }
   };
+
+
 
   // 2. Verify OTP
   const handleVerifyOtp = async () => {
@@ -53,29 +69,35 @@ const Authorization = () => {
     }
 
     try {
-      const otpResponse = await axios.post("/api/verify-otp-msg91", { mobile, otp });
+      const otpResponse = await fetch("https://www.presstoindia.com/verify-otp.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include', // ✅ must match send OTP request
+        body: JSON.stringify({ mobile: `+91${mobile}`, otp })
+      });
 
-      if (otpResponse.data.verified) {
+      const otpResult = await otpResponse.json();
+
+      if (otpResult.success) {
         const loginResponse = await getLoginInfoByMobile(mobile);
-        console.log(loginResponse);
-
-        if (loginResponse.data.registered) {
-           toast.success("Login successful!", { autoClose: 2500 });
-          // Redirect to user profile
-          // navigate("/profile")
+        if (loginResponse.data?.registered) {
+          toast.success("Login successful!", { autoClose: 2500 });
+          // navigate("/profile");
         } else {
           toast.error("User not registered. Redirecting to registration...", { autoClose: 2500 });
           setFormData({ ...formData, contact: mobile });
           setStep("register");
         }
       } else {
-        toast.error("Incorrect OTP.", { autoClose: 2500 });
+        toast.error(otpResult.message || "Incorrect OTP.", { autoClose: 2500 });
       }
     } catch (err) {
       console.error(err);
       toast.error("OTP verification failed.", { autoClose: 2500 });
     }
   };
+
+
 
   // 3. Register new user and send OTP
   const handleRegisterSubmit = async () => {
