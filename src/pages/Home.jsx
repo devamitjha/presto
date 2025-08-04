@@ -38,18 +38,16 @@ import Experience3 from '../assets/images/exp-3.jpg';
 import Experience4 from '../assets/images/exp-4.jpg';
 import Experience5 from '../assets/images/exp-5.jpg';
 
-import useWindowSize from '../hooks/useWindowSize';
-
 import { expertiseData } from '../api/expertiseData';
 import { brandRecognition } from '../api/brandRecognition';
 import { carePartners } from '../api/carePartners';
 import AnimatedCard from '../components/motionCard/AnimatedCard';
+// import Reviews from '../components/Reviews';
 
 
 // Spotlight Section
 const SectionSpotlight = () => {
   const [open, setOpen] = useState(false)
-  const { width } = useWindowSize();
   const spolightItem = [
     { id: 1, img: Spotlight, description: 'Details for item one.' },
     { id: 2, img: Spotlight2, description: 'Details for item one.' },
@@ -87,13 +85,13 @@ const SectionSpotlight = () => {
       <BottomSheet
         open={open}
         onDismiss={() => setOpen(false)}
-        defaultSnap={({ snapPoints, lastSnap }) =>
-            lastSnap ?? Math.min(...snapPoints)
-        }
-        // snapPoints={({ maxHeight }) => [
-        //     maxHeight - maxHeight / 2.5,
-        //     maxHeight * 0.7,
-        // ]}
+        // defaultSnap={({ snapPoints, lastSnap }) =>
+        //     lastSnap ?? Math.min(...snapPoints)
+        // }
+        snapPoints={({ maxHeight }) => [
+            maxHeight - maxHeight /5.5,
+            maxHeight * 0.9,
+        ]}
         className="custom-bottom-sheet"
         header={<div className="sheetHeader">Gallery</div>}
         footer={<div className="sheetFooter">© Pressto Gallery</div>}
@@ -190,6 +188,7 @@ const Home = () => {
       <SixColumnlayout />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
       <SixColumnlayoutCenter image={[serviceTshirt, serviceBag]}/>
+      {/* <Reviews /> */}
       <RealStories />
       <SectionSpotlight />
       <Experties title="The Prestige We've Pressed" data={carePartners} item="5"/>

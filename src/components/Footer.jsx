@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import {
   Facebook,
   Instagram,
-  Twitter,
+  LinkedinIcon,
   Youtube,
 } from "lucide-react";
 import logoBw from "../assets/images/footer-logo.png"
@@ -16,13 +16,37 @@ const Footer = () => {
         <img className="logo" src={logoBw } alt="logobw"/>
           <p className="follow-label">FOLLOW US</p>
           <div className="social-icons">
-            <Facebook />
-            <Instagram />
-            <Twitter />
-            <Youtube />
+            <Facebook 
+              onClick={() => {
+                const url = `https://www.facebook.com/Pressto.India`;
+                window.open(url, "_blank");
+              }}
+            />
+            <Instagram 
+              onClick={() => {
+                const url = `https://www.instagram.com/presstoindia/`;
+                window.open(url, "_blank");
+              }}
+            />
+            <LinkedinIcon 
+              onClick={() => {
+                const url = `https://www.linkedin.com/company/104093627/admin/dashboard/`;
+                window.open(url, "_blank");
+              }}
+            />
+            <Youtube 
+              onClick={() => {
+                const url = `https://www.youtube.com/@presstoindia7210`;
+                window.open(url, "_blank");
+              }}
+            />
           </div>
           <p className="copyright">
-            © 202s WEBSITE.COM ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()}{" "}
+            <a href="https://www.presstoindia.com" target="_blank" rel="noopener noreferrer">
+              presstoindia.com
+            </a>{" "}
+            ALL RIGHTS RESERVED.
           </p>
       </div>
       <div className="item category">

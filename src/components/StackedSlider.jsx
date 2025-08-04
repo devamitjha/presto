@@ -1,23 +1,35 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCards, Navigation, Pagination } from 'swiper/modules';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+
 import 'swiper/css';
 import 'swiper/css/effect-cards';
-import "./StackedSlider.scss";
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import './StackedSlider.scss';
 
+const StackedSlider = ({ sliderData }) => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
-import { EffectCards } from 'swiper/modules';
-
-
-
-const StackedSlider = ({sliderData}) => {  
   return (
     <div className="slider-wrapper">
       <Swiper
         initialSlide={1}
-        effect={'cards'}
         grabCursor={true}
-        modules={[EffectCards]}
+        effect="cards"
+        modules={[EffectCards, Navigation, Pagination]}
         className="cardSlider"
+        navigation={{
+          prevEl: prevRef.current,
+          nextEl: nextRef.current,
+        }}
+        onBeforeInit={(swiper) => {
+          // Assign navigation buttons manually before Swiper initializes
+          swiper.params.navigation.prevEl = prevRef.current;
+          swiper.params.navigation.nextEl = nextRef.current;
+        }}
       >
         {sliderData.map((slide, index) => (
           <SwiperSlide className="slide" key={index}>
@@ -25,8 +37,11 @@ const StackedSlider = ({sliderData}) => {
               <img src={slide.image} alt={slide.title} />
             </div>
           </SwiperSlide>
-        ))}
+        ))}     
+        <div ref={prevRef} className="custom-nav-btn button-prev"><ChevronLeft /></div>
+        <div ref={nextRef} className="custom-nav-btn button-next"><ChevronRight /></div>  
       </Swiper>
+      
     </div>
   );
 };

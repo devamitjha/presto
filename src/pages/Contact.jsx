@@ -15,6 +15,7 @@ import Experties from '../components/Experties';
 //services 
 import whatwedo1 from "../assets/images/contact/whatwedo1.jpg";
 import whatwedo2 from "../assets/images/contact/whatwedo2.jpg";
+import ContactImage from "../assets/images/contact/contact.jpg"
 import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
 
@@ -89,40 +90,41 @@ const Contact = () => {
       <HelmetMeta />
        <section className="section-container">
           <div className="contact-us-container">
-          <div className="contact-map" /> 
-          <div className="contact-info">
-            <h3>Contact us</h3>
-            <p>
-              Press2 Drycleaning & Laundry Pvt. Ltd. <br />
-              Centre Point Condominium, 243 A, N M Joshi Marg, <br />
-              Opp. Bawla Masjid, Lower Parel (E),<br />
-              Mumbai - 400013.
-            </p>
-
-            <div className="contact-item">
-              <Clock size={16} />
-              <span>10 am to 7 pm</span>
+            <div className="contact-map"> 
+              <img src={ContactImage} alt="main banner" width="848" height="848"/>
             </div>
+            <div className="contact-info">
+              <h3>Contact us</h3>
+              <p>
+                Press2 Drycleaning & Laundry Pvt. Ltd. Centre Point Condominium, 243 A, N M Joshi Marg, Opp. Bawla Masjid, Lower Parel (E),
+                Mumbai - 400013.
+              </p>
 
-            <div className="contact-item">
-              <Mail size={16} />
-              <Link to="mailto:info@presstoindia,com">info@presstoindia,com</Link>
-            </div>
+              <div className="contact-item">
+                <Clock size={16} />
+                <span>10 am to 7 pm</span>
+              </div>
 
-            <div className="contact-item">
-              <Phone size={16} />
-              <Link to="tel:1800229199">1800229199</Link>
-            </div>
+              <div className="contact-item">
+                <Mail size={16} />
+                <Link to="mailto:pickmeup@presstoindia.com">pickmeup@presstoindia.com</Link>
+              </div>
 
-            <div className="contact-item">
-              <Globe size={16} />
-              <Link to="https://www.pressto.com/" target="_blank" rel="noreferrer">
-                https://www.pressto.com/
-              </Link>
+              <div className="contact-item">
+                <Phone size={16} />
+                <Link to="tel:1800229199">1800229199</Link>
+              </div>
+
+              <div className="contact-item">
+                <Globe size={16} />
+                <Link to="https://www.pressto.com/" target="_blank" rel="noreferrer">
+                  https://www.pressto.com/
+                </Link>
+              </div>
             </div>
-          </div>
           </div>
       </section>
+      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
       <div className="section-container">
         <Heading title="Experience Pressto" />
         <div className="section-luxaryExperience-item">
@@ -147,8 +149,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </div>
-      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
+      </div>      
       <SixColumnlayoutCenter image={[whatwedo1, whatwedo2]} />
       <CustomerReviewHighlight/>
     </div>

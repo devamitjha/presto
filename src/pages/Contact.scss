@@ -3,15 +3,20 @@
     .contact-us-container {
         @extend .d-flex;
         justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 2%;
-        align-items: flex-start;
-        height: 510px;
+        align-items: flex-center;
     .contact-map {
-        width:60%;    
-        height:100%;
+        @extend .d-flex;
+        width:44vw;  
+        height:auto;
         background: linear-gradient(to bottom, #7c9a8d, #94b2a0);
         border-radius: 10px;
+        overflow: hidden;
+        img{
+            display:block;
+            width:100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     .contact-info {
@@ -19,7 +24,7 @@
         flex-direction: column;
         align-items: start;
         justify-content: center;
-        width:38%;
+        width:calc(100% - 48vw);
         height:100%;
         h3 {
         @extend .heading-2;

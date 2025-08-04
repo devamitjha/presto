@@ -84,14 +84,14 @@
 
             .user-icon {
                 cursor: pointer;
-                width: 56px;
-                height: 56px;
+                width: 48px;
+                height: 48px;
                 border-radius: 50%;
                 @extend .d-flex;
                 border:1px solid $gray400;
             }
 
-            .dropdown-menu {
+            .dropdownMenu {
                 position: absolute;
                 top: 100%;
                 left: 50%;

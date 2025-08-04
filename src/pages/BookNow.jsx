@@ -8,15 +8,12 @@ import SuccessMessage from '../components/multiStepsForm/SuccessMessage';
 import { toast } from 'react-toastify';
 import "./BookNow.scss";
 import Experties from '../components/Experties';
-import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
 import { expertiseData } from '../api/expertiseData';
 import { useNavigate } from 'react-router';
 
 //services 
 import Exp6 from "../assets/images/exp/exp-6.jpg";
 import Exp7 from "../assets/images/exp/exp-7.jpg";
-import whatwedo3 from "../assets/images/contact/whatwedo1.jpg";
-import whatwedo4 from "../assets/images/contact/whatwedo1.jpg";
 import Heading from '../components/common/Heading';
 import { Button } from '../components/common/Button';
 
@@ -192,7 +189,6 @@ const BookNow = () => {
             </div>
           </div>
         </div>
-        <SixColumnlayoutCenter image={[whatwedo3, whatwedo4]} />
       </div>
     </div>
   );

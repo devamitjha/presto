@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ButtonWithIcon } from "./common/Button";
 import "./Header.scss";
 import Logo from "../assets/images/logo.png";
+import whatsApp from "../assets/images/whatsapp.png";
 import { User } from 'lucide-react';
 
 const BookNowIcon = (
@@ -74,7 +75,7 @@ const Header = () => {
             </div>
 
             {isOpen && (
-              <div className="dropdown-menu">
+              <div className="dropdownMenu">
                 <h3>Your Account</h3>
                 <p>Track your Orders, Edit Profile and much more..</p>
                 <div className="buttons">
@@ -84,6 +85,17 @@ const Header = () => {
               </div>
             )}
           </div>
+           <div className="user-icon" 
+              onClick={() => {
+                const phone = "9167188355";
+                const message = encodeURIComponent("Let’s Start!");
+                const url = `https://api.whatsapp.com/send?phone=${phone}&text=${message}`;
+                window.open(url, "_blank");
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              <img src={whatsApp} alt="whatsapp" />
+            </div>
           <ButtonWithIcon title="Book Now" icon={BookNowIcon} className="btn btn-md base-btn primary black" GoTo={goToBookNowPage} />
         </div>
       </div>

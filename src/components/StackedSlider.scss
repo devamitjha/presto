@@ -1,6 +1,7 @@
 .slider-wrapper {
   max-width: 800px;
   margin: 0 auto;
+  position:relative;
   .swiper-slide {
     display: flex;
     align-items: center;
@@ -9,6 +10,33 @@
     font-size: 22px;
     font-weight: bold;
     color: #fff;
+    }
+
+    .custom-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      width:30px;
+      height:30px;
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.button-prev {
+        left: -100px;
+      }
+
+      &.button-next {
+        right: -100px;
+      }
     }
 }
 
