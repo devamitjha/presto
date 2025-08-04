@@ -17,6 +17,8 @@ import Rating from 'react-rating';
 import Mumbai from "../../assets/images/store/Mumbai.jpg";
 import Delhi from "../../assets/images/store/Delhi.jpg";
 import Bangalore from "../../assets/images/store/Bangalore.jpg";
+import Copy from "../../assets/images/copy.svg";
+import Direction from "../../assets/images/direction.svg";
 import 'leaflet/dist/leaflet.css';
 
 // Fix for Leaflet icon URLs
@@ -45,14 +47,16 @@ const StoreLocator = () => {
   const [stores, setStores] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+  const [localities, setLocalities] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
+  const [selectedLocality, setSelectedLocality] = useState("");
   const [filteredStores, setFilteredStores] = useState([]);
   const [cityStoreCounts, setCityStoreCounts] = useState({});
-  const [activeStore, setActiveStore] = useState(null); // ✅ NEW: track clicked store
+  const [activeStore, setActiveStore] = useState(null);
 
   // Load CSV
-  useEffect(() => {
+ useEffect(() => {
     const loadCSV = async () => {
       try {
         const response = await axios.get("https://www.presstoindia.com/react-pressto-blog/store_data.csv", {
@@ -68,11 +72,9 @@ const StoreLocator = () => {
               const data = result.data;
               setStores(data);
 
-              // Unique states
               const uniqueStates = [...new Set(data.map((s) => s.State))];
               setStates(uniqueStates);
 
-              // Count total stores for specific cities
               const countByState = data.reduce((acc, curr) => {
                 const state = curr.State;
                 if (state) {
@@ -101,8 +103,9 @@ const StoreLocator = () => {
       )];
       setCities(filteredCities);
       setSelectedCity("");
+      setSelectedLocality(""); // ✅ Clear locality
       setFilteredStores([]);
-      setActiveStore(null); // ✅ reset map center
+      setActiveStore(null);
     }
   }, [selectedState, stores]);
 
@@ -112,7 +115,12 @@ const StoreLocator = () => {
       (s) => s.State === selectedState && s.city === selectedCity
     );
     setFilteredStores(filtered);
-  
+
+    const uniqueLocalities = [...new Set(filtered.map((s) => s.store_location))];
+    setLocalities(uniqueLocalities);
+
+    setSelectedLocality(""); 
+
     if (filtered.length > 0 && filtered[0].Latitude && filtered[0].Longitude) {
       setActiveStore(filtered[0]);
     } else {
@@ -120,9 +128,27 @@ const StoreLocator = () => {
     }
   }, [selectedCity, selectedState, stores]);
 
+  useEffect(() => {
+    if (selectedLocality) {
+      const filtered = stores.filter(
+        (s) =>
+          s.State === selectedState &&
+          s.city === selectedCity &&
+          s.store_location === selectedLocality
+      );
+      setFilteredStores(filtered);
+
+      if (filtered.length > 0 && filtered[0].Latitude && filtered[0].Longitude) {
+        setActiveStore(filtered[0]);
+      } else {
+        setActiveStore(null);
+      }
+    }
+  }, [selectedLocality, selectedState, selectedCity, stores]);
+
+
   const defaultPosition = [19.0760, 72.8777];
 
-  // Get coordinates for default city center
   const cityCenterStore = filteredStores.find(
     (store) =>
       store.latitude &&
@@ -207,6 +233,22 @@ const StoreLocator = () => {
               ))}
             </select>
           </div>
+          <div className="localityOption">
+            <label htmlFor="selectLocality">Select Locality</label>
+            <select
+              id="selectLocality"
+              value={selectedLocality}
+              onChange={(e) => setSelectedLocality(e.target.value)}
+              disabled={!selectedCity}
+            >
+              <option value="">-- Select Locality --</option>
+              {localities.map((locality, i) => (
+                <option key={i} value={locality}>
+                  {locality}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
             {
               filteredStores.length>0 ?             
@@ -249,16 +291,22 @@ const StoreLocator = () => {
                               <div className="title">{store.place_name}</div>
                               <div className="sub-title">{store.store_location}</div>
                             </div>
-                            <p><span className="icon-box"><MapPin size={18} /></span><span className="address">{store.address}</span></p>
-                            <p><span className="icon-box"><Building size={18} /></span>City: {store.city}, {store.State}</p>
-                            <p><span className="icon-box"><Phone size={18} /></span>Contact: {store.phone}</p>
+                            <p><span className="address">{store.address}</span></p>
+                            <div className="city-name">
+                              <p>City: {store.city}, {store.State}</p>
+                              <p>Contact: {store.phone}
+                                <span className="icon-box copy">
+                                  <img src={Copy} alt="copy"/>
+                                </span>
+                              </p>
+                            </div>
                             <div className="open-hours">
-                              <p><span className="icon-box">
-                              <Clock size={18} /></span>
-                              <strong>Open Hours:</strong></p>
-                              <p><span className="icon-box"><CalendarDays size={16} /></span>Mon to Fri: {monToFri}</p>
-                              <p><span className="icon-box"> <CalendarDays size={16} /></span>Sat: {saturday}</p>
-                              <p><span className="icon-box"><CalendarDays size={16} /></span>Sun: {sunday}</p>
+                              <p className="timings-title">Timings:</p>
+                              <div className="timings">
+                                <p>Mon to Fri: {monToFri}</p>
+                                <p>Sat: {saturday}</p>
+                                <p>Sun: {sunday}</p>
+                              </div>
                             </div>
                             <div className="direction-review">
                               {store.google_review_rating && (
@@ -267,9 +315,9 @@ const StoreLocator = () => {
                                   <span className="rating-stars">
                                     <Rating
                                       initialRating={parseFloat(store.google_review_rating)}
-                                      emptySymbol={<StarEmpty size={16} color="#00a5b8" />} 
-                                      fullSymbol={<Star size={16} color="#00a5b8" fill="#00a5b8" />} 
-                                      placeholderSymbol={<StarHalf size={16} color="#00a5b8" />}
+                                      emptySymbol={<StarEmpty size={20} color="#FFC700" />} 
+                                      fullSymbol={<Star size={20} color="#FFC700" fill="#FFC700" />} 
+                                      placeholderSymbol={<StarHalf size={20} color="#FFC700" />}
                                       readonly
                                       fractions={2}
                                     />
@@ -278,8 +326,10 @@ const StoreLocator = () => {
                               )}                                      
                               {store.direction && (
                                 <div className="direction-link">
-                                  <span><Navigation className="inline-block mr-2" size={18} /></span>
                                   <Link to={store.direction} target="_blank">Get Direction</Link>
+                                  <span>
+                                    <img src={Direction} alt="direction"/>
+                                  </span>
                                 </div>
                               )}       
                             </div>  

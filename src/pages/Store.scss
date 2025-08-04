@@ -191,20 +191,20 @@
        justify-content: space-between;
        align-items: start;
        width:100%;
-       gap:2rem;
+       gap:4rem;
        .leaflet-bottom{
         &.leaflet-right{
             display:none!important;
         }
        }
        .section-store-map{
-            width:70%;
+            width:calc(50% - 2rem);
             height:100%;
             @extend .d-flex; 
             overflow: hidden;            
        }
        .section-store-map-input{
-            width:30%;
+            width:calc(50% - 2rem);
             height:100%;
             @extend .d-flex; 
             flex-direction: column;
@@ -222,7 +222,8 @@
                 align-items: flex-end;
                 justify-content: space-between;
                 .stateOption,
-                .cityOption {
+                .cityOption,
+                .localityOption {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
@@ -279,7 +280,9 @@
                     .store-info{
                         width:30%;
                         .store-image{
-                            padding:1rem;
+                            width:120px;
+                            height:120px;
+                            margin:0 auto 16px auto;
                             @media(max-width:1450px){
                                 padding:0;
                             }
@@ -323,6 +326,7 @@
                 overflow: hidden;
                 overflow-y: scroll;
                 padding-bottom:8px;
+                width: 100%;
                 li{
                     padding:16px 0;                   
                     .city-list-container{
@@ -334,10 +338,11 @@
                             margin-bottom:8px;
                             .title{
                                 @extend .body-1;
+                                font-size:24px;
                                 font-weight: 500;
                             }
                             .sub-title{
-                                @extend .body-3;
+                                @extend .sub-heading-1;
                                 font-weight: 500;
                             }
                         }
@@ -345,15 +350,26 @@
                             @extend .d-flex;
                             justify-content: flex-start;
                             width:100%;
-                            @extend .body-2;
-                            .icon-box{
-                                @extend .d-flex;
-                                width:56px;
-                                height:20px;
-                            }
+                            @extend .body-3;
+                            margin:0;
                             .address{
                                 width:calc(100% - 70px);
+                                color:$gray600;
+                                font-weight: 300;
+                                line-height: 1.3;
+                                margin-bottom:8px;
                             }                            
+                        }
+                        .city-name{
+                            @extend .d-flex;
+                            justify-content: space-between;
+                            color:#000;
+                            .icon-box{
+                                &.copy{
+                                    margin-top:-3px;
+                                    cursor: pointer;
+                                }
+                            }
                         }
                         .open-hours{
                             @extend .d-flex;
@@ -361,43 +377,62 @@
                             justify-content: flex-start;
                             align-items: start;
                             width:100%;
-                            margin:16px 0!important;
+                            margin-top:8px;
                             @extend .body-2;
+                            .timings{
+                                @extend .d-flex;
+                                justify-content: space-between;
+                                width:100%;   
+                                margin-top:8px!important;                            
+                                p{
+                                    color:$gray600;
+                                    font-weight: 300;
+                                    font-size:14px;
+                                    @media(max-width:1450px){
+                                        font-size:12px;
+                                    }
+                                }
+                            }
                             p{
                                 @extend .d-flex;
                                 align-items: start;
                                 justify-content: flex-start;
+                                width:33%;
+                                &.timings-title{
+                                    font-weight: 600;
+                                    font-size:16px;                                    
+                                }
                             }
                         }
                         .direction-review{
                             @extend .d-flex;
-                            justify-content: space-between;
-                            background-color:$gray100;
-                            padding:8px 16px;
+                            justify-content:start;
+                            padding:8px 0;
                             border-radius: 8px;
-                            gap:16px;
+                            gap:2rem;
                             position: relative;
-                            &:after{
-                                content:"";
-                                position: absolute;
-                                width:1px;
-                                height:100%;
-                                background-color:$gray400;
-                                left:50%;
-                                top:50%;
-                                transform:translate(-50%, -50%);
-                                z-index: 2;
-                            }
+                            margin-top:20px;                           
                             .google-review{
                                 @extend .d-flex;
-                                justify-content: space-between;
+                                justify-content:center;
                                 @extend .body-2;
                                 width:49%;
                                 padding-right: 16px;
+                                gap:1rem;
+                                .rating-count{
+                                    @extend .d-flex;
+                                    color:$gray600;
+                                    font-weight: 300;
+                                    font-size: 14px;
+                                }
+                                .rating-stars{
+                                    @extend .d-flex;
+                                    margin-top:-7px;
+                                }
                             }
                             .direction-link{
                                 @extend .d-flex;
-                                justify-content: end;
+                                justify-content: center;
                                 @extend .body-2;
                                 width:49%;
                                 gap:8px;
@@ -405,13 +440,21 @@
                                 padding-left: 16px;
                                 position: relative;
                                 z-index: 5;
+                                font-size: 16px;
+                                text-transform: uppercase;
+                                border:1px solid #1C1B1F;
+                                border-radius: 9999px;
+                                height:52px;
                                 span{
                                     @extend .d-flex;
                                 }
                             }
                         }   
                         
-                    }                    
+                    }   
+                    +li{
+                        border-top:1px solid #1C1B1F;
+                    }                 
                 }
             }
        }       
