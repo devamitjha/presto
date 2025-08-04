@@ -121,7 +121,7 @@ const About = () => {
         <Heading title="Trusted Across Continents/ Worldwide Wardrobe Care" />
         <div className="section-pressto-map">
           <div className="pressto-map">
-            <img  src={PresstoMap} alt="about" width="1758" height="784" />
+            <img  src={PresstoMap} alt="about" width="1760" height="792" />
           </div>
         </div>
       </div>

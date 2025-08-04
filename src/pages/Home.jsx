@@ -30,9 +30,6 @@ import Spotlight from '../assets/images/spotlight/sp-1.jpg';
 import Spotlight2 from '../assets/images/spotlight/sp-2.jpg';
 import Spotlight3 from '../assets/images/spotlight/sp-3.jpg';
 import Spotlight4 from '../assets/images/spotlight/sp-4.jpg';
-import Spotlight5 from '../assets/images/spotlight/sp-5.jpg';
-import Spotlight6 from '../assets/images/spotlight/sp-6.jpg';
-import Spotlight7 from '../assets/images/spotlight/sp-7.jpg';
 
 
 import Experience1 from '../assets/images/exp-1.jpg';
@@ -58,9 +55,6 @@ const SectionSpotlight = () => {
     { id: 2, img: Spotlight2, description: 'Details for item one.' },
     { id: 3, img: Spotlight3, description: 'Details for item one.' },
     { id: 4, img: Spotlight4, description: 'Details for item one.' },
-    { id: 5, img: Spotlight5, description: 'Details for item one.' },
-    { id: 6, img: Spotlight6, description: 'Details for item one.' },
-    { id: 7, img: Spotlight7, description: 'Details for item one.' },
   ];
 
   return (
@@ -71,14 +65,8 @@ const SectionSpotlight = () => {
           <img src={Spotlight} alt="Showcase1" />
         </div>
 
-        {width > 1600 && (
-          <div className="item">
-            <img src={Spotlight2} alt="Showcase2" />
-          </div>
-        )}
-
         <div className="item">
-          <img src={Spotlight3} alt="Showcase3" />
+          <img src={Spotlight2} alt="Showcase2" />
         </div>
 
         <div className="item collage">
@@ -87,7 +75,7 @@ const SectionSpotlight = () => {
             sharp skill, and an eye for detail. It’s not just what we do, it’s how we do it, with quiet precision and pride in every fold
           </div>
           <div className="image-collage">
-            {[Spotlight4, Spotlight5, Spotlight6, Spotlight7].map((img, index) => (
+            {[Spotlight3, Spotlight4].map((img, index) => (
               <div className="grid" key={index}>
                 <img src={img} alt={`Spotlight Collage ${index + 1}`} />
               </div>

@@ -27,10 +27,10 @@ const Footer = () => {
       </div>
       <div className="item category">
         <Link to="/">Home</Link>
-        <Link to="/">Services</Link>
-        <Link to="/">Case Studies & Blogs</Link>
-        <Link to="/">About us</Link>
-        <Link to="/">Contact Us</Link>
+        <Link to="/service/dry-cleaning">Services</Link>
+        <Link to="/blog">Case Studies & Blogs</Link>
+        <Link to="/about">About us</Link>
+        <Link to="/contact">Contact Us</Link>
       </div>
       <div className="item contact-form">
           <h2>Contact Us</h2>
