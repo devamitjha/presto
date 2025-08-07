@@ -1,20 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./AuthFlow.scss";
-import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import { getLoginInfoByMobile, registerUser } from '../services/userServices';
 
-const HelmetMeta = () => {
-  return (
-      <Helmet>
-        <title>Login Page | Login Page</title>
-        <meta name="description" content="Learn more about our company and mission." />
-        <meta name="keywords" content="about us, company, mission, values" />
-        <link rel="canonical" href="https://www.yoursite.com" />
-      </Helmet>
-  )
-}
 
 const Authorization = () => {
   const [step, setStep] = useState("login-mobile"); // steps: login-mobile, login-otp, register, register-otp
@@ -147,11 +136,10 @@ const Authorization = () => {
   };
   return (
     <section className="section-container">
-      <HelmetMeta/>
-      <div className="auth-flow">
+      <div className="authflow">
       {step === "login-mobile" && (
         <div className="card">
-          <h2>Login with Mobile</h2>
+          <h2>LOGIN & SIGNUP</h2>
           <input
             type="text"
             placeholder="Enter Mobile Number"

@@ -158,3 +158,11 @@
         will-change: transform, background-color, box-shadow;
       }
 }
+
+.auth-bottom-sheet{
+    [data-rsbs-overlay]{
+        max-width: 768px;
+        width:100%;
+        margin: 0 auto;
+    } 
+}

@@ -1,0 +1,49 @@
+@import "../assets/styles/theme";
+.authflow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .card {
+    background: #fff;
+    padding: 28px;
+    width: 70%;
+    border:none;
+
+    h2 {
+      margin: 20px 0;
+      font-size: 18px;
+      color: #333;
+      text-align:center;
+    }
+   
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+
+      &:focus {
+        border-color: $black;
+        outline: none;
+      }
+    }
+
+    button {
+      width: 100%;
+      background-color: $black;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $black;
+      }
+    }
+  }
+}
