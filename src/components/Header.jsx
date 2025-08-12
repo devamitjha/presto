@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, Link, useNavigate } from 'react-router';
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./Header.scss";

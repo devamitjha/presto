@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import "./SixColumnLayout.scss";
 import Heading from './common/Heading';
 import sixCol from "../assets/images/rollout/six-col-1.jpg";

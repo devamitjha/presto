@@ -5,12 +5,6 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { Link } from "react-router";
 import {
-  MapPin,
-  Building,
-  Phone,
-  Clock,
-  CalendarDays, 
-  Navigation,
   Star, StarHalf, Star as StarEmpty
 } from "lucide-react";
 import Rating from 'react-rating';

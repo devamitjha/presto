@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_BASE_URL;
+//const API_URL = process.env.REACT_APP_API_BASE_URL;
 const TOKEN = process.env.REACT_APP_API_TOKEN;
 
 //Login API
 export const getLoginInfoByMobile = async (mobile) => {
   try {
-    const response = await axios.get(`/api/iTPVCentralAPI/GetLoginInfoByMobile`, {
+    const response = await axios.get(`http://itpvuatcapi.press2india.com:8084/api/iTPVCentralAPI/GetLoginInfoByMobile`, {
       params: { mobile },
       headers: {
         Token: TOKEN,
@@ -22,7 +22,7 @@ export const getLoginInfoByMobile = async (mobile) => {
 //Register API
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post(`/api/iTPVCentralAPI/RegisterUser`, userData, {
+    const response = await axios.post(`http://itpvuatcapi.press2india.com:8084/api/iTPVCentralAPI/RegisterUser`, userData, {
       headers: {
         'Token': TOKEN,
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export const registerUser = async (userData) => {
 // Get customer details by ID
 export const getCustomerDetailsById = async (CustomerUniqueId) => {
   try {
-    const response = await axios.get(`/api/iTPVCentralAPI/GetCustomerDetailsById`, {
+    const response = await axios.get(`http://itpvuatcapi.press2india.com:8084/api/iTPVCentralAPI/GetCustomerDetailsById`, {
       params: { CustomerUniqueId },
       headers: {
         token: TOKEN,

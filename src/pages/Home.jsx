@@ -56,12 +56,6 @@ import SpotlightPopup7 from '../assets/images/spotlight/7.jpg';
 // Spotlight Section
 const SectionSpotlight = () => {
   const [open, setOpen] = useState(false)
-  const spolightItem = [
-    { id: 1, img: Spotlight, description: 'Details for item one.' },
-    { id: 2, img: Spotlight2, description: 'Details for item one.' },
-    { id: 3, img: Spotlight3, description: 'Details for item one.' },
-    { id: 4, img: Spotlight4, description: 'Details for item one.' },
-  ];
   const spolightPopupItem = [
     { id: 1, img: SpotlightPopup1, description: 'Details for item one.' },
     { id: 2, img: SpotlightPopup2, description: 'Details for item one.' },

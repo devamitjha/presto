@@ -17,7 +17,6 @@ import sl1 from "../assets/images/service/sl-1.jpg";
 import sl2 from "../assets/images/service/sl-2.jpg";
 import sl3 from "../assets/images/service/sl-3.jpg";
 import sl4 from "../assets/images/service/sl-4.jpg";
-import CenterBanner from "../assets/images/service/restoration-center-banner.jpg";
 import Experties from '../components/Experties';
 import SolutionFinder from '../components/SolutionFinder';
 import LocateUsMap from '../components/LocateUs';

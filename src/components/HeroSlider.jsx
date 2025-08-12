@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import {useNavigate} from 'react-router';
 import './HeroSlider.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

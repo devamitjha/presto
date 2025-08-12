@@ -27,7 +27,6 @@ import sl3 from "../assets/images/service/sl-3.jpg";
 import sl4 from "../assets/images/service/sl-4.jpg";
 
 
-import CenterBanner from "../assets/images/service/dry-center-banner.jpg";
 import Experties from '../components/Experties';
 import SolutionFinder from '../components/SolutionFinder';
 import LocateUs from '../components/LocateUs';
