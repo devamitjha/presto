@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api/send-otp"
+  to = "https://www.presstoindia.com/send-otp.php"
+  status = 200
+  force = true

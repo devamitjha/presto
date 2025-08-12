@@ -32,7 +32,7 @@ const Authorization = () => {
     }
 
     try {
-      const response = await fetch('https://www.presstoindia.com/send-otp.php', {
+      const response = await fetch('/api/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
