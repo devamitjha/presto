@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, Link, useNavigate } from 'react-router';
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ButtonWithIcon } from "./common/Button";
 import "./Header.scss";
 import Logo from "../assets/images/logo.png";
 import whatsApp from "../assets/images/whatsapp.png";
@@ -10,6 +9,8 @@ import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
 import Authorization from "./Authorization";
 import BookNow from "./BookNow";
+import { useSelector, useDispatch } from "react-redux";
+import { setOpenSheet, setOpenBookNow } from "../redux/slices/sheetSlice";
 
 const BookNowIcon = () => (
   <svg width="12" height="15" viewBox="0 0 12 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -18,9 +19,11 @@ const BookNowIcon = () => (
 );
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const customer = useSelector((state) => state.customer.customer);
+  const { openSheet, openBookNow } = useSelector((state) => state.sheet);
   const navigate = useNavigate();
-  const [openSheet, setOpenSheet] = useState(false);
-  const [openBookNow, setOpenBookNow] = useState(false);
+  const initials = `${customer?.firstName?.charAt(0) || ""}${customer?.lastName?.charAt(0) || ""}`.toUpperCase();
 
   // Track scroll progress
   const { scrollY } = useScroll();
@@ -36,7 +39,7 @@ const Header = () => {
   );
 
   const goToBookNowPage = () => {
-   setOpenBookNow(true)
+    dispatch(setOpenBookNow(true));
   };
 
   return (
@@ -70,15 +73,25 @@ const Header = () => {
           </nav>
         </div>
         <div className="section-contact">
-          <div className="user-dropdown">
-            <div className="user-icon" onClick={() => setOpenSheet(true)}>
-              <User />
-            </div>           
-          </div>
+          {
+            customer ? 
+              <div className="user-dropdown">
+                <div className="user-icon" onClick={() => navigate("/profile")}>
+                  {initials}
+                </div>           
+              </div>
+              :
+              <div className="user-dropdown">
+                <div className="user-icon" onClick={() => dispatch(setOpenSheet(true))}>
+                  <User />
+                </div>           
+              </div>
+          }
+          
            <div className="user-icon" 
               onClick={() => {
                 const phone = "9167188355";
-                const message = encodeURIComponent("Let’s Start!");
+                const message = encodeURIComponent("Let's Start!");
                 const url = `https://api.whatsapp.com/send?phone=${phone}&text=${message}`;
                 window.open(url, "_blank");
               }}
@@ -97,7 +110,7 @@ const Header = () => {
 
       <BottomSheet
         open={openSheet}
-        onDismiss={() => setOpenSheet(false)}
+        onDismiss={() => dispatch(setOpenSheet(false))}
         defaultSnap={({ snapPoints, lastSnap }) =>
             lastSnap ?? Math.min(...snapPoints)
         }
@@ -110,7 +123,7 @@ const Header = () => {
 
        <BottomSheet
         open={openBookNow}
-        onDismiss={() => setOpenBookNow(false)}
+        onDismiss={() => dispatch(setOpenBookNow(false))}
         defaultSnap={({ snapPoints, lastSnap }) =>
             lastSnap ?? Math.min(...snapPoints)
         }

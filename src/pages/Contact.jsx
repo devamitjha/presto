@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from 'react-router';
 import { Clock, Mail, Phone, Globe, Star } from 'lucide-react';
 import "./Contact.scss"; // Assuming you have a CSS file for styling
 import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
+import {useDispatch } from "react-redux";
+import { setOpenBookNow } from "../redux/slices/sheetSlice";
 
 //experience
 import Exp6 from "../assets/images/exp/exp-6.jpg";
@@ -78,20 +80,22 @@ const HelmetMeta = () => {
   )
 }
 const Contact = () => {
+  const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
   const navigate = useNavigate();
   const goToStoretPage = () => {
       navigate('/store');
   };
   const goToBookNowPage = () => {
-      navigate('/book-now');
+     dispatch(setOpenBookNow(true));
   };
   return (
     <div className="contact-page">
       <HelmetMeta />
        <section className="section-container">
           <div className="contact-us-container">
-            <div className="contact-map"> 
-              <img src={ContactImage} alt="main banner" width="848" height="848"/>
+            <div className="contact-map lazyImg"> 
+              <img src={ContactImage} alt="main banner" width="848" height="848" onLoad={() => setLoaded(true)} className={loaded ? "loaded" : "loading"}/>
             </div>
             <div className="contact-info">
               <h3>Contact us</h3>

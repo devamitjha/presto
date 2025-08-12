@@ -1,14 +1,11 @@
 // src/pages/BookNow.jsx
 import React, { useState } from 'react';
-import { Helmet } from "react-helmet";
 import PersonalDetails from './multiStepsForm/PersonalDetails';
 import ContactDetails from './multiStepsForm/ContactDetails';
 import Review from './multiStepsForm/Review';
 import SuccessMessage from './multiStepsForm/SuccessMessage';
 import { toast } from 'react-toastify';
 import "./BookNow.scss";
-import Experties from './Experties';
-import { expertiseData } from '../api/expertiseData';
 import { useNavigate } from 'react-router';
 
 //services 

@@ -20,6 +20,7 @@ const formatDate = (dateStr) =>
   });
 
 const FeaturedPost = ({ posts }) => {
+  const [loaded, setLoaded] = useState(false);
   if (!posts?.length) return null;
 
   const post = posts[0];
@@ -31,7 +32,7 @@ const FeaturedPost = ({ posts }) => {
 
   return (
     <div key={post.id} className="blog-hero rounded overflow-hidden position-relative">
-      <img src={image} alt={title} className="img-fluid" />
+      <img src={image} alt={title} className={`img-fluid ${loaded ? "loaded" : "loading"}`}  onLoad={() => setLoaded(true)}/>
       <div className="blog-title-info position-absolute z-2">
         <h3 className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
         <p className="details">{excerpt}</p>
@@ -48,6 +49,7 @@ const FeaturedPost = ({ posts }) => {
 };
 
 const PopularPosts = () => {
+  const [loaded, setLoaded] = useState(false);
   const [popular, setPopular] = useState([]);
 
   useEffect(() => {
@@ -72,7 +74,8 @@ const PopularPosts = () => {
                   'https://placehold.co/300x300'
                 }
                 alt={post.title.rendered}
-                className="img-fluid"
+                className={`img-fluid ${loaded ? "loaded" : "loading"}`}
+                onLoad={() => setLoaded(true)}
               />
             </div>
           </div>
@@ -94,6 +97,7 @@ const PopularPosts = () => {
 };
 
 const AllPosts = ({ posts }) => {
+  const [loaded, setLoaded] = useState(false);
   if (!posts || posts.length <= 1) return null;
 
   return posts.slice(1).map((post) => {
@@ -104,8 +108,8 @@ const AllPosts = ({ posts }) => {
     const author = post._embedded?.author?.[0]?.name || 'Admin';
 
     return (
-      <div className="blog-hero rounded overflow-hidden position-relative" key={post.id}>
-        <img src={image} alt={title} className="img-fluid" />
+      <div className="blog-hero rounded overflow-hidden position-relative lazyImg" key={post.id}>
+        <img src={image} alt={title} onLoad={() => setLoaded(true)} className={`img-fluid ${loaded ? "loaded" : "loading"}`}/>
         <div className="blog-title-info position-absolute z-2">
           <h3 className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
           <p className="details excerpt">{excerpt}</p>

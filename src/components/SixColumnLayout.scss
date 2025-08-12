@@ -35,10 +35,11 @@
                     margin-bottom:1rem;
                     }
                     .link{
-                    @extend .d-flex;
-                    height:56px;
-                    color:$white;
-                    text-transform: uppercase;
+                        @extend .d-flex;
+                        height:56px;
+                        color:$white;
+                        text-transform: uppercase;
+                        cursor: pointer;
                     }
             }
         }

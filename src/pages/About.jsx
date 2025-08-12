@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from "react-helmet";
 import {useNavigate} from 'react-router';
 import Heading from '../components/common/Heading';
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
+import {useDispatch } from "react-redux";
+import { setOpenBookNow } from "../redux/slices/sheetSlice";
 import "./About.scss";
 import AboutBanner from "../assets/images/about.jpg"
 import leader from '../assets/images/leader.jpg';
@@ -97,18 +99,20 @@ const WhatWeStandBy = () => {
 };
 
 const About = () => {
+  const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
   const navigate = useNavigate();
   const goToStoretPage = () => {
       navigate('/store');
   };
   const goToBookNowPage = () => {
-      navigate('/book-now');
+      dispatch(setOpenBookNow(true));
   };
   return (
     <div className="aboutpage">
       <HelmetMeta/>
-      <div className="main-banner">
-        <img  src={AboutBanner} alt="about" width="1872" height="936" />
+      <div className="main-banner lazyImg">
+        <img  src={AboutBanner} alt="about" width="1872" height="936" onLoad={() => setLoaded(true)} className={loaded ? "loaded" : "loading"}/>
       </div>
       <section className="client">
         <div className="item">

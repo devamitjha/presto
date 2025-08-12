@@ -6,11 +6,16 @@ import sixCol from "../assets/images/rollout/six-col-1.jpg";
 import sixCol2 from "../assets/images/rollout/six-col-2.jpg";
 import { ArrowUpRight, Download } from 'lucide-react';
 import StaggerOnView from "../components/common/StaggerOnView";
-
 import SamplePDF from "../assets/images/sample-pdf.pdf";
+import {useDispatch } from "react-redux";
+import { setOpenBookNow } from "../redux/slices/sheetSlice";
 
 
 const SixColumnlayout = () => {
+   const dispatch = useDispatch();
+    const goToBookNowPage = () => {
+        dispatch(setOpenBookNow(true));
+    };
   return (
     <section className="section-container six-columns">
           <Heading title="Roll Out with Freedom" />
@@ -20,7 +25,7 @@ const SixColumnlayout = () => {
                   <div className="title-container">
                       <h4>Care Beyond Clean</h4>
                       <p>Get a premium umbrella on bill 10K and above</p>
-                      <Link to="/book-now" className="link">Avail Now <span className="icon-box"><ArrowUpRight /></span></Link>
+                      <div className="link" onClick={goToBookNowPage}>Avail Now <span className="icon-box"><ArrowUpRight /></span></div>
                   </div>
               </div>
               <div className="item">

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router";
 import "./AuthFlow.scss";
 import { toast } from "react-toastify";
 import { getLoginInfoByMobile, registerUser } from '../services/userServices';
+import { useDispatch } from "react-redux";
+import { setCustomer } from "../redux/slices/customerSlice"; 
+import { setOpenSheet } from "../redux/slices/sheetSlice";
 
 
 const Authorization = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [step, setStep] = useState("login-mobile"); // steps: login-mobile, login-otp, register, register-otp
   const [mobile, setMobile] = useState("");
   const [otp, setOtp] = useState("");
@@ -71,8 +76,10 @@ const Authorization = () => {
 
       if (loginResponse.data?.customerUniqueId) {
         toast.success("Login successful!", { autoClose: 2500 });
+        dispatch(setCustomer(loginResponse.data));
         setOtp("");
-        // navigate("/profile");
+        dispatch(setOpenSheet(false));
+        navigate("/profile");
       } else {
         toast.error("User not registered. Redirecting to registration...", { autoClose: 2500 });
         setFormData({ ...formData, contact: mobile });

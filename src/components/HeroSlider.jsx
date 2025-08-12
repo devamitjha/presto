@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import {useNavigate} from 'react-router';
 import './HeroSlider.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import {useDispatch } from "react-redux";
+import { setOpenBookNow } from "../redux/slices/sheetSlice";
 
   
 import { ButtonWithIcon } from './common/Button';
@@ -39,9 +41,10 @@ function NavPrevArrow(props) {
 
 
 const HeroSlider = ({ heroImages }) => { 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
   const goToBookNowPage = () => {
-    navigate('/book-now');
+    dispatch(setOpenBookNow(true));
   };
 
   const settings = {
@@ -62,8 +65,8 @@ const HeroSlider = ({ heroImages }) => {
     <div className="hero-slider">
       <Slider {...settings}>
         {heroImages.map((img, index) => (
-          <div className="slider-item" key={index}>
-            <img src={img.src} alt={img.title} />
+          <div className="slider-item lazyImg" key={index}>
+            <img src={img.src} alt={img.title} onLoad={() => setLoaded(true)} className={loaded ? "loaded" : "loading"}/>
             <div className="hero-title">
                 <h3>Look Good, Feel Great</h3>
                 <ButtonWithIcon title="Schedule Pickup" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage } />

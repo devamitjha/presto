@@ -5,12 +5,14 @@ import Heading from './common/Heading';
 
 import { Button } from "./common/Button";
 import StaggerOnView from "../components/common/StaggerOnView"
+import {useDispatch } from "react-redux";
+import { setOpenBookNow } from "../redux/slices/sheetSlice";
 
 
 const SixColumnlayoutCenter = ({ image }) => {
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const goToBookNowPage = () => {
-        navigate('/book-now');
+        dispatch(setOpenBookNow(true));
     };
   return (
     <section className="section-container six-columns center">

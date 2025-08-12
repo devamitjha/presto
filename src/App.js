@@ -38,6 +38,8 @@ import {
   PageNotFound,
   BlogDetail
 } from './pages';
+import Profile from './pages/Profile';
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const router = createBrowserRouter([
@@ -68,6 +70,7 @@ function App() {
         { path: '/contact', element: <Contact /> },
         { path: '/book-now', element: <BookNow /> },
         { path: '/authorization', element: <Authorization /> },
+        { path: '/profile', element: <ProtectedRoute><Profile /></ProtectedRoute> },
 
         {
           path: "blog",

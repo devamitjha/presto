@@ -5,20 +5,33 @@ import { Calendar, Clock } from 'lucide-react';
 
 const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors, handleLocate }) => {
   const [pickupDate, setPickupDate] = useState(formData.pickupDate ? new Date(formData.pickupDate) : null);
-  const [pickupTime, setPickupTime] = useState(formData.pickupTime || '');
+  const [pickupTime, setPickupTime] = useState(formData.pickupTime ? new Date(`1970-01-01T${formData.pickupTime}`) : null);
 
   const calendarRef = useRef();
   const timeRef = useRef();
 
   const handleDateSelect = date => {
     setPickupDate(date);
-    handleChange({ target: { name: 'pickupDate', value: date.toISOString().split('T')[0] } });
+    handleChange({
+      target: { name: 'pickupDate', value: date.toISOString().split('T')[0] }
+    });
   };
 
-  const handleTimeChange = e => {
-    const time = e.target.value;
+  const handleTimeSelect = (time) => {
+    if (!time) {
+      setPickupTime(null);
+      handleChange({ target: { name: 'pickupTime', value: '' } });
+      return;
+    }
+
     setPickupTime(time);
-    handleChange({ target: { name: 'pickupTime', value: time } });
+
+    const hours = time.getHours().toString().padStart(2, '0');
+    const minutes = time.getMinutes().toString().padStart(2, '0');
+
+    handleChange({
+      target: { name: 'pickupTime', value: `${hours}:${minutes}` }
+    });
   };
 
   const getToday = () => {
@@ -79,28 +92,30 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors, ha
         </div>
       </div>
 
-      {/* Pickup Time */}
+      {/* Pickup Time with React DatePicker */}
       <div className="input-group floating-label with-icon">
         <div className="input-wrapper">
-          <input
+          <DatePicker
             ref={timeRef}
-            type="time"
-            id="pickupTime"
-            name="pickupTime"
-            value={pickupTime}
-            onChange={handleTimeChange}
-            min="09:00"
-            max="18:00"
-            className={pickupTime ? 'filled' : ''}
+            selected={pickupTime}
+            onChange={handleTimeSelect}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={15} // every 15 min
+            minTime={new Date(0, 0, 0, 10, 0)} // 10:00 AM
+            maxTime={new Date(0, 0, 0, 18, 0)} // 6:00 PM
+            dateFormat="HH:mm"
+            className={`custom-datepicker ${pickupTime ? 'filled' : ''}`}
+            placeholderText="Select time"
           />
-          <label htmlFor="pickupTime">Pick up Time</label>
-          <Clock size={18} className="input-icon" onClick={() => timeRef.current.showPicker?.() || timeRef.current.focus()} />
+          <label htmlFor="pickupTime" className={pickupTime ? 'floating' : ''}>Pick up Time</label>
+          <Clock size={18} className="input-icon" onClick={() => timeRef.current.setFocus()} />
         </div>
       </div>
 
       <div className="buttons">
-        <button onClick={prevStep} className="next-btn">Back</button>
-        <button onClick={nextStep} className="next-btn">Next</button>
+        <button type="button" onClick={prevStep} className="next-btn">Back</button>
+        <button type="button" onClick={nextStep} className="next-btn">Next</button>
       </div>
     </div>
   );
