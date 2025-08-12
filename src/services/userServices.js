@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //const API_URL = process.env.REACT_APP_API_BASE_URL;
-const TOKEN = process.env.REACT_APP_API_TOKEN;
+//const TOKEN = process.env.REACT_APP_API_TOKEN;
 
 //Login API
 export const getLoginInfoByMobile = async (mobile) => {
