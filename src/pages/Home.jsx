@@ -44,6 +44,14 @@ import { carePartners } from '../api/carePartners';
 import AnimatedCard from '../components/motionCard/AnimatedCard';
 // import Reviews from '../components/Reviews';
 
+//spolightPopupItem
+import SpotlightPopup1 from '../assets/images/spotlight/1.jpg';
+import SpotlightPopup2 from '../assets/images/spotlight/2.jpg';
+import SpotlightPopup3 from '../assets/images/spotlight/3.jpg';
+import SpotlightPopup4 from '../assets/images/spotlight/4.jpg';
+import SpotlightPopup5 from '../assets/images/spotlight/5.jpg';
+import SpotlightPopup6 from '../assets/images/spotlight/6.jpg';
+import SpotlightPopup7 from '../assets/images/spotlight/7.jpg';
 
 // Spotlight Section
 const SectionSpotlight = () => {
@@ -53,6 +61,15 @@ const SectionSpotlight = () => {
     { id: 2, img: Spotlight2, description: 'Details for item one.' },
     { id: 3, img: Spotlight3, description: 'Details for item one.' },
     { id: 4, img: Spotlight4, description: 'Details for item one.' },
+  ];
+  const spolightPopupItem = [
+    { id: 1, img: SpotlightPopup1, description: 'Details for item one.' },
+    { id: 2, img: SpotlightPopup2, description: 'Details for item one.' },
+    { id: 3, img: SpotlightPopup3, description: 'Details for item one.' },
+    { id: 4, img: SpotlightPopup4, description: 'Details for item one.' },
+    { id: 5, img: SpotlightPopup5, description: 'Details for item one.' },
+    { id: 6, img: SpotlightPopup6, description: 'Details for item one.' },
+    { id: 7, img: SpotlightPopup7, description: 'Details for item one.' },
   ];
 
   return (
@@ -99,7 +116,7 @@ const SectionSpotlight = () => {
         <div className="sheetBody" style={{ marginTop: 0 }}>
           {/* Gallery content inside sheet */}
           <div className="sheet-gallery-grid">
-            <AnimatedCard spolightItem={spolightItem}/>
+            <AnimatedCard spolightItem={spolightPopupItem}/>
           </div>
         </div>
       </BottomSheet>

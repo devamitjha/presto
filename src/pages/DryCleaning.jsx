@@ -32,6 +32,10 @@ import Experties from '../components/Experties';
 import SolutionFinder from '../components/SolutionFinder';
 import LocateUs from '../components/LocateUs';
 
+//video 
+import DryCleanVideo from "../assets/video/dry-cleaning.mp4"
+import FullWidthBackgroundVideo from '../components/FullWidthBackgroundVideo';
+
 
 const items = [
   { img: sl1, title: "Quality", info:"Every detail matters, we treat your garments with precision and care that shows."},
@@ -95,7 +99,7 @@ const WhatWeStandBy = () => {
 
 
 const DryCleaning = () => {
-   const [active] = useState(false);
+   const [active] = useState(true);
   return (
     <>
       <div className="section-container">
@@ -104,7 +108,10 @@ const DryCleaning = () => {
       </div>
       <div className="section-container px-0">
         <div className="center-banner">
-          <img src={CenterBanner} alt="center banner" width="1920" height="728" />
+          <FullWidthBackgroundVideo
+            src= {DryCleanVideo}
+            poster="/images/poster.jpg"
+          />
           <div className="info">
             <h4>Beyond Clean</h4>
             <p>The Pressto Dry Clean Difference

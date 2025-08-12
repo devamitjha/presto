@@ -6,14 +6,14 @@ const TOKEN = process.env.REACT_APP_API_TOKEN;
 //Login API
 export const getLoginInfoByMobile = async (mobile) => {
   try {
-    const response = await axios.get(`${API_URL}/GetLoginInfoByMobile`, {
+    const response = await axios.get(`/api/iTPVCentralAPI/GetLoginInfoByMobile`, {
       params: { mobile },
       headers: {
         Token: TOKEN,
       },
       maxBodyLength: Infinity,
     });
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
@@ -22,14 +22,14 @@ export const getLoginInfoByMobile = async (mobile) => {
 //Register API
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/RegisterUser`, userData, {
+    const response = await axios.post(`/api/iTPVCentralAPI/RegisterUser`, userData, {
       headers: {
         'Token': TOKEN,
         'Content-Type': 'application/json',
       },
       maxBodyLength: Infinity,
     });
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
@@ -38,14 +38,14 @@ export const registerUser = async (userData) => {
 // Get customer details by ID
 export const getCustomerDetailsById = async (CustomerUniqueId) => {
   try {
-    const response = await axios.get(`${API_URL}/GetCustomerDetailsById`, {
+    const response = await axios.get(`/api/iTPVCentralAPI/GetCustomerDetailsById`, {
       params: { CustomerUniqueId },
       headers: {
         token: TOKEN,
       },
       maxBodyLength: Infinity,
     });
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }

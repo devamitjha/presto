@@ -23,8 +23,7 @@ const FeaturedPost = ({ posts }) => {
   if (!posts?.length) return null;
 
   const post = posts[0];
-  const image =
-    post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://placehold.co/1920x1080';
+  const image = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://placehold.co/1920x1080';
   const title = post.title.rendered;
   const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '');
   const date = formatDate(post.date);
@@ -53,7 +52,7 @@ const PopularPosts = () => {
 
   useEffect(() => {
     axios
-      .get('https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?categories=4&per_page=3&_embed')
+      .get('https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?categories=3&per_page=3&_embed')
       .then((res) => {
         const sorted = res.data.sort((a, b) => (b.views || 0) - (a.views || 0));
         setPopular(sorted);
@@ -69,7 +68,7 @@ const PopularPosts = () => {
             <div className="popular-img-thumb">
               <img
                 src={
-                  post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.large?.source_url ||
+                  post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.thumbnail?.source_url ||
                   'https://placehold.co/300x300'
                 }
                 alt={post.title.rendered}
@@ -98,7 +97,7 @@ const AllPosts = ({ posts }) => {
   if (!posts || posts.length <= 1) return null;
 
   return posts.slice(1).map((post) => {
-    const image = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://placehold.co/600X650';
+    const image = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.medium?.source_url || 'https://placehold.co/300x300'
     const title = post.title.rendered;
     const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '');
     const date = formatDate(post.date);
@@ -110,9 +109,12 @@ const AllPosts = ({ posts }) => {
         <div className="blog-title-info position-absolute z-2">
           <h3 className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
           <p className="details excerpt">{excerpt}</p>
-          <div className="tags flex justify-content-start align-items-center">
-            {post.tags.length ? post.tags.map((tagId) => <span key={tagId}>Tag {tagId}</span>) : <span>No Tags</span>}
-          </div>
+          {
+            post.tags.length > 0 && <div className="tags flex justify-content-start align-items-center">
+                                  {post.tags.length && post.tags.map((tagId) => <span key={tagId}>Tag {tagId}</span>)}
+                                </div>
+          }
+          
           <div className="blog-meta">
             <div className="date flex">Date: {date}</div>
             <div className="editor flex">Written By: {author}</div>
@@ -123,18 +125,18 @@ const AllPosts = ({ posts }) => {
   });
 };
 
-const DrycleaningLaundry = () => {
+const Blog = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios
-      .get('https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?categories=4&_embed')
+      .get('https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?categories=3&_embed')
       .then((res) => setPosts(res.data))
       .catch((err) => console.error('Error fetching blog posts:', err));
   }, []);
 
   return (
-    <div className="blog-container section-container">
+    <div className="blog-container">
       <HelmetMeta />
       <div className="section-top mt-5">
         <div className="row">
@@ -157,5 +159,4 @@ const DrycleaningLaundry = () => {
   );
 };
 
-export default DrycleaningLaundry;
-
+export default Blog;
