@@ -1,12 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import StackedSlider from '../components/StackedSlider'
 import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
-import BeforeAfterSliderCarousel from '../components/BeforeAfterSliderCarousel';
 
-//restoration
-import Restoration1 from "../assets/images/beforeAfter/restoring/1.jpg";
-import Restoration2 from "../assets/images/beforeAfter/restoring/2.jpg";
+
 
 //slider
 import Slider1 from "../assets/images/service/Restoration/slider-1.jpg";
@@ -50,10 +47,6 @@ const sliderData = [
   }
 ];
 
-const beforeAfterImage = [
-  {image: Restoration1, title: "Restoration 1"},
-  {image: Restoration2, title: "Restoration 2"},
-];
 
 
 const WhatWeStandBy = () => {
@@ -78,8 +71,7 @@ const WhatWeStandBy = () => {
 };
 
 
-const Restoration = () => {
-  const [active] = useState(true);
+const Restoration = () => { 
   return (
     <>
       <div className="section-container">
@@ -101,8 +93,7 @@ From scuffed leather to faded fabrics, we bring your favourite shoes and bags ba
       </div>
       <div className="section-container">
         <Heading title="Find Solution to your Problem" />
-        {active && <SolutionFinder selected="restoration" />}
-        <BeforeAfterSliderCarousel imageData={beforeAfterImage} />
+        <SolutionFinder selected="restoration" />
       </div>
       <WhatWeStandBy />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
