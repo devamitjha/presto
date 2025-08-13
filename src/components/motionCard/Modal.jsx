@@ -1,4 +1,5 @@
 // components/Modal.jsx
+import { Image } from '@imagekit/react';
 import { motion } from 'framer-motion';
 import React from 'react';
 
@@ -22,7 +23,11 @@ const Modal = ({ item, onClose }) => {
         className="modal-card"
         onClick={(e) => e.stopPropagation()}
       >
-        <img src={item.img} alt={item.title}/>
+        <Image
+            urlEndpoint="https://ik.imagekit.io/pressto/images/spotlight/"
+            src={item.img}
+            alt={item.title}
+        />
         <motion.h3 layoutId={`card-title-${item.id}`}>{item.title}</motion.h3>
         <p>{item.description}</p>
       </motion.div>

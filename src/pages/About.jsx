@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from "react-helmet";
 import {useNavigate} from 'react-router';
 import Heading from '../components/common/Heading';
@@ -6,24 +6,12 @@ import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
 import {useDispatch } from "react-redux";
 import { setOpenBookNow } from "../redux/slices/sheetSlice";
 import "./About.scss";
-import AboutBanner from "../assets/images/about.jpg"
-import leader from '../assets/images/leader.jpg';
-import PresstoMap from "../assets/images/map.jpg";
-
-import sb1 from "../assets/images/sb-1.jpg";
-import sb2 from "../assets/images/sb-2.jpg";
-import sb3 from "../assets/images/sb-3.jpg";
-import sb4 from "../assets/images/sb-4.jpg";
 import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
 
-//services 
-import whatwedo1 from "../assets/images/whatwedo1.jpg";
-import whatwedo2 from "../assets/images/whatwedo2.jpg";
 
 //experience
-import Exp6 from "../assets/images/exp-6.jpg";
-import Exp7 from "../assets/images/exp-7.jpg";
 import { Button } from '../components/common/Button';
+import { Image } from '@imagekit/react';
 
 const HelmetMeta = () => {
   return (
@@ -31,7 +19,7 @@ const HelmetMeta = () => {
         <title>About Page | About Page</title>
         <meta name="description" content="Learn more about our company and mission." />
         <meta name="keywords" content="about us, company, mission, values" />
-        <link rel="canonical" href="https://www.yoursite.com" />
+        <link rel="canonical" href="https://www.presstoindia.com" />
       </Helmet>
   )
 }
@@ -43,7 +31,13 @@ const VisionaryMan = () => {
       <div className="visionary-section">
         <div className="visionary-content">
         <div className="image-container">
-          <img src={leader} alt="Yvo Metzelaar" width="868" height="780"/>
+          <Image
+            urlEndpoint="https://ik.imagekit.io/pressto/images/"
+            src="leader.jpg"
+            width={868}
+            height={780}
+            alt="Yvo Metzelaar"
+          />
           <div className="caption">
             <strong>Yvo Metzelaar</strong>
             <span>Managing Director, Pressto India</span>
@@ -74,10 +68,10 @@ const VisionaryMan = () => {
 };
 
 const items = [
-  { img: sb1, label: "Composeable packaging" },
-  { img: sb2, label: "Ph balance" },
-  { img: sb3, label: "No harsh chemicals" },
-  { img: sb4, label: "Sustainability heart" },
+  { img: "sb-1.jpg", label: "Composeable packaging" },
+  { img: "sb-2.jpg", label: "Ph balance" },
+  { img: "sb-3.jpg", label: "No harsh chemicals" },
+  { img: "sb-4.jpg", label: "Sustainability heart" },
 ];
 
 const WhatWeStandBy = () => {
@@ -88,7 +82,11 @@ const WhatWeStandBy = () => {
           <div className="grid-container">
             {items.map((item, index) => (
               <div className="grid-item" key={index}>
-                <img src={item.img} alt={item.label} />
+                 <Image
+                    urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                    src={item.img}
+                    alt={item.label}
+                  />
                 <div className="overlay">{item.label}</div>
               </div>
             ))}
@@ -100,7 +98,6 @@ const WhatWeStandBy = () => {
 
 const About = () => {
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
   const navigate = useNavigate();
   const goToStoretPage = () => {
       navigate('/store');
@@ -111,8 +108,14 @@ const About = () => {
   return (
     <div className="aboutpage">
       <HelmetMeta/>
-      <div className="main-banner lazyImg">
-        <img  src={AboutBanner} alt="about" width="1872" height="936" onLoad={() => setLoaded(true)} className={loaded ? "loaded" : "loading"}/>
+      <div className="main-banner">
+          <Image
+            urlEndpoint="https://ik.imagekit.io/pressto/images/"
+            src="about.jpg"
+            width={1872}
+            height={936}
+            alt="About Banner"
+          />
       </div>
       <section className="client">
         <div className="item">
@@ -125,18 +128,30 @@ const About = () => {
         <Heading title="Trusted Across Continents/ Worldwide Wardrobe Care" />
         <div className="section-pressto-map">
           <div className="pressto-map">
-            <img  src={PresstoMap} alt="about" width="1760" height="792" />
+              <Image
+                urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                src="map.jpg"
+                width={1760}
+                height={792}
+                alt="about"
+              />
           </div>
         </div>
       </div>
       <WhatWeStandBy />
-      <SixColumnlayoutCenter image={[whatwedo1, whatwedo2]} />
+      <SixColumnlayoutCenter image={["whatwedo1.jpg", "whatwedo2.jpg"]}/>
       <div className="section-container">
         <Heading title="Experience Pressto" />
         <div className="section-luxaryExperience-item">
           <div className="exp-item">
             <div className="img-container">
-              <img src={Exp6} alt="exp6" width="416" height="416" />
+              <Image
+                urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                src="exp-6.jpg"
+                width={416}
+                height={416}
+                alt="exp6"
+              />
             </div>
             <div className="exp-content">
               <h3>Locate Store Near you</h3>
@@ -146,7 +161,13 @@ const About = () => {
           </div>
           <div className="exp-item">
             <div className="img-container">
-              <img src={Exp7} alt="exp7" width="416" height="416" />
+              <Image
+                urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                src="exp-7.jpg"
+                width={416}
+                height={416}
+                alt="exp7"
+              />
             </div>
             <div className="exp-content">
               <h3>Pickup & Drop</h3>

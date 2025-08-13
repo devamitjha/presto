@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import './HeroSlider.scss';
@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {useDispatch } from "react-redux";
 import { setOpenBookNow } from "../redux/slices/sheetSlice";
+import { Image } from '@imagekit/react';
 
   
 import { ButtonWithIcon } from './common/Button';
@@ -39,9 +40,8 @@ function NavPrevArrow(props) {
 
 
 
-const HeroSlider = ({ heroImages }) => { 
+const HeroSlider = ({ heroImages, dir }) => {  
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
   const goToBookNowPage = () => {
     dispatch(setOpenBookNow(true));
   };
@@ -64,8 +64,12 @@ const HeroSlider = ({ heroImages }) => {
     <div className="hero-slider">
       <Slider {...settings}>
         {heroImages.map((img, index) => (
-          <div className="slider-item lazyImg" key={index}>
-            <img src={img.src} alt={img.title} onLoad={() => setLoaded(true)} className={loaded ? "loaded" : "loading"}/>
+          <div className="slider-item" key={index}>
+            <Image
+                urlEndpoint={`https://ik.imagekit.io/pressto/images/${dir ? `${dir}/` : ''}`}
+                src={img.src}
+                alt={img.title}
+            />
             <div className="hero-title">
                 <h3>Look Good, Feel Great</h3>
                 <ButtonWithIcon title="Schedule Pickup" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage } />

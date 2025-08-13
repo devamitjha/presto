@@ -4,6 +4,7 @@
   "homepage": "https://uat.presstoindia.com",
   "private": true,
   "dependencies": {
+    "@imagekit/react": "^5.0.1",
     "@number-flow/react": "^0.5.10",
     "@reduxjs/toolkit": "^2.8.2",
     "@testing-library/dom": "^10.4.0",

@@ -6,8 +6,6 @@ import Heading from '../components/common/Heading';
 import { Star } from 'lucide-react';
 
 //services 
-import serviceTshirt from "../assets/images/service-tshirt.jpg";
-import serviceBag from "../assets/images/service-bag.jpg";
 import Experties from '../components/Experties';
 import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
 import { expertiseData } from '../api/expertiseData';
@@ -117,8 +115,8 @@ const Store = () => {
         </div>
         <StoreLocator/>       
       </section>
-       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
-      <SixColumnlayoutCenter image={[serviceTshirt, serviceBag]} />
+      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
+      <SixColumnlayoutCenter image={["service-tshirt.jpg", "service-bag.jpg"]}/>
       <Benefits />
       <CustomerReviewHighlight/>
     </section>

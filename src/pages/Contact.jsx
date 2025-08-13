@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from 'react-router';
 import { Clock, Mail, Phone, Globe, Star } from 'lucide-react';
@@ -7,17 +7,13 @@ import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
 import {useDispatch } from "react-redux";
 import { setOpenBookNow } from "../redux/slices/sheetSlice";
+import { Image } from '@imagekit/react';
 
 //experience
-import Exp6 from "../assets/images/exp/exp-6.jpg";
-import Exp7 from "../assets/images/exp/exp-7.jpg";
 import { Button } from '../components/common/Button';
 import Experties from '../components/Experties';
 
 //services 
-import whatwedo1 from "../assets/images/contact/whatwedo1.jpg";
-import whatwedo2 from "../assets/images/contact/whatwedo2.jpg";
-import ContactImage from "../assets/images/contact/contact.jpg"
 import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
 
@@ -81,7 +77,6 @@ const HelmetMeta = () => {
 }
 const Contact = () => {
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
   const navigate = useNavigate();
   const goToStoretPage = () => {
       navigate('/store');
@@ -94,8 +89,14 @@ const Contact = () => {
       <HelmetMeta />
        <section className="section-container">
           <div className="contact-us-container">
-            <div className="contact-map lazyImg"> 
-              <img src={ContactImage} alt="main banner" width="848" height="848" onLoad={() => setLoaded(true)} className={loaded ? "loaded" : "loading"}/>
+            <div className="contact-map"> 
+              <Image
+                urlEndpoint="https://ik.imagekit.io/pressto/images/contact/"
+                src="contact.jpg"
+                width={848}
+                height={848}
+                alt="Contact Us"
+              />
             </div>
             <div className="contact-info">
               <h3>Contact us</h3>
@@ -134,7 +135,13 @@ const Contact = () => {
         <div className="section-luxaryExperience-item">
           <div className="exp-item">
             <div className="img-container">
-              <img src={Exp6} alt="exp6" width="416" height="416" />
+              <Image
+                urlEndpoint="https://ik.imagekit.io/pressto/images/exp/"
+                src="exp-6.jpg"
+                width={416}
+                height={416}
+                alt="exp6"
+              />
             </div>
             <div className="exp-content">
               <h3>Locate Store Near you</h3>
@@ -144,7 +151,13 @@ const Contact = () => {
           </div>
           <div className="exp-item">
             <div className="img-container">
-              <img src={Exp7} alt="exp7" width="416" height="416" />
+              <Image
+                urlEndpoint="https://ik.imagekit.io/pressto/images/exp/"
+                src="exp-7.jpg"
+                width={416}
+                height={416}
+                alt="exp7"
+              />
             </div>
             <div className="exp-content">
               <h3>Pickup & Drop</h3>
@@ -154,7 +167,7 @@ const Contact = () => {
           </div>
         </div>
       </div>      
-      <SixColumnlayoutCenter image={[whatwedo1, whatwedo2]} />
+      <SixColumnlayoutCenter image={["whatwedo1.jpg", "whatwedo2.jpg"]} dir="contact"/>
       <CustomerReviewHighlight/>
     </div>
   )

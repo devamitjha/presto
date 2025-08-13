@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import {useNavigate} from 'react-router';
+import { Image } from '@imagekit/react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
 
@@ -16,27 +17,7 @@ import { Button } from '../components/common/Button';
 
 import './Home.scss';
 
-//hero slider
-import Image1 from '../assets/images/mainbanner/banner-1.jpg';
-import Image2 from '../assets/images/mainbanner/banner-2.jpg';
-import Image3 from '../assets/images/mainbanner/banner-3.jpg';
-
-//services 
-import serviceTshirt from "../assets/images/service-tshirt.jpg";
-import serviceBag from "../assets/images/service-bag.jpg";
-
 // Assets
-import Spotlight from '../assets/images/spotlight/sp-1.jpg';
-import Spotlight2 from '../assets/images/spotlight/sp-2.jpg';
-import Spotlight3 from '../assets/images/spotlight/sp-3.jpg';
-import Spotlight4 from '../assets/images/spotlight/sp-4.jpg';
-
-
-import Experience1 from '../assets/images/exp-1.jpg';
-import Experience2 from '../assets/images/exp-2.jpg';
-import Experience3 from '../assets/images/exp-3.jpg';
-import Experience4 from '../assets/images/exp-4.jpg';
-import Experience5 from '../assets/images/exp-5.jpg';
 
 import { expertiseData } from '../api/expertiseData';
 import { brandRecognition } from '../api/brandRecognition';
@@ -44,26 +25,17 @@ import { carePartners } from '../api/carePartners';
 import AnimatedCard from '../components/motionCard/AnimatedCard';
 // import Reviews from '../components/Reviews';
 
-//spolightPopupItem
-import SpotlightPopup1 from '../assets/images/spotlight/1.jpg';
-import SpotlightPopup2 from '../assets/images/spotlight/2.jpg';
-import SpotlightPopup3 from '../assets/images/spotlight/3.jpg';
-import SpotlightPopup4 from '../assets/images/spotlight/4.jpg';
-import SpotlightPopup5 from '../assets/images/spotlight/5.jpg';
-import SpotlightPopup6 from '../assets/images/spotlight/6.jpg';
-import SpotlightPopup7 from '../assets/images/spotlight/7.jpg';
-
 // Spotlight Section
 const SectionSpotlight = () => {
   const [open, setOpen] = useState(false)
   const spolightPopupItem = [
-    { id: 1, img: SpotlightPopup1, description: 'Details for item one.' },
-    { id: 2, img: SpotlightPopup2, description: 'Details for item one.' },
-    { id: 3, img: SpotlightPopup3, description: 'Details for item one.' },
-    { id: 4, img: SpotlightPopup4, description: 'Details for item one.' },
-    { id: 5, img: SpotlightPopup5, description: 'Details for item one.' },
-    { id: 6, img: SpotlightPopup6, description: 'Details for item one.' },
-    { id: 7, img: SpotlightPopup7, description: 'Details for item one.' },
+    { id: 1, img: "1.jpg", description: 'Details for item one.' },
+    { id: 2, img: "2.jpg", description: 'Details for item one.' },
+    { id: 3, img: "3.jpg", description: 'Details for item one.' },
+    { id: 4, img: "4.jpg", description: 'Details for item one.' },
+    { id: 5, img: "5.jpg", description: 'Details for item one.' },
+    { id: 6, img: "6.jpg", description: 'Details for item one.' },
+    { id: 7, img: "7.jpg", description: 'Details for item one.' },
   ];
 
   return (
@@ -71,11 +43,19 @@ const SectionSpotlight = () => {
       <Heading title="In the Spotlight" />
       <div className="spotlight-item">
         <div className="item">
-          <img src={Spotlight} alt="Showcase1" />
+            <Image
+              urlEndpoint="https://ik.imagekit.io/pressto/images/spotlight/"
+              src="sp-1.jpg"
+              alt="Showcase1"
+            />
         </div>
 
         <div className="item">
-          <img src={Spotlight2} alt="Showcase2" />
+          <Image
+              urlEndpoint="https://ik.imagekit.io/pressto/images/spotlight/"
+              src="sp-2.jpg"
+              alt="Showcase2"
+            />
         </div>
 
         <div className="item collage">
@@ -84,9 +64,13 @@ const SectionSpotlight = () => {
             sharp skill, and an eye for detail. It’s not just what we do, it’s how we do it, with quiet precision and pride in every fold
           </div>
           <div className="image-collage">
-            {[Spotlight3, Spotlight4].map((img, index) => (
+            {["sp-3.jpg", "sp-4.jpg"].map((img, index) => (
               <div className="grid" key={index}>
-                <img src={img} alt={`Spotlight Collage ${index + 1}`} />
+                  <Image
+                      urlEndpoint="https://ik.imagekit.io/pressto/images/spotlight/"
+                      src={img}
+                      alt={`Spotlight Collage ${index + 1}`}
+                  />
               </div>
             ))}
           </div>
@@ -132,16 +116,28 @@ const LuxaryExperience = () => {
       <Heading title="Luxury Experience Indeed" />
       <div className="luxaryExperience-item">
         <div className="item">
-          <img src={Experience1} alt="Luxury Experience 1" />
+          <Image
+            urlEndpoint="https://ik.imagekit.io/pressto/images/"
+            src="exp-1.jpg"
+            alt="Luxury Experience 1"
+          />
         </div>
         <div className="item">
-          <img src={Experience2} alt="Luxury Experience 2" />
+          <Image
+            urlEndpoint="https://ik.imagekit.io/pressto/images/"
+            src="exp-2.jpg"
+            alt="Luxury Experience 2"
+          />
         </div>
         <div className="item collage">
           <div className="image-collage">
-            {[Experience3, Experience4, Experience5].map((img, index) => (
+            {["exp-3.jpg", "exp-4.jpg", "exp-5.jpg"].map((img, index) => (
               <div className="grid" key={index}>
-                <img src={img} alt={`Luxury Experience ${index + 3}`} />
+                 <Image
+                    urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                    src={img}
+                    alt={`Luxury Experience ${index + 3}`}
+                  />
               </div>
             ))}
             <div className="grid content">
@@ -171,9 +167,9 @@ const RealStories = () => (
 );
 
  const heroImages = [
-    { src: Image1, title: 'Look Good, Feel Great' },
-    { src: Image2, title: 'Look Good, Feel Great' },
-    { src: Image3, title: 'Look Good, Feel Great' }
+    { src: "banner-1.jpg", title: 'Look Good, Feel Great' },
+    { src: "banner-2.jpg", title: 'Look Good, Feel Great' },
+    { src: "banner-3.jpg", title: 'Look Good, Feel Great' }
  ];
 
 
@@ -194,11 +190,11 @@ const Home = () => {
         <link rel="canonical" href="https://www.pressto.in" />
       </Helmet>
 
-      <HeroSlider heroImages={heroImages}/>
+      <HeroSlider heroImages={heroImages} dir="mainbanner"/>
       <Client />
       <SixColumnlayout />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
-      <SixColumnlayoutCenter image={[serviceTshirt, serviceBag]}/>
+      <SixColumnlayoutCenter image={["service-tshirt.jpg", "service-bag.jpg"]}/>
       {/* <Reviews /> */}
       <RealStories />
       <SectionSpotlight />

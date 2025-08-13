@@ -4,16 +4,6 @@ import { NavLink, Outlet, useLocation } from 'react-router';
 import HeroSlider from '../components/HeroSlider';
 import "./service.scss";
 
-//hero slider
-import dc1 from '../assets/images/service/DryCleaning/dc1.jpg';
-import dc2 from '../assets/images/service/DryCleaning/dc2.jpg';
-import dc3 from '../assets/images/service/DryCleaning/dc3.jpg';
-import dc4 from '../assets/images/service/DryCleaning/dc4.jpg';
-
-import res1 from '../assets/images/service/Restoration/res1.jpg';
-import res2 from '../assets/images/service/Restoration/res2.jpg';
-import res3 from '../assets/images/service/Restoration/res3.jpg';
-
 
 const HelmetMeta = () => (
   <Helmet>
@@ -25,15 +15,15 @@ const HelmetMeta = () => (
 );
 
 const dryCleaningSlider = [
-    { src: dc1, title: 'Look Good, Feel Great' },
-    { src: dc2, title: 'Look Good, Feel Great' },
-    { src: dc3, title: 'Look Good, Feel Great' },
-    { src: dc4, title: 'Look Good, Feel Great' }
+    { src: "dc1.jpg", title: 'Look Good, Feel Great' },
+    { src: "dc2.jpg", title: 'Look Good, Feel Great' },
+    { src: "dc3.jpg", title: 'Look Good, Feel Great' },
+    { src: "dc4.jpg", title: 'Look Good, Feel Great' }
 ];
 const restorationSlider = [
-    { src: res1, title: 'Look Good, Feel Great' },
-    { src: res2, title: 'Look Good, Feel Great' },
-    { src: res3, title: 'Look Good, Feel Great' }
+    { src: "res1.jpg", title: 'Look Good, Feel Great' },
+    { src: "res2.jpg", title: 'Look Good, Feel Great' },
+    { src: "res3.jpg", title: 'Look Good, Feel Great' }
  ];
 
 
@@ -63,10 +53,10 @@ const ServiceLayout = () => {
       <HelmetMeta />
       <div className="main-banner">
           {location.pathname.includes('dry-cleaning') && (
-            <HeroSlider heroImages={dryCleaningSlider}/>
+            <HeroSlider heroImages={dryCleaningSlider} dir="service/DryCleaning"/>
           )}
           {location.pathname.includes('shoes-and-bag-restoration') && (
-            <HeroSlider heroImages={restorationSlider}/>
+            <HeroSlider heroImages={restorationSlider} dir="service/Restoration"/>
         )}   
       </div>
       <div className="service-tab">
