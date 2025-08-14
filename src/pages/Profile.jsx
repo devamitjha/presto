@@ -76,25 +76,50 @@ export default function Profile() {
   { key: '2', label: 'Order History', children: <OrderHistory customer={customer}/> },
 ];
 
+useEffect(() => {
+  const fetchCustomerDetails = async () => {
+    try {
+      if (customer?.customerUniqueId) {
+        const response = await fetch(
+          `https://www.presstoindia.com/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
+        );
 
-  useEffect(() => {
-    const fetchCustomerDetails = async () => {
-      try {
-        if (customer?.customerUniqueId) {
-          const response = await getCustomerDetailsById(customer.customerUniqueId);
-          console.log(response);
+        const data = await response.json();
+        console.log(data);
 
-          if (response.data) {
-            dispatch(setCustomer(response.data)); // store in Redux & localStorage
-          }
+        if (data && !data.error) {
+          dispatch(setCustomer(data)); // store in Redux & localStorage
+        } else {
+          console.error("Error from API:", data.error || "Unknown error");
         }
-      } catch (error) {
-        console.error("Error fetching customer details:", error);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching customer details:", error);
+    }
+  };
 
-    fetchCustomerDetails();
-  }, [customer?.customerUniqueId, dispatch]);
+  fetchCustomerDetails();
+}, [customer?.customerUniqueId, dispatch]);
+
+
+  // useEffect(() => {
+  //   const fetchCustomerDetails = async () => {
+  //     try {
+  //       if (customer?.customerUniqueId) {
+  //         const response = await getCustomerDetailsById(customer.customerUniqueId);
+  //         console.log(response);
+
+  //         if (response.data) {
+  //           dispatch(setCustomer(response.data)); // store in Redux & localStorage
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching customer details:", error);
+  //     }
+  //   };
+
+  //   fetchCustomerDetails();
+  // }, [customer?.customerUniqueId, dispatch]);
 
   return (     
       <div className="profile-container">

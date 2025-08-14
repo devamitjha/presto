@@ -72,11 +72,15 @@ const Authorization = () => {
 
   if (otp === storedOtp && mobile === storedMobile) {
     try {
-      const loginResponse = await getLoginInfoByMobile(mobile);
+      //const loginResponse = await getLoginInfoByMobile(mobile);
+      const loginResponse = await fetch(
+        `https://www.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
+      );
+      const data = await loginResponse.json();
 
-      if (loginResponse.data?.customerUniqueId) {
+      if (data?.customerUniqueId) {
         toast.success("Login successful!", { autoClose: 2500 });
-        dispatch(setCustomer(loginResponse.data));
+        dispatch(setCustomer(data));
         setOtp("");
         dispatch(setOpenSheet(false));
         navigate("/profile");
@@ -163,9 +167,19 @@ const Authorization = () => {
       }  
 
       if (otp === storedOtp && mobile === storedMobile) {
-        const result = await registerUser(formData);
-        console.log(result);
-        if(result){
+        //const result = await registerUser(formData);
+        //console.log(result);
+        const response = await fetch(
+            "https://www.presstoindia.com/authApi.php?action=register",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            }
+        );
+        const result = await response.json();
+         
+        if(result && !result.error){
             toast.success("Registration successful. Redirecting to login...", { autoClose: 2500 });
             setStep("login-mobile");
             setMobile("");
