@@ -1,0 +1,111 @@
+@import "../assets/styles/theme";
+.profile-container{
+    display: block;
+    max-width:900px;
+    width:90%;
+    margin:80px auto 120px auto;
+    font-family:"Kanit", sans-serif;
+    .title{
+        text-align: center;
+        @extend .heading-6;
+        margin-bottom:48px;
+    }
+    .rc-tabs{
+        border:none;
+        .rc-tabs-nav{
+            justify-content: center;
+            margin-bottom: 40px;
+            .rc-tabs-nav-operations{
+                display:none;
+            }
+            .rc-tabs-nav-wrap{
+                justify-content: center;
+                align-items: center;
+                .rc-tabs-nav-list{
+                    .rc-tabs-tab{
+                        border:1px solid $gray700;
+                        border-radius: 999px;
+                        width:200px;
+                        height:50px;
+                        background-color: transparent;
+                        @extend .d-flex;
+                        .rc-tabs-tab-btn{
+                            font-size:16px;
+                            line-height: auto;
+                            font-weight: 400;
+                            text-transform: uppercase;
+                        }
+                        &.rc-tabs-tab-active{
+                            //background-color:$black;
+                            color:$white;
+                        }                                         
+                    }
+                    .rc-tabs-ink-bar-animated{
+                        border:1px solid $black;
+                        border-radius: 999px;
+                        width:200px;
+                        height:50px;
+                        @extend .d-flex;
+                        background-color:$black;
+                        color:$white;
+                       z-index: -1;
+                    } 
+                }
+            }
+        }
+        .rc-tabs-content-holder{
+            .profile-data{
+                .bio{
+                    h3{
+                        @extend .sub-heading-1;
+                        font-weight: normal;
+                    }
+                    .info{
+                        @extend .body-3;
+                        font-weight: normal;
+                        padding-left:16px;                        
+                        p{
+                            margin:0 0 2px 0;
+                        }
+                    }
+                    +.bio{
+                            margin-top:24px;
+                        }
+                }
+            }
+            .order-history-list{
+                display: block;
+                width:100%;
+                .order-history{
+                    @extend .d-flex;
+                    justify-content:start;
+                    align-items: center;
+                    gap:16px;
+                    width:100%;                    
+                    .order-detail{
+                        display: block;
+                        width: 100%;
+                        p{
+                            @extend .d-flex;
+                            justify-content: space-between;
+                            gap:16px;
+                            @extend .body-3;
+                            color:$gray700;
+                            span{
+                                &.dark{
+                                    color:$black;
+                                }
+                            }
+                        }
+                    }
+                    +.order-history{
+                        border-top:1px solid $gray200;
+                        margin-top: 16px;
+                        padding-top:32px;
+                    }
+                }
+            }
+            
+        }
+    }
+}
