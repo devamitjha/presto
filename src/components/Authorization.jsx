@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "./AuthFlow.scss";
 import { toast } from "react-toastify";
-import { getLoginInfoByMobile, registerUser } from '../services/userServices';
 import { useDispatch } from "react-redux";
 import { setCustomer } from "../redux/slices/customerSlice"; 
 import { setOpenSheet } from "../redux/slices/sheetSlice";
@@ -74,7 +73,7 @@ const Authorization = () => {
     try {
       //const loginResponse = await getLoginInfoByMobile(mobile);
       const loginResponse = await fetch(
-        `https://www.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
+        `https://uat.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
       );
       const data = await loginResponse.json();
 
@@ -170,7 +169,7 @@ const Authorization = () => {
         //const result = await registerUser(formData);
         //console.log(result);
         const response = await fetch(
-            "https://www.presstoindia.com/authApi.php?action=register",
+            "https://uat.presstoindia.com/authApi.php?action=register",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

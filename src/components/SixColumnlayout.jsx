@@ -20,7 +20,7 @@ const SixColumnlayout = () => {
           <StaggerOnView className="row">
               <div className="item">
                  <Image
-                    urlEndpoint="https://ik.imagekit.io/pressto/images/rollout/"
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/rollout/"
                     src="six-col-1.jpg"
                     width={868}
                     height={868}
@@ -34,7 +34,7 @@ const SixColumnlayout = () => {
               </div>
               <div className="item">
                  <Image
-                    urlEndpoint="https://ik.imagekit.io/pressto/images/rollout/"
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/rollout/"
                     src="six-col-2.jpg"
                     width={868}
                     height={868}

@@ -24,7 +24,7 @@ const Modal = ({ item, onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <Image
-            urlEndpoint="https://ik.imagekit.io/pressto/images/spotlight/"
+            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
             src={item.img}
             alt={item.title}
         />

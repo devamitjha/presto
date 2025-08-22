@@ -66,7 +66,7 @@ const HeroSlider = ({ heroImages, dir }) => {
         {heroImages.map((img, index) => (
           <div className="slider-item" key={index}>
             <Image
-                urlEndpoint={`https://ik.imagekit.io/pressto/images/${dir ? `${dir}/` : ''}`}
+                urlEndpoint={`https://ik.imagekit.io/devamitjha/pressto/${dir ? `${dir}/` : ''}`}
                 src={img.src}
                 alt={img.title}
             />

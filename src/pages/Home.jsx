@@ -44,7 +44,7 @@ const SectionSpotlight = () => {
       <div className="spotlight-item">
         <div className="item">
             <Image
-              urlEndpoint="https://ik.imagekit.io/pressto/images/spotlight/"
+              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
               src="sp-1.jpg"
               alt="Showcase1"
             />
@@ -52,7 +52,7 @@ const SectionSpotlight = () => {
 
         <div className="item">
           <Image
-              urlEndpoint="https://ik.imagekit.io/pressto/images/spotlight/"
+              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
               src="sp-2.jpg"
               alt="Showcase2"
             />
@@ -67,7 +67,7 @@ const SectionSpotlight = () => {
             {["sp-3.jpg", "sp-4.jpg"].map((img, index) => (
               <div className="grid" key={index}>
                   <Image
-                      urlEndpoint="https://ik.imagekit.io/pressto/images/spotlight/"
+                      urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
                       src={img}
                       alt={`Spotlight Collage ${index + 1}`}
                   />
@@ -117,14 +117,14 @@ const LuxaryExperience = () => {
       <div className="luxaryExperience-item">
         <div className="item">
           <Image
-            urlEndpoint="https://ik.imagekit.io/pressto/images/"
+            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
             src="exp-1.jpg"
             alt="Luxury Experience 1"
           />
         </div>
         <div className="item">
           <Image
-            urlEndpoint="https://ik.imagekit.io/pressto/images/"
+            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
             src="exp-2.jpg"
             alt="Luxury Experience 2"
           />
@@ -134,7 +134,7 @@ const LuxaryExperience = () => {
             {["exp-3.jpg", "exp-4.jpg", "exp-5.jpg"].map((img, index) => (
               <div className="grid" key={index}>
                  <Image
-                    urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
                     src={img}
                     alt={`Luxury Experience ${index + 3}`}
                   />
@@ -195,7 +195,6 @@ const Home = () => {
       <SixColumnlayout />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
       <SixColumnlayoutCenter image={["service-tshirt.jpg", "service-bag.jpg"]}/>
-      {/* <Reviews /> */}
       <RealStories />
       <SectionSpotlight />
       <Experties title="The Prestige We've Pressed" data={carePartners} item="5"/>

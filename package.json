@@ -44,9 +44,7 @@
     "swiper": "^11.2.8",
     "web-vitals": "^2.1.4",
     "yup": "^1.6.1"
-  },
-  "proxy": "http://itpvuatcapi.press2india.com:8084",
-  "scripts": {
+  },  "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

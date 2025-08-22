@@ -67,7 +67,61 @@
       .date {
         font-size: 12px;
         color: $gray600;
+        margin:0;
+        .ph-row{
+          margin:0;
+          & div{
+            height: 7px;
+            margin:0;
+          }
+        }
       }
+      &.skelton-ui{
+        .ph-item{
+          border: none;
+          align-items: center;
+          width: 100%;
+          flex-direction: row;  
+          padding: 0;   
+          margin:0;       
+          .ph-col-2{
+            &.avtar-section{
+              width:40px;
+              flex:1;
+              margin:0;
+              padding:0;
+            }
+          }          
+          .ph-avatar{
+            width: 40px;
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+          }
+          .leftitem{
+            padding: 0;
+            margin:0;
+            display: flex;
+            justify-content: start;
+            flex-direction: row;
+            align-items: center;
+            width: calc(100% - 250px);
+          }
+        }
+        .empty-box{
+          width: calc(100% - 60px);
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+          margin:0;
+          .ph-row{
+           & div{
+             height: 7px;
+           }
+          }
+        }
+      }
+      
     }
   }
 

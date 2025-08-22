@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import "./Store.scss";
 import StoreLocator from '../components/common/StoreLocator';
 import Heading from '../components/common/Heading';
-import { Star } from 'lucide-react';
 
 //services 
 import Experties from '../components/Experties';
@@ -15,6 +14,7 @@ import StarShine from "../assets/images/star_shine.svg";
 import Redeem from "../assets/images/redeem.svg";
 import Cleaning from "../assets/images/cleaning.svg";
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
+import ReviewSlider from '../components/ReviewSlider';
 
 const HelmetMeta = () => {
   return (
@@ -68,25 +68,8 @@ const CustomerReviewHighlight = () => {
         </div>
 
         {/* Center */}
-        <div className="center">
-          <div className="review-card">
-            <div className="user-info">
-              <img
-                src="https://i.pravatar.cc/40?img=65"
-                alt="Jemimah Rodrigous"
-                className="avatar"
-              />
-              <div>
-                <p className="name">Jemimah Rodrigous</p>
-                <div className="stars">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} fill="#FFC107" color="#FFC107" />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <p className="date">26th June 2023</p>
-          </div>
+        <div className="centerSlider">
+          <ReviewSlider/>
         </div>
 
         {/* Right */}

@@ -12,7 +12,7 @@ const Card = ({ item, onClick }) => {
       style={{ cursor: 'pointer' }}
     >
         <Image
-            urlEndpoint="https://ik.imagekit.io/pressto/images/spotlight/"
+            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
             src={item.img}
             alt={item.title}
         />

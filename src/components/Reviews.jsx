@@ -3,28 +3,36 @@ import React, { useEffect, useState } from 'react';
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch("https://www.presstoindia.com/get-synup-reviews.php", {
-          method: "GET",
-          credentials: "include", // Optional — use only if needed
-        });
+        const res = await fetch("https://www.presstoindia.com/get-synup-reviews.php");
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.message || "Failed to fetch");
+        }
 
         const data = await res.json();
 
-        if (!res.ok) throw new Error(data.message || "Failed to fetch");
-
-        setReviews(data.reviews || []);
+        // ✅ Extract edges safely
+        setReviews(data?.data.rollupInteractions?.edges || []);
       } catch (err) {
         console.error("Error fetching reviews:", err);
         setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchReviews();
   }, []);
+
+  if (loading) return <p>Loading reviews...</p>;
+  if (error) return <p>Error: {error}</p>;
+  console.log(reviews);
 
   return (
     <div>
@@ -37,9 +45,9 @@ const Reviews = () => {
         <ul>
           {reviews.map((review, idx) => (
             <li key={idx}>
-              <p><strong>{review.author_name}</strong> ({review.rating}★)</p>
+              <p><strong>{review.node.authorName}</strong> ({review.node.rating}★)</p>
               <p>{review.comment}</p>
-              <small>{new Date(review.created_at).toLocaleDateString()}</small>
+              <small>{new Date(review.node.date).toLocaleDateString()}</small>
             </li>
           ))}
         </ul>

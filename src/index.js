@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import ScrollToTop from './components/common/ScrollToTop';
+import "./assets/styles/placeholder-loading.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from 'react-router';
-import { Clock, Mail, Phone, Globe, Star } from 'lucide-react';
+import { Clock, Mail, Phone, Globe } from 'lucide-react';
 import "./Contact.scss"; // Assuming you have a CSS file for styling
 import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
@@ -16,6 +16,7 @@ import Experties from '../components/Experties';
 //services 
 import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
+import ReviewSlider from '../components/ReviewSlider';
 
 //Short Testimonial
 const CustomerReviewHighlight = () => {
@@ -29,25 +30,9 @@ const CustomerReviewHighlight = () => {
         </div>
 
         {/* Center */}
-        <div className="center">
-          <div className="review-card">
-            <div className="user-info">
-              <img
-                src="https://i.pravatar.cc/40?img=65"
-                alt="Jemimah Rodrigous"
-                className="avatar"
-              />
-              <div>
-                <p className="name">Jemimah Rodrigous</p>
-                <div className="stars">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} fill="#FFC107" color="#FFC107" />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <p className="date">26th June 2023</p>
-          </div>
+        
+        <div className="centerSlider">
+          <ReviewSlider/>
         </div>
 
         {/* Right */}
@@ -91,7 +76,7 @@ const Contact = () => {
           <div className="contact-us-container">
             <div className="contact-map"> 
               <Image
-                urlEndpoint="https://ik.imagekit.io/pressto/images/contact/"
+                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/contact/"
                 src="contact.jpg"
                 width={848}
                 height={848}
@@ -136,7 +121,7 @@ const Contact = () => {
           <div className="exp-item">
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/pressto/images/exp/"
+                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
                 src="exp-6.jpg"
                 width={416}
                 height={416}
@@ -152,7 +137,7 @@ const Contact = () => {
           <div className="exp-item">
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/pressto/images/exp/"
+                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
                 src="exp-7.jpg"
                 width={416}
                 height={416}

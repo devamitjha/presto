@@ -32,7 +32,7 @@ const VisionaryMan = () => {
         <div className="visionary-content">
         <div className="image-container">
           <Image
-            urlEndpoint="https://ik.imagekit.io/pressto/images/"
+            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
             src="leader.jpg"
             width={868}
             height={780}
@@ -83,7 +83,7 @@ const WhatWeStandBy = () => {
             {items.map((item, index) => (
               <div className="grid-item" key={index}>
                  <Image
-                    urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
                     src={item.img}
                     alt={item.label}
                   />
@@ -110,7 +110,7 @@ const About = () => {
       <HelmetMeta/>
       <div className="main-banner">
           <Image
-            urlEndpoint="https://ik.imagekit.io/pressto/images/"
+            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
             src="about.jpg"
             width={1872}
             height={936}
@@ -129,7 +129,7 @@ const About = () => {
         <div className="section-pressto-map">
           <div className="pressto-map">
               <Image
-                urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
                 src="map.jpg"
                 width={1760}
                 height={792}
@@ -146,7 +146,7 @@ const About = () => {
           <div className="exp-item">
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
                 src="exp-6.jpg"
                 width={416}
                 height={416}
@@ -162,7 +162,7 @@ const About = () => {
           <div className="exp-item">
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/pressto/images/"
+                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
                 src="exp-7.jpg"
                 width={416}
                 height={416}

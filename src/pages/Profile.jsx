@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import "./Profile.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { setCustomer } from "../redux/slices/customerSlice"; // adjust path
-import { getCustomerDetailsById } from "../services/userServices"; // adjust path
+import { setCustomer } from "../redux/slices/customerSlice";
 import HistoryIcon from "../assets/images/history.svg"
 import Tabs from 'rc-tabs';
 import 'rc-tabs/assets/index.css';
@@ -81,7 +80,7 @@ useEffect(() => {
     try {
       if (customer?.customerUniqueId) {
         const response = await fetch(
-          `https://www.presstoindia.com/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
+          `https://uat.presstoindia.com/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
         );
 
         const data = await response.json();
