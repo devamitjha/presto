@@ -2,47 +2,39 @@ import React from 'react'
 import StackedSlider from '../components/StackedSlider'
 import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
+import { Helmet } from 'react-helmet';
 
 
 
 //slider
-import Slider1 from "../assets/images/service/Restoration/slider-1.jpg";
-import Slider2 from "../assets/images/service/Restoration/slider-2.jpg";
-import Slider3 from "../assets/images/service/Restoration/slider-3.jpg";
-
-import sl1 from "../assets/images/service/sl-1.jpg";
-import sl2 from "../assets/images/service/sl-2.jpg";
-import sl3 from "../assets/images/service/sl-3.jpg";
-import sl4 from "../assets/images/service/sl-4.jpg";
 import Experties from '../components/Experties';
 import SolutionFinder from '../components/SolutionFinder';
 import LocateUsMap from '../components/LocateUs';
 
 //video 
-import DryCleanVideo from "../assets/video/Shoes-and-bag.mp4"
 import FullWidthBackgroundVideo from '../components/FullWidthBackgroundVideo';
 
 
 const items = [
-  { img: sl1, title: "Quality", info:"Every detail matters, we treat your garments with precision and care that shows."},
-  { img: sl2, title: "Speed", info:"Quick turnarounds, without cutting corners - because your time is valuable."},
-  { img: sl3, title: "Service", info:"Thoughtful care, personalised for you - from pick-up to delivery."},
-  { img: sl4, title: "Transparency", info:"No surprises, just honesty, you’ll always know what we’re doing and why."},
+  { img: "service/sl-1.jpg", title: "Quality", info:"Every detail matters, we treat your garments with precision and care that shows."},
+  { img: "service/sl-2.jpg", title: "Speed", info:"Quick turnarounds, without cutting corners - because your time is valuable."},
+  { img: "service/sl-3.jpg", title: "Service", info:"Thoughtful care, personalised for you - from pick-up to delivery."},
+  { img: "service/sl-4.jpg", title: "Transparency", info:"No surprises, just honesty, you’ll always know what we’re doing and why."},
 ];
 
 
 
 const sliderData = [
   {    
-    image: Slider2,
+    image: "service/Restoration/slider-2.jpg",
     title: "Slider 2"
   },
   {    
-    image: Slider1,
+    image: "service/Restoration/slider-1.jpg",
     title: "Slider 1"
   }, 
   {    
-    image: Slider3,
+    image: "service/Restoration/slider-3.jpg",
     title: "Slider 3"
   }
 ];
@@ -70,10 +62,19 @@ const WhatWeStandBy = () => {
   );
 };
 
+const HelmetMeta = () => (
+  <Helmet>
+    <title>Luxury Shoe & Bag Restoration - Premium Leather Care Specialists | Pressto</title>
+    <meta name="description" content="Expert restoration for luxury shoes & designer bags. Precision leather care, suede cleaning & premium restoration services. Trusted by luxury fashion brands." />
+    <meta name="keywords" content="luxury shoe restoration, premium bag care, leather care specialists, designer bag cleaning, suede restoration, luxury leather goods, premium shoe care, precision restoration, fashion brand trusted, leather repair services"/>
+    <link rel="canonical" href="https://www.presstoindia.com/service/shoes-and-bag-restoration" />
+  </Helmet> 
+);
 
 const Restoration = () => { 
   return (
     <>
+      <HelmetMeta />
       <div className="section-container">
         <Heading title="Carry the Mint Look" />
         <StackedSlider sliderData={sliderData} />      
@@ -81,7 +82,7 @@ const Restoration = () => {
       <div className="section-container px-0">
         <div className="center-banner">
           <FullWidthBackgroundVideo
-            src= {DryCleanVideo}
+            src= "https://ik.imagekit.io/devamitjha/pressto/video/Shoes-and-bag.mp4"
             poster="/images/poster.jpg"
           />
           <div className="info">

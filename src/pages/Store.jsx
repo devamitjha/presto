@@ -19,10 +19,10 @@ import ReviewSlider from '../components/ReviewSlider';
 const HelmetMeta = () => {
   return (
     <Helmet>
-      <title>Store Page | Store Page</title>
-      <meta name="description" content="Learn more about our company and mission." />
-      <meta name="keywords" content="about us, company, mission, values" />
-      <link rel="canonical" href="https://www.yoursite.com" />
+      <title>Pressto Luxury Care Centers - 45+ Premium Locations | Mumbai Delhi Bangalore</title>
+      <meta name="description" content="Find your nearest Pressto premium care center across 45+ exclusive locations in Mumbai (22), Delhi NCR (14) & Karnataka (8). Expert garment care specialists." />
+      <meta name="keywords" content="Pressto luxury care centers, premium Services, exclusive garment care, Mumbai Delhi Bangalore stores, luxury dry cleaning centers, premium care specialists, find luxury drycleaners, expert garment care, high-end cleaning services"/>
+      <link rel="canonical" href="https://www.presstoindia.com/store" />
     </Helmet>
   )
 };

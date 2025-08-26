@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards, Navigation, Pagination } from 'swiper/modules';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { Image } from '@imagekit/react';
 
 import 'swiper/css';
 import 'swiper/css/effect-cards';
@@ -34,7 +35,11 @@ const StackedSlider = ({ sliderData }) => {
         {sliderData.map((slide, index) => (
           <SwiperSlide className="slide" key={index}>
             <div className="image-wrapper">
-              <img src={slide.image} alt={slide.title} />
+              <Image
+                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                src={slide.image}
+                alt={slide.title}
+              />
             </div>
           </SwiperSlide>
         ))}     

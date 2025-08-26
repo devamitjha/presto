@@ -178,16 +178,12 @@ const Home = () => {
   return (
     <section className="home">
       <Helmet>
-        <title>Pressto India | Premium Garment Care & Dry Cleaning</title>
+        <title>Premium Luxury Dry Cleaning & Garment Care - Pressto India | Expert Artisans</title>
         <meta
           name="description"
-          content="Premium garment care with sustainable luxury. Explore Pressto's professional dry cleaning services, trusted by global fashion brands."
-        />
-        <meta
-          name="keywords"
-          content="dry cleaning, garment care, luxury clothes cleaning, branded clothes laundry, eco-friendly laundry"
-        />
-        <link rel="canonical" href="https://www.pressto.in" />
+          content="India's premium garment care specialists serving luxury brands. Expert artisans, soft water technology & eco-friendly processes across 45+ locations in Mumbai, Delhi & Bangalore"/>
+        <meta name="keywords" content=" premium dry cleaning, luxury garment care, expert artisans, soft water cleaning, eco-friendly premium, Mumbai Delhi Bangalore, designer clothes care, pickup delivery, bespoke service, European standards, Pressto India"/>
+        <link rel="canonical" href="https://www.presstoindia.com/" />
       </Helmet>
 
       <HeroSlider heroImages={heroImages} dir="mainbanner"/>

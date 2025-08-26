@@ -53,10 +53,10 @@ const CustomerReviewHighlight = () => {
 const HelmetMeta = () => {
   return (
       <Helmet>
-        <title>Contact Page | Contact Page</title>
-        <meta name="description" content="Learn more about our company and mission." />
-        <meta name="keywords" content="about us, company, mission, values" />
-        <link rel="canonical" href="https://www.yoursite.com" />
+        <title>Contact Pressto India - Premium Garment Care Specialists | Luxury Service</title>
+        <meta name="Contact Pressto India for premium garment care. Call 1800229199 or email pickmeup@presstoindia.com. Luxury service specialists in Mumbai, Delhi & Bangalore."/>
+        <meta name="keywords" content="contact Pressto India, premium garment care contact, luxury service specialists, expert customer service, premium pickup booking, luxury dry cleaning contact, high-end garment care, designer clothes care contact"/>
+        <link rel="canonical" href="https://www.presstoindia.com/contact" />
       </Helmet>
   )
 }

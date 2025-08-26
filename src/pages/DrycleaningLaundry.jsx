@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Helmet } from 'react-helmet';
 import './Blog.scss';
+import { Helmet } from 'react-helmet';
 
 const HelmetMeta = () => (
   <Helmet>
-    <title>Blog Page | Pressto</title>
-    <meta name="description" content="Read our latest blog posts and updates about our services." />
-    <meta name="keywords" content="blog, laundry tips, dry cleaning, service updates" />
+    <title>Luxury Garment Care Tips & Expert Guides - Pressto India Premium Blog</title>
+    <meta name="description" content="Discover premium garment care tips, luxury fabric guides & expert cleaning advice. Learn from Pressto India's luxury care specialists and artisan expertise." />
+    <meta name="keywords" content="luxury garment care tips, premium fabric care guides, expert cleaning advice, luxury clothing maintenance, designer garment care, premium care specialists, artisan expertise, luxury fabric guides, high-end garment tips"/>
     <link rel="canonical" href="https://www.presstoindia.com/blog" />
   </Helmet>
 );
+
 
 const formatDate = (dateStr) =>
   new Date(dateStr).toLocaleDateString('en-IN', {
@@ -125,35 +126,97 @@ const AllPosts = ({ posts }) => {
   });
 };
 
+const FeaturedSkeleton = () => (
+  <div className="skeletonUI mb-3 w-100" style={{ height: "650px", borderRadius: "12px" }}></div>
+);
+
+const PopularSkeleton = () => (
+  <div>
+    {[...Array(3)].map((_, i) => (
+      <div key={i} className="d-flex gap-2 mb-3">
+        <div className="skeletonUI flex-shrink-0" style={{ width: "170px", height: "170px", borderRadius: "8px" }}></div>
+        <div className="flex-grow-1">
+          <div className="skeletonUI mb-2" style={{ height: "15px", width: "90%" }}></div>
+          <div className="skeletonUI mb-2" style={{ height: "15px", width: "70%" }}></div>
+          <div className="skeletonUI" style={{ height: "15px", width: "50%" }}></div>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+const GridSkeleton = () => (
+    [...Array(3)].map((_, i) => (
+      <div key={i} className="col-12 mb-3">
+        <div className="skeletonUI mb-2 w-100" style={{ height: "560px", borderRadius: "12px" }}></div>
+        <div className="skeletonUI mb-2" style={{ height: "15px", width: "90%" }}></div>
+        <div className="skeletonUI mb-2" style={{ height: "15px", width: "60%" }}></div>
+        <div className="skeletonUI" style={{ height: "15px", width: "30%" }}></div>
+      </div>
+    ))
+);
+
+
 const Blog = () => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get('https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?categories=3&_embed')
-      .then((res) => setPosts(res.data))
-      .catch((err) => console.error('Error fetching blog posts:', err));
+      .get("https://www.presstoindia.com/react-pressto-blog/wp-json/wp/v2/posts?categories=3&_embed")
+      .then((res) => {
+        setPosts(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching blog posts:", err);
+        setLoading(false);
+      });
   }, []);
 
   return (
     <div className="blog-container">
       <HelmetMeta />
       <div className="section-top mt-5">
-        <div className="row">
-          <div className="col-12 col-xl-8">
-            <div className="title fs-2 mb-4">Latest Posts</div>
-            <FeaturedPost posts={posts} />
+        {loading ? (
+          <div className="row">
+            <div className="col-12 col-xl-8">
+              <div className="title fs-2 mb-4">Latest Posts</div>
+              <FeaturedSkeleton />
+            </div>
+            <div className="col-12 col-xl-4">
+              <div className="title fs-2 mb-4">Popular Posts</div>
+              <PopularSkeleton />
+            </div>
+            <div className="row mt-4 blog-grid-container">
+              <div className="grid">
+                <GridSkeleton />
+              </div>
+            </div>
           </div>
-          <div className="col-12 col-xl-4">
-            <div className="title fs-2 mb-4">Popular Posts</div>
-            <PopularPosts />
+        ) : posts.length > 0 ? (
+          <>
+            <div className="row">
+              <div className="col-12 col-xl-8">
+                <div className="title fs-2 mb-4">Latest Posts</div>
+                <FeaturedPost posts={posts} />
+              </div>
+              <div className="col-12 col-xl-4">
+                <div className="title fs-2 mb-4">Popular Posts</div>
+                <PopularPosts />
+              </div>
+            </div>
+            <div className="row mt-4 blog-grid-container">
+              <div className="grid">
+                <AllPosts posts={posts} />
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="text-center text-muted py-5 fs-4">
+            No posts found.
           </div>
-        </div>
-        <div className="row mt-4 blog-grid-container">
-          <div className="grid">
-            <AllPosts posts={posts} />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

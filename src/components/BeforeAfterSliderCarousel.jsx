@@ -4,6 +4,7 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './BeforeAfterSliderCarousel.scss';
+import { Image } from '@imagekit/react';
 
 function NavNextArrow(props) {
   const {onClick } = props;
@@ -27,7 +28,7 @@ function NavPrevArrow(props) {
 
 
 
-const BeforeAfterSliderCarousel = ({imageData}) => {
+const BeforeAfterSliderCarousel = ({imageData}) => { 
   const settings = {
     dots: false,
     infinite: true,
@@ -47,7 +48,11 @@ const BeforeAfterSliderCarousel = ({imageData}) => {
       <Slider {...settings}>
         {imageData.map((item, index) => (
           <div className="slider-item" key={index}>
-            <img src={item.image} width="580px" height="400px" alt={item.alt} />
+            <Image
+              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+              src={item.image}
+              alt={item.alt}
+            />
           </div>
         ))}
       </Slider>

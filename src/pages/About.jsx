@@ -16,10 +16,10 @@ import { Image } from '@imagekit/react';
 const HelmetMeta = () => {
   return (
       <Helmet>
-        <title>About Page | About Page</title>
-        <meta name="description" content="Learn more about our company and mission." />
-        <meta name="keywords" content="about us, company, mission, values" />
-        <link rel="canonical" href="https://www.presstoindia.com" />
+        <title>About Pressto India - Premium Garment Care Specialists Since Global Expansion</title>
+        <meta name="description" content="Led by Managing Director Yvo Metzelaar, Pressto India delivers bespoke wardrobe care for luxury brands across 45+ locations. Trusted by Gucci, Hermes & featured in Vogue." />
+        <meta name="keywords" content="about Pressto India, Yvo Metzelaar, premium garment care specialists, luxury brand care, bespoke wardrobe care, sustainable cleaning, artisan expertise, European standards, Gucci Hermes care, Vogue featured"/>
+        <link rel="canonical" href="https://www.presstoindia.com/about" />
       </Helmet>
   )
 }

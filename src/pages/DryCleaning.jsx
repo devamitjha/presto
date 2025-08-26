@@ -2,51 +2,41 @@ import React from 'react'
 import StackedSlider from '../components/StackedSlider'
 import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
+import { Helmet } from 'react-helmet';
+import { Image } from '@imagekit/react';
 
 //slider
-import Slider1 from "../assets/images/service/DryCleaning/slider-1.jpg";
-import Slider2 from "../assets/images/service/DryCleaning/slider-2.jpg";
-import Slider3 from "../assets/images/service/DryCleaning/slider-3.jpg";
-import Slider4 from "../assets/images/service/DryCleaning/slider-4.jpg";
-
-
-import sl1 from "../assets/images/service/sl-1.jpg";
-import sl2 from "../assets/images/service/sl-2.jpg";
-import sl3 from "../assets/images/service/sl-3.jpg";
-import sl4 from "../assets/images/service/sl-4.jpg";
-
 
 import Experties from '../components/Experties';
 import SolutionFinder from '../components/SolutionFinder';
 import LocateUs from '../components/LocateUs';
 
 //video 
-import DryCleanVideo from "../assets/video/dry-cleaning.mp4"
 import FullWidthBackgroundVideo from '../components/FullWidthBackgroundVideo';
 
 
 const items = [
-  { img: sl1, title: "Quality", info:"Every detail matters, we treat your garments with precision and care that shows."},
-  { img: sl2, title: "Speed", info:"Quick turnarounds, without cutting corners - because your time is valuable."},
-  { img: sl3, title: "Service", info:"Thoughtful care, personalised for you - from pick-up to delivery."},
-  { img: sl4, title: "Transparency", info:"No surprises, just honesty, you’ll always know what we’re doing and why."},
+  { img:"service/sl-1.jpg", title: "Quality", info:"Every detail matters, we treat your garments with precision and care that shows."},
+  { img: "service/sl-2.jpg", title: "Speed", info:"Quick turnarounds, without cutting corners - because your time is valuable."},
+  { img: "service/sl-3.jpg", title: "Service", info:"Thoughtful care, personalised for you - from pick-up to delivery."},
+  { img: "service/sl-4.jpg", title: "Transparency", info:"No surprises, just honesty, you’ll always know what we’re doing and why."},
 ];
 
 const sliderData = [
   {    
-    image: Slider2,
+    image: "service/DryCleaning/slider-2.jpg",
     title: "Slider 2"
   },
   {    
-    image: Slider1,
+    image: "service/DryCleaning/slider-1.jpg",
     title: "Slider 1"
   },  
   {    
-    image: Slider3,
+    image: "service/DryCleaning/slider-3.jpg",
     title: "Slider 3"
   },
   {    
-    image: Slider4,
+    image: "service/DryCleaning/slider-4.jpg",
     title: "Slider 4"
   }
 ];
@@ -63,7 +53,11 @@ const WhatWeStandBy = () => {
           <div className="grid-container">
             {items.map((item, index) => (
               <div className="grid-item" key={index}>
-                <img src={item.img} alt={item.title} />
+                <Image
+                  urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                  src={item.img}
+                  alt={item.title}
+                />
                 <div className="overlay">
                   <h4>{item.title}</h4>
                   <p>{item.info}</p>
@@ -76,10 +70,19 @@ const WhatWeStandBy = () => {
   );
 };
 
+const HelmetMeta = () => (
+  <Helmet>
+    <title>Premium Dry Cleaning Services - Luxury Fabric Specialists | Expert Artisans</title>
+    <meta name="description" content="Professional dry cleaning for luxury & designer garments. Advanced fabric-specific processes, eco-friendly solvents & expert artisan care. Trusted by premium brands." />
+    <meta name="keywords" content="premium dry cleaning services, luxury fabric specialists, designer garment care, fabric-specific cleaning, eco-friendly solvents, expert artisans, advanced dry cleaning, luxury brand trusted, premium stain removal, soft water cleaning"/>
+    <link rel="canonical" href="https://www.presstoindia.com/service/dry-cleaning" />
+  </Helmet>
+);
 
-const DryCleaning = () => { 
+const DryCleaning = () => {  
   return (
     <>
+      <HelmetMeta />
       <div className="section-container">
         <Heading title="Carry the Mint Look" />
         <StackedSlider sliderData={sliderData}/>      
@@ -87,7 +90,7 @@ const DryCleaning = () => {
       <div className="section-container px-0">
         <div className="center-banner">
           <FullWidthBackgroundVideo
-            src= {DryCleanVideo}
+            src= "https://ik.imagekit.io/devamitjha/pressto/video/dry-cleaning.mp4"
             poster="/images/poster.jpg"
           />
           <div className="info">
