@@ -1,6 +1,9 @@
 @import "../assets/styles/theme";
 .home{
     padding:0 1.5rem;
+    @media(max-width:1279px){
+        padding:0 15px
+    }
 }
 
 //spotlight

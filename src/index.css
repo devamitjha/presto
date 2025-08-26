@@ -24,3 +24,9 @@ a{
 .lazyImg img.loaded {
   filter: blur(0);
 }
+
+@media(max-width:1279px){
+  .presstoApp{
+    overflow: hidden;
+  }
+}

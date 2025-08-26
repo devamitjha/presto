@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router';
 import { Image } from '@imagekit/react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
-
 import HeroSlider from '../components/HeroSlider';
 import Client from '../components/Client';
 import SixColumnlayout from '../components/SixColumnlayout';
@@ -14,16 +13,12 @@ import Heading from '../components/common/Heading';
 import GoogleReviews from '../components/GoogleReviews';
 import RealSlider from '../components/RealSlider';
 import { Button } from '../components/common/Button';
-
 import './Home.scss';
-
-// Assets
-
 import { expertiseData } from '../api/expertiseData';
 import { brandRecognition } from '../api/brandRecognition';
 import { carePartners } from '../api/carePartners';
 import AnimatedCard from '../components/motionCard/AnimatedCard';
-// import Reviews from '../components/Reviews';
+import useWindowSize from '../hooks/useWindowSize';
 
 // Spotlight Section
 const SectionSpotlight = () => {
@@ -172,9 +167,19 @@ const RealStories = () => (
     { src: "banner-3.jpg", title: 'Look Good, Feel Great' }
  ];
 
+ const heroImagesMobile = [
+    { src: "banner-1.jpg", title: 'Look Good, Feel Great' },
+    { src: "banner-2.jpg", title: 'Look Good, Feel Great' },
+    { src: "banner-3.jpg", title: 'Look Good, Feel Great' }
+ ];
+
+ 
+
 
 // Main Home Component
 const Home = () => {  
+  const { width, height } = useWindowSize();
+  console.log('Window size:', width);
   return (
     <section className="home">
       <Helmet>
@@ -185,8 +190,10 @@ const Home = () => {
         <meta name="keywords" content=" premium dry cleaning, luxury garment care, expert artisans, soft water cleaning, eco-friendly premium, Mumbai Delhi Bangalore, designer clothes care, pickup delivery, bespoke service, European standards, Pressto India"/>
         <link rel="canonical" href="https://www.presstoindia.com/" />
       </Helmet>
-
-      <HeroSlider heroImages={heroImages} dir="mainbanner"/>
+      {
+        width >1279 ?<HeroSlider heroImages={heroImages} dir="mainbanner" type="desktop"/> :<HeroSlider heroImages={heroImagesMobile} dir="mainbanner" type="mobile"/>
+      }      
+      
       <Client />
       <SixColumnlayout />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>

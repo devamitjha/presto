@@ -40,7 +40,7 @@ function NavPrevArrow(props) {
 
 
 
-const HeroSlider = ({ heroImages, dir }) => {  
+const HeroSlider = ({ heroImages, dir, type }) => {  
   const dispatch = useDispatch();
   const goToBookNowPage = () => {
     dispatch(setOpenBookNow(true));
@@ -64,12 +64,21 @@ const HeroSlider = ({ heroImages, dir }) => {
     <div className="hero-slider">
       <Slider {...settings}>
         {heroImages.map((img, index) => (
-          <div className="slider-item" key={index}>
+          <div className={`slider-item ${type==="mobile" && "mobile"}`} key={index}>
+            {
+            type==="mobile" ? 
+             <Image
+                urlEndpoint={`https://ik.imagekit.io/devamitjha/pressto/mobile/${dir ? `${dir}/` : ''}`}
+                src={img.src}
+                alt={img.title}
+            /> :  
             <Image
                 urlEndpoint={`https://ik.imagekit.io/devamitjha/pressto/${dir ? `${dir}/` : ''}`}
                 src={img.src}
                 alt={img.title}
             />
+            }
+           
             <div className="hero-title">
                 <h3>Look Good, Feel Great</h3>
                 <ButtonWithIcon title="Schedule Pickup" icon={BookNowIcon} className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage } />
