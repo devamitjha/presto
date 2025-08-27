@@ -1,6 +1,7 @@
 @import "../assets/styles/theme";
 .store{
     margin-top:2rem;
+    overflow: hidden;
     .section-tab{
         max-width:550px;
         width:90%;
@@ -97,6 +98,7 @@
             width:30%;
             .count {
                 @extend .heading-2;
+                 margin:0;
                 span{
                     @extend .heading-2;
                 }
@@ -104,6 +106,7 @@
 
             .label {
                 @extend .heading-6;
+                margin:0;
             }
         }
 
@@ -143,6 +146,7 @@
 
                 .label {
                    @extend .heading-6;
+                   margin:0;
                 }
             }
         }

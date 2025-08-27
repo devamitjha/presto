@@ -4,6 +4,9 @@
     width:350px;
     min-height:500px;
     overflow: hidden;
+    @media(max-width:768px){
+        width:100%;
+    }
     .slider-item{
         border-radius: 1rem;
         overflow: hidden;

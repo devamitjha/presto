@@ -20,6 +20,11 @@ import { carePartners } from '../api/carePartners';
 import AnimatedCard from '../components/motionCard/AnimatedCard';
 import useWindowSize from '../hooks/useWindowSize';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import {Pagination } from 'swiper/modules';
+
 // Spotlight Section
 const SectionSpotlight = () => {
   const [open, setOpen] = useState(false)
@@ -34,7 +39,7 @@ const SectionSpotlight = () => {
   ];
 
   return (
-    <section className="section-container spotlight">
+    <section className="section-container spotlight"> 
       <Heading title="In the Spotlight" />
       <div className="spotlight-item">
         <div className="item">
@@ -45,7 +50,7 @@ const SectionSpotlight = () => {
             />
         </div>
 
-        <div className="item">
+        <div className="item md-hide">
           <Image
               urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
               src="sp-2.jpg"
@@ -54,11 +59,12 @@ const SectionSpotlight = () => {
         </div>
 
         <div className="item collage">
-          <div className="info">
+          <p className="md-hide">In the Spotlight</p>
+          <div className="info md-hide">
             At Pressto, every Presstodian brings our motto - Look Good, Feel Better; to life with heartfelt care,
             sharp skill, and an eye for detail. It’s not just what we do, it’s how we do it, with quiet precision and pride in every fold
           </div>
-          <div className="image-collage">
+          <div className="image-collage md-hide">
             {["sp-3.jpg", "sp-4.jpg"].map((img, index) => (
               <div className="grid" key={index}>
                   <Image
@@ -101,50 +107,109 @@ const SectionSpotlight = () => {
 
 
 // Luxury Experience Section
-const LuxaryExperience = () => {
+const LuxaryExperience = () => { 
+  const { width } = useWindowSize();
   const navigate = useNavigate();
   const goToContactPage = () => {
       navigate('/contact');
   };
   return (
-    <section className="section-container luxaryExperience">
+    <section className="section-container luxaryExperience autoSlider">
       <Heading title="Luxury Experience Indeed" />
-      <div className="luxaryExperience-item">
-        <div className="item">
-          <Image
-            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
-            src="exp-1.jpg"
-            alt="Luxury Experience 1"
-          />
-        </div>
-        <div className="item">
-          <Image
-            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
-            src="exp-2.jpg"
-            alt="Luxury Experience 2"
-          />
-        </div>
-        <div className="item collage">
-          <div className="image-collage">
-            {["exp-3.jpg", "exp-4.jpg", "exp-5.jpg"].map((img, index) => (
-              <div className="grid" key={index}>
-                 <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
-                    src={img}
-                    alt={`Luxury Experience ${index + 3}`}
-                  />
+      {
+        width >=820 ? 
+        <div className="luxaryExperience-item">
+          <div className="item">
+            <Image
+              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+              src="exp-1.jpg"
+              alt="Luxury Experience 1"
+            />
+          </div>
+          <div className="item">
+            <Image
+              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+              src="exp-2.jpg"
+              alt="Luxury Experience 2"
+            />
+          </div>
+          <div className="item collage">
+            <div className="image-collage">
+              {["exp-3.jpg", "exp-4.jpg", "exp-5.jpg"].map((img, index) => (
+                <div className="grid" key={index}>
+                  <Image
+                      urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                      src={img}
+                      alt={`Luxury Experience ${index + 3}`}
+                    />
+                </div>
+              ))}
+              <div className="grid content">
+                <div className="info">
+                  <h4>About Us</h4>
+                  <p>Best in Class Dry Cleaning for Luxury and Branded Clothes, You know who has been the face of the town.</p>
+                </div>
+                <Button title="Know More" className="btn btn-md base-btn outlined overflowHidden" GoTo={goToContactPage }/>
               </div>
-            ))}
-            <div className="grid content">
-              <div className="info">
-                <h4>About Us</h4>
-                <p>Best in Class Dry Cleaning for Luxury and Branded Clothes, You know who has been the face of the town.</p>
-              </div>
-              <Button title="Know More" className="btn btn-md base-btn outlined overflowHidden" GoTo={goToContactPage }/>
             </div>
           </div>
         </div>
-      </div>
+        :
+        <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={16}
+            modules={[Pagination]}
+            className="slider"
+          >
+             <SwiperSlide>
+                <div className="luxurySlider">
+                  <Image
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                    src="exp-1.jpg"
+                    alt="Luxury Experience 1"
+                  />
+                </div>
+              </SwiperSlide>  
+              <SwiperSlide>
+                <div className="luxurySlider">
+                  <Image
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                    src="exp-2.jpg"
+                    alt="Luxury Experience 2"
+                  />
+                </div>
+              </SwiperSlide>  
+               <SwiperSlide>
+                <div className="luxurySlider">                 
+                  <Image
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/mobile/"
+                    src="service-3.jpg"
+                    alt="Luxury Experience 2"
+                  />
+                </div>
+              </SwiperSlide>
+               <SwiperSlide>
+                <div className="luxurySlider">
+                  <Image
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/mobile/"
+                    src="service-4.jpg"
+                    alt="Luxury Experience 2"
+                  />
+                </div>
+              </SwiperSlide>
+               <SwiperSlide>
+                <div className="luxurySlider">
+                  <Image
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/mobile/"
+                    src="service-5.jpg"
+                    alt="Luxury Experience 2"
+                  />
+                </div>
+              </SwiperSlide>             
+        </Swiper>
+
+      }
+      
     </section>
   );
 };
@@ -178,8 +243,7 @@ const RealStories = () => (
 
 // Main Home Component
 const Home = () => {  
-  const { width, height } = useWindowSize();
-  console.log('Window size:', width);
+  const { width } = useWindowSize();
   return (
     <section className="home">
       <Helmet>
@@ -191,18 +255,18 @@ const Home = () => {
         <link rel="canonical" href="https://www.presstoindia.com/" />
       </Helmet>
       {
-        width >1279 ?<HeroSlider heroImages={heroImages} dir="mainbanner" type="desktop"/> :<HeroSlider heroImages={heroImagesMobile} dir="mainbanner" type="mobile"/>
+        width >1024 ?<HeroSlider heroImages={heroImages} dir="mainbanner" type="desktop"/> :<HeroSlider heroImages={heroImagesMobile} dir="mainbanner" type="mobile"/>
       }      
       
       <Client />
       <SixColumnlayout />
-      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
+      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" size="small"/>
       <SixColumnlayoutCenter image={["service-tshirt.jpg", "service-bag.jpg"]}/>
       <RealStories />
       <SectionSpotlight />
-      <Experties title="The Prestige We've Pressed" data={carePartners} item="5"/>
+      <Experties title="The Prestige We've Pressed" data={carePartners} item="5" size="big"/>
       <LuxaryExperience />
-      <Experties title="Brand Recognition" data={brandRecognition} item="5"/>      
+      <Experties title="Brand Recognition" data={brandRecognition} item="5" size="big"/>      
     </section>
   );
 };

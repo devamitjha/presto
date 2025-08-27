@@ -4,12 +4,32 @@
     justify-content: space-between;
     gap:1rem;
     margin:5.5rem 3.5rem;
+    @media(max-width:1368px){
+        margin:3rem 1rem 5vw 1rem;
+    }
+    @media(max-width:825px){
+        margin:2.5rem 1rem;
+    }
+    @media(max-width:360px){
+        margin:1.5rem 1rem;
+    }
     .item{
         @extend .d-flex;
         //flex:1;
         justify-content: start;
         gap:.5rem;
+        @media(max-width:1180px){
+            &.lg-hide{
+                display:none;
+            }
+        }
+        @media(max-width:768px){
+            &.md-hide{
+                display:none;
+            }
+        }
         h4{
+            margin:0;
             @extend .heading-2;
            span{
              @extend .heading-2;
@@ -20,6 +40,11 @@
         }
         &.flex-2{
             flex:2;
+        }
+        @media(max-width:360px){
+          h4,span{
+            font-size:16px!important;
+          }
         }
     }
 }

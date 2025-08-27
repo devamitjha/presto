@@ -5,13 +5,28 @@
     @media(max-width:1600px){
         padding:0;
     }
+    .heading{
+        padding:0 2rem;
+    }
     .section-container{
         width:100%;
         .experties-slider{
             padding:0 3.5rem;
+            @media(max-width:825px){
+                &.autoSlider{
+                    padding:0;
+                }
+            }
             .item{
                 text-align: center;
                 padding:0 2rem;
+                &.mobile{
+                    width:320px;
+                    padding:0 10px;
+                    @media(max-width:520px){
+                        width:260px;
+                    }
+                }
                 .image-conteiner{
                     padding:1.25rem;
                     img{
@@ -43,6 +58,9 @@
 
 .slick-dots {
     bottom: -3rem;
+    @media(max-width:825px){
+        bottom:-1rem;
+    }
     li button:before {
       font-size: 12px;
       color: $gray600;
@@ -67,7 +85,7 @@
             //border:1px solid $gray700;
             @extend .d-flex;
             border-radius: 100%;
-            z-index: 2;
+            z-index: 1;
             cursor:pointer;
             // background-color:$white;
             // box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
@@ -84,3 +102,49 @@
             right:-3.5rem;
         }
     }
+
+    @media(max-width:1024px){
+        .section-experties .section-container .experties-slider .item .image-conteiner{
+            padding:1rem;
+            img{
+                width:90px;
+                height:90px;
+            }
+        }
+        .section-experties .section-container .experties-slider .item .slider-title{
+            margin-top:0;
+            font-size: 20px;
+        }
+        .section-experties .section-container .experties-slider .item .slider-text{
+            font-size:12px;
+            line-height: 1.3;
+        }
+    }
+
+    @media(max-width:825px){
+        .section-experties .section-container .experties-slider .item.center-big .image-conteiner{
+            img{
+                width:120px;
+                height:120px;
+            }
+        }
+    }
+
+    @media(max-width:550px){
+        .section-experties .section-container {
+            padding:0;
+        }
+        .section-experties .section-container .experties-slider{
+            padding:0;
+        }
+        .section-experties .section-container .experties-slider .item{
+            padding:0 15px;
+        }
+    }
+.experties-slider{
+    &.autoSlider{
+        .swiper{
+            padding:0 15px;
+        }
+    }
+}

@@ -24,13 +24,13 @@ const Client = () => {
         </h4>
         <span>Stores</span>
       </div>
-      <div className="item">
+      <div className="item md-hide">
         <h4>
           <ScrollAnimatedNumber value={counts.customers} format={{ notation: 'compact' }} />+
         </h4>
         <span>Delighted Customers</span>
       </div>
-      <div className="item">
+      <div className="item lg-hide">
         <TrustBadge />
       </div>
     </section>

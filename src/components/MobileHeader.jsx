@@ -21,7 +21,7 @@ const MobileHeader = () => {
 
   return (
     <>
-      <div className="navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm mb-3">
+      <div className="mobile-header navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm mb-3">
         <div className="container-fluid d-flex justify-content-between align-items-center">
           <div className="section-logo">
             <Link to="/">

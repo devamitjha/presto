@@ -3,6 +3,7 @@ import StackedSlider from '../components/StackedSlider'
 import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
 import { Helmet } from 'react-helmet';
+import { Image } from '@imagekit/react';
 
 
 
@@ -49,7 +50,11 @@ const WhatWeStandBy = () => {
           <div className="grid-container">
             {items.map((item, index) => (
               <div className="grid-item" key={index}>
-                <img src={item.img} alt={item.title} />
+                <Image
+                  urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                  src={item.img}
+                  alt="{item.title}"
+                />
                 <div className="overlay">
                   <h4>{item.title}</h4>
                   <p>{item.info}</p>

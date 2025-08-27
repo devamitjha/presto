@@ -56,7 +56,7 @@ const WhatWeStandBy = () => {
                 <Image
                   urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
                   src={item.img}
-                  alt={item.title}
+                  alt="{item.title}"
                 />
                 <div className="overlay">
                   <h4>{item.title}</h4>
@@ -79,7 +79,7 @@ const HelmetMeta = () => (
   </Helmet>
 );
 
-const DryCleaning = () => {  
+const DryCleaning = () => {   
   return (
     <>
       <HelmetMeta />

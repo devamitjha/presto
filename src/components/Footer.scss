@@ -5,6 +5,10 @@
     @extend .d-flex;
     gap:1.25rem;
     align-items: start;
+    @media(max-width:900px){
+        flex-direction: column;
+        padding:2rem
+    }
     .item{
         flex:1;
         @extend .body-3;
@@ -24,6 +28,9 @@
             color: $white;
             text-align: center;
             font-family: $kanit;
+            @media(max-width:900px){
+                width: 100%;
+            }
             h2 {
                 margin-bottom: 0.5rem;
                 font-size: 1.5rem;
@@ -117,5 +124,8 @@
                }
             }
         }
+    }
+    @media(max-width:825px){
+        margin-top:5rem;
     }
 }

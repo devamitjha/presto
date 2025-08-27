@@ -1,5 +1,6 @@
 @import "../assets/styles/theme";
 .contact-page{
+    overflow: hidden;
     .contact-us-container {
         @extend .d-flex;
         justify-content: space-between;
@@ -118,6 +119,7 @@
             width:30%;
             .count {
                 @extend .heading-2;
+                 margin:0;
                 span{
                     @extend .heading-2;
                 }
@@ -125,6 +127,7 @@
 
             .label {
                 @extend .heading-6;
+                margin:0;
             }
         }
 
@@ -167,6 +170,7 @@
 
             .label {
                 @extend .heading-6;
+                margin:0;
             }
         }
     }

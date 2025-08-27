@@ -89,12 +89,12 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                         height={70}
                                         alt="exp6"
                                     />
-                                    <div className="sidebar-service ms-3">
+                                    <div className="sidebar-service ms-3 pe-2">
                                         <div className="title">Locate Store Near you</div>
                                         <p>Find your nearest Pressto and step into effortless, premium care</p>
                                     </div>
                                 </div>  
-                                <ChevronRight size={16} />
+                                <span className="service-icon"> <ChevronRight size={16} /></span>                               
                             </div>  
                             <div className="d-flex justify-content-between align-items-center">
                                 <div className="d-flex align-items-center s-item">
@@ -105,12 +105,12 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                         height={70}
                                         alt="exp6"
                                     />
-                                    <div className="sidebar-service ms-3">
+                                    <div className="sidebar-service ms-3 pe-2">
                                         <div>Locate Store Near you</div>
                                         <p>Find your nearest Pressto and step into effortless, premium care</p>
                                     </div>
                                 </div>  
-                                <ChevronRight size={16} />
+                                <span className="service-icon"> <ChevronRight size={16} /></span> 
                             </div>
                         </div>
                     </div>

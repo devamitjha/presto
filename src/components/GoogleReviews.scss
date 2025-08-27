@@ -9,10 +9,16 @@
   width:calc(100% - 350px);
   height:100%;
   align-content: stretch;
+  @media(max-width:768px){
+      width:100%;
+      border: none;
+  }
   .review-header {
         @extend .d-flex;  
         margin-bottom: 16px;
-
+        @media(max-width:768px){
+          margin-bottom:32px;
+        }
     .google-logo {
         @extend .d-flex;  
         width:142px;

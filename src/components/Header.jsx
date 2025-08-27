@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import "react-spring-bottom-sheet/dist/style.css";
@@ -14,10 +14,21 @@ const Header = () => {
   const { width } = useWindowSize();
   const dispatch = useDispatch();
   const { openSheet, openBookNow } = useSelector((state) => state.sheet);
+  useEffect(() => {
+    const originalPadding = document.body.style.paddingTop;
+    if (width < 1025) {
+      document.body.style.paddingTop = "70px";
+    } else {
+      document.body.style.paddingTop = "0";
+    }
+    return () => {
+      document.body.style.paddingTop = originalPadding; 
+    };
+  }, [width]);
 
   return (
     <>
-      {width > 1279 ? <DesktopHeader /> : <MobileHeader />}
+      {width > 1024 ? <DesktopHeader /> : <MobileHeader />}
 
       {/* Login/Signup Sheet */}
       <BottomSheet

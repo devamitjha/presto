@@ -10,6 +10,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size:16px;
 }
+@media(max-width:768px){
+  body {
+    font-size:12px;
+  }
+}
 a{
   text-decoration: none;
   color:inherit;
@@ -25,8 +30,17 @@ a{
   filter: blur(0);
 }
 
-@media(max-width:1279px){
+@media(max-width:1024px){
   .presstoApp{
     overflow: hidden;
   }
+}
+
+.autoSlider{   
+    .swiper {
+        padding:0 16px;
+    }
+    .swiper-slide {
+      width:auto;
+    }
 }

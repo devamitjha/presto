@@ -57,7 +57,7 @@ const GoogleReviews = () => {
       </div>
       <div className="reviews">
         {loading ? (
-              Array.from({ length: 7 }).map((_, index) =>  (                
+              Array.from({ length: 6 }).map((_, index) =>  (                
                 <div className="review skelton-ui" key={index}>
                   <div className="ph-item left-side">
                     <div className="leftitem">
@@ -83,7 +83,7 @@ const GoogleReviews = () => {
                 </div>
               ))
           ) : (
-            filteredReviews.slice(0, 7).map((review) => (
+            filteredReviews.slice(0, 6).map((review) => (
               <div className="review" key={review.node.id}>
                 <Link className="left" to={review.node.permalink} target="_blank" rel="noopener noreferrer">
                   <img src={review.node.authorAvatar} alt={review.node.authorName} className="avatar" />
