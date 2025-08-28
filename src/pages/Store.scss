@@ -158,23 +158,32 @@
        align-items: start;
        width:100%;
        gap:4rem;
+       @media(max-width:1024px){
+        flex-direction: column;
+       }
        .leaflet-bottom{
-        &.leaflet-right{
-            display:none!important;
-        }
+            &.leaflet-right{
+                display:none!important;
+            }
        }
        .section-store-map{
             width:calc(50% - 2rem);
             height:100%;
             @extend .d-flex; 
-            overflow: hidden;            
+            overflow: hidden;  
+            @media(max-width:1024px){
+                width:100%;
+            }          
        }
        .section-store-map-input{
             width:calc(50% - 2rem);
             height:100%;
             @extend .d-flex; 
             flex-direction: column;
-            align-items: start;            
+            align-items: start;  
+            @media(max-width:1024px){
+                width:100%;
+            }          
             h4{
                 @extend .heading-3;
                 font-weight: 400;

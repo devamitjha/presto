@@ -37,11 +37,17 @@
                     font-weight: 400;
                     color:$white;
                     margin-bottom:1rem;
+                    @media(max-width:1024px){
+                        text-align:left;
+                    }
                 }
                 p{
                     @extend .body-3;
                     color:$white;
                     margin-bottom:1rem;
+                    @media(max-width:1024px){
+                        text-align:left;
+                    }
                 }
                 .link{
                     @extend .d-flex;
@@ -49,6 +55,9 @@
                     color:$white;
                     text-transform: uppercase;
                     cursor: pointer;
+                    @media(max-width:1024px){
+                        justify-content: start;
+                    }
                 }
             }
             &.mobile-width{
@@ -82,20 +91,16 @@
     }
 }
 
-.six-columns{
-    &.center{   
-       padding:0;    
-        &.autoSlider{
-            .swiper{
-                padding:0 15px;
-            }
-        }
-    }
-}
 @media(max-width:825px){
     .six-columns{
         &.center{
+            padding:0;  
             margin-top:2.5rem;
+            &.autoSlider{
+                .swiper{
+                    padding:0 15px;
+                }
+            }
         }
     }
 }

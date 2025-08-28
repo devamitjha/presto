@@ -86,7 +86,7 @@ const GoogleReviews = () => {
             filteredReviews.slice(0, 6).map((review) => (
               <div className="review" key={review.node.id}>
                 <Link className="left" to={review.node.permalink} target="_blank" rel="noopener noreferrer">
-                  <img src={review.node.authorAvatar} alt={review.node.authorName} className="avatar" />
+                  <img src={review.node.authorAvatar} alt={review.node.authorName} className="avatar" referrerPolicy="no-referrer"/>
                   <div>
                     <div className="name">{review.node.authorName}</div>                    
                     <div className="stars"><StarRating rating={review.node.rating} /></div>

@@ -25,7 +25,7 @@ const MobileHeader = () => {
         <div className="container-fluid d-flex justify-content-between align-items-center">
           <div className="section-logo">
             <Link to="/">
-              <img src={Logo} alt="pressto" width="90px" />
+              <img src={Logo} alt="pressto" width="120px" />
             </Link>
           </div>
           <div className="d-flex align-items-center justify-content-end">

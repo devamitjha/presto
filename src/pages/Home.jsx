@@ -19,6 +19,7 @@ import { brandRecognition } from '../api/brandRecognition';
 import { carePartners } from '../api/carePartners';
 import AnimatedCard from '../components/motionCard/AnimatedCard';
 import useWindowSize from '../hooks/useWindowSize';
+import { ArrowDown } from 'lucide-react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -259,6 +260,11 @@ const Home = () => {
       }      
       
       <Client />
+      {
+        width <1025 &&  <div className="d-flex justify-center-center align-items-center mt-4 mb-5">
+                          <div className="text-uppercase btn-lg rounded-pill py-3 px-4 border border-secondary readReviews">Read Reviews <span className="d-inline-block ml-1"><ArrowDown size={20}/></span></div> 
+                        </div>
+      }
       <SixColumnlayout />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" size="small"/>
       <SixColumnlayoutCenter image={["service-tshirt.jpg", "service-bag.jpg"]}/>

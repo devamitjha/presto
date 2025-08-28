@@ -7,6 +7,7 @@ import SuccessMessage from './multiStepsForm/SuccessMessage';
 import { toast } from 'react-toastify';
 import "./BookNow.scss";
 import { useNavigate } from 'react-router';
+import emailjs from "emailjs-com";
 
 //services 
 import Exp6 from "../assets/images/exp/exp-6.jpg";
@@ -96,31 +97,56 @@ const BookNow = () => {
   };
 
   const handleSubmit = async () => {
-    if (!validateStep()) return;
+  if (!validateStep()) return;
 
-    try {
-      localStorage.setItem('formData', JSON.stringify(formData));
-      // const response = await fetch('https://example.com/api/submit-form', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // });
+  try {
+    // Save form data locally if needed
+    localStorage.setItem("formData", JSON.stringify(formData));
 
-      // if (!response.ok) throw new Error('Submission failed');
+    // Send email with EmailJS
+    await emailjs.send(
+      "service_r4xqjrl",   // replace with your EmailJS Service ID
+      "template_57923u2",  // replace with your EmailJS Template ID
+      {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        city: formData.city,
+        address: formData.address,
+        pickupDate: formData.pickupDate,
+        pickupTime: formData.pickupTime,
+        serviceCounts: JSON.stringify(formData.serviceCounts),
+        instructions: formData.instructions,
+      },
+      "cawbEAs7EEHSVWlQI"    // replace with your EmailJS Public Key
+    );
 
-      toast.success('Form submitted successfully!', { position: 'top-center', autoClose: 3000 });
-      setIsSubmitted(true);
-      setFormData({
-        name: '', email: '', phone: '',
-        city: '', address: '',
-        pickupDate: '', pickupTime: '',
-        serviceCounts: {}, instructions: ''
-      });
-      setStep(1);
-    } catch (error) {
-      toast.error('Error submitting form: ' + error.message, { position: 'top-center', autoClose: 3000 });
-    }
-  };
+    toast.success("Form submitted successfully!", {
+      position: "top-center",
+      autoClose: 3000,
+    });
+
+    // Reset state
+    setIsSubmitted(true);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      city: "",
+      address: "",
+      pickupDate: "",
+      pickupTime: "",
+      serviceCounts: {},
+      instructions: "",
+    });
+    setStep(1);
+  } catch (error) {
+    toast.error("Error submitting form: " + error.text || error.message, {
+      position: "top-center",
+      autoClose: 3000,
+    });
+  }
+};
 
   return (
     <div className="booknowsheet mt-5">

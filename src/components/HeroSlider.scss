@@ -64,15 +64,36 @@
 
   .slick-dots {
     bottom: 15px;
-    li button:before {
-      font-size: 12px;
-      color: $white;
-      opacity: 0.7;
+    li button{
+      border:1px solid $white;
+      border-radius: 100%;
+      position: relative;
+      width:14px;
+      height:14px;
+      @media(max-width:525px){
+          width:10px;
+          height:10px;
+      }
+      &:before {
+        font-size: 18px;
+        color: $gray400;
+        opacity: 0.7;
+        left: 52%;
+        top: 55%;
+        transform: translate(-50%, -50%);
+        @media(max-width:525px){
+          font-size: 14px;
+        }
+      }
     }
 
-    li.slick-active button:before {
-      color: $accent;
-      opacity: 1;
+    li.slick-active{
+      button{
+        &:before {
+          color: $primary-500;
+          opacity: 1;
+        }
+      }
     }
   }
 

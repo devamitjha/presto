@@ -8,6 +8,13 @@ import { setOpenBookNow } from "../redux/slices/sheetSlice";
 import "./About.scss";
 import SixColumnlayoutCenter from '../components/SixColumnlayoutCenter';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import {Pagination } from 'swiper/modules';
+
+import useWindowSize from '../hooks/useWindowSize';
+
 
 //experience
 import { Button } from '../components/common/Button';
@@ -30,38 +37,38 @@ const VisionaryMan = () => {
       <Heading title="Meet our Visionary Man" />
       <div className="visionary-section">
         <div className="visionary-content">
-        <div className="image-container">
-          <Image
-            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
-            src="leader.jpg"
-            width={868}
-            height={780}
-            alt="Yvo Metzelaar"
-          />
-          <div className="caption">
-            <strong>Yvo Metzelaar</strong>
-            <span>Managing Director, Pressto India</span>
+          <div className="image-container mobile">
+            <Image
+              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+              src="leader.jpg"
+              width={868}
+              height={780}
+              alt="Yvo Metzelaar"
+            />
+            <div className="caption">
+              <strong>Yvo Metzelaar</strong>
+              <span>Managing Director, Pressto India</span>
+            </div>
           </div>
-        </div>
-        <div className="text-content">
-          <div className="block mission">
-            <h3>Mission</h3>
-            <p>
-              Our mission is to deliver premium, personalized wardrobe care with precision,
-              passion, and integrity, ensuring every garment, accessory, and home textile receives
-              expert attention, so our customers always look and feel their best.
-            </p>
+          <div className="text-content">
+            <div className="block mission">
+              <h3>Mission</h3>
+              <p>
+                Our mission is to deliver premium, personalized wardrobe care with precision,
+                passion, and integrity, ensuring every garment, accessory, and home textile receives
+                expert attention, so our customers always look and feel their best.
+              </p>
+            </div>
+            <div className="block vision">
+              <h3>Vision</h3>
+              <p>
+                To be the leading wardrobe care service provider in India while servicing
+                stylish individuals through quality cleaning methods and processes out of attractive,
+                convenient and transparent locations combined with courteous and knowledgeable staff.
+              </p>
+            </div>
           </div>
-          <div className="block vision">
-            <h3>Vision</h3>
-            <p>
-              To be the leading wardrobe care service provider in India while servicing
-              stylish individuals through quality cleaning methods and processes out of attractive,
-              convenient and transparent locations combined with courteous and knowledgeable staff.
-            </p>
           </div>
-        </div>
-        </div>
       </div>
     </section>
   );
@@ -74,24 +81,48 @@ const items = [
   { img: "sb-4.jpg", label: "Sustainability heart" },
 ];
 
-const WhatWeStandBy = () => {
+const WhatWeStandBy = () => { 
+  const { width } = useWindowSize();
   return (
-    <section className="section-container">
+    <section className="section-container mobileSliderContainer">
       <Heading title="What we stand by" />
-      <div className="what-we-stand-by">
-          <div className="grid-container">
-            {items.map((item, index) => (
-              <div className="grid-item" key={index}>
-                 <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
-                    src={item.img}
-                    alt={item.label}
-                  />
-                <div className="overlay">{item.label}</div>
-              </div>
-            ))}
-          </div>
-      </div>      
+      <div className="what-we-stand-by autoSlider">
+      {
+             width >825 ?
+                    <div className="grid-container">
+                      {items.map((item, index) => (
+                        <div className="grid-item" key={index}>
+                          <Image
+                              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                              src={item.img}
+                              alt={item.label}
+                            />
+                          <div className="overlay">{item.label}</div>
+                        </div>
+                      ))}
+                    </div>
+             :
+             <Swiper
+                slidesPerView={'auto'}
+                spaceBetween={15}
+                modules={[Pagination]}
+                className="slider"
+              >    
+                      {items.map((item, index) => (
+                        <SwiperSlide>
+                          <div className="gridItem" key={index}>
+                            <Image
+                                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                                src={item.img}
+                                alt={item.label}
+                              />
+                            <div className="overlay">{item.label}</div>
+                          </div>
+                        </SwiperSlide>
+                      ))}             
+              </Swiper>
+          }  
+          </div>          
     </section>
   );
 };
@@ -140,10 +171,11 @@ const About = () => {
       </div>
       <WhatWeStandBy />
       <SixColumnlayoutCenter image={["whatwedo1.jpg", "whatwedo2.jpg"]}/>
-      <div className="section-container">
+      <div className="section-container luxaryExperience">
         <Heading title="Experience Pressto" />
         <div className="section-luxaryExperience-item">
           <div className="exp-item">
+            <h3 className="only-mobile">Locate Store Near you</h3>
             <div className="img-container">
               <Image
                 urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
@@ -154,12 +186,13 @@ const About = () => {
               />
             </div>
             <div className="exp-content">
-              <h3>Locate Store Near you</h3>
+              <h3 className="only-desktop">Locate Store Near you</h3>
               <p>Find your nearest Pressto and step into effortless, premium care</p>
                <Button title="Find Now" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToStoretPage}/>
             </div>
           </div>
           <div className="exp-item">
+            <h3 className="only-mobile pickme">Pickup & Drop</h3>
             <div className="img-container">
               <Image
                 urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
@@ -170,7 +203,7 @@ const About = () => {
               />
             </div>
             <div className="exp-content">
-              <h3>Pickup & Drop</h3>
+              <h3 className="only-desktop">Pickup & Drop</h3>
               <p>Schedule a pickup and let premium care come to you.</p>
                <Button title="Book an Appointment" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage}/>
             </div>
