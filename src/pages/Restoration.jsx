@@ -4,6 +4,7 @@ import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
 import { Helmet } from 'react-helmet';
 import { Image } from '@imagekit/react';
+import useWindowSize from '../hooks/useWindowSize';
 
 
 
@@ -39,6 +40,22 @@ const sliderData = [
     title: "Slider 3"
   }
 ];
+
+const sliderDataMobile = [
+  {    
+    image: "mobile/service/Restoration/slider-2.jpg",
+    title: "Slider 2"
+  },
+  {    
+    image: "mobile/service/Restoration/slider-1.jpg",
+    title: "Slider 1"
+  }, 
+  {    
+    image: "mobile/service/Restoration/slider-3.jpg",
+    title: "Slider 3"
+  }
+];
+
 
 
 
@@ -76,19 +93,22 @@ const HelmetMeta = () => (
   </Helmet> 
 );
 
-const Restoration = () => { 
+const Restoration = () => {  
+   const { width } = useWindowSize(); 
   return (
     <>
       <HelmetMeta />
-      <div className="section-container">
-        <Heading title="Carry the Mint Look" />
-        <StackedSlider sliderData={sliderData} />      
+      <div className="section-container serviceSlider">
+        <Heading title="Carry the Mint Look" />   
+        {
+          width >700 ? <StackedSlider sliderData={sliderData}/>  : <StackedSlider sliderData={sliderDataMobile}/>
+        }  
       </div>
       <div className="section-container px-0">
         <div className="center-banner">
           <FullWidthBackgroundVideo
             src= "https://ik.imagekit.io/devamitjha/pressto/video/Shoes-and-bag.mp4"
-            poster="/images/poster.jpg"
+            poster="https://ik.imagekit.io/devamitjha/pressto/video/poster-re-3.jpg"
           />
           <div className="info">
             <h4>Beyond Repair</h4>

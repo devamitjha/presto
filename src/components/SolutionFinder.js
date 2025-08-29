@@ -6,7 +6,7 @@ import './SolutionFinder.scss';
 
 // --- Images ---
 
-const SolutionFinder = ({ selected }) => {
+const SolutionFinder = ({ selected }) => { 
   const dispatch = useDispatch();
   const selectedService = useSelector((state) => state.service.selectedService) || selected;
   const [material, setMaterial] = useState('');

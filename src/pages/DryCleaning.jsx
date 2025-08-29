@@ -4,6 +4,7 @@ import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
 import { Helmet } from 'react-helmet';
 import { Image } from '@imagekit/react';
+import useWindowSize from '../hooks/useWindowSize';
 
 //slider
 
@@ -37,6 +38,25 @@ const sliderData = [
   },
   {    
     image: "service/DryCleaning/slider-4.jpg",
+    title: "Slider 4"
+  }
+];
+
+const sliderDataMobile = [
+  {    
+    image: "mobile/service/DryCleaning/dc-slider-1.jpg",
+    title: "Slider 2"
+  },
+  {    
+    image: "mobile/service/DryCleaning/dc-slider-2.jpg",
+    title: "Slider 1"
+  },  
+  {    
+    image: "mobile/service/DryCleaning/dc-slider-3.jpg",
+    title: "Slider 3"
+  },
+  {    
+    image: "mobile/service/DryCleaning/dc-slider-4.jpg",
     title: "Slider 4"
   }
 ];
@@ -80,18 +100,21 @@ const HelmetMeta = () => (
 );
 
 const DryCleaning = () => {   
+  const { width } = useWindowSize(); 
   return (
     <>
       <HelmetMeta />
-      <div className="section-container">
-        <Heading title="Carry the Mint Look" />
-        <StackedSlider sliderData={sliderData}/>      
+      <div className="section-container serviceSlider">
+        <Heading title="Carry the Mint Look" /> 
+        {
+          width >700 ? <StackedSlider sliderData={sliderData}/>  : <StackedSlider sliderData={sliderDataMobile}/>
+        }    
       </div>
       <div className="section-container px-0">
         <div className="center-banner">
           <FullWidthBackgroundVideo
             src= "https://ik.imagekit.io/devamitjha/pressto/video/dry-cleaning.mp4"
-            poster="/images/poster.jpg"
+            poster="https://ik.imagekit.io/devamitjha/pressto/video/poster-d.jpg"
           />
           <div className="info">
             <h4>Beyond Clean</h4>
@@ -100,7 +123,7 @@ At Pressto, dry cleaning is more than just a service - it’s a science. Our adv
           </div>
         </div>
       </div>
-      <div className="section-container">
+      <div className="section-container solution">
         <Heading title="Find Solution to your Problem" />
         <SolutionFinder selected="dry-cleaning" />        
       </div>

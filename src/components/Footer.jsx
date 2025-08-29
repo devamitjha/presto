@@ -8,10 +8,12 @@ import {
   Youtube,
 } from "lucide-react";
 import logoBw from "../assets/images/footer-logo.png"
+import { useLocation } from 'react-router';
 
 const Footer = () => {
+  const { pathname } = useLocation();
   return (
-    <div className="footer">
+    <div className={`footer ${pathname === "/store" ? "store-footer" : ""}`}>
       <div className="item social">
         <img className="logo" src={logoBw } alt="logobw"/>
           <p className="follow-label">FOLLOW US</p>

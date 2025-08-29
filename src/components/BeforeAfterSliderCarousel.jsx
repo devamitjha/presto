@@ -10,7 +10,7 @@ function NavNextArrow(props) {
   const {onClick } = props;
   return (
     <div
-      className="navNext"
+      className="navNext ban"
       onClick={onClick}
     > <ChevronRight /></div>
   );
@@ -20,7 +20,7 @@ function NavPrevArrow(props) {
   const {onClick } = props;
   return (
     <div
-      className="navPrev"
+      className="navPrev bap"
       onClick={onClick}
     ><ChevronLeft /></div>
   );
@@ -41,6 +41,7 @@ const BeforeAfterSliderCarousel = ({imageData}) => {
     //touchMove: false,
     nextArrow: <NavNextArrow />,
     prevArrow: <NavPrevArrow />,
+      
   };
 
   return (

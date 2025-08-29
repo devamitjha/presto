@@ -75,7 +75,7 @@ const ReviewSlider = () => {
     console.log(reviews);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 700,
     autoplay: false,

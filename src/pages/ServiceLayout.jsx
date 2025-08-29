@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router';
+import useWindowSize from '../hooks/useWindowSize';
 import HeroSlider from '../components/HeroSlider';
 import "./service.scss";
+
 
 const dryCleaningSlider = [
     { src: "dc1.jpg", title: 'Look Good, Feel Great' },
@@ -9,14 +11,25 @@ const dryCleaningSlider = [
     { src: "dc3.jpg", title: 'Look Good, Feel Great' },
     { src: "dc4.jpg", title: 'Look Good, Feel Great' }
 ];
+const dryCleaningSliderMobile = [
+    { src: "dc1.jpg", title: 'Look Good, Feel Great' },
+    { src: "dc2.jpg", title: 'Look Good, Feel Great' },
+];
+
 const restorationSlider = [
     { src: "res1.jpg", title: 'Look Good, Feel Great' },
     { src: "res2.jpg", title: 'Look Good, Feel Great' },
     { src: "res3.jpg", title: 'Look Good, Feel Great' }
  ];
 
+ const restorationSliderMobile = [
+    { src: "res1.jpg", title: 'Look Good, Feel Great' },
+    { src: "res2.jpg", title: 'Look Good, Feel Great' },
+ ];
+
 
 const ServiceLayout = () => {
+  const { width } = useWindowSize();
   const location = useLocation();
   const dryCleaningRef = useRef(null);
   const restorationRef = useRef(null);
@@ -41,10 +54,10 @@ const ServiceLayout = () => {
     <div className="servicePage px-0">
       <div className="main-banner">
           {location.pathname.includes('dry-cleaning') && (
-            <HeroSlider heroImages={dryCleaningSlider} dir="service/DryCleaning"/>
+            width >1024 ?<HeroSlider heroImages={dryCleaningSlider} dir="service/DryCleaning" type="desktop"/> :<HeroSlider heroImages={dryCleaningSliderMobile} dir="service/DryCleaning" type="mobile"/>
           )}
           {location.pathname.includes('shoes-and-bag-restoration') && (
-            <HeroSlider heroImages={restorationSlider} dir="service/Restoration"/>
+            width >1024 ?<HeroSlider heroImages={restorationSlider} dir="service/Restoration" type="desktop"/> :<HeroSlider heroImages={restorationSliderMobile} dir="service/Restoration" type="mobile"/>
         )}   
       </div>
       <div className="service-tab">

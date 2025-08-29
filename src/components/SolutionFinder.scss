@@ -16,6 +16,9 @@
     max-width: 580px;
     width:90%;
     margin: 0 auto 2rem auto;
+    @media(max-width:700px){
+      width:100%;
+    }
   }
 
   .dropdown {
@@ -31,6 +34,10 @@
       color: $gray600;
       margin-bottom: 4px;
       padding: 1rem;
+      @media(max-width:700px){
+       margin-bottom:0;
+       padding: .5rem 1rem;
+      }
     }
 
     select {

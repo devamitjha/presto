@@ -90,8 +90,8 @@ const WhatWeStandBy = () => {
       {
              width >825 ?
                     <div className="grid-container">
-                      {items.map((item, index) => (
-                        <div className="grid-item" key={index}>
+                      {items.map((item) => (
+                        <div className="grid-item" key={item.label}>
                           <Image
                               urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
                               src={item.img}
@@ -108,9 +108,9 @@ const WhatWeStandBy = () => {
                 modules={[Pagination]}
                 className="slider"
               >    
-                      {items.map((item, index) => (
-                        <SwiperSlide>
-                          <div className="gridItem" key={index}>
+                      {items.map((item) => (
+                        <SwiperSlide key={item.label}>
+                          <div className="gridItem">
                             <Image
                                 urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
                                 src={item.img}

@@ -3,6 +3,12 @@ import { Helmet } from "react-helmet";
 import "./Store.scss";
 import StoreLocator from '../components/common/StoreLocator';
 import Heading from '../components/common/Heading';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import {Pagination } from 'swiper/modules';
+
+import useWindowSize from '../hooks/useWindowSize';
 
 //services 
 import Experties from '../components/Experties';
@@ -34,11 +40,13 @@ const items = [
 ];
 
 const Benefits = () => {
+  const { width } = useWindowSize();
   return (
-    <section className="section-container">
+    <section className="section-container benefits">
       <Heading title="When you choose Pressto, you choose…" />
       <div className="you-choose">
-          <div className="grid-container">
+        {width > 825 ?
+            <div className="grid-container">
             {items.map((item, index) => (
               <div className="grid-item" key={index}>
                 <div className="item-image">
@@ -51,6 +59,36 @@ const Benefits = () => {
               </div>
             ))}
           </div>
+        :
+          <div className="slider-container autoSlider">
+
+            <Swiper
+              slidesPerView={'auto'}
+              spaceBetween={15}
+              modules={[Pagination]}
+              className="slider"
+            >
+              {items.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div className="grid-item" key={index}>
+                    <div className="item">
+                      <div className="item-image">
+                        <img src={item.img} alt={item.alt} width="148" height="148"/>
+                      </div>
+                      <div className="details">
+                        <h4>{item.title}</h4>
+                        <p>{item.lable}</p>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide> 
+              ))}                              
+            </Swiper>
+
+
+            
+          </div>
+        }
       </div>      
     </section>
   );
@@ -62,7 +100,7 @@ const CustomerReviewHighlight = () => {
     <div className="section-container">
       <div className="customer-highlight">
         {/* Left */}
-        <div className="left">
+        <div className="left lg-hide">
           <p className="count"><ScrollAnimatedNumber value={10000} format={{ notation: 'compact' }} />+</p>
           <p className="label">Happiness Delivered</p>
         </div>
@@ -73,7 +111,7 @@ const CustomerReviewHighlight = () => {
         </div>
 
         {/* Right */}
-        <div className="right">
+        <div className="right lg-hide">
           <div className="avatars">
             <img src="https://i.pravatar.cc/40?img=1" alt="user" />
             <img src="https://i.pravatar.cc/40?img=2" alt="user" />

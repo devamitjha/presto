@@ -4,6 +4,11 @@
   max-width: 900px;
   border-radius: 16px;
   border:1px solid #C8C8C8;
+  @media(max-width:700px){
+    width: 80%;
+    border:none;
+    margin-top:3rem;
+  }
 
   .slider-item {
     display: flex;
@@ -26,5 +31,15 @@
   .slick-prev,
   .slick-next {
     z-index: 10;
+  }
+  .slick-slider .navNext.ban{
+      right: -2rem;
+      width: 30px;
+      height: 30px;
+  }
+  .slick-slider .navPrev.bap{
+      left: -2rem;
+      width: 30px;
+      height: 30px;
   }
 }
