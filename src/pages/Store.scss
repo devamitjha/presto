@@ -232,6 +232,18 @@
             }
         }
     }
+    @media(max-width:550px){
+        .reviewslider{
+            width: 75%;
+            .review-card{
+                padding:1rem;
+                flex-direction: column;
+                .user-info{
+                    flex-direction: column;
+                }
+            }
+        }
+    }
     
 }
 

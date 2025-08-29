@@ -9,7 +9,13 @@
     max-width:100%;
     width: 100%;
     .swiper{
-        height: 65vh;
+        height: 60vh;
+        width:100%;
+    }
+  }
+  @media(max-width:360px){   
+    .swiper{
+        height: 50vh;
         width:100%;
     }
   }

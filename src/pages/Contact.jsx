@@ -24,7 +24,7 @@ const CustomerReviewHighlight = () => {
     <div className="section-container">
       <div className="customer-highlight">
         {/* Left */}
-        <div className="left">
+        <div className="left lg-hide">
           <p className="count"><ScrollAnimatedNumber value={10000} format={{ notation: 'compact' }} />+</p>
           <p className="label">Happiness Delivered</p>
         </div>
@@ -36,7 +36,7 @@ const CustomerReviewHighlight = () => {
         </div>
 
         {/* Right */}
-        <div className="right">
+        <div className="right lg-hide sm-show">
           <div className="avatars">
             <img src="https://i.pravatar.cc/40?img=1" alt="user" />
             <img src="https://i.pravatar.cc/40?img=2" alt="user" />
@@ -119,6 +119,7 @@ const Contact = () => {
         <Heading title="Experience Pressto" />
         <div className="section-luxaryExperience-item">
           <div className="exp-item">
+            <h3 className="mobile-only">Locate Store Near you</h3>
             <div className="img-container">
               <Image
                 urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
@@ -129,12 +130,13 @@ const Contact = () => {
               />
             </div>
             <div className="exp-content">
-              <h3>Locate Store Near you</h3>
+              <h3 className="desktop-only">Locate Store Near you</h3>
               <p>Find your nearest Pressto and step into effortless, premium care</p>
                <Button title="Find Now" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToStoretPage}/>
             </div>
           </div>
           <div className="exp-item">
+            <h3 className="mobile-only">Pickup & Drop</h3>
             <div className="img-container">
               <Image
                 urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
@@ -145,7 +147,7 @@ const Contact = () => {
               />
             </div>
             <div className="exp-content">
-              <h3>Pickup & Drop</h3>
+              <h3 className="desktop-only">Pickup & Drop</h3>
               <p>Schedule a pickup and let premium care come to you.</p>
                <Button title="Book an Appointment" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage}/>
             </div>

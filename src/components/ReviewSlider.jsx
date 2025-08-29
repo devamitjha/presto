@@ -68,11 +68,6 @@ const ReviewSlider = () => {
     }, []);
     
     if (error) return <p>Error: {error}</p>;
-    const filteredReviews = reviews.filter(
-    (review) => review?.node?.rating > 3
-    );
-
-    console.log(reviews);
 
   const settings = {
     dots: false,

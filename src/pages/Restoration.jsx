@@ -5,6 +5,10 @@ import { expertiseData } from '../api/expertiseData';
 import { Helmet } from 'react-helmet';
 import { Image } from '@imagekit/react';
 import useWindowSize from '../hooks/useWindowSize';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import {Pagination } from 'swiper/modules';
 
 
 
@@ -60,25 +64,53 @@ const sliderDataMobile = [
 
 
 const WhatWeStandBy = () => {
+   const { width } = useWindowSize();
   return (
-    <section className="section-container">
+    <section className="section-container mobileSliderContainer">
       <Heading title="What we stand by" />
-      <div className="what-we-stand-by">
-          <div className="grid-container">
-            {items.map((item, index) => (
-              <div className="grid-item" key={index}>
-                <Image
-                  urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
-                  src={item.img}
-                  alt="{item.title}"
-                />
-                <div className="overlay">
-                  <h4>{item.title}</h4>
-                  <p>{item.info}</p>
+      <div className="what-we-stand-by autoSlider">
+        {
+          width >825 ?
+            <div className="grid-container">
+              {items.map((item, index) => (
+                <div className="grid-item" key={index}>
+                  <Image
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                    src={item.img}
+                    alt="{item.title}"
+                  />
+                  <div className="overlay">
+                    <h4>{item.title}</h4>
+                    <p>{item.info}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          :         
+            <Swiper
+              slidesPerView={'auto'}
+              spaceBetween={15}
+              modules={[Pagination]}
+              className="slider"
+            >    
+                    {items.map((item, index) => (
+                      <SwiperSlide key={index}>
+                        <div className={`gridItem gridItem-${index}`}>
+                         <Image
+                            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                            src={item.img}
+                            alt="{item.title}"
+                          />
+                          <div className="overlay">
+                            <h4>{item.title}</h4>
+                            <p>{item.info}</p>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    ))}             
+            </Swiper>
+        }
+          
       </div>      
     </section>
   );
@@ -117,14 +149,14 @@ From scuffed leather to faded fabrics, we bring your favourite shoes and bags ba
           </div>
         </div>
       </div>
-      <div className="section-container">
+      <div className="section-container solution">
         <Heading title="Find Solution to your Problem" />
         <SolutionFinder selected="restoration" />
       </div>
       <WhatWeStandBy />
       <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
       <div className="section-container">
-        <Heading title="Locate Us" />
+        <Heading title="Find Store Near You" />
         <LocateUsMap/>
       </div>
     </>
