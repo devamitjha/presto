@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import logoBw from "../assets/images/footer-logo.png"
 import { useLocation } from 'react-router';
+import ContactForm from './ContactForm';
 
 const Footer = () => {
   const { pathname } = useLocation();
@@ -58,15 +59,7 @@ const Footer = () => {
         <Link to="/about">About us</Link>
         <Link to="/contact">Contact Us</Link>
       </div>
-      <div className="item contact-form">
-          <h2>Contact Us</h2>
-          <p>Subscribe and be the first one to know our new updates</p>
-          <form>
-            <input type="text" placeholder="Your Full Name" />
-            <input type="email" placeholder="Your Email Address" />
-            <button type="submit">CONNECT NOW</button>
-          </form>
-      </div>
+      <ContactForm/>
     </div>
   )
 }

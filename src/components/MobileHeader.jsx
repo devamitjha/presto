@@ -29,7 +29,9 @@ const MobileHeader = () => {
             </Link>
           </div>
           <div className="d-flex align-items-center justify-content-end">
-            <img src={MobileIcon} alt="Mobile Phone" />
+            <a href="tel:+911800229199">
+              <img src={MobileIcon} alt="Mobile Phone" />
+            </a>
             <span className="menu-icon ms-4" onClick={() => setIsOpen(true)}>
               <Menu />
             </span>

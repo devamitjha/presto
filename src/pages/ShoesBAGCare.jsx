@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Blog.scss';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router';
 
 const HelmetMeta = () => (
   <Helmet>
@@ -30,20 +31,25 @@ const FeaturedPost = ({ posts }) => {
   const author = post._embedded?.author?.[0]?.name || 'Admin';
 
   return (
-    <div key={post.id} className="blog-hero rounded overflow-hidden position-relative">
-      <img src={image} alt={title} className="img-fluid" />
+    <Link to={`/blog/${post.slug}`} key={post.id} className="blog-hero rounded overflow-hidden position-relative">
+      <div className="hero-img feature">
+        <img src={image} alt={title} className="img-fluid" />
+      </div>
       <div className="blog-title-info position-absolute z-2">
         <h3 className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
         <p className="details">{excerpt}</p>
-        <div className="tags flex justify-content-start align-items-center">
-          {post.tags.length ? post.tags.map((tagId) => <span key={tagId}>Tag {tagId}</span>) : <span>No Tags</span>}
-        </div>
+        {
+          post.tags.length > 0 && 
+            <div className="tags flex justify-content-start align-items-center">
+              {post.tags.map((tagId) => <span key={tagId}>Tag {tagId}</span>)}
+            </div>
+        }
         <div className="blog-meta">
           <div className="date flex">Date: {date}</div>
           <div className="editor flex">Written By: {author}</div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -63,8 +69,8 @@ const PopularPosts = () => {
   return (
     <div className="popular-container">
       {popular.map((post) => (
-        <div className="row popular-row mb-4" key={post.id}>
-          <div className="col-4">
+        <Link to={`/blog/${post.slug}`} className="row popular-row mb-4" key={post.id}>
+          <div className="col4">
             <div className="popular-img-thumb">
               <img
                 src={
@@ -76,7 +82,7 @@ const PopularPosts = () => {
               />
             </div>
           </div>
-          <div className="col-8">
+          <div className="col8">
             <div className="popular-info">
               <h3 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
               <div className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
@@ -87,7 +93,7 @@ const PopularPosts = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
@@ -104,14 +110,14 @@ const AllPosts = ({ posts }) => {
     const author = post._embedded?.author?.[0]?.name || 'Admin';
 
     return (
-      <div className="blog-hero rounded overflow-hidden position-relative" key={post.id}>
+      <Link to={`/blog/${post.slug}`} className="blog-hero rounded overflow-hidden position-relative" key={post.id}>
         <img src={image} alt={title} className="img-fluid" />
         <div className="blog-title-info position-absolute z-2">
           <h3 className="main-title" dangerouslySetInnerHTML={{ __html: title }} />
           <p className="details excerpt">{excerpt}</p>
           {
             post.tags.length > 0 && <div className="tags flex justify-content-start align-items-center">
-                                  {post.tags.length && post.tags.map((tagId) => <span key={tagId}>Tag {tagId}</span>)}
+                                  {post.tags.map((tagId) => <span key={tagId}>Tag {tagId}</span>)}
                                 </div>
           }
           
@@ -120,7 +126,7 @@ const AllPosts = ({ posts }) => {
             <div className="editor flex">Written By: {author}</div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   });
 };
@@ -157,7 +163,7 @@ const GridSkeleton = () => (
 );
 
 
-const Blog = () => {
+const Blog = () => { 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -180,15 +186,15 @@ const Blog = () => {
       <div className="section-top mt-5">
         {loading ? (
           <div className="row">
-            <div className="col-12 col-xl-8">
+            <div className="col-12 col-xl-8 latest">
               <div className="title fs-2 mb-4">Latest Posts</div>
               <FeaturedSkeleton />
             </div>
-            <div className="col-12 col-xl-4">
+            <div className="col-12 col-xl-4 popular">
               <div className="title fs-2 mb-4">Popular Posts</div>
               <PopularSkeleton />
             </div>
-            <div className="row mt-4 blog-grid-container">
+            <div className="row mt-4 blog-grid-container allposts">
               <div className="grid">
                 <GridSkeleton />
               </div>
@@ -197,16 +203,16 @@ const Blog = () => {
         ) : posts.length > 0 ? (
           <>
             <div className="row">
-              <div className="col-12 col-xl-8">
+              <div className="col-12 col-xl-8 latest">
                 <div className="title fs-2 mb-4">Latest Posts</div>
                 <FeaturedPost posts={posts} />
               </div>
-              <div className="col-12 col-xl-4">
+              <div className="col-12 col-xl-4 popular">
                 <div className="title fs-2 mb-4">Popular Posts</div>
                 <PopularPosts />
               </div>
             </div>
-            <div className="row mt-4 blog-grid-container">
+            <div className="row mt-4 blog-grid-container allposts">
               <div className="grid">
                 <AllPosts posts={posts} />
               </div>

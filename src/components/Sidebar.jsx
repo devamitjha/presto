@@ -100,14 +100,14 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 <div className="d-flex align-items-center s-item">
                                     <Image
                                         urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
-                                        src="exp-6.jpg"
+                                        src="exp-7.jpg"
                                         width={70}
                                         height={70}
                                         alt="exp6"
                                     />
                                     <div className="sidebar-service ms-3 pe-2">
-                                        <div>Locate Store Near you</div>
-                                        <p>Find your nearest Pressto and step into effortless, premium care</p>
+                                        <div className="title">Pickup & Drop</div>
+                                        <p>Schedule a pickup and let premium care come to you.</p>
                                     </div>
                                 </div>  
                                 <span className="service-icon"> <ChevronRight size={16} /></span> 
@@ -116,10 +116,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     </div>
                 </div>
                 <div className="abs-btn text-center p-3 bg-white border-top d-flex justify-content-between align-items-center">
-                    <div className="icon-btn contact-btn">
+                    <a href="tel:+911800229199" className="icon-btn contact-btn">
                         <span>Contact Us</span>
-                        <Phone size={16}/>            
-                    </div>
+                        <Phone size={16}/>   
+                    </a>
                     <div className="icon-btn book-now" onClick={goToBookNowPage}>
                         <span>Book Now</span>
                         <BookNowIcon />                
@@ -131,3 +131,4 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 };
 
 export default Sidebar;
+

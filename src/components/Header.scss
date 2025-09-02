@@ -45,23 +45,68 @@
                     padding:0;
                     list-style: none;
                     li{
-                        a{
+                        position:relative;
+                        a,span{
                             font-size:1.125rem;
                             font-weight: 300;
                             &.active{
                                 color: $black;
                                 font-weight: 400;
                             }
+                            &:hover{
+                                cursor: pointer;
+                            }
                             @media(max-width:1280px){
                                font-size:1rem;
                             }
                         }
                         +li{
-                            margin-left:$lg;
+                            margin-left:32px;
                         }
+                        ul.nav-dropdown {
+                                position: absolute;
+                                top: 120%;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                opacity: 0; 
+                                pointer-events: none; 
+                                display: flex; 
+                                flex-direction: column;
+                                justify-content: start;
+                                align-items: flex-start;
+                                width: 220px;
+                                background: #fff; 
+                                border-radius: 8px;
+                                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                                padding: 0.5rem 0;
+                                z-index: 99;
+                                transition: all .3s ease-in-out;
+                                li {
+                                    width: 100%;
+                                    text-align: left;
+                                    margin-left: 0;
+                                    a {
+                                        display: block;
+                                        width: 100%;
+                                        padding: 0.75rem 1rem;
+                                        color: #000;
+                                        text-decoration: none;
+                                        font-size: 1rem;
+
+                                        &:hover {
+                                            background: #f5f5f5;
+                                        }
+                                    }
+                                }
+                            }
+                            &:hover > ul.nav-dropdown {
+                                top: 100%;
+                                opacity: 1;
+                                pointer-events: auto;                               
+                            }
                     }
-                }
-                
+                    
+                }                
             }
         }
         .section-contact{
