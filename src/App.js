@@ -81,7 +81,7 @@ function App() {
             { path: "shoes-and-bag-care", element: <ShoesBAGCare /> },
           ],
         }, 
-        { path: '/blog/:category/:id', element: <BlogDetail /> },
+        { path: '/blog/:slug', element: <BlogDetail /> },
         // Fallback
         { path: '*', element: <PageNotFound /> },
       ],

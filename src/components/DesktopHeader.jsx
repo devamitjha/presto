@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link, useNavigate } from "react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { User } from "lucide-react";
+import { User, ChevronDown } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import { setOpenSheet, setOpenBookNow } from "../redux/slices/sheetSlice";
 import Logo from "../assets/images/logo.png";
@@ -65,10 +65,13 @@ const DesktopHeader = () => {
                   Stores
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/service/dry-cleaning" end>
-                  Services
-                </NavLink>
+              <li>                
+                  <span>Services</span>
+                  <ChevronDown />
+                <ul className="nav-dropdown">
+                  <li><NavLink to="/service/dry-cleaning" end>Drycleaning & Laundry</NavLink></li>
+                  <li><NavLink to="/service/shoes-and-bag-restoration" end>Shoe & Bag Care</NavLink></li>
+                </ul>
               </li>
               <li>
                 <NavLink to="/blog" end>

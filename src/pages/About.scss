@@ -331,8 +331,9 @@
             text-align: center;
         }
         &.luxaryExperience{
-            margin-top:40px;
-            padding:0 15px;
+           @media(max-width:1180px){
+                margin-top:40px;
+           }
         }
     }
    
