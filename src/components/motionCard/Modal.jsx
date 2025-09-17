@@ -23,13 +23,15 @@ const Modal = ({ item, onClose }) => {
         className="modal-card"
         onClick={(e) => e.stopPropagation()}
       >
+        <motion.div className="card-title">
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </motion.div>
         <Image
             urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
             src={item.img}
             alt={item.title}
-        />
-        <motion.h3 layoutId={`card-title-${item.id}`}>{item.title}</motion.h3>
-        <p>{item.description}</p>
+        />       
       </motion.div>
     </motion.div>
   );

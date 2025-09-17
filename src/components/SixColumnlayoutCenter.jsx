@@ -39,7 +39,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                       <div className="title-container">
                           <h4>Drycleaning & Laundry</h4>
                           <p>Combined with exquisite care & advanced technology to deliver perfection.</p>
-                          <Button title="Book Now" className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }/>
+                          <div className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }>Book Now</div>
                       </div>
                   </div>
                   <div className="item">
@@ -53,7 +53,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                       <div className="title-container black">
                           <h4>Shoe & Bag Care</h4>
                           <p>Restoring your shoes and bags with unrivaled precision</p>
-                          <Button title="Book Now" className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }/>
+                          <div className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }>Book Now</div>
                       </div>
                   </div>
               </StaggerOnView>
@@ -76,7 +76,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                           <div className="title-container">
                               <h4>Drycleaning & Laundry</h4>
                               <p>Combined with exquisite care & advanced technology to deliver perfection.</p>
-                              <Button title="Book Now" className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }/>
+                              <div className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }>Book Now</div>
                           </div>
                       </div>
                   </SwiperSlide>  
@@ -92,7 +92,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                         <div className="title-container black">
                             <h4>Shoe & Bag Care</h4>
                             <p>Restoring your shoes and bags with unrivaled precision</p>
-                            <Button title="Book Now" className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }/>
+                            <div className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }>Book Now</div>
                         </div>
                       </div>
                   </SwiperSlide>              

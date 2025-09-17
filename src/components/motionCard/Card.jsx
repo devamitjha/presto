@@ -16,7 +16,10 @@ const Card = ({ item, onClick }) => {
             src={item.img}
             alt={item.title}
         />
-        <motion.h3 layoutId={`card-title-${item.id}`}>{item.title}</motion.h3>
+        <motion.div className="card-title">
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </motion.div>
     </motion.div>
   );
 };

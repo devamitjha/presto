@@ -63,7 +63,7 @@ function App() {
             children: [
               { index: true, element: <Navigate to="/service/dry-cleaning" replace /> }, 
               { path: "dry-cleaning", element: <DryCleaning /> },
-              { path: "shoes-and-bag-restoration", element: <Restoration /> },
+              { path: "shoes-and-bag-care", element: <Restoration /> },
             ],
           }, 
         { path: '/prepaid-card', element: <PrepaidCard /> },
@@ -144,7 +144,7 @@ function App() {
 //               ),
 //             },
 //             {
-//               path: 'shoes-and-bag-restoration',
+//               path: 'shoes-and-bag-care',
 //               element: (
 //                 <Suspense fallback={<div>Loading...</div>}>
 //                   <Restoration />

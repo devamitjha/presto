@@ -15,7 +15,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
+  }  
   .blog-tab{
     white-space: nowrap;
     display: flex;
@@ -47,6 +47,8 @@
   }
   .section-top{
     .blog-hero{
+      display: block;
+      border-radius: 16px!important;
       .blog-title-info{
         width:100%;
         padding:20px;
@@ -93,7 +95,7 @@
         .hero-img{
           &.feature{
             height:70vh;
-            width:100%;
+            width:100%;            
           }           
           .img-fluid{
               width:100%;

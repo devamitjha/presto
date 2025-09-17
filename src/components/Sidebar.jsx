@@ -64,7 +64,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     {activeMenu === "service" && (
                         <div className="submenu ps-3 mt-2">
                         <NavLink to="/service/dry-cleaning" className="d-block my-2" end onClick={handleClose}><Dot /> Drycleaning & Laundry</NavLink>
-                        <NavLink to="/service/shoes-and-bag-restoration" className="d-block mb-2" end onClick={handleClose}><Dot />Shoe & Bag Care</NavLink>
+                        <NavLink to="/service/shoes-and-bag-care" className="d-block mb-2" end onClick={handleClose}><Dot />Shoe & Bag Care</NavLink>
                         </div>
                     )}
                     </div>

@@ -79,6 +79,9 @@
                     &.outlined{
                         border-color: $white;
                         color:$white;
+                        &:hover{
+                            border-color: $black;
+                        }
                     }
                 }
             }

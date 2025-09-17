@@ -107,8 +107,8 @@ const Contact = () => {
 
               <div className="contact-item">
                 <Globe size={16} />
-                <Link to="https://www.pressto.com/" target="_blank" rel="noreferrer">
-                  https://www.pressto.com/
+                <Link to="http://www.presstoindia.com" target="_blank" rel="noreferrer">
+                  http://www.presstoindia.com
                 </Link>
               </div>
             </div>

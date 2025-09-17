@@ -19,7 +19,7 @@ import { brandRecognition } from '../api/brandRecognition';
 import { carePartners } from '../api/carePartners';
 import AnimatedCard from '../components/motionCard/AnimatedCard';
 import useWindowSize from '../hooks/useWindowSize';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, X } from 'lucide-react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -30,13 +30,13 @@ import {Pagination } from 'swiper/modules';
 const SectionSpotlight = () => {
   const [open, setOpen] = useState(false)
   const spolightPopupItem = [
-    { id: 1, img: "1.jpg", description: 'Details for item one.' },
-    { id: 2, img: "2.jpg", description: 'Details for item one.' },
-    { id: 3, img: "3.jpg", description: 'Details for item one.' },
-    { id: 4, img: "4.jpg", description: 'Details for item one.' },
-    { id: 5, img: "5.jpg", description: 'Details for item one.' },
-    { id: 6, img: "6.jpg", description: 'Details for item one.' },
-    { id: 7, img: "7.jpg", description: 'Details for item one.' },
+    { id: 1, img: "1.jpg", title: "Title-1", description: 'Details for item one.' },
+    { id: 2, img: "2.jpg", title: "Title-2", description: 'Details for item two.' },
+    { id: 3, img: "3.jpg", title: "Title-3", description: 'Details for item three.' },
+    { id: 4, img: "4.jpg", title: "Title-4", description: 'Details for item four.' },
+    { id: 5, img: "5.jpg", title: "Title-5", description: 'Details for item five.' },
+    { id: 6, img: "6.jpg", title: "Title-6", description: 'Details for item six.' },
+    { id: 7, img: "7.jpg", title: "Title-7", description: 'Details for item seven.' },
   ];
 
   return (
@@ -90,7 +90,12 @@ const SectionSpotlight = () => {
             maxHeight * 0.9,
         ]}
         className="custom-bottom-sheet"
-        header={<div className="sheetHeader">Gallery</div>}
+        header={
+          <>
+            <div className="sheetHeader">Media & Mentions</div> 
+            <div className="closesheet" onClick={() => setOpen(false)}><X /></div>
+          </>
+        }
         footer={<div className="sheetFooter">© Pressto Gallery</div>}
       >
         <div className="sheetBody" style={{ marginTop: 0 }}>
@@ -112,7 +117,7 @@ const LuxaryExperience = () => {
   const { width } = useWindowSize();
   const navigate = useNavigate();
   const goToContactPage = () => {
-      navigate('/contact');
+      navigate('/about');
   };
   return (
     <section className="section-container luxaryExperience autoSlider">
@@ -150,7 +155,7 @@ const LuxaryExperience = () => {
                   <h4>About Us</h4>
                   <p>Best in Class Dry Cleaning for Luxury and Branded Clothes, You know who has been the face of the town.</p>
                 </div>
-                <Button title="Know More" className="btn btn-md base-btn outlined overflowHidden" GoTo={goToContactPage }/>
+                <div className="btn btn-md base-btn outlined overflowHidden" onClick={goToContactPage }>Know More</div>
               </div>
             </div>
           </div>

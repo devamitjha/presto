@@ -70,7 +70,7 @@ const DesktopHeader = () => {
                   <ChevronDown />
                 <ul className="nav-dropdown">
                   <li><NavLink to="/service/dry-cleaning" end>Drycleaning & Laundry</NavLink></li>
-                  <li><NavLink to="/service/shoes-and-bag-restoration" end>Shoe & Bag Care</NavLink></li>
+                  <li><NavLink to="/service/shoes-and-bag-care" end>Shoe & Bag Care</NavLink></li>
                 </ul>
               </li>
               <li>

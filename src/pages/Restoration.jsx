@@ -121,7 +121,7 @@ const HelmetMeta = () => (
     <title>Luxury Shoe & Bag Restoration - Premium Leather Care Specialists | Pressto</title>
     <meta name="description" content="Expert restoration for luxury shoes & designer bags. Precision leather care, suede cleaning & premium restoration services. Trusted by luxury fashion brands." />
     <meta name="keywords" content="luxury shoe restoration, premium bag care, leather care specialists, designer bag cleaning, suede restoration, luxury leather goods, premium shoe care, precision restoration, fashion brand trusted, leather repair services"/>
-    <link rel="canonical" href="https://www.presstoindia.com/service/shoes-and-bag-restoration" />
+    <link rel="canonical" href="https://www.presstoindia.com/service/shoes-and-bag-care" />
   </Helmet> 
 );
 

@@ -40,7 +40,7 @@ const ServiceLayout = () => {
       const timer = setTimeout(() => {
         if (location.pathname.includes('dry-cleaning') && dryCleaningRef.current) {
           dryCleaningRef.current.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-        } else if (location.pathname.includes('shoes-and-bag-restoration') && restorationRef.current) {
+        } else if (location.pathname.includes('shoes-and-bag-care') && restorationRef.current) {
           restorationRef.current.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
         }
         setUserClickedTab(false);
@@ -56,7 +56,7 @@ const ServiceLayout = () => {
           {location.pathname.includes('dry-cleaning') && (
             width >1024 ?<HeroSlider heroImages={dryCleaningSlider} dir="service/DryCleaning" type="desktop"/> :<HeroSlider heroImages={dryCleaningSliderMobile} dir="service/DryCleaning" type="mobile"/>
           )}
-          {location.pathname.includes('shoes-and-bag-restoration') && (
+          {location.pathname.includes('shoes-and-bag-care') && (
             width >1024 ?<HeroSlider heroImages={restorationSlider} dir="service/Restoration" type="desktop"/> :<HeroSlider heroImages={restorationSliderMobile} dir="service/Restoration" type="mobile"/>
         )}   
       </div>
@@ -72,10 +72,10 @@ const ServiceLayout = () => {
         <NavLink
           ref={restorationRef}
           className="btn btn-md base-btn outlined overflowHidden"
-          to="/service/shoes-and-bag-restoration"
+          to="/service/shoes-and-bag-care"
           onClick={() => setUserClickedTab(true)}
         >
-          Shoes & Bag Restoration
+          Shoe & Bag Care
         </NavLink>
       </div>
       <Outlet />
