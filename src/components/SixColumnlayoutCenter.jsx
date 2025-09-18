@@ -23,7 +23,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
         dispatch(setOpenBookNow(true));
     };
   return (
-    <section className="section-container six-columns center autoSlider">
+    <section className="section-container six-columns center autoSlider mb-120">
           <Heading title="What we do best" />
           {
              width >825 ?

@@ -14,8 +14,8 @@ const SixColumnlayout = () => {
     const goToBookNowPage = () => {
         dispatch(setOpenBookNow(true));
     };
-  return (
-    <section className="section-container six-columns">
+  return ( 
+    <section className="section-container six-columns rollOut mb-120">
           <Heading title="Roll Out with Freedom" />
           <StaggerOnView className="row">
               <div className="item">

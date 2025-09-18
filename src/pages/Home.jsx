@@ -25,6 +25,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import {Pagination } from 'swiper/modules';
+import Prestige from '../components/Prestige';
 
 // Spotlight Section
 const SectionSpotlight = () => {
@@ -40,7 +41,7 @@ const SectionSpotlight = () => {
   ];
 
   return (
-    <section className="section-container spotlight"> 
+    <section className="section-container spotlight mb-120"> 
       <Heading title="In the Spotlight" />
       <div className="spotlight-item">
         <div className="item">
@@ -76,7 +77,7 @@ const SectionSpotlight = () => {
               </div>
             ))}
           </div>
-          <div title="View Gallery" className="btn btn-md base-btn outlined overflowHidden" onClick={() => setOpen(true)}>View Gallery</div>
+          <div className="btn btn-md base-btn outlined overflowHidden" onClick={() => setOpen(true)}>View Gallery</div>
         </div>
       </div>
       <BottomSheet
@@ -120,7 +121,7 @@ const LuxaryExperience = () => {
       navigate('/about');
   };
   return (
-    <section className="section-container luxaryExperience autoSlider">
+    <section className="section-container luxaryExperience autoSlider mb-120">
       <Heading title="Luxury Experience Indeed" />
       {
         width >=820 ? 
@@ -223,7 +224,7 @@ const LuxaryExperience = () => {
 
 // Real Stories & Reviews Section
 const RealStories = () => (
-  <section className="section-container realStories">
+  <section className="section-container realStories mb-120">
     <Heading title="Real Stories, Real Trust" />
     <div className="real-container">
       <GoogleReviews />
@@ -271,13 +272,19 @@ const Home = () => {
                         </div>
       }
       <SixColumnlayout />
-      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" size="small"/>
+      <div className="slider-mb-168">
+        <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" size="small"/>
+      </div>
       <SixColumnlayoutCenter image={["service-tshirt.jpg", "service-bag.jpg"]}/>
       <RealStories />
       <SectionSpotlight />
-      <Experties title="The Prestige We've Pressed" data={carePartners} item="5" size="big"/>
+      <div className="slider-mb-168">
+        <Prestige title="The Prestige We've Pressed" data={carePartners} size="big"/>
+      </div>
       <LuxaryExperience />
-      <Experties title="Brand Recognition" data={brandRecognition} item="5" size="big"/>      
+      <div className="slider-mb-168">
+        <Experties title="Brand Recognition" data={brandRecognition} item="5" size="big"/>   
+      </div>   
     </section>
   );
 };

@@ -201,8 +201,8 @@ $amiri:"Amiri", serif;
 .heading-5{
     font-family: $kanit;
     font-weight:400;
-    font-size:28px;
-    line-height: 1.33;
+    font-size:32px;
+    line-height:1.5;
     @media(max-width:768px){
         font-size:25px;
         line-height: 1.32;
@@ -369,7 +369,7 @@ $amiri:"Amiri", serif;
     }
     &.btn-md{
         @extend .d-flex;
-        height: 48px;
+        height: 52px;
     }
     &.btn-sm{
         @extend .d-flex;
@@ -457,5 +457,19 @@ $amiri:"Amiri", serif;
    @extend .d-flex;
    width:40px;
    height:40px;
-
+}
+.my-24{
+    margin:24px 0;
+}
+.my-88{
+    margin:88px 0;
+}
+.mb-88{
+    margin-bottom:88px;
+}
+.mb-120{
+    margin-bottom:120px;
+}
+.slider-mb-168{
+    margin-bottom:168px;
 }

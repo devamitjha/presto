@@ -8,6 +8,7 @@ import Logo from "../assets/images/logo.png";
 import whatsApp from "../assets/images/whatsapp.png";
 import BookNowIcon from "./BookNowIcon";
 
+
 const DesktopHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const DesktopHeader = () => {
                   <ChevronDown />
                 <ul className="nav-dropdown">
                   <li><NavLink to="/service/dry-cleaning" end>Drycleaning & Laundry</NavLink></li>
+                  <li className="divider"><span></span></li>
                   <li><NavLink to="/service/shoes-and-bag-care" end>Shoe & Bag Care</NavLink></li>
                 </ul>
               </li>
@@ -99,7 +101,7 @@ const DesktopHeader = () => {
                 className="user-icon"
                 onClick={() => dispatch(setOpenSheet(true))}
               >
-                <User />
+                <User size={18}/>
               </div>
             </div>
           )}
@@ -117,7 +119,7 @@ const DesktopHeader = () => {
             <img src={whatsApp} alt="whatsapp" />
           </div>
           <div
-            className="btn btn-md base-btn primary black"
+            className="btn btn-md base-btn secondary"
             onClick={goToBookNowPage}
           >
             Book Now

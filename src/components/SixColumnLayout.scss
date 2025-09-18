@@ -1,7 +1,11 @@
 @import "../assets/styles/theme";
 .section-container{
-    margin-bottom:4.5vw;
     padding:0 3.5rem;
+    &.rollOut{
+        .heading{
+            font-size:2rem;
+        }
+    }
     @media(max-width:1600px){
          margin-bottom:5vw;
     }
@@ -37,6 +41,7 @@
                     font-weight: 400;
                     color:$white;
                     margin-bottom:1rem;
+                    line-height: 1.5;
                     @media(max-width:1024px){
                         text-align:left;
                     }
@@ -45,13 +50,14 @@
                     @extend .body-3;
                     color:$white;
                     margin-bottom:1rem;
+                    line-height: 1.7;
                     @media(max-width:1024px){
                         text-align:left;
                     }
                 }
                 .link{
                     @extend .d-flex;
-                    height:56px;
+                    height:52px;
                     color:$white;
                     text-transform: uppercase;
                     cursor: pointer;
@@ -76,6 +82,7 @@
                 flex-direction: column;
                 .btn{
                     width:130px;
+                    font-size: 1rem;
                     &.outlined{
                         border-color: $white;
                         color:$white;

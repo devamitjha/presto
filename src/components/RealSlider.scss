@@ -4,6 +4,7 @@
     width:350px;
     min-height:500px;
     overflow: hidden;
+    position:relative;
     @media(max-width:768px){
         width:100%;
     }
@@ -11,14 +12,62 @@
         border-radius: 1rem;
         overflow: hidden;
         border:none;
+        position: relative;
         img, video{
             width:100%;
             height:100%;
             object-fit: cover;
+            cursor: pointer;
+            display: block;
+        }
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            padding: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.8);
+            }
+        }
+        .mute-btn {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+            &:hover {
+                background: rgba(0, 0, 0, 0.8);
+            }
         }
     }
-    .slick-slider{
-        .prevArrow{
+        .prevArrow,
+        .nextArrow {
             width:32px;
             height:32px;
             @extend .d-flex;
@@ -26,21 +75,23 @@
             position:absolute;
             border-radius: 100%;
             z-index: 1;
-            right:50px;
             bottom:24px;
             cursor: pointer;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            &:hover {
+            background-color: rgba($white, 0.8);
+            }
         }
-        .nextArrow{
-            width:32px;
-            height:32px;
-            @extend .d-flex;
-            background-color: rgba($white, .5);
-            position:absolute;
-            border-radius: 100%;
-            z-index: 1;
-            right:10px;
-            bottom:24px;
-            cursor: pointer;
+
+        .prevArrow {
+            right: 50px;
         }
-    }
+        .nextArrow {
+            right: 10px;
+        }
 }

@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import Heading from './common/Heading';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './Experties.scss';
+import './Prestige.scss';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -21,7 +21,7 @@ function NavNextArrow(props) {
     <div
       className="navNext"
       onClick={onClick}
-    > <ChevronRight size={16}/></div>
+    > <ChevronRight size={16} /></div>
   );
 }
 
@@ -31,31 +31,24 @@ function NavPrevArrow(props) {
     <div
       className="navPrev"
       onClick={onClick}
-    ><ChevronLeft size={16}/></div>
+    ><ChevronLeft size={16} /></div>
   );
 }
 
 
-const Experties = ({ title, data = [], item,  size }) => { 
+const Prestige = ({ title, data = [], size }) => {
   const { width } = useWindowSize();
-  const slidesToShow = parseInt(item);
   const cssClass = size === "big" ? "center-big" : ""
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     arrows: true,
-    slidesToShow,
-    slidesToScroll: 1,
+    slidesToShow:5,
+    slidesToScroll:1,
     nextArrow: <NavNextArrow />,
     prevArrow: <NavPrevArrow />,
     responsive: [
-      {
-        breakpoint: 1450,
-        settings: {
-          slidesToShow: slidesToShow === 5 ? 4 : 3,
-        }
-      },
       {
         breakpoint: 900,
         settings: {
@@ -66,29 +59,29 @@ const Experties = ({ title, data = [], item,  size }) => {
       {
         breakpoint:825,
         settings: {
-          slidesToShow: cssClass ? 4 : 1,
+          slidesToShow:4,
           arrows: false,
           slidesToScroll:1,
-          dots: cssClass ? true : false,
+          dots:true,
         }
       },
       {
         breakpoint:525,
         settings: {
-          slidesToShow: cssClass ? 2 : 1,
+          slidesToShow:2,
           arrows: false,
           slidesToScroll:1,
-          dots: cssClass ? true : false,
+          dots:true,
         }
       }
     ]
   };
 
   return (
-    <section className="section-experties">
+    <section className="section-prestige">
       <Heading title={title} />
       <div className="section-container">
-        <div className="slider-container experties-slider autoSlider">
+        <div className="slider-container prestige-slider autoSlider">
           {
             width >825 ? 
               <Slider {...settings}>
@@ -162,4 +155,4 @@ const Experties = ({ title, data = [], item,  size }) => {
   );
 };
 
-export default Experties;
+export default Prestige;

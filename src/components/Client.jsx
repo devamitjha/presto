@@ -11,7 +11,7 @@ const Client = () => {
         customers: 100000,
     });
   return (
-    <section className="client">
+    <section className="client my-88">
       <div className="item">
         <h4>
           <ScrollAnimatedNumber value={counts.countries} />+
