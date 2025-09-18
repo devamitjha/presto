@@ -49,7 +49,7 @@
                 p{
                     @extend .body-3;
                     color:$white;
-                    margin-bottom:1rem;
+                    margin-bottom:1.5rem;
                     line-height: 1.7;
                     @media(max-width:1024px){
                         text-align:left;
@@ -81,7 +81,9 @@
                 @extend .d-flex;
                 flex-direction: column;
                 .btn{
-                    width:130px;
+                    width:auto;
+                    padding:0 20px;
+                    display:inline-flex;
                     font-size: 1rem;
                     &.outlined{
                         border-color: $white;

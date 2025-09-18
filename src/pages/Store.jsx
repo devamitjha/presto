@@ -42,7 +42,7 @@ const items = [
 const Benefits = () => {
   const { width } = useWindowSize();
   return (
-    <section className="section-container benefits">
+    <section className="section-container benefits mb-120">
       <Heading title="When you choose Pressto, you choose…" />
       <div className="you-choose">
         {width > 825 ?
@@ -97,7 +97,7 @@ const Benefits = () => {
 //Short Testimonial
 const CustomerReviewHighlight = () => {
   return (
-    <div className="section-container">
+    <div className="section-container mb-88">
       <div className="customer-highlight">
         {/* Left */}
         <div className="left lg-hide">
@@ -129,14 +129,16 @@ const Store = () => {
   return (
     <section className="store">
       <HelmetMeta />
-      <section className="section-container">  
+      <section className="section-container mb-120">  
         <Heading title="Store Locator" />
         <div className="section-tab">
           <p>With a legacy built on precision, care, and innovation, Pressto today operates across 45 locations in 3 major cities. From day one, we’ve led the way in responsible garment care - blending global standards with thoughtful, eco-conscious practices. Because for us, premium isn’t just about how it looks, but how it lasts.</p>          
         </div>
         <StoreLocator/>       
       </section>
-      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
+      <div className="mb-120">
+        <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4"/>
+      </div>
       <SixColumnlayoutCenter image={["service-tshirt.jpg", "service-bag.jpg"]}/>
       <Benefits />
       <CustomerReviewHighlight/>

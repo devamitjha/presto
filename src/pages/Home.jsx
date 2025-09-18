@@ -19,45 +19,60 @@ import { brandRecognition } from '../api/brandRecognition';
 import { carePartners } from '../api/carePartners';
 import AnimatedCard from '../components/motionCard/AnimatedCard';
 import useWindowSize from '../hooks/useWindowSize';
-import { ArrowDown, X } from 'lucide-react';
+import { ArrowDown, ChevronLeft, X } from 'lucide-react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import {Pagination } from 'swiper/modules';
 import Prestige from '../components/Prestige';
+import Card from '../components/motionCard/Card';
 
 // Spotlight Section
 const SectionSpotlight = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [openCard, setOpenCard] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
   const spolightPopupItem = [
-    { id: 1, img: "1.jpg", title: "Title-1", description: 'Details for item one.' },
-    { id: 2, img: "2.jpg", title: "Title-2", description: 'Details for item two.' },
-    { id: 3, img: "3.jpg", title: "Title-3", description: 'Details for item three.' },
-    { id: 4, img: "4.jpg", title: "Title-4", description: 'Details for item four.' },
-    { id: 5, img: "5.jpg", title: "Title-5", description: 'Details for item five.' },
-    { id: 6, img: "6.jpg", title: "Title-6", description: 'Details for item six.' },
-    { id: 7, img: "7.jpg", title: "Title-7", description: 'Details for item seven.' },
+    { id: 1, img: "1.jpg", title: "VOGUE PROMOTION-1", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. one." },
+    { id: 2, img: "2.jpg", title: "VOGUE PROMOTION-2", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. two." },
+    { id: 3, img: "3.jpg", title: "VOGUE PROMOTION-3", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. three." },
+    { id: 4, img: "4.jpg", title: "VOGUE PROMOTION-4", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. four." },
+    { id: 5, img: "5.jpg", title: "VOGUE PROMOTION-5", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. five." },
+    { id: 6, img: "6.jpg", title: "VOGUE PROMOTION-6", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. six." },
+    { id: 7, img: "7.jpg", title: "VOGUE PROMOTION-7", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. seven." },
   ];
 
+  const setCardOpen = (item) => {
+    setSelectedItem(item);
+    setOpen(false);
+    setOpenCard(true);
+  };
+
+  const setPrevCardOpen = () => {
+    setOpenCard(false);
+    setOpen(true);
+  };
+
   return (
-    <section className="section-container spotlight mb-120"> 
+    <section className="section-container spotlight mb-120">
       <Heading title="In the Spotlight" />
       <div className="spotlight-item">
         <div className="item">
-            <Image
-              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
-              src="sp-1.jpg"
-              alt="Showcase1"
-            />
+          <Image
+            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+            src="sp-1.jpg"
+            alt="Showcase1"
+          />
         </div>
 
         <div className="item md-hide">
           <Image
-              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
-              src="sp-2.jpg"
-              alt="Showcase2"
-            />
+            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+            src="sp-2.jpg"
+            alt="Showcase2"
+          />
         </div>
 
         <div className="item collage">
@@ -69,46 +84,103 @@ const SectionSpotlight = () => {
           <div className="image-collage md-hide">
             {["sp-3.jpg", "sp-4.jpg"].map((img, index) => (
               <div className="grid" key={index}>
-                  <Image
-                      urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
-                      src={img}
-                      alt={`Spotlight Collage ${index + 1}`}
-                  />
+                <Image
+                  urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+                  src={img}
+                  alt={`Spotlight Collage ${index + 1}`}
+                />
               </div>
             ))}
           </div>
-          <div className="btn btn-md base-btn outlined overflowHidden" onClick={() => setOpen(true)}>View Gallery</div>
+          <div
+            className="btn btn-md base-btn outlined overflowHidden"
+            onClick={() => setOpen(true)}
+          >
+            View Gallery
+          </div>
         </div>
       </div>
+
+      {/* First BottomSheet */}
       <BottomSheet
         open={open}
         onDismiss={() => setOpen(false)}
-        // defaultSnap={({ snapPoints, lastSnap }) =>
-        //     lastSnap ?? Math.min(...snapPoints)
-        // }
         snapPoints={({ maxHeight }) => [
-            maxHeight - maxHeight /5.5,
-            maxHeight * 0.9,
+          maxHeight - maxHeight / 5.5,
+          maxHeight * 0.9,
         ]}
         className="custom-bottom-sheet"
         header={
           <>
-            <div className="sheetHeader">Media & Mentions</div> 
-            <div className="closesheet" onClick={() => setOpen(false)}><X /></div>
+            <div className="sheetHeader">Media & Mentions</div>
+            <div className="closesheet" onClick={() => setOpen(false)}>
+              <X />
+            </div>
           </>
         }
         footer={<div className="sheetFooter">© Pressto Gallery</div>}
       >
         <div className="sheetBody" style={{ marginTop: 0 }}>
-          {/* Gallery content inside sheet */}
           <div className="sheet-gallery-grid">
-            <AnimatedCard spolightItem={spolightPopupItem}/>
+            <div className="grid">
+              {spolightPopupItem.map((item) => (
+                <Card
+                  key={item.id}
+                  item={item}
+                  onClick={() => setCardOpen(item)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </BottomSheet>
+
+      {/* Second BottomSheet */}
+      <BottomSheet
+        open={openCard}
+        onDismiss={() => setOpenCard(false)}
+        snapPoints={({ maxHeight }) => [
+          maxHeight - maxHeight / 5.5,
+          maxHeight * 0.9,
+        ]}
+        className="card-bottom-sheet"
+        header={
+          <>
+            <div className="sheetHeader">Media & Mentions</div>
+            <div className="closesheet" onClick={() => setOpenCard(false)}>
+              <X />
+            </div>
+            <div className="goBack" onClick={() => setPrevCardOpen()}>
+              <ChevronLeft size={20} /> Back
+            </div>
+          </>
+        }
+        footer={<div className="sheetFooter">© Pressto Gallery</div>}
+      >
+        <div className="sheetBody" style={{ marginTop: 0 }}>
+          <div className="sheet-gallery-grid">
+            <div className="bottom-card">
+              {selectedItem && (
+                <div className="card-detail">
+                  <div className="card-title">
+                    <h3>{selectedItem.title}</h3>
+                    <p>{selectedItem.description}</p>
+                  </div>
+                  <Image
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+                    src={selectedItem.img}
+                    alt={selectedItem.title}
+                  />                 
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </BottomSheet>
     </section>
   );
 };
+
 
 
 

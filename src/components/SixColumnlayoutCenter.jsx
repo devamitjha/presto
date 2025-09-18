@@ -24,7 +24,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
     };
   return (
     <section className="section-container six-columns center autoSlider mb-120">
-          <Heading title="What we do best" />
+          <Heading title="What we do best" /> 
           {
              width >825 ?
                <StaggerOnView className="row">

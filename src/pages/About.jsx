@@ -33,7 +33,7 @@ const HelmetMeta = () => {
 
 const VisionaryMan = () => {
   return (
-    <section className="section-container">
+    <section className="section-container mb-120">
       <Heading title="Meet our Visionary Man" />
       <div className="visionary-section">
         <div className="visionary-content">
@@ -84,7 +84,7 @@ const items = [
 const WhatWeStandBy = () => { 
   const { width } = useWindowSize();
   return (
-    <section className="section-container mobileSliderContainer">
+    <section className="section-container mobileSliderContainer mb-120">
       <Heading title="What we stand by" />
       <div className="what-we-stand-by autoSlider">
       {
@@ -148,14 +148,14 @@ const About = () => {
             alt="About Banner"
           />
       </div>
-      <section className="client">
+      <section className="client my-88">
         <div className="item">
             <span>Pioneering Sustainable Care Since </span>
             <h4> <ScrollAnimatedNumber value={2008} /></h4>
         </div>
       </section>
       <VisionaryMan />
-      <div className="section-container">
+      <div className="section-container  mb-120">
         <Heading title="Trusted Across Continents/ Worldwide Wardrobe Care" />
         <div className="section-pressto-map">
           <div className="pressto-map">
@@ -171,7 +171,7 @@ const About = () => {
       </div>
       <WhatWeStandBy />
       <SixColumnlayoutCenter image={["whatwedo1.jpg", "whatwedo2.jpg"]}/>
-      <div className="section-container luxaryExperience">
+      <div className="section-container luxaryExperience  mb-120">
         <Heading title="Experience Pressto" />
         <div className="section-luxaryExperience-item">
           <div className="exp-item">

@@ -53,15 +53,21 @@
     .navNext{
         width:35px;
         height:35px;
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        display:flex;
+        align-items: center;
+        justify-content: center;
         svg{
-            width:15px;
-            height:15px;
+            width:20px;
+            height:20px;
         }
     }
     .slick-slider .navPrev {
-        left: -2.5rem;
+        left: -3.5rem;
     }
     .slick-slider .navNext {
-        right: -2.5rem;
+        right: -3.5rem;
     }
 }
