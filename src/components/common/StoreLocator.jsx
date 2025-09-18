@@ -14,6 +14,7 @@ import Bangalore from "../../assets/images/store/Bangalore.jpg";
 import Copy from "../../assets/images/copy.svg";
 import Direction from "../../assets/images/direction.svg";
 import 'leaflet/dist/leaflet.css';
+import { toast } from "react-toastify"; 
 
 // Fix for Leaflet icon URLs
 delete L.Icon.Default.prototype._getIconUrl;
@@ -157,7 +158,14 @@ const StoreLocator = () => {
       ? [parseFloat(cityCenterStore.latitude), parseFloat(cityCenterStore.longitude)]
       : defaultPosition;
 
-  console.log(stores);
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      toast.success(`Copied contact number: ${text}`, {
+        position: "top-center",
+        autoClose: 2000,
+      });
+    });
+  };
 
   return (
     <div className="section-map">
@@ -289,7 +297,7 @@ const StoreLocator = () => {
                             <div className="city-name">
                               <p>City: {store.city}, {store.State}</p>
                               <p>Contact: {store.phone}
-                                <span className="icon-box copy">
+                                <span className="icon-box copy" onClick={() => handleCopy(store.phone)}>
                                   <img src={Copy} alt="copy"/>
                                 </span>
                               </p>
