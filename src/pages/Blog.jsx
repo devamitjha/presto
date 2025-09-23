@@ -20,6 +20,17 @@ const formatDate = (dateStr) =>
     year: 'numeric',
   });
 
+  const getReadingTime = (content) => {
+    if (!content) return "0 Min Read";
+    
+    const wordsPerMinute = 200; // avg reading speed
+    const text = content.replace(/<[^>]+>/g, ""); // strip HTML tags
+    const wordCount = text.trim().split(/\s+/).length;
+    const minutes = Math.ceil(wordCount / wordsPerMinute);
+
+    return `${minutes} Min Read`;
+  };
+
 const FeaturedPost = ({ posts }) => {
   const [loaded, setLoaded] = useState(false);
   if (!posts?.length) return null;
@@ -30,7 +41,6 @@ const FeaturedPost = ({ posts }) => {
   const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '');
   const date = formatDate(post.date);
   const author = post._embedded?.author?.[0]?.name || 'Admin';
-
   return (
     <Link to={`/blog/${post.slug}`} key={post.id} className="blog-hero rounded overflow-hidden position-relative">
       <div className="hero-img feature">
@@ -48,7 +58,7 @@ const FeaturedPost = ({ posts }) => {
         
         <div className="blog-meta">
           <div className="date flex">Date: {date}</div>
-          <div className="editor flex">Written By: {author}</div>
+          <div className="editor flex">{getReadingTime(post.content?.rendered)}</div>
         </div>
       </div>
     </Link>
@@ -93,7 +103,7 @@ const PopularPosts = () => {
               <div className="readmore">Read More</div>
               <div className="meta d-flex gap-3 mt-2">
                 <div className="date">Date: {formatDate(post.date)}</div>
-                <div className="views">Views: {post.views || 0}</div>
+                <div className="views">{getReadingTime(post.content?.rendered)}</div>
               </div>
             </div>
           </div>
@@ -130,7 +140,7 @@ const AllPosts = ({ posts }) => {
           
           <div className="blog-meta">
             <div className="date flex">Date: {date}</div>
-            <div className="editor flex">Written By: {author}</div>
+            <div className="editor flex">{getReadingTime(post.content?.rendered)}</div>
           </div>
         </div>
       </Link>

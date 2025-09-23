@@ -122,7 +122,7 @@ const BlogDetail = () => {
               dangerouslySetInnerHTML={{ __html: post.content.rendered }}
             />        
       </div> 
-      <div className="section-container luxaryExperience">
+      <div className="section-container luxaryExperience mb-120">
         <Heading title="Experience Pressto" />
         <div className="section-luxaryExperience-item">
           <div className="exp-item">
@@ -139,7 +139,7 @@ const BlogDetail = () => {
             <div className="exp-content">
               <h3 className="only-desktop">Locate Store Near you</h3>
               <p>Find your nearest Pressto and step into effortless, premium care</p>
-               <Button title="Find Now" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToStoretPage}/>
+               <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToStoretPage}>Find Now</div>
             </div>
           </div>
           <div className="exp-item">
@@ -156,7 +156,7 @@ const BlogDetail = () => {
             <div className="exp-content">
               <h3 className="only-desktop">Pickup & Drop</h3>
               <p>Schedule a pickup and let premium care come to you.</p>
-               <Button title="Book an Appointment" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage}/>
+               <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToBookNowPage}>Book an Appointment</div>
             </div>
           </div>
         </div>

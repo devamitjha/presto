@@ -40,22 +40,22 @@
       border-radius: 50%;
       cursor: pointer;
       user-select: none;
-      width:30px;
-      height:30px;
+      width:45px;
+      height:45px;
       border-radius: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
 
       &.button-prev {
-        left: -100px;
+        left: -120px;
         @media(max-width:825px){
           display: none;
         }
       }
 
       &.button-next {
-        right: -100px;
+        right: -120px;
         @media(max-width:825px){
           display: none;
         }

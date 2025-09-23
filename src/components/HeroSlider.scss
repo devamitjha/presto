@@ -32,6 +32,7 @@
       transform:translateX(-50%);
       @extend .d-flex;
       flex-direction: column;
+      z-index: 2;
       @media(max-width:768px){
         width:80%;
         text-align: center;
@@ -60,6 +61,12 @@
           font-size:12px;
         }
       }
+    }
+    .overlay{
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to top, rgba(0,0,0, .5), rgba(0,0,0, .3), transparent, transparent, transparent);
+      z-index: 1;
     }
   }
 
@@ -144,5 +151,5 @@
         .navNext{
             right:10px;
         }
-    }
+    }   
 }

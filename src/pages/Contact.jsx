@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from 'react-router';
-import { Clock, Mail, Phone, Globe } from 'lucide-react';
+import { Clock, Mail, Phone, Globe, MapPin } from 'lucide-react';
 import "./Contact.scss"; // Assuming you have a CSS file for styling
 import Heading from '../components/common/Heading';
 import { expertiseData } from '../api/expertiseData';
@@ -21,7 +21,7 @@ import ReviewSlider from '../components/ReviewSlider';
 //Short Testimonial
 const CustomerReviewHighlight = () => {
   return (
-    <div className="section-container">
+    <div className="section-container mb-120">
       <div className="customer-highlight">
         {/* Left */}
         <div className="left lg-hide">
@@ -72,7 +72,7 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <HelmetMeta />
-       <section className="section-container">
+       <section className="section-container mb-120">
           <div className="contact-us-container">
             <div className="contact-map"> 
               <Image
@@ -85,10 +85,10 @@ const Contact = () => {
             </div>
             <div className="contact-info">
               <h3>Contact us</h3>
-              <p>
-                Press2 Drycleaning & Laundry Pvt. Ltd. Centre Point Condominium, 243 A, N M Joshi Marg, Opp. Bawla Masjid, Lower Parel (E),
-                Mumbai - 400013.
-              </p>
+              <div className="contact-item">
+                <MapPin size={18} />
+                <span>Lower Parel, Mumbai 400013</span>
+              </div>
 
               <div className="contact-item">
                 <Clock size={16} />
@@ -114,8 +114,10 @@ const Contact = () => {
             </div>
           </div>
       </section>
-      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
-      <div className="section-container">
+      <div className="slider-mb-168">
+        <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
+      </div>
+      <div className="section-container mb-120">
         <Heading title="Experience Pressto" />
         <div className="section-luxaryExperience-item">
           <div className="exp-item">
@@ -132,7 +134,7 @@ const Contact = () => {
             <div className="exp-content">
               <h3 className="desktop-only">Locate Store Near you</h3>
               <p>Find your nearest Pressto and step into effortless, premium care</p>
-               <Button title="Find Now" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToStoretPage}/>
+               <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToStoretPage}>Find Now</div>
             </div>
           </div>
           <div className="exp-item">
@@ -149,12 +151,13 @@ const Contact = () => {
             <div className="exp-content">
               <h3 className="desktop-only">Pickup & Drop</h3>
               <p>Schedule a pickup and let premium care come to you.</p>
-               <Button title="Book an Appointment" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage}/>
+               <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToBookNowPage}>Book an Appointment</div>
             </div>
           </div>
         </div>
       </div>      
       <SixColumnlayoutCenter image={["whatwedo1.jpg", "whatwedo2.jpg"]} dir="contact"/>
+
       <CustomerReviewHighlight/>
     </div>
   )

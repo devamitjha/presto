@@ -12,7 +12,7 @@ function NavNextArrow(props) {
     <div
       className="navNext ban"
       onClick={onClick}
-    > <ChevronRight /></div>
+    > <ChevronRight size={20}/></div>
   );
 }
 
@@ -22,7 +22,7 @@ function NavPrevArrow(props) {
     <div
       className="navPrev bap"
       onClick={onClick}
-    ><ChevronLeft /></div>
+    ><ChevronLeft size={20} /></div>
   );
 }
 

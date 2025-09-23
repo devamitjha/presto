@@ -72,7 +72,7 @@ const sliderDataMobile = [
 const WhatWeStandBy = () => {
    const { width } = useWindowSize();
   return (
-    <section className="section-container mobileSliderContainer">
+    <section className="section-container mobileSliderContainer mb-120">
       <Heading title="What we stand by" />
       <div className="what-we-stand-by autoSlider">
         {
@@ -131,18 +131,18 @@ const HelmetMeta = () => (
   </Helmet>
 );
 
-const DryCleaning = () => {   
+const DryCleaning = () => {    
   const { width } = useWindowSize(); 
   return (
     <>
       <HelmetMeta />
-      <div className="section-container serviceSlider">
+      <div className="section-container serviceSlider mb-120">
         <Heading title="Carry the Mint Look" /> 
         {
           width >700 ? <StackedSlider sliderData={sliderData}/>  : <StackedSlider sliderData={sliderDataMobile}/>
         }    
       </div>
-      <div className="section-container px-0">
+      <div className="section-container px-0 mb-120">
         <div className="center-banner">
           <FullWidthBackgroundVideo
             src= "https://ik.imagekit.io/devamitjha/pressto/video/dry-cleaning.mp4"
@@ -155,13 +155,15 @@ At Pressto, dry cleaning is more than just a service - it’s a science. Our adv
           </div>
         </div>
       </div>
-      <div className="section-container solution">
+      <div className="section-container solution mb-120">
         <Heading title="Find Solution to your Problem" />
         <SolutionFinder selected="dry-cleaning" />        
       </div>
       <WhatWeStandBy />
-      <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
-      <div className="section-container">
+      <div className="slider-mb-168">
+        <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
+      </div>
+      <div className="section-container mb-120">
         <Heading title="Find Store Near You" />
         <LocateUs/>
       </div>

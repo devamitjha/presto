@@ -67,6 +67,7 @@
         }
         p{
             font-size:18px;
+            font-weight: 300;
             @media(max-width:768px){
                 font-size:14px;
             }
@@ -75,6 +76,8 @@
             }
         }
         .blog-content{
+            width:60%;
+            margin:0 auto;
             ol,ul{
                 li{
                     +li{
@@ -142,28 +145,29 @@
                 }
                 p{
                     @extend .body-2;
-                     margin:0 0 1rem 0;
+                     margin:0 0 1.5rem 0;
                       @media(max-width:825px){
                        margin-bottom:1.75rem;
                     }
                 }
                 .btn{
                     background-color: $black;
-                    width:60%;
-                    @media(max-width:1600px){
-                        width:85%;
-                    }
-                    @media(max-width:1440px){
-                        width:100%;
-                    }
-                    @media(max-width:825px){
-                        width:75%;
-                        margin: auto;
-                    }
-                    @media(max-width:360px){
-                        width:90%;
-                        margin: auto;
-                    }
+                    display:inline-flex;
+                    width:auto;
+                    // @media(max-width:1600px){
+                    //     width:85%;
+                    // }
+                    // @media(max-width:1440px){
+                    //     width:100%;
+                    // }
+                    // @media(max-width:825px){
+                    //     width:75%;
+                    //     margin: auto;
+                    // }
+                    // @media(max-width:360px){
+                    //     width:90%;
+                    //     margin: auto;
+                    // }
                 }
              }
         }
@@ -176,9 +180,6 @@
         }
         &.six-columns .item .title-container p {
             text-align: center;
-        }
-        &.luxaryExperience{
-            margin-top:40px;
         }
     } 
 }

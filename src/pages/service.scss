@@ -63,6 +63,7 @@
                     height: 100%;
                     object-fit: cover;
                     display: block;
+                    transition:all .5s ease-in-out;
                 }
                 .overlay {
                     position: absolute;                      
@@ -94,6 +95,11 @@
                         background-image: linear-gradient(rgba($black, .35), transparent);
                     }                    
                 }
+                &:hover{
+                    img{
+                        transform:scale(1.1);
+                    }
+                }
             }
         }
         .swiper-slide{
@@ -109,6 +115,7 @@
                     height: 100%;
                     object-fit: cover;
                     display: block;
+                    transition:all .5s ease-in-out;
                 }
                 .overlay {
                     position: absolute;                      
@@ -135,7 +142,12 @@
                             font-size:10px
                         }
                     }             
-                }                
+                } 
+                &:hover{
+                    img{
+                        transform:scale(1.1);
+                    }
+                }               
             }
             &:nth-child(even){
                 .gridItem{

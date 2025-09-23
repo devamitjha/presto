@@ -28,18 +28,28 @@
     }
   }  
 
-  .slick-prev,
-  .slick-next {
+  .navPrev,
+  .navNext {
     z-index: 10;
+    position: absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:40px;
+    height:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 100%;
+    cursor: pointer;
+    svg{
+      color:#fff;
+    }
   }
   .slick-slider .navNext.ban{
-      right: -2rem;
-      width: 30px;
-      height: 30px;
+      right: -3.5rem;
   }
   .slick-slider .navPrev.bap{
-      left: -2rem;
-      width: 30px;
-      height: 30px;
+      left: -3.5rem;
   }
 }
