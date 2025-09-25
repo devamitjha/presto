@@ -4,7 +4,7 @@ const services = ['Garment Cleaning', 'Shoe Laundry', 'Bags Cleaning', 'Pressing
 
 const Review = ({ formData, setFormData, prevStep, handleSubmit }) => {
   const handleCountChange = (service, type) => {
-    setFormData(prev => ({
+    setFormData(prev => ({ 
       ...prev,
       serviceCounts: {
         ...prev.serviceCounts,
