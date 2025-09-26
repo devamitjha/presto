@@ -34,7 +34,7 @@ const Review = ({ formData, setFormData, prevStep, handleSubmit }) => {
 
      
 
-      <div className="input-group floating-label with-button">
+      <div className="inputGroup floating-label with-button">
         <div className="input-wrapper instructions">
             <textarea
               placeholder="Add Instructions"

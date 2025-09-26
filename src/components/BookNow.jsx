@@ -7,7 +7,6 @@ import ContactDetails from './multiStepsForm/ContactDetails';
 import Review from './multiStepsForm/Review';
 import SuccessMessage from './multiStepsForm/SuccessMessage';
 import { setCustomer } from '../redux/slices/customerSlice';
-import Heading from './common/Heading';
 import {show, hide } from "../redux/slices/uiSlice";
 import emailjs from "emailjs-com";
 import './BookNow.scss';
@@ -223,11 +222,28 @@ const BookNow = () => {
     }
   }; 
 
-  return (
-    <div className="booknowsheet mt-5">
-      <div className="section-container">
-        <Heading title="BOOK SERVICE" />
+  const handleLocate = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async position => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+          const data = await response.json();
+          const city = data.address.city || data.address.town || data.address.village || '';
+          const address = data.display_name;
+          setFormData(prev => ({ ...prev, city, address }));
+        } catch (err) {
+          toast.error('Failed to fetch address.');
+        }
+      });
+    } else {
+      toast.error('Geolocation not supported.');
+    }
+  };
 
+  return (
+    <div className="booknowsheet">
+      <div className="section-container">
         {isSubmitted ? (
           <SuccessMessage
             showGoToOrders={successPopup}
@@ -260,6 +276,8 @@ const BookNow = () => {
                 nextStep={nextStep}
                 prevStep={prevStep}
                 errors={errors}
+                userLoggedIn={userLoggedIn}
+                handleLocate={handleLocate}
               />
             )}
 

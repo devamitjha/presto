@@ -68,7 +68,7 @@
         }
     }
     //contact
-    .input-group {
+    .inputGroup {
         position: relative;
         display: flex;
         align-items: center;
@@ -89,15 +89,58 @@
             .side-button {
                 background: none;
                 border: none;
-                font-size: 12px;
+                font-size: 14px;
                 font-weight: bold;
                 color: #333;
                 cursor: pointer;
                 //width:120px;
+                //height:100%;
                 position:absolute;
                 right:10px;
                 top:50%;
                 transform:translateY(-50%);
+                
+            }
+        }
+        &.send-otp{
+            .input-wrapper{
+                input{
+                    padding-right:150px;
+                }
+            }
+            .side-button{
+                &.sendOtp{
+                    background-color:#eee;
+                    border-radius: 9999px;
+                    width:140px;
+                    padding:10px;
+                    font-size: 12px;
+                    transition: all .3s ease-in-out;
+                    text-transform: uppercase;
+                    font-weight: 400;
+                    &:hover{
+                        background-color:#333;
+                        color:#fff;
+                    }
+                }
+            }            
+        }
+        &.flex-input{
+            gap:16px;
+            background:transparent;
+            border-bottom:0;
+            .input-container{
+                background: #f8f8f8;
+                border-bottom: 1px solid #333;
+                flex:1;
+                .input-wrapper{
+                    width:100%;
+                    input{
+                        padding:12px;
+                        width:100%;
+                    }
+                }
+                
             }
         }
 
@@ -262,13 +305,14 @@
         margin-top:5rem;
     }
     .stepTitle{
-        margin:4rem 0;
+        margin:1rem 0 2rem 0;
         text-align: center;
         color:$gray700;
         font-weight: 400;
+        font-size: 20px;
     }
 
-        .input-group.floating-label {
+        .inputGroup.floating-label {
             .input-wrapper {
                 position: relative;
                 width:100%;

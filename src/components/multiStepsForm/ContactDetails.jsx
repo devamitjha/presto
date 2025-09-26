@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Calendar, Clock } from 'lucide-react';
 import { toast } from 'react-toastify';
 
-const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors }) => {
+const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors, handleLocate, userLoggedIn }) => {
   const [pickupDate, setPickupDate] = useState(formData.pickupDate ? new Date(formData.pickupDate) : null);
   const [pickupTime, setPickupTime] = useState(
     formData.pickupTime ? new Date(`1970-01-01T${formData.pickupTime}`) : null
@@ -62,7 +62,7 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors }) 
   return (
     <div className="form-step">
       {/* City */}
-      <div className="input-group floating-label with-button">
+      <div className="inputGroup floating-label with-button">
         <div className="input-wrapper">
           <input
             type="text"
@@ -71,13 +71,17 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors }) 
             value={formData.city || ''}
             onChange={handleChange}
             className={formData.city ? 'filled' : ''}
+           disabled = {userLoggedIn && formData.city!=""}
           />
           <label htmlFor="city">Enter City*</label>
         </div>
+        {
+          !userLoggedIn && <button type="button" onClick={handleLocate} className="side-button">Locate Me</button>
+        }
       </div>
 
       {/* Pincode */}
-      <div className="input-group floating-label with-button">
+      <div className="inputGroup floating-label with-button">
         <div className="input-wrapper">
           <input
             type="text"
@@ -86,13 +90,14 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors }) 
             value={formData.pincode || ''}
             onChange={handleChange}
             className={formData.pincode ? 'filled' : ''}
+            disabled = {userLoggedIn && formData.pincode!=""}
           />
           <label htmlFor="pincode">Pincode*</label>
         </div>
       </div>
 
       {/* Address */}
-      <div className="input-group floating-label with-button">
+      <div className="inputGroup floating-label with-button">
         <div className="input-wrapper">
           <input
             type="text"
@@ -101,13 +106,14 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors }) 
             value={formData.address || ''}
             onChange={handleChange}
             className={formData.address ? 'filled' : ''}
+            disabled = {userLoggedIn}
           />
           <label htmlFor="address">House Address/Street*</label>
         </div>
       </div>
 
       {/* Pickup Date */}
-      <div className="input-group floating-label with-icon">
+      <div className="inputGroup floating-label with-icon">
         <div className="input-wrapper">
           <DatePicker
             ref={calendarRef}
@@ -126,7 +132,7 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors }) 
       </div>
 
       {/* Pickup Time */}
-      <div className="input-group floating-label with-icon">
+      <div className="inputGroup floating-label with-icon">
         <div className="input-wrapper">
           <DatePicker
             ref={timeRef}

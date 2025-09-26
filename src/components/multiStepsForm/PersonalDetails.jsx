@@ -86,41 +86,49 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
   return (
     <div className="form-step">
       <div className="input-row">
-        <div className="input-group floating-label">
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName || ""}
-            onChange={handleChange}
-            className={formData.firstName ? "filled" : ""}
-          />
-          <label>First Name*</label>
-        </div>
-        <div className="input-group floating-label">
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName || ""}
-            onChange={handleChange}
-            className={formData.lastName ? "filled" : ""}
-          />
-          <label>Last Name*</label>
+        <div className="inputGroup floating-label with-button flex-input">
+          <div className="input-container">
+            <div className="input-wrapper">
+              <input
+                type="text"
+                name="firstName"
+                value={formData.firstName || ""}
+                onChange={handleChange}
+                className={formData.firstName ? "filled" : ""}
+              />
+              <label>First Name*</label>
+            </div>
+          </div>
+          <div className="input-container">
+            <div className="input-wrapper">
+              <input
+                type="text"
+                name="lastName"
+                value={formData.lastName || ""}
+                onChange={handleChange}
+                className={formData.lastName ? "filled" : ""}
+              />
+              <label>Last Name*</label>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="input-group floating-label">
-        <input
-          type="email"
-          name="email"
-          value={formData.email || ""}
-          onChange={handleChange}
-          className={formData.email ? "filled" : ""}
-          disabled={userLoggedIn && formData.email?.trim() !== ""}
-        />
-        <label>Email*</label>
+      <div className="inputGroup floating-label with-button">
+        <div className="input-wrapper">
+          <input
+            type="email"
+            name="email"
+            value={formData.email || ""}
+            onChange={handleChange}
+            className={formData.email ? "filled" : ""}
+            disabled={userLoggedIn && formData.email?.trim() !== ""}
+          />
+          <label>Email*</label>
+        </div>
       </div>
 
-      <div className="input-group floating-label with-button">
+      <div className="inputGroup floating-label with-button send-otp">
         <div className="input-wrapper">
           <input
             type="tel"
@@ -128,6 +136,7 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
             value={formData.contact || ""}
             onChange={handleChange}
             className={formData.contact ? "filled" : ""}
+            disabled={userLoggedIn && formData.contact !== ""}
           />
           <label>Phone Number*</label>
         </div>
@@ -137,7 +146,7 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
             type="button"
             onClick={handleSendOtp}
             disabled={otpSent && timer > 0}
-            className="side-button"
+            className="side-button sendOtp"
           >
             {otpSent && timer > 0 ? `Resend OTP in ${formatTimer()}` : "Send OTP"}
           </button>
@@ -145,15 +154,17 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
       </div>
 
       {!userLoggedIn && otpSent && (
-        <div className="input-group floating-label">
-          <input
-            type="text"
-            name="otp"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            className={otp ? "filled" : ""}
-          />
-          <label>Enter OTP</label>
+        <div className="inputGroup floating-label">
+          <div className="input-wrapper">
+            <input
+              type="text"
+              name="otp"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              className={otp ? "filled" : ""}
+            />
+            <label>Enter OTP</label>
+          </div>
         </div>
       )}
 
