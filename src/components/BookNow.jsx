@@ -177,7 +177,7 @@ const BookNow = () => {
           )}
        
         {/* <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" /> */}
-        <div className="section-container">
+        <div className="section-container" style={{"display":"none"}}>
           <Heading title="Experience Pressto" />
           <div className="section-luxaryExperience-item">
             <div className="exp-item">
