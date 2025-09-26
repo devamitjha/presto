@@ -24,26 +24,26 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
   };
 
   const handleSendOtp = async () => {
-    const { firstName, lastName, phone } = formData;
+    const { firstName, lastName, contact } = formData;
 
     if (!firstName.trim()) return toast.error("First Name is required", { autoClose: 2500 });
     if (!lastName.trim()) return toast.error("Last Name is required", { autoClose: 2500 });
-    if (!phone.trim()) return toast.error("Phone number is required", { autoClose: 2500 });
-    if (!validateMobile(phone)) return toast.error("Phone must be 10 digits", { autoClose: 2500 });
+    if (!contact.trim()) return toast.error("Phone number is required", { autoClose: 2500 });
+    if (!validateMobile(contact)) return toast.error("Phone must be 10 digits", { autoClose: 2500 });
 
     try {
       const response = await fetch("https://www.presstoindia.com/send-otp.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ mobile: `+91${phone}` }),
+        body: JSON.stringify({ mobile: `+91${contact}` }),
       });
 
       const result = await response.json();
 
       if (result.success) {
         sessionStorage.setItem("otp", result.otp);
-        sessionStorage.setItem("mobile", phone);
+        sessionStorage.setItem("mobile", contact);
         toast.success("OTP sent successfully!", { autoClose: 2500 });
         setOtpSent(true);
         startTimer();
@@ -57,16 +57,16 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
   };
 
   const handleNext = () => {
-    const { firstName, lastName, phone } = formData;
+    const { firstName, lastName, contact } = formData;
     const storedOtp = sessionStorage.getItem("otp");
     const storedMobile = sessionStorage.getItem("mobile");
 
     if (!firstName.trim()) return toast.error("First Name is required", { autoClose: 2500 });
     if (!lastName.trim()) return toast.error("Last Name is required", { autoClose: 2500 });
-    if (!phone.trim()) return toast.error("Phone number is required", { autoClose: 2500 });
-    if (!validateMobile(phone)) return toast.error("Phone must be 10 digits", { autoClose: 2500 });
+    if (!contact.trim()) return toast.error("Phone number is required", { autoClose: 2500 });
+    if (!validateMobile(contact)) return toast.error("Phone must be 10 digits", { autoClose: 2500 });
     if (!otp.trim()) return toast.error("Please enter OTP", { autoClose: 2500 });
-    if (otp !== storedOtp || phone !== storedMobile) return toast.error("Incorrect OTP", { autoClose: 2500 });
+    if (otp !== storedOtp || contact !== storedMobile) return toast.error("Incorrect OTP", { autoClose: 2500 });
 
     sessionStorage.removeItem("otp");
     sessionStorage.removeItem("mobile");
@@ -124,10 +124,10 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
         <div className="input-wrapper">
           <input
             type="tel"
-            name="phone"
-            value={formData.phone || ""}
+            name="contact"
+            value={formData.contact || ""}
             onChange={handleChange}
-            className={formData.phone ? "filled" : ""}
+            className={formData.contact ? "filled" : ""}
           />
           <label>Phone Number*</label>
         </div>

@@ -11,4 +11,4 @@ const SuccessMessage = () => {
   );
 };
 
-export default SuccessMessage;
+export default SuccessMessage; 

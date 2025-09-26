@@ -2,18 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router';
 import PersonalDetails from './multiStepsForm/PersonalDetails';
 import ContactDetails from './multiStepsForm/ContactDetails';
 import Review from './multiStepsForm/Review';
 import SuccessMessage from './multiStepsForm/SuccessMessage';
 import { setCustomer } from '../redux/slices/customerSlice';
 import Heading from './common/Heading';
+import {show, hide } from "../redux/slices/uiSlice";
+import emailjs from "emailjs-com";
 import './BookNow.scss';
 
 const BookNow = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -21,7 +21,7 @@ const BookNow = () => {
   const [successPopup, setSuccessPopup] = useState(false);
 
   const [formData, setFormData] = useState({
-    firstName: '', lastName: '', email: '', phone: '',
+    firstName: '', lastName: '', email: '', contact: '',
     city: '', pincode: '', address: '',
     pickupDate: '', pickupTime: '',
     serviceCounts: {}, instructions: ''
@@ -38,10 +38,9 @@ const BookNow = () => {
         firstName: customer.firstName || '',
         lastName: customer.lastName || '',
         email: customer.email || '',
-        phone: customer.mobile || '',
-        city: customer.city || '',
-        pincode: customer.pincode || '',
-        address: customer.address || ''
+        contact: customer.mobile || '',
+        address: customer.address || '',
+        pincode: customer.pincode || ''
       }));
       setUserLoggedIn(true);
       dispatch(setCustomer(customer));
@@ -54,7 +53,7 @@ const BookNow = () => {
   };
 
   const validateEmail = email => /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(email);
-  const validatePhone = phone => /^\d{10}$/.test(phone);
+  const validatePhone = contact => /^\d{10}$/.test(contact);
 
   const validateStep = () => {
     const newErrors = {};
@@ -63,8 +62,8 @@ const BookNow = () => {
       if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
       if (!formData.email.trim()) newErrors.email = 'Email is required';
       else if (!validateEmail(formData.email)) newErrors.email = 'Invalid email format';
-      if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
-      else if (!validatePhone(formData.phone)) newErrors.phone = 'Phone must be 10 digits';
+      if (!formData.contact.trim()) newErrors.contact = 'Phone is required';
+      else if (!validatePhone(formData.contact)) newErrors.contact = 'Phone must be 10 digits';
     } else if (step === 2) {
       if (!formData.city.trim()) newErrors.city = 'City is required';
       if (!formData.pincode.trim()) newErrors.pincode = 'Pincode is required';
@@ -98,7 +97,7 @@ const BookNow = () => {
   try {
     // Login API
     const loginResponse = await fetch(
-      `https://uat.presstoindia.com/authApi.php?action=login&mobile=${formData.phone}`
+      `https://uat.presstoindia.com/authApi.php?action=login&mobile=${formData.contact}`
     );
 
     let loginData = {};
@@ -107,15 +106,15 @@ const BookNow = () => {
     } catch {
       loginData = {};
     }
+    console.log(loginData);
 
-    if (loginData.success) {
+    if (loginData?.customerId) {
       const customer = {
         customerId: loginData.customerId,
         firstName: loginData.firstName || '',
         lastName: loginData.lastName || '',
         email: loginData.email || '',
-        mobile: loginData.mobile || '',
-        city: loginData.city || '',
+        mobile: loginData.contact || '',
         pincode: loginData.pincode || '',
         address: loginData.address || '',
         customerUniqueId: loginData.customerUniqueId || ''
@@ -144,47 +143,85 @@ const BookNow = () => {
       registerData = {};
     }
 
-    if (registerData.success) {
-      const customer = {
-        customerId: registerData.customerId,
-        firstName: registerData.firstName || '',
-        lastName: registerData.lastName || '',
-        email: registerData.email || '',
-        mobile: registerData.mobile || '',
-        city: registerData.city || '',
-        pincode: registerData.pincode || '',
-        address: registerData.address || '',
-        customerUniqueId: registerData.customerUniqueId || ''
-      };
-      localStorage.setItem("customer", JSON.stringify(customer));
-      dispatch(setCustomer(customer));
-      setFormData(prev => ({ ...prev, ...customer }));
-      setUserLoggedIn(true);
-      return false; // Newly registered
+    if (registerData && !registerData.error) {
+      const loginResponse = await fetch(
+        `https://uat.presstoindia.com/authApi.php?action=login&mobile=${formData.contact}`
+      );
+      let loginData = {};
+      try {
+        loginData = await loginResponse.json();
+      } catch {
+        loginData = {};
+      }
+      if (loginData?.customerId) {
+        const customer = {
+          customerId: loginData.customerId,
+          firstName: loginData.firstName || '',
+          lastName: loginData.lastName || '',
+          email: loginData.email || '',
+          mobile: loginData.contact || '',
+          pincode: loginData.pincode || '',
+          address: loginData.address || '',
+          customerUniqueId: loginData.customerUniqueId || ''
+        };
+        localStorage.setItem("customer", JSON.stringify(customer));
+        dispatch(setCustomer(customer));
+        setFormData(prev => ({ ...prev, ...customer }));
+        setUserLoggedIn(true);
+        return false; 
+      }
     }
 
-    toast.error(registerData.message || "Failed to register user");
+    toast.error(registerData.message || "Failed to register user", { autoClose: 2500 });
     return false;
 
     } catch (err) {
       console.error(err);
-      toast.error("Error during login/register");
+      toast.error("Error during login/register", { autoClose: 2500 });
       return false;
     }
   };
 
   const handleSubmit = async () => {
     if (!validateStep()) return;
-
+    dispatch(show());
     try {
       await handleUserLoginOrRegister();
       localStorage.setItem("formData", JSON.stringify(formData));
+      await emailjs.send(
+        "service_r4xqjrl", 
+        "template_57923u2", 
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          city: formData.city,
+          address: formData.address,
+          pickupDate: formData.pickupDate,
+          pickupTime: formData.pickupTime,
+          serviceCounts: JSON.stringify(formData.serviceCounts),
+          instructions: formData.instructions,
+        },
+        "cawbEAs7EEHSVWlQI" 
+      );
       setSuccessPopup(true);
       setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        city: "",
+        address: "",
+        pickupDate: "",
+        pickupTime: "",
+        serviceCounts: {},
+        instructions: "",
+      });
+      dispatch(hide());
     } catch (error) {
       toast.error("Error submitting form: " + error.message, { autoClose: 3000 });
     }
-  };
+  }; 
 
   return (
     <div className="booknowsheet mt-5">
@@ -194,7 +231,6 @@ const BookNow = () => {
         {isSubmitted ? (
           <SuccessMessage
             showGoToOrders={successPopup}
-            onGoToOrders={() => navigate("/profile")}
           />
         ) : (
           <div className="multi-step-form">
@@ -232,7 +268,7 @@ const BookNow = () => {
                 formData={formData}
                 setFormData={setFormData}
                 prevStep={prevStep}
-                handleSubmit={handleSubmit}
+                handleSubmit={handleSubmit}                
               />
             )}
           </div>

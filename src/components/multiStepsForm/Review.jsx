@@ -1,8 +1,10 @@
-import React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
 
 const services = ['Garment Cleaning', 'Shoe Laundry', 'Bags Cleaning', 'Pressing'];
 
 const Review = ({ formData, setFormData, prevStep, handleSubmit }) => {
+  const isVisible = useSelector((state) => state.loadingUI.isVisible);
   const handleCountChange = (service, type) => {
     setFormData(prev => ({ 
       ...prev,
@@ -47,7 +49,7 @@ const Review = ({ formData, setFormData, prevStep, handleSubmit }) => {
 
       <div className="buttons">
         {/* <button className="prev-btn" onClick={prevStep}>Back</button> */}
-        <button className="next-btn submit" onClick={handleSubmit}>Submit</button>
+        <button className="next-btn submit" disabled={isVisible}  onClick={handleSubmit}>{isVisible ? "Submitting..." : "Submit"}</button>
       </div>
     </div>
   );

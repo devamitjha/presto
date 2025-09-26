@@ -34,7 +34,7 @@ const ProfileData = ({ customer }) => {
 const OrderHistory = ({ customer }) => {
   return customer ? (
     <div className="order-history-list">
-      {customer.orderHistory.map((item) => (
+      {customer?.orderHistory.map((item) => (
         <div key={item.orderId} className="order-history">
           <div className="history-icon">
             <img src={HistoryIcon} alt="history" />

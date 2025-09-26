@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "./AuthFlow.scss";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCustomer } from "../redux/slices/customerSlice"; 
 import { setOpenSheet } from "../redux/slices/sheetSlice";
+import {show, hide } from "../redux/slices/uiSlice";
 
 
 const Authorization = () => {
   const dispatch = useDispatch();
+  const isVisible = useSelector((state) => state.loadingUI.isVisible);
   const navigate = useNavigate();
   const [step, setStep] = useState("login-mobile"); // steps: login-mobile, login-otp, register, register-otp
   const [mobile, setMobile] = useState("");
@@ -25,8 +27,10 @@ const Authorization = () => {
   // 1. Validate and send OTP using MSG91
   
   const handleSendOtp = async () => {
+    dispatch(show());
     if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
       toast.error("Please enter a valid 10-digit mobile number.", { autoClose: 2500 });
+      dispatch(hide());
       return;
     }
 
@@ -45,27 +49,34 @@ const Authorization = () => {
         sessionStorage.setItem("mobile", mobile);
         toast.success("OTP sent successfully!", { autoClose: 2500 });
         setStep("login-otp");
+        dispatch(hide());
       } else {
         toast.error(result.message || "Failed to send OTP.", { autoClose: 2500 });
+        dispatch(hide());
       }
     } catch (error) {
       console.error(error);
       toast.error("Failed to send OTP. Please try again.", { autoClose: 2500 });
+      dispatch(hide());
     }
   };
 
   // 2. Verify OTP
   const handleVerifyOtp = async () => {
-  if (!otp) {
-    toast.error("Please enter the OTP.", { autoClose: 2500 });
-    return;
-  }
+    dispatch(show());
+    if (!otp) {
+      toast.error("Please enter the OTP.", { autoClose: 2500 });
+      dispatch(hide());
+      return;
+    }
 
   const storedOtp = sessionStorage.getItem("otp");
   const storedMobile = sessionStorage.getItem("mobile");
 
   if (!storedOtp || !storedMobile) {
     toast.error("No OTP session found. Please request a new OTP.", { autoClose: 2500 });
+    setStep("login-otp");
+    dispatch(hide());
     return;
   }
 
@@ -83,34 +94,37 @@ const Authorization = () => {
         setOtp("");
         dispatch(setOpenSheet(false));
         navigate("/profile");
+        // Clear OTP from session storage
+        sessionStorage.removeItem("otp");
+        sessionStorage.removeItem("mobile");
+        dispatch(hide());
       } else {
         toast.error("User not registered. Redirecting to registration...", { autoClose: 2500 });
         setFormData({ ...formData, contact: mobile });
         setStep("register");
+        dispatch(hide());
       }
 
     } catch (err) {
-      // Axios throws here for 404 or other non-200 responses
       console.error("Login API error:", err);
-
       // Optional: If the backend sends a JSON body even for errors:
       if (err.response && err.response.data) {
         toast.error(err.response.data.message || "User not registered. Redirecting to registration...", { autoClose: 2500 });
+        dispatch(hide());
       } else {
-        toast.error("Could not check user registration.", { autoClose: 2500 });
+        toast.error("User not registered. Redirecting to registration...", { autoClose: 2500 });
+        dispatch(hide());
       }
 
       // Redirect to register form
       setFormData({ ...formData, contact: mobile });
       setStep("register");
+      dispatch(hide());
     }
-
-    // Clear OTP from session storage
-    sessionStorage.removeItem("otp");
-    sessionStorage.removeItem("mobile");
 
   } else {
     toast.error("Incorrect OTP.", { autoClose: 2500 });
+    dispatch(hide());
   }
 };
 
@@ -152,49 +166,75 @@ const Authorization = () => {
 
   // 4. Verify OTP again then register user
   const handleFinalOtpVerify = async () => {
-    if (!otp) {
-      toast.error("Please enter the OTP.", { autoClose: 2500 });
+    dispatch(show());
+    const { firstName, lastName, email, contact, address, pincode } = formData;
+
+    if (!firstName || !lastName || !email || !contact || !address || !pincode) {
+      toast.error("All fields are required.", { autoClose: 2500 });
+      dispatch(hide());
       return;
     }
-    try {
-      const storedOtp = sessionStorage.getItem("otp");
-      const storedMobile = sessionStorage.getItem("mobile");
-  
-      if (!storedOtp || !storedMobile) {
-        toast.error("No OTP session found. Please request a new OTP.", { autoClose: 2500 });
-        return;
-      }  
 
-      if (otp === storedOtp && mobile === storedMobile) {
-        //const result = await registerUser(formData);
-        //console.log(result);
-        const response = await fetch(
-            "https://uat.presstoindia.com/authApi.php?action=register",
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            }
-        );
-        const result = await response.json();
-         
-        if(result && !result.error){
-            toast.success("Registration successful. Redirecting to login...", { autoClose: 2500 });
-            setStep("login-mobile");
-            setMobile("");
-            setOtp("");
-        }else{
-          toast.error("Something wrong.", { autoClose: 2500 });
+    try {
+        const storedMobile = sessionStorage.getItem("mobile");  
+        if (!storedMobile) {
+          toast.error("No OTP session found. Please request a new OTP.", { autoClose: 2500 });
+          return;
         }  
-          sessionStorage.removeItem("otp");
-          sessionStorage.removeItem("mobile");       
-      } else {
-         toast.error("Invalid OTP.", { autoClose: 2500 });
-      }
+
+        if (mobile === storedMobile) {
+         
+          const response = await fetch(
+              "https://uat.presstoindia.com/authApi.php?action=register",
+              {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(formData)
+              }
+          );
+           let registerData = {};
+            try {
+              registerData = await response.json();
+            } catch {
+              registerData = {};
+            }
+          console.log(registerData);
+          
+          if(registerData && !registerData.error){
+              const loginResponse = await fetch(
+                `https://uat.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
+              );
+              const data = await loginResponse.json();
+
+              if (data?.customerUniqueId) {
+                toast.success("Registration successful.", { autoClose: 2500 });
+                dispatch(setCustomer(data));
+                setOtp("");
+                dispatch(setOpenSheet(false));
+                navigate("/profile");
+                sessionStorage.removeItem("otp");
+                sessionStorage.removeItem("mobile");   
+              } else {
+                toast.error("User not registered. Redirecting to registration...", { autoClose: 2500 });
+                setFormData({ ...formData, contact: mobile });
+                setStep("register");
+              }
+              //login user
+              dispatch(hide());
+          }else{
+            toast.error("Something wrong.", { autoClose: 2500 });
+            dispatch(hide());
+          }  
+                
+        } else {
+          toast.error("Invalid OTP.", { autoClose: 2500 });
+          dispatch(hide());
+          }
     } catch (error) {
-      console.error(error);
-      toast.error("Registration OTP verification failed.", { autoClose: 2500 });
-    }
+        console.error(error);
+        toast.error("Registration OTP verification failed.", { autoClose: 2500 });
+        dispatch(hide());
+      }
   };
   return (
     <section className="section-container">
@@ -208,7 +248,7 @@ const Authorization = () => {
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
           />
-          <button onClick={handleSendOtp}>Send OTP</button>
+          <button onClick={handleSendOtp} disabled={isVisible}>{isVisible ? "Sending OTP..." : "Send OTP"}</button>
         </div>
       )}
 
@@ -221,7 +261,7 @@ const Authorization = () => {
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
           />
-          <button onClick={handleVerifyOtp}>Verify OTP</button>
+          <button onClick={handleVerifyOtp} disabled={isVisible}>{isVisible ? "Login..." : "Verify & Login"}</button>
         </div>
       )}
 
@@ -246,12 +286,9 @@ const Authorization = () => {
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
-          <input
-            type="text"
-            placeholder="Contact"
-            value={formData.contact}
-            onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-          />
+          <div className="validMobile">
+            {formData.contact}
+          </div>
           <input
             type="text"
             placeholder="Address"
@@ -264,7 +301,7 @@ const Authorization = () => {
             value={formData.pincode}
             onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
           />
-          <button onClick={handleRegisterSubmit}>Send OTP</button>
+          <button onClick={handleFinalOtpVerify} disabled={isVisible}>{isVisible ? "Registering..." : "Register"}</button>
         </div>
       )}
 
