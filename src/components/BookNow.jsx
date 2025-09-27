@@ -1,6 +1,7 @@
 // src/pages/BookNow.jsx
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import PersonalDetails from './multiStepsForm/PersonalDetails';
 import ContactDetails from './multiStepsForm/ContactDetails';
@@ -10,6 +11,11 @@ import { setCustomer } from '../redux/slices/customerSlice';
 import {show, hide } from "../redux/slices/uiSlice";
 import emailjs from "emailjs-com";
 import './BookNow.scss';
+import Heading from './common/Heading';
+import Experties from './Experties';
+import { expertiseData } from '../api/expertiseData';
+import { Image } from '@imagekit/react';
+import { setOpenBookNow } from "../redux/slices/sheetSlice";
 
 const BookNow = () => {
   const dispatch = useDispatch();
@@ -241,8 +247,18 @@ const BookNow = () => {
     }
   };
 
+  const navigate = useNavigate();
+  const goToStoretPage = () => {
+      navigate('/store');
+  };
+  const goToBookNowPage = () => {
+     dispatch(setOpenBookNow(true));
+  };
+
+
   return (
     <div className="booknowsheet">
+      <div className="sheetTitle">BOOK SERVICE</div>
       <div className="section-container">
         {isSubmitted ? (
           <SuccessMessage
@@ -292,6 +308,51 @@ const BookNow = () => {
           </div>
         )}
       </div>
+        <div className="service-widget mt-48">
+          <div className="slider-mb-168">
+            <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="3" />
+          </div>
+          <div className="section-container mb-120">
+            <Heading title="Experience Pressto" />
+            <div className="section-luxaryExperience-item">
+              <div className="exp-item">
+                <h3 className="mobile-only">Locate Store Near you</h3>
+                <div className="img-container">
+                  <Image
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
+                    src="exp-6.jpg"
+                    width={416}
+                    height={416}
+                    alt="exp6"
+                  />
+                </div>
+                <div className="exp-content">
+                  <h3 className="desktop-only">Locate Store Near you</h3>
+                  <p>Find your nearest Pressto and step into effortless, premium care</p>
+                  <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToStoretPage}>Find Now</div>
+                </div>
+              </div>
+              <div className="exp-item">
+                <h3 className="mobile-only">Pickup & Drop</h3>
+                <div className="img-container">
+                  <Image
+                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
+                    src="exp-7.jpg"
+                    width={416}
+                    height={416}
+                    alt="exp7"
+                  />
+                </div>
+                <div className="exp-content">
+                  <h3 className="desktop-only">Pickup & Drop</h3>
+                  <p>Schedule a pickup and let premium care come to you.</p>
+                  <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToBookNowPage}>Book an Appointment</div>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div>
+
     </div>
   );
 };

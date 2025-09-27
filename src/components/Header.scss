@@ -228,24 +228,20 @@
 
 .auth-bottom-sheet{
     [data-rsbs-overlay]{ 
-        max-width: 768px;
+        max-width:1220px;
         width:100%;
         margin: 0 auto;
     } 
-}
-.booknow-bottomsheet{
     [data-rsbs-header]{
         position:relative;
-        .sheetHeader{
-          font-size: 22px;
-          @media(max-width:900px){
-            font-size:22px;
-          }
-        }
+        padding-bottom:48px;
+        padding-top:34px;
+        border:none;
+        box-shadow: none;        
         .closesheet{
           position:absolute;
-          right:10px;
-          top:58%;
+          right:30px;
+          top:40%;
           transform:translateY(-50%);
           width:46px;
           height:46px;
@@ -255,11 +251,67 @@
           cursor:pointer;
           @media(max-width:900px){
             right:0;
+            svg{
+                font-size:16px;
+            }
           }
         }
     }
+    .sheetTitle{
+        font-size: 20px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 500;
+        margin-bottom:48px;
+    }
+    .sheetHeader{
+        @media(max-width:900px){
+            font-size:22px;
+        }
+    }
+}
+.booknow-bottomsheet{
+    [data-rsbs-header]{
+        position:relative;
+        padding-bottom:48px;
+        padding-top:34px;
+        border:none;
+        box-shadow: none;        
+        .closesheet{
+          position:absolute;
+          right:30px;
+          top:40%;
+          transform:translateY(-50%);
+          width:46px;
+          height:46px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor:pointer;
+          @media(max-width:900px){
+            right:0;
+            svg{
+                font-size:16px;
+            }
+          }
+        }
+    }
+    .booknowsheet{
+         .sheetTitle{
+            font-size: 20px;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: 500;
+            margin-bottom:48px;
+         }
+    }
+    .sheetHeader{
+        @media(max-width:900px){
+            font-size:22px;
+        }
+    }
     [data-rsbs-overlay]{ 
-        max-width:550px;
+        max-width:1220px;
         width:100%;
         margin: 0 auto;
     } 

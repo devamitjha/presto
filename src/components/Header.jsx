@@ -10,6 +10,7 @@ import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 import "./Header.scss";
 import {X } from 'lucide-react';
+import Logo from "../assets/images/logo1.5x.png";
 
 const Header = () => {
   const { width } = useWindowSize();
@@ -35,10 +36,21 @@ const Header = () => {
       <BottomSheet
         open={openSheet}
         onDismiss={() => dispatch(setOpenSheet(false))}
-        defaultSnap={({ snapPoints, lastSnap }) =>
-          lastSnap ?? Math.min(...snapPoints)
-        }
+        snapPoints={({ maxHeight }) => {
+          const isMobile = window.innerWidth <= 768;
+          return isMobile
+            ? [maxHeight * 0.8, maxHeight * 0.7] 
+            : [maxHeight * 0.9, maxHeight * 0.8];
+        }}
         className="auth-bottom-sheet"
+        header={
+          <>
+            <div className="sheetHeader"> <img src={Logo} alt="pressto" width="208px" height="64px" /></div>
+            <div className="closesheet" onClick={() => dispatch(setOpenSheet(false))}>
+              <X size={22}/>
+            </div>
+          </>
+        }
       >
         <div className="sheetBody" style={{ marginTop: 0 }}>
           <Authorization />
@@ -53,14 +65,14 @@ const Header = () => {
           const isMobile = window.innerWidth <= 768;
           return isMobile
             ? [maxHeight * 0.8, maxHeight * 0.7] 
-            : [maxHeight * 0.9, maxHeight * 0.7];
+            : [maxHeight * 0.9, maxHeight * 0.8];
         }}
         className="booknow-bottomsheet"
         header={
           <>
-            <div className="sheetHeader">Book Service</div>
+            <div className="sheetHeader"> <img src={Logo} alt="pressto" width="208px" height="64px" /></div>
             <div className="closesheet" onClick={() => dispatch(setOpenBookNow(false))}>
-              <X size={16}/>
+              <X size={22}/>
             </div>
           </>
         }

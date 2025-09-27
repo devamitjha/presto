@@ -109,7 +109,10 @@ $amiri:"Amiri", serif;
         grid-column: span 4;
     }
 }
-
+html {
+  scrollbar-width: thin;   
+  scrollbar-color: #FFC700 transparent; 
+}
 .d-flex{
     display: flex;
     justify-content: center;
@@ -472,4 +475,26 @@ $amiri:"Amiri", serif;
 }
 .slider-mb-168{
     margin-bottom:168px;
+}
+.mt-48{
+    margin-top:48px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;       
+  height: 8px; 
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;     /* track (background) color */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background:#FFC700;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background:#FFC700;
 }

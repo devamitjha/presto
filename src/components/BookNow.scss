@@ -2,12 +2,13 @@
 .booknowsheet{
     .multi-step-form {
         max-width: 560px;
+        width:100%;
         margin: auto;
         margin-bottom:3rem;
         .step-indicator {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             div {
                 flex: 1;
                 height: 5px;
@@ -35,7 +36,7 @@
         flex-direction: column;
         gap: 20px;
         input {
-            background-color: #f8f8f8;
+            background-color: #F7F7F7;
             border: none;
             border-bottom: 1px solid #333;
             padding: 12px;
@@ -46,18 +47,19 @@
 
         .next-btn {
             @extend .d-flex;
-            background: #eee;
+            background: #DBDBDB;
             padding: 12px;
             border-radius: 9999px;
             border: none;
             font-weight: bold;
             cursor: pointer;
             color: #888;
-            height:56px;
-            width:210px;
+            height:50px;
+            width:162px;
             margin:1rem auto 0;
             font-size:1rem;
             text-transform: uppercase;
+            font-weight: 300;
             &:not(:disabled) {
                 background: #000;
                 color: #fff;
@@ -72,10 +74,12 @@
         position: relative;
         display: flex;
         align-items: center;
-        margin-bottom: 20px;
         background-color: #f8f8f8;
         border-bottom: 1px solid #333;
         justify-content: space-between;
+        margin-bottom:0;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
         input {
             flex: 1;
             background: #f8f8f8;
@@ -110,7 +114,7 @@
             }
             .side-button{
                 &.sendOtp{
-                    background-color:#eee;
+                    background-color:#DBDBDB;
                     border-radius: 9999px;
                     width:140px;
                     padding:10px;
@@ -129,10 +133,13 @@
             gap:16px;
             background:transparent;
             border-bottom:0;
+            margin-bottom:0;
             .input-container{
                 background: #f8f8f8;
                 border-bottom: 1px solid #333;
                 flex:1;
+                border-top-right-radius: 8px;
+                border-top-left-radius: 8px;
                 .input-wrapper{
                     width:100%;
                     input{
@@ -305,9 +312,9 @@
         margin-top:5rem;
     }
     .stepTitle{
-        margin:1rem 0 2rem 0;
+        margin:1rem 0 1.5rem 0;
         text-align: center;
-        color:$gray700;
+        color:#242330;
         font-weight: 400;
         font-size: 20px;
     }
@@ -321,26 +328,27 @@
                 .custom-datepicker {
                     width: 100%;
                     padding: 12px 80px 12px 12px;
-                    font-size: 14px;
+                    font-size: 16px!important;
                     border: none;
                     background: #f8f8f8;
                     outline: none;
-
+                    border-top-right-radius: 8px;
+                    border-top-left-radius: 8px;
                     &.filled + label,
                     &:focus + label {
                         top: -8px;
                         left: 4px;
-                        font-size: 12px;
-                        color: #000;
+                        font-size: 16px!important;
+                        color: #707070;
                     }
                 }                
 
                 label {
                     position: absolute;
-                    left: 12px;
-                    top: 20px;
-                    font-size: 14px;
-                    color: #888;
+                    left: 16px;
+                    top: 16px;
+                    font-size: 16px!important;
+                    color: #707070;
                     background: #f8f8f8;
                     padding: 0 4px;
                     transition: all 0.2s ease;
@@ -348,14 +356,18 @@
                     &.floating{
                         top: -8px;
                         left: 4px;
-                        font-size: 12px;
-                        color: #000;
+                        font-size: 16px!important;
+                        color: #707070;
+                        border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;
                     }
                 }
                 &.instructions{
                     label {                       
                         top: 30px;
                         padding: 0 20px;
+                        border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;
                     }
                 }
                 .input-icon {
@@ -363,28 +375,50 @@
                     right: 12px;
                     top: 50%;
                     transform: translateY(-50%);
-                    color: #888;
+                    color: #707070;
                     cursor: pointer;
+                }
+                &.timepicker{
+                    label{
+                        left:0;
+                        padding-left:21px;
+                        z-index: 3;
+                        &.floating{                            
+                            padding-left:10px!important;
+                        }
+                    }
+                }
+                &.datePicker{
+                    label{
+                        left:0;
+                        padding-left:21px;
+                        z-index: 3;
+                        &.floating{                            
+                            padding-left:10px!important;
+                        }
+                    }
                 }
             }
         }
 
         .form-step{
             &.success-message{
-                max-width:500px;
-                margin:50px auto;
+                max-width:560px;
+                margin:0 auto 48px auto;
                 text-align: center;
-                background-color: rgba(0, 255, 0, .05);
-                padding:30px 30px 40px;
-                border-radius: 16px;
-                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;                
+                @extend .d-flex;
+                flex-direction: column;
+                gap:22px;      
                 h2{
-                    margin:8px 0;
-                    font-weight: 500;
+                    font-size: 20px;
+                    font-weight: 400;
+                    color:#242330;
                 }
                 p{
-                    padding:0 8px;
+                    font-size: 16px;
+                    font-weight: 300;
                     text-align: center;
+                    margin:0;
                 }
             }
         }
@@ -394,4 +428,95 @@
                 margin-bottom: 0;
             }
         }
+        .react-datepicker-wrapper{
+            display:block;
+            .react-datepicker__close-icon{
+                display: none;
+            }
+        }        
+        #pickupTime{
+            display: block;
+            width: 100%;
+            height: 56px;
+            background: transparent;
+            border: none;
+            outline: none;
+            appearance: none;
+            padding-left: 12px;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+        }
+}
+
+.service-widget{
+    .section-container{
+        padding:0;
+    }
+    .section-experties,
+    .section-luxaryExperience-item{
+        padding: 0 3rem;        
+    }
+    .exp-item{
+        width:50%;
+            @extend .d-flex;
+            gap:1rem;
+        .mobile-only{
+            display:none;
+        }
+        @media(max-width:768px){
+            width:100%;
+        }                
+        @media(max-width:700px){
+            .desktop-only{
+                display:none;
+            }
+            .mobile-only{
+                display:block;
+                font-weight: 300;
+            }
+        }
+        @media(max-width:550px){
+            flex-direction: column;
+        }
+                
+        .img-container{
+            width:120px!important;
+            height:120px!important;
+            @media(max-width:550px){
+                width:100%;
+            }
+            img{
+                border-radius: 1rem;
+                width:100%;
+                height:100%;
+                object-fit: cover;
+                aspect-ratio: 1/1;
+            }
+        }             
+        .exp-content{
+            padding:0 1.5rem!important;
+            width:calc(100% - 140px)!important;
+            @media(max-width:550px){
+                width:100%;
+                padding:0;
+                text-align: center;
+            }
+            h3{
+                @extend .heading-6;
+                margin:0 0 1rem 0;                    
+            }
+            p{
+                @extend .body-2;
+                    margin:0 0 1.5rem 0;
+            }
+            .btn{
+                background-color: $black;
+                display:inline-flex;
+                width:auto!important;
+                padding-left:20px;
+                padding-right: 20px;
+            }
+        }
+    }
 }
