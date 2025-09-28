@@ -13,9 +13,11 @@
     justify-content: center;
     gap:2%;
     flex-wrap: wrap;
-    max-width: 580px;
+    max-width: 758px;
     width:90%;
     margin: 0 auto 2rem auto;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
     @media(max-width:700px){
       width:100%;
     }
@@ -33,7 +35,7 @@
       text-align: left;
       color: $gray600;
       margin-bottom: 4px;
-      padding: 1rem;
+      padding:4px 1rem  0 1rem;
       @media(max-width:700px){
        margin-bottom:0;
        padding: .5rem 1rem;
@@ -43,11 +45,12 @@
     select {
       padding: 8px 12px;
       border: none;
-      border-bottom: 2px solid $gray200;
+      border-bottom: 1px solid #49454F;
       background: transparent;
       font-size: 14px;
       outline: none;
       cursor: pointer;
+      color:#49454F;
     }
   }
 }

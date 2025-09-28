@@ -97,21 +97,8 @@ const StoreLocator = () => {
       setCities(filteredCities);
       setSelectedCity("");
       setSelectedLocality("");
-
-      // Show all stores of selected state immediately
-      const stateStores = stores.filter((s) => s.State === selectedState);
-      setFilteredStores(stateStores);
-
-      // Set active store to first store of state
-      if (stateStores.length > 0) {
-        setActiveStore(stateStores[0]);
-      } else {
-        setActiveStore(null);
-      }
-
-      // Set localities for selected state (optional)
-      const uniqueLocalities = [...new Set(stateStores.map((s) => s.store_location))];
-      setLocalities(uniqueLocalities);
+      setFilteredStores([]);
+      setActiveStore(null);
     }
   }, [selectedState, stores]);
 

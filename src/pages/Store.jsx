@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import {Pagination } from 'swiper/modules';
+import { useDispatch } from "react-redux";
 
 import useWindowSize from '../hooks/useWindowSize';
 
@@ -21,6 +22,7 @@ import Redeem from "../assets/images/redeem.svg";
 import Cleaning from "../assets/images/cleaning.svg";
 import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
 import ReviewSlider from '../components/ReviewSlider';
+import { openSheet } from '../redux/slices/sideSheetSlice';
 
 const HelmetMeta = () => {
   return (
@@ -96,6 +98,11 @@ const Benefits = () => {
 
 //Short Testimonial
 const CustomerReviewHighlight = () => {
+  const dispatch = useDispatch();
+  const handleOpen = () => {
+    //document.body.style.overflow = "hidden";
+    dispatch(openSheet());
+  };
   return (
     <div className="section-container mb-88">
       <div className="customer-highlight">
@@ -111,7 +118,7 @@ const CustomerReviewHighlight = () => {
         </div>
 
         {/* Right */}
-        <div className="right lg-hide">
+        <div className="right lg-hide" onClick={handleOpen} style={{cursor:"pointer"}}>
           <div className="avatars">
             <img src="https://i.pravatar.cc/40?img=1" alt="user" />
             <img src="https://i.pravatar.cc/40?img=2" alt="user" />

@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
 import './TrustBadge.scss';
+import { openSheet } from '../../redux/slices/sideSheetSlice';
 
 const avatars = [
   'https://randomuser.me/api/portraits/men/11.jpg',
@@ -8,8 +10,13 @@ const avatars = [
 ];
 
 const TrustBadge = () => {
+  const dispatch = useDispatch();
+  const handleOpen = () => {
+    //document.body.style.overflow = "hidden";
+    dispatch(openSheet());
+  };
   return (
-    <div className="trust-badge">
+    <div className="trust-badge" onClick={handleOpen}>
       <div className="avatar-group">
         {avatars.map((src, index) => (
           <img src={src} alt={`user-${index}`} key={index} className="avatar" />

@@ -1,0 +1,180 @@
+@import "../../assets/styles/theme";
+.reviewSideSheet{
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        z-index: 99;
+        &.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .side-sheet {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        max-width: 550px;
+        background: #fff;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+        transition: right 0.3s ease;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        &.open {
+            right: 0;
+        }
+
+        .side-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid #ddd;
+
+            h2 {
+            margin: 0;
+            font-size: 20px;
+            }
+
+            .close-btn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+            }
+        }
+
+        .side-content {
+            padding: 16px;
+            flex: 1;
+            overflow-y: auto;
+        }
+    }
+    
+    .side-reviews{
+        background: white;
+        padding: 1.5rem;     
+        .review-header {
+            @extend .d-flex;  
+            margin-bottom: 16px;
+            .google-logo {
+                @extend .d-flex;  
+                width:142px;
+                height:48px;
+                img{
+                    width:100%;
+                    height:100%;
+                    aspect-ratio: auto 142 / 48;
+                }
+            }
+            .title {
+                font-size: 1.25rem;
+                font-weight: 400;
+                margin-left:1rem;
+                color:$black;
+            }    
+        }
+    }
+    
+    .reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .review {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap:1rem;
+
+        .avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+
+        .name {
+          //font-weight: bold;
+          font-size: 14px;
+        }
+
+        .stars {
+          color: #FFD700;
+          font-size: 14px;
+        }
+      }
+
+      .date {
+        font-size: 12px;
+        color: $gray600;
+        margin:0;
+        .ph-row{
+          margin:0;
+          & div{
+            height: 7px;
+            margin:0;
+          }
+        }
+      }
+      &.skelton-ui{
+        .ph-item{
+          border: none;
+          align-items: center;
+          width: 100%;
+          flex-direction: row;  
+          padding: 0;   
+          margin:0;       
+          .ph-col-2{
+            &.avtar-section{
+              width:40px;
+              flex:1;
+              margin:0;
+              padding:0;
+            }
+          }          
+          .ph-avatar{
+            width: 40px;
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+          }
+          .leftitem{
+            padding: 0;
+            margin:0;
+            display: flex;
+            justify-content: start;
+            flex-direction: row;
+            align-items: center;
+            width: calc(100% - 250px);
+          }
+        }
+        .empty-box{
+          width: calc(100% - 60px);
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+          margin:0;
+          .ph-row{
+           & div{
+             height: 7px;
+           }
+          }
+        }
+      }
+      
+    }
+  }
+
+}

@@ -19,6 +19,8 @@
 
   .map-section {
     width: 68%;
+    border:1px solid #B0B0B0;
+    border-radius: 12px;
     @media(max-width:825px){
        width: 100%;
     }

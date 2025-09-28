@@ -11,6 +11,7 @@ import MobileHeader from "./MobileHeader";
 import "./Header.scss";
 import {X } from 'lucide-react';
 import Logo from "../assets/images/logo1.5x.png";
+import SideSheet from "./sidesheet/SideSheet";
 
 const Header = () => {
   const { width } = useWindowSize();
@@ -81,6 +82,7 @@ const Header = () => {
           <BookNow />
         </div>
       </BottomSheet>
+      <SideSheet />
     </>
   );
 };
