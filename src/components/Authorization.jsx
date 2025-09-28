@@ -4,13 +4,12 @@ import "./AuthFlow.scss";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { setCustomer } from "../redux/slices/customerSlice"; 
-import { setOpenSheet } from "../redux/slices/sheetSlice";
+import { setOpenSheet, setOpenBookNow } from "../redux/slices/sheetSlice";
 import {show, hide } from "../redux/slices/uiSlice";
 import Heading from './common/Heading';
 import Experties from './Experties';
 import { expertiseData } from '../api/expertiseData';
 import { Image } from '@imagekit/react';
-import { setOpenBookNow } from "../redux/slices/sheetSlice";
 
 
 const Authorization = () => {
@@ -241,95 +240,122 @@ const Authorization = () => {
         dispatch(hide());
       }
   }; 
-    const goToStoretPage = () => {
-        navigate('/store');
-    };
-    const goToBookNowPage = () => {
-       dispatch(setOpenBookNow(true));
-    };
+  const goToStoretPage = () => {
+      navigate('/store');
+      dispatch(setOpenSheet(false));
+  };
+  const goToBookNowPage = () => {
+      dispatch(setOpenBookNow(true));
+      dispatch(setOpenSheet(false));
+  };
   return (
-    <section className="section-container">
-      <div className="authflow">
-      {step === "login-mobile" && (
-        <div className="card">
-          <h2>LOGIN & SIGNUP</h2>
-          <input
-            type="text"
-            placeholder="Enter Mobile Number"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-          />
-          <button onClick={handleSendOtp} disabled={isVisible}>{isVisible ? "Sending OTP..." : "Send OTP"}</button>
-        </div>
-      )}
-
-      {step === "login-otp" && (
-        <div className="card">
-          <h2>Enter OTP</h2>
-          <input
-            type="text"
-            placeholder="OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-          />
-          <button onClick={handleVerifyOtp} disabled={isVisible}>{isVisible ? "Login..." : "Verify & Login"}</button>
-        </div>
-      )}
-
-      {step === "register" && (
-        <div className="card">
-          <h2>Register New User</h2>
-          <input
-            type="text"
-            placeholder="First Name"
-            value={formData.firstName}
-            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            value={formData.lastName}
-            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          />
-          <div className="validMobile">
-            {formData.contact}
+    <div className="authflow-sheet">
+      <section className="section-container">
+        <div className="authflow">
+        {step === "login-mobile" && (
+          <div className="inputGroup floating-label">
+            <div class="sheetTitle">LOGIN & SIGNUP</div>
+            <div className="input-wrapper">
+              <input
+                type="text"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                className={mobile ? "filled" : ""}
+              />
+              <label>Enter Mobile Number*</label>
+            </div>
+            <button onClick={handleSendOtp} disabled={!mobile} className={`button${mobile ? "" : " disable"}`}>{isVisible ? "Sending OTP..." : "Send OTP"}</button>
           </div>
-          <input
-            type="text"
-            placeholder="Address"
-            value={formData.address}
-            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Pincode"
-            value={formData.pincode}
-            onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
-          />
-          <button onClick={handleFinalOtpVerify} disabled={isVisible}>{isVisible ? "Registering..." : "Register"}</button>
-        </div>
-      )}
+        )}
 
-      {step === "register-otp" && (
-        <div className="card">
-          <h2>Verify OTP to Complete Registration</h2>
-          <input
-            type="text"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-          />
-          <button onClick={handleFinalOtpVerify}>Verify & Register</button>
+        {step === "login-otp" && (
+          <div className="inputGroup floating-label">
+            <div class="sheetTitle">LOGIN & SIGNUP</div>
+            <div className="input-wrapper">
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                className={otp ? "filled" : ""}
+              />
+               <label>Enter OTP*</label>
+            </div>
+            <button onClick={handleVerifyOtp} disabled={!otp} className={`button${otp ? "" : " disable"}`}> {isVisible ? "Login..." : "Verify & Login"}</button>
+          </div>
+        )}
+
+        {step === "register" && (
+          <div className="inputGroup floating-label">
+              <div class="sheetTitle">SIGNUP</div>
+              <div className="name-group">
+                <div className="input-wrapper">
+                  <input
+                    type="text"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    className={formData.firstName ? "filled" : ""}
+                  />
+                  <label>First Name*</label>
+                </div>
+                <div className="input-wrapper">
+                  <input
+                    type="text"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    className={formData.lastName ? "filled" : ""}
+                  />
+                  <label>Last Name*</label>
+                </div>
+              </div>
+              <div className="input-wrapper">
+                <input
+                  type="text"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className={formData.email ? "filled" : ""}
+                />
+                <label>Email*</label>
+              </div>            
+              <div className="validMobile">
+                {formData.contact}
+              </div>
+              <div className="input-wrapper">
+                <input
+                  type="text"
+                  value={formData.address}
+                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  className={formData.address ? "filled" : ""}
+                />
+                <label>Address*</label>
+              </div>
+              <div className="input-wrapper">
+                <input
+                  type="text"
+                  value={formData.pincode}
+                  onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
+                  className={formData.pincode ? "filled" : ""}
+                />
+                <label>Pincode*</label>
+              </div>
+              <button onClick={handleFinalOtpVerify} disabled={isVisible} className="button">{isVisible ? "Registering..." : "SIGNUP"}</button>
+          </div>
+        )}
+
+        {step === "register-otp" && (
+          <div className="card">
+            <h2>Verify OTP to Complete Registration</h2>
+            <input
+              type="text"
+              placeholder="Enter OTP"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+            />
+            <button onClick={handleFinalOtpVerify}>Verify & Register</button>
+          </div>
+        )}
         </div>
-      )}
-      </div>
-      <div className="service-widget mt-48">
+      </section>
+      <div className="auth-widget mt-48">
         <div className="slider-mb-168">
           <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="3" />
         </div>
@@ -373,7 +399,7 @@ const Authorization = () => {
           </div>
         </div>  
       </div>
-    </section>
+    </div>
   );
 };
 

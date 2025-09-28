@@ -250,6 +250,7 @@ const BookNow = () => {
   const navigate = useNavigate();
   const goToStoretPage = () => {
       navigate('/store');
+      dispatch(setOpenBookNow(false))
   };
   const goToBookNowPage = () => {
      dispatch(setOpenBookNow(true));
