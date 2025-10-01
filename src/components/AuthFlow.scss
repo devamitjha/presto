@@ -6,86 +6,103 @@
     margin-bottom: 3rem;
       .inputGroup{        
         &.floating-label {
-          .input-wrapper {
-            position: relative;
-            width:100%;
-            border-bottom: 1px solid #333;
-            margin-bottom:22px;
-            input,
-            textarea,
-            .custom-datepicker {
-                width: 100%;
-                padding: 12px 80px 12px 12px;
-                font-size: 16px!important;
-                border: none;
-                background: #f8f8f8;
-                outline: none;
-                border-top-right-radius: 8px;
-                border-top-left-radius: 8px;
-                &.filled + label,
-                &:focus + label {
-                    top: -10px;
-                    left: 4px;
+            .input-wrapper {
+                position: relative;
+                width:100%;
+                border-bottom: 1px solid #333;
+                margin-bottom:22px;
+                input,
+                textarea,
+                .custom-datepicker {
+                    width: 100%;
+                    padding: 12px 80px 12px 12px;
                     font-size: 16px!important;
-                    color: #707070;
-                }
-            }
-            label {
-                position: absolute;
-                left: 16px;
-                top: 12px;
-                font-size: 16px!important;
-                color: #707070;
-                background: #f8f8f8;
-                padding: 0 4px;
-                transition: all 0.2s ease;
-                pointer-events: none;
-                &.floating{
-                    top: -10px;
-                    left: 4px;
-                    font-size: 16px!important;
-                    color: #707070;
+                    border: none;
+                    background: #f8f8f8;
+                    outline: none;
                     border-top-right-radius: 8px;
                     border-top-left-radius: 8px;
+                    &.filled + label,
+                    &:focus + label {
+                        top: -10px;
+                        left: 4px;
+                        font-size: 16px!important;
+                        color: #707070;
+                    }                    
                 }
-            }
-            &.instructions{
-                label {                       
-                    top: 30px;
-                    padding: 0 20px;
-                    border-top-right-radius: 8px;
-                    border-top-left-radius: 8px;
-                }
-            }
-            .input-icon {
-                position: absolute;
-                right: 12px;
-                top: 50%;
-                transform: translateY(-50%);
-                color: #707070;
-                cursor: pointer;
-            }
-            &.timepicker{
-                label{
-                    left:0;
-                    padding-left:21px;
-                    z-index: 3;
-                    &.floating{                            
-                        padding-left:10px!important;
+                label {
+                    position: absolute;
+                    left: 16px;
+                    top: 12px;
+                    font-size: 16px!important;
+                    color: #707070;
+                    background: #f8f8f8;
+                    padding: 0 4px;
+                    transition: all 0.2s ease;
+                    pointer-events: none;
+                    &.floating{
+                        top: -10px;
+                        left: 4px;
+                        font-size: 16px!important;
+                        color: #707070;
+                        border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;
                     }
                 }
-            }
-            &.datePicker{
-                label{
-                    left:0;
-                    padding-left:21px;
-                    z-index: 3;
-                    &.floating{                            
-                        padding-left:10px!important;
+                &.instructions{
+                    label {                       
+                        top: 30px;
+                        padding: 0 20px;
+                        border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;
                     }
                 }
-            }
-          } 
+                .input-icon {
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #707070;
+                    cursor: pointer;
+                }
+                &.timepicker{
+                    label{
+                        left:0;
+                        padding-left:21px;
+                        z-index: 3;
+                        &.floating{                            
+                            padding-left:10px!important;
+                        }
+                    }
+                }
+                &.datePicker{
+                    label{
+                        left:0;
+                        padding-left:21px;
+                        z-index: 3;
+                        &.floating{                            
+                            padding-left:10px!important;
+                        }
+                    }
+                }
+                .countryCode{
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    height:100%;
+                    width:45px;
+                    font-size: 16px;
+                    @extend .d-flex;
+                }
+                &.cc{
+                    input{
+                        padding-left:45px;                      
+                    }
+                    label{
+                        left: 45px;
+                    }
+                }
+            } 
         }
         .name-group{
           @extend .d-flex;

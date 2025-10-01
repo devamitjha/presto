@@ -255,12 +255,13 @@ const Authorization = () => {
         {step === "login-mobile" && (
           <div className="inputGroup floating-label">
             <div class="sheetTitle">LOGIN & SIGNUP</div>
-            <div className="input-wrapper">
+            <div className="input-wrapper cc">
+              <div className="countryCode">+91</div>
               <input
                 type="text"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
-                className={mobile ? "filled" : ""}
+                className={mobile  ? "filled" : ""}
               />
               <label>Enter Mobile Number*</label>
             </div>

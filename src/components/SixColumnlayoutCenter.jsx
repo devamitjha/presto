@@ -1,8 +1,6 @@
 import React from 'react';
 import "./SixColumnLayout.scss";
 import Heading from './common/Heading';
-
-import { Button } from "./common/Button";
 import StaggerOnView from "../components/common/StaggerOnView"
 import {useDispatch } from "react-redux";
 import { setOpenBookNow } from "../redux/slices/sheetSlice";
@@ -22,6 +20,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
     const goToBookNowPage = () => {
         dispatch(setOpenBookNow(true));
     };
+    
   return (
     <section className="section-container six-columns center autoSlider mb-120">
           <Heading title="What we do best" /> 
@@ -35,11 +34,11 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                         width={848}
                         height={848}
                         alt="Drycleaning & Laundry"
-                    />
+                />
                       <div className="title-container">
                           <h4>Drycleaning & Laundry</h4>
                           <p>Combined with exquisite care & advanced technology to deliver perfection.</p>
-                          <div className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }>Book Now</div>
+                          <div className="btn btn-md base-btn outlined overflowHidden" onClick={goToBookNowPage }>Book Now</div>
                       </div>
                   </div>
                   <div className="item">
@@ -53,7 +52,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                       <div className="title-container black">
                           <h4>Shoe & Bag Care</h4>
                           <p>Restoring your shoes and bags with unrivaled precision</p>
-                          <div className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }>Book Now</div>
+                          <div className="btn btn-md base-btn outlined overflowHidden" onClick={goToBookNowPage }>Book Now</div>
                       </div>
                   </div>
               </StaggerOnView>
@@ -76,7 +75,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                           <div className="title-container">
                               <h4>Drycleaning & Laundry</h4>
                               <p>Combined with exquisite care & advanced technology to deliver perfection.</p>
-                              <div className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }>Book Now</div>
+                              <div className="btn btn-md base-btn outlined overflowHidden" onClick={goToBookNowPage }>Book Now</div>
                           </div>
                       </div>
                   </SwiperSlide>  
@@ -92,7 +91,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                         <div className="title-container black">
                             <h4>Shoe & Bag Care</h4>
                             <p>Restoring your shoes and bags with unrivaled precision</p>
-                            <div className="btn btn-md base-btn outlined overflowHidden" GoTo={goToBookNowPage }>Book Now</div>
+                            <div className="btn btn-md base-btn outlined overflowHidden" onClick={goToBookNowPage }>Book Now</div>
                         </div>
                       </div>
                   </SwiperSlide>              

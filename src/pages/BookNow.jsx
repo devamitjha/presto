@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router';
 import Exp6 from "../assets/images/exp/exp-6.jpg";
 import Exp7 from "../assets/images/exp/exp-7.jpg";
 import Heading from '../components/common/Heading';
-import { Button } from '../components/common/Button';
 
 const HelmetMeta = () => (
   <Helmet>
@@ -174,7 +173,7 @@ const BookNow = () => {
               <div className="exp-content">
                 <h3>Locate Store Near you</h3>
                 <p>Find your nearest Pressto and step into effortless, premium care</p>
-                <Button title="Find Now" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToStoretPage}/>
+                <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToStoretPage}>Find Now</div>
               </div>
             </div>
             <div className="exp-item">
@@ -184,7 +183,7 @@ const BookNow = () => {
               <div className="exp-content">
                 <h3>Pickup & Drop</h3>
                 <p>Schedule a pickup and let premium care come to you.</p>
-                <Button title="Book an Appointment" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage}/>
+                <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToBookNowPage}>Book an Appointment</div>
               </div>
             </div>
           </div>

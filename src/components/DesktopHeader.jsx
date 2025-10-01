@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { User, ChevronDown } from "lucide-react";
@@ -7,7 +7,6 @@ import { setOpenSheet, setOpenBookNow } from "../redux/slices/sheetSlice";
 import Logo from "../assets/images/logo.png";
 import whatsApp from "../assets/images/whatsapp.png";
 import BookNowIcon from "./BookNowIcon";
-
 
 const DesktopHeader = () => {
   const navigate = useNavigate();
@@ -26,20 +25,42 @@ const DesktopHeader = () => {
     (o) => `0 2px 10px rgba(0,0,0,${o * 0.1})`
   );
 
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // scrolling down
+        setVisible(false);
+      } else {
+        // scrolling up
+        setVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   const goToBookNowPage = () => {
     dispatch(setOpenBookNow(true));
   };
 
   return (
     <motion.section
+      id="navbar"
       className="header sticky-header"
       style={{
         position: "sticky",
         top: 0,
-        zIndex:2,
+        zIndex: 2,
         backgroundColor: bgColor,
         boxShadow: boxShadow,
         backdropFilter: "blur(10px)",
+        y: visible ? 0 : -110,
+        transition: "transform 0.3s ease",
       }}
     >
       <div className="navigation">
@@ -66,13 +87,23 @@ const DesktopHeader = () => {
                   Stores
                 </NavLink>
               </li>
-              <li>                
-                  <span>Services</span>
-                  <ChevronDown />
+              <li>
+                <span>Services</span>
+                <ChevronDown />
                 <ul className="nav-dropdown">
-                  <li><NavLink to="/service/dry-cleaning" end>Drycleaning & Laundry</NavLink></li>
-                  <li className="divider"><span></span></li>
-                  <li><NavLink to="/service/shoes-and-bag-care" end>Shoe & Bag Care</NavLink></li>
+                  <li>
+                    <NavLink to="/service/dry-cleaning" end>
+                      Drycleaning & Laundry
+                    </NavLink>
+                  </li>
+                  <li className="divider">
+                    <span></span>
+                  </li>
+                  <li>
+                    <NavLink to="/service/shoes-and-bag-care" end>
+                      Shoe & Bag Care
+                    </NavLink>
+                  </li>
                 </ul>
               </li>
               <li>
@@ -101,7 +132,7 @@ const DesktopHeader = () => {
                 className="user-icon"
                 onClick={() => dispatch(setOpenSheet(true))}
               >
-                <User size={18}/>
+                <User size={18} />
               </div>
             </div>
           )}

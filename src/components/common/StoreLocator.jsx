@@ -242,7 +242,7 @@ const StoreLocator = () => {
               value={selectedState}
               onChange={(e) => setSelectedState(e.target.value)}
             >
-              <option value="">-- Select State --</option>
+              <option value="">Select State</option>
               {states.map((state, i) => (
                 <option key={i} value={state}>{state}</option>
               ))}
@@ -256,7 +256,7 @@ const StoreLocator = () => {
               onChange={(e) => setSelectedCity(e.target.value)}
               disabled={!selectedState}
             >
-              <option value="">-- Select City --</option>
+              <option value="">Select City</option>
               {cities.map((city, i) => (
                 <option key={i} value={city}>{city}</option>
               ))}
@@ -270,7 +270,7 @@ const StoreLocator = () => {
               onChange={(e) => setSelectedLocality(e.target.value)}
               disabled={!selectedCity}
             >
-              <option value="">-- Select Locality --</option>
+              <option value="">Select Locality</option>
               {localities.map((locality, i) => (
                 <option key={i} value={locality}>{locality}</option>
               ))}

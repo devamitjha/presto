@@ -17,7 +17,6 @@ import useWindowSize from '../hooks/useWindowSize';
 
 
 //experience
-import { Button } from '../components/common/Button';
 import { Image } from '@imagekit/react';
 
 const HelmetMeta = () => {
@@ -188,7 +187,7 @@ const About = () => {
             <div className="exp-content">
               <h3 className="only-desktop">Locate Store Near you</h3>
               <p>Find your nearest Pressto and step into effortless, premium care</p>
-               <Button title="Find Now" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToStoretPage}/>
+               <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToStoretPage}>Find Now</div>
             </div>
           </div>
           <div className="exp-item">
@@ -205,7 +204,7 @@ const About = () => {
             <div className="exp-content">
               <h3 className="only-desktop">Pickup & Drop</h3>
               <p>Schedule a pickup and let premium care come to you.</p>
-               <Button title="Book an Appointment" className="btn btn-md base-btn secondary overflowHidden" GoTo={goToBookNowPage}/>
+               <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToBookNowPage}>Book an Appointment</div>
             </div>
           </div>
         </div>

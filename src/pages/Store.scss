@@ -312,9 +312,17 @@
                     }
                     select {
                         padding: 0.5rem 1rem;
-                        border: 1px solid #ccc;
-                        border-radius: 6px;
+                        border:none;
+                        border-bottom: 1px solid #333;
+                        border-top-right-radius: 6px;
+                        border-top-left-radius: 6px;
+                        background-color: #f8f8f8;
                         @extend .body-3;
+                        &:focus,
+                        &:filled{
+                            outline:none;
+                            border:none;
+                        }
                     }
                 }
             }
@@ -435,11 +443,12 @@
                             .title{
                                 @extend .body-1;
                                 font-size:24px;
-                                font-weight: 500;
+                                font-weight: 400;
                             }
                             .sub-title{
                                 @extend .sub-heading-1;
-                                font-weight: 500;
+                                font-weight: 400;
+                                margin-top:8px;
                             }
                         }
                         p{
@@ -459,9 +468,12 @@
                         .city-name{
                             @extend .d-flex;
                             justify-content: space-between;
-                            color:#000;
+                            color:#000;                           
                             @media(max-width:550px){
                                 flex-direction: column;
+                            }
+                            p{
+                                font-weight: 400;
                             }
                             .icon-box{
                                 &.copy{
@@ -488,7 +500,7 @@
                                     justify-content: start;
                                 }                           
                                 p{
-                                    color:$gray600;
+                                    color:#4E4B66;
                                     font-weight: 300;
                                     font-size:14px;
                                     @media(max-width:1450px){
@@ -502,7 +514,7 @@
                                 justify-content: flex-start;
                                 width:33%;
                                 &.timings-title{
-                                    font-weight: 600;
+                                    font-weight: 400;
                                     font-size:16px;                                    
                                 }
                                 @media(max-width:550px){
@@ -552,12 +564,15 @@
                                 margin-top:0!important;
                                 padding-left: 16px;
                                 position: relative;
-                                z-index:1;
-                                font-size: 16px;
-                                text-transform: uppercase;
+                                z-index:1;                               
                                 border:1px solid #1C1B1F;
                                 border-radius: 9999px;
                                 height:52px;
+                                a{
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                    text-transform: uppercase;
+                                }
                                 span{
                                     @extend .d-flex;
                                 }
