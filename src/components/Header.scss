@@ -426,4 +426,27 @@
     top: 0;
     z-index:2;
     width: 100%;
+    .secondary.base-btn {
+        background-color: #000;
+        font-size:3vw;
+        padding:1.5vw 3vw;
+        height:auto;
+    }
+    .user-icon{
+        width:8vw;
+        height:8vw;
+        @extend .d-flex;
+    }
+    .user-dropdown{
+         .user-icon {
+            cursor: pointer;           
+            border-radius: 50%;
+            border: 1px solid #6A6A6A;
+            @extend .d-flex;
+            svg{
+                width:4.5vw;
+            }
+        }
+    }
+   
   }
