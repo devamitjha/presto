@@ -47,3 +47,42 @@
         }
     }
 }
+.marquee-container{
+    margin:48px 0;
+    .rfm-child{
+        margin-right:76px;
+        .item{
+            @extend .d-flex;
+            justify-content: start;
+            gap:.5rem;
+            @media(max-width:1180px){
+                &.lg-hide{
+                    display:none;
+                }
+            }
+            @media(max-width:768px){
+                &.md-hide{
+                    display:none;
+                }
+            }
+            h4{
+                margin:0;
+                @extend .heading-2;
+            span{
+                @extend .heading-2;
+            }
+            }
+            span{
+                @extend .heading-6;
+            }
+            &.flex-2{
+                flex:2;
+            }
+            @media(max-width:360px){
+            h4,span{
+                font-size:16px!important;
+            }
+            }
+        }
+    }
+}

@@ -51,6 +51,9 @@
                 }
             }
         }
+        @media(max-width:1024px){
+            padding:0;
+        }
     }
     .slick-dots {
         bottom: -3rem;

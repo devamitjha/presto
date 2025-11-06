@@ -59,7 +59,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
              :
              <Swiper
                 slidesPerView={'auto'}
-                spaceBetween={15}
+                spaceBetween={28}
                 modules={[Pagination]}
                 className="slider"
               >

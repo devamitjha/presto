@@ -68,7 +68,7 @@ const Experties = ({ title, data = [], item,  size }) => {
         settings: {
           slidesToShow: cssClass ? 4 : 1,
           arrows: false,
-          slidesToScroll:1,
+          slidesToScroll:2,
           dots: cssClass ? true : false,
         }
       },
@@ -77,7 +77,7 @@ const Experties = ({ title, data = [], item,  size }) => {
         settings: {
           slidesToShow: cssClass ? 2 : 1,
           arrows: false,
-          slidesToScroll:1,
+          slidesToScroll:2,
           dots: cssClass ? true : false,
         }
       }

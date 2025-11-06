@@ -189,10 +189,18 @@
       @media(max-width:900px){
         right:0;
       }
+      @media(max-width:800px){
+         &.mob{
+          display: none;
+        }
+      }
     }
   }
   .bottom-card{
     padding:48px;
+    @media(max-width:800px){
+      padding:15px;
+    }
     .card-detail{
       .card-title{
          margin-bottom:24px;

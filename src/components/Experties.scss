@@ -8,9 +8,13 @@
     .heading{
         padding:0 2rem;
         font-size:32px;
+        @media(max-width:768px){
+            font-size: 24px;
+        }
     }
     .section-container{
         width:100%;
+         @media(max-width:768px){padding:0;}
         .experties-slider{
             padding:0 3.5rem;
             @media(max-width:825px){
@@ -25,6 +29,7 @@
                 &.mobile{
                     width:320px;
                     padding:0 10px;
+                    margin-bottom:0;
                     @media(max-width:520px){
                         width:260px;
                     }
@@ -44,11 +49,17 @@
                 .slider-title{
                     font-size: 24px;
                     margin-bottom: .5rem;
+                    @media(max-width:768px){
+                       font-size: 16px;
+                    }
                 }
                 .slider-text{
                     @extend .body-3;
                     color:$gray700;
                     font-weight: 300;
+                     @media(max-width:768px){
+                       font-size: 12px;
+                    }
                 }
             }
         }

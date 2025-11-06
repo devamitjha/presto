@@ -10,8 +10,7 @@
   height:100%;
   align-content: stretch;
   @media(max-width:768px){
-      width:100%;
-      border: none;
+      width:100%;      
   }
   .review-header {
         @extend .d-flex;  

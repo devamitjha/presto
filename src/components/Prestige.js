@@ -78,7 +78,7 @@ const Prestige = ({ title, data = [], size }) => {
   };
 
   return (
-    <section className="section-prestige">
+    <section className="section-prestige no-padding">
       <Heading title={title} />
       <div className="section-container">
         <div className="slider-container prestige-slider autoSlider">
