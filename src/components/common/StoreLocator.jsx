@@ -209,7 +209,7 @@ const StoreLocator = () => {
   return (
     <div className="section-map">
       <div className="section-store-map">
-        <MapContainer center={mapCenter} zoom={12} style={{ height: "600px", width: "100%" }}>
+        <MapContainer center={mapCenter} zoom={12} style={{ width: "100%" }}>
           <TileLayer
             attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

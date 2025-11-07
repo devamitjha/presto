@@ -7,7 +7,6 @@ import Sidebar from "./Sidebar";
 import { setOpenSheet, setOpenBookNow } from "../redux/slices/sheetSlice";
 import { User } from "lucide-react";
 import whatsApp from "../assets/images/whatsapp.png";
-import BookNowIcon from "./BookNowIcon";
 
 const MobileHeader = () => {
   const [isOpen, setIsOpen] = useState(false);

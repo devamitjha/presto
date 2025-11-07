@@ -1,16 +1,24 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { X, ChevronRight, Plus, Minus, Dot, Phone } from "lucide-react";
-import MobileIcon from "../assets/mobile/phone.svg";
 import Logo from "../assets/images/logo.png";
+import LogoutBtn from "../assets/images/logout.svg";
 import { Image } from '@imagekit/react';
 import BookNowIcon from "./BookNowIcon";
-import { useDispatch } from "react-redux";
-import { setOpenBookNow } from "../redux/slices/sheetSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { setOpenSheet, setOpenBookNow } from "../redux/slices/sheetSlice";
+import { User } from "lucide-react";
+import whatsApp from "../assets/images/whatsapp.png";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
     const dispatch = useDispatch();
     const [activeMenu, setActiveMenu] = useState(null);    
+    const navigate = useNavigate();
+    const customer = useSelector((state) => state.customer.customer);
+
+    const initials = `${customer?.firstName?.charAt(0) || ""}${
+        customer?.lastName?.charAt(0) || ""
+    }`.toUpperCase();
 
     const toggleSubmenu = (menu) => {
         setActiveMenu(activeMenu === menu ? null : menu);
@@ -20,22 +28,57 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         setIsOpen(false)
         dispatch(setOpenBookNow(true));
     };
+    const openLogin = () => {
+        setIsOpen(false)
+        dispatch(setOpenSheet(true))
+    };
+    const OpenWhatsapp = ()=>{
+        setIsOpen(false)
+        const phone = "9167188355";
+        const message = encodeURIComponent("Let's Start!");
+        const url = `https://api.whatsapp.com/send?phone=${phone}&text=${message}`;
+        window.open(url, "_blank");
+    }
   return (
     <div className={`sidebar ${isOpen ? "open" : ""}`}>
          {/* Header */}
             <div className="navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm mb-1">
                 <div className="container-fluid d-flex justify-content-between align-items-center">
-                <div className="section-logo">
-                    <Link to="/" onClick={handleClose}>
-                        <img src={Logo} alt="pressto" width="90px" height="auto" />
-                    </Link>
-                </div>
-                <div className="d-flex align-items-center">
-                    <img src={MobileIcon} alt="Mobile Phone" />
-                    <span className="menu-icon ms-4" onClick={() => setIsOpen(false)}>
-                    <X size={22}/>
-                    </span>
-                </div>
+                    <div className="section-logo">
+                        <Link to="/" onClick={handleClose}>
+                            <img src={Logo} alt="pressto" width="120px" height="auto" />
+                        </Link>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-end gap-2">
+                        {customer ? (
+                            <div className="user-dropdown">
+                                <div className="user-icon" onClick={() => navigate("/profile")}>
+                                {initials}
+                                </div>
+                            </div>
+                            ) : (
+                            <div className="user-dropdown">
+                                <div
+                                className="user-icon"
+                                onClick={openLogin}
+                                >
+                                <User size={18} />
+                                </div>
+                            </div>
+                            )}
+                        
+                        <div
+                            className="user-icon"
+                            onClick={OpenWhatsapp}
+                            style={{ cursor: "pointer" }}
+                        >
+                            <img src={whatsApp} alt="whatsapp" />
+                        </div>
+                        <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToBookNowPage}>Book Now</div>
+                        <span className="menu-icon" onClick={() => setIsOpen(false)}>
+                            <X size={22}/>
+                        </span>
+                    </div>
                 </div>
             </div>
         <div className="scrolled-content">
@@ -62,9 +105,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     </div>
 
                     {activeMenu === "service" && (
-                        <div className="submenu ps-3 mt-2">
-                        <NavLink to="/service/dry-cleaning" className="d-block my-2" end onClick={handleClose}><Dot /> Drycleaning & Laundry</NavLink>
-                        <NavLink to="/service/shoes-and-bag-care" className="d-block mb-2" end onClick={handleClose}><Dot />Shoe & Bag Care</NavLink>
+                        <div className="submenu ps-3">
+                            <NavLink to="/service/dry-cleaning" className="d-flex justify-content-start align-items-center item" end onClick={handleClose}><Dot /> <span className="d-flex justify-content-between align-items-center">Drycleaning & Laundry <ChevronRight size={16} /></span></NavLink>
+                            <NavLink to="/service/shoes-and-bag-care" className="d-flex justify-content-start align-items-center item" end onClick={handleClose}><Dot /> <span className="d-flex justify-content-between align-items-center">Shoe & Bag Care <ChevronRight size={16} /></span></NavLink>
                         </div>
                     )}
                     </div>
@@ -80,7 +123,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     <div className="menu-service">Avail our Services</div>
                     <div className="row">
                         <div className="flex flex-column justify-content-start mb-3">
-                            <div className="d-flex justify-content-between align-items-center mb-4">
+                            <div className="item d-flex justify-content-between align-items-center">
                                 <div className="d-flex align-items-center s-item">
                                     <Image
                                         urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
@@ -96,7 +139,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 </div>  
                                 <span className="service-icon"> <ChevronRight size={16} /></span>                               
                             </div>  
-                            <div className="d-flex justify-content-between align-items-center">
+                            <div className="item d-flex justify-content-between align-items-center">
                                 <div className="d-flex align-items-center s-item">
                                     <Image
                                         urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
@@ -115,16 +158,18 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                         </div>
                     </div>
                 </div>
-                <div className="abs-btn text-center p-3 bg-white border-top d-flex justify-content-between align-items-center">
-                    <a href="tel:+911800229199" className="icon-btn contact-btn">
-                        <span>Contact Us</span>
-                        <Phone size={16}/>   
-                    </a>
-                    <div className="icon-btn book-now" onClick={goToBookNowPage}>
-                        <span>Book Now</span>
-                        <BookNowIcon />                
+                {
+                    customer && 
+                    <div className="abs-btn text-center p-3 bg-white border-top d-flex justify-content-between align-items-center">
+                        <a href="tel:+911800229199" className="icon-btn contact-btn">
+                            <span>Logout</span>
+                            <img src={LogoutBtn} alt="Logout" />
+                        </a>
                     </div>
-                </div>
+                }
+                
+                    
+                
         </div>
     </div>
   );

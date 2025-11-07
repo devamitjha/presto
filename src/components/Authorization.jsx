@@ -254,7 +254,7 @@ const Authorization = () => {
         <div className="authflow">
         {step === "login-mobile" && (
           <div className="inputGroup floating-label">
-            <div class="sheetTitle">LOGIN & SIGNUP</div>
+            <div className="sheetTitle">LOGIN & SIGNUP</div>
             <div className="input-wrapper cc">
               <div className="countryCode">+91</div>
               <input
@@ -271,7 +271,7 @@ const Authorization = () => {
 
         {step === "login-otp" && (
           <div className="inputGroup floating-label">
-            <div class="sheetTitle">LOGIN & SIGNUP</div>
+            <div className="sheetTitle">LOGIN & SIGNUP</div>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -287,7 +287,7 @@ const Authorization = () => {
 
         {step === "register" && (
           <div className="inputGroup floating-label">
-              <div class="sheetTitle">SIGNUP</div>
+              <div className="sheetTitle">SIGNUP</div>
               <div className="name-group">
                 <div className="input-wrapper">
                   <input
