@@ -103,11 +103,11 @@
                                     
                                 }
                             }
-                            &:hover > ul.nav-dropdown {
-                                top: 100%;
-                                opacity: 1;
-                                pointer-events: auto;                               
-                            }
+                        &:hover > ul.nav-dropdown {
+                            top: 100%;
+                            opacity: 1;
+                            pointer-events: auto;                               
+                        }
                     }
                     
                 }                
@@ -137,7 +137,7 @@
                     height:18px;
                     fill:#fff;
                 }
-            }
+            }            
         }
     }
     .user-dropdown {
@@ -215,8 +215,55 @@
                     }
                 }
             }
-        }
+            }
 
+            ul.nav-dropdown {
+                position: absolute;
+                top: 120%;
+                left: 50%;
+                transform: translateX(-50%);
+                opacity: 0; 
+                pointer-events: none; 
+                display: flex; 
+                flex-direction: column;
+                justify-content: start;
+                align-items: flex-start;
+                width: 230px;
+                background: #fff; 
+                border-radius: 8px;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                padding: 24px;
+                z-index: 99;
+                transition: all .3s ease-in-out;
+                li {
+                    width: 100%;
+                    text-align: left;
+                    margin-left: 0;
+                    list-style: none;
+                    cursor: pointer;
+                    a {
+                        display: block;
+                        width: 100%;
+                        color: #000;
+                        text-decoration: none;
+                        font-size: 1rem;
+                        transition: all .1s ease-in-out;
+                        &:hover{
+                            color:$black;
+                        }
+                    }
+                    &.divider {
+                        margin:1rem 0;
+                        border-top: 1px dashed #999999;
+                    }
+                    
+                }
+            }
+            &:hover > ul.nav-dropdown {
+                top: 100%;
+                opacity: 1;
+                pointer-events: auto;                               
+            }
        
     }
     &.sticky-header {

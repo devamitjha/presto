@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
-import { X, ChevronRight, Plus, Minus, Dot, Phone } from "lucide-react";
+import { X, ChevronRight, Plus, Minus, Dot } from "lucide-react";
 import Logo from "../assets/images/logo.png";
 import LogoutBtn from "../assets/images/logout.svg";
 import { Image } from '@imagekit/react';
-import BookNowIcon from "./BookNowIcon";
 import { useSelector, useDispatch } from "react-redux";
 import { setOpenSheet, setOpenBookNow } from "../redux/slices/sheetSlice";
 import { User } from "lucide-react";
 import whatsApp from "../assets/images/whatsapp.png";
+import { clearCustomer } from '../redux/slices/customerSlice';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
     const dispatch = useDispatch();
@@ -38,6 +38,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         const message = encodeURIComponent("Let's Start!");
         const url = `https://api.whatsapp.com/send?phone=${phone}&text=${message}`;
         window.open(url, "_blank");
+    }
+    const logOutCustomer = ()=>{
+        dispatch(clearCustomer(customer));
+        setIsOpen(false)
     }
   return (
     <div className={`sidebar ${isOpen ? "open" : ""}`}>
@@ -161,10 +165,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                 {
                     customer && 
                     <div className="abs-btn text-center p-3 bg-white border-top d-flex justify-content-between align-items-center">
-                        <a href="tel:+911800229199" className="icon-btn contact-btn">
+                        <div className="icon-btn contact-btn" onClick={logOutCustomer}>
                             <span>Logout</span>
                             <img src={LogoutBtn} alt="Logout" />
-                        </a>
+                        </div>
                     </div>
                 }
                 

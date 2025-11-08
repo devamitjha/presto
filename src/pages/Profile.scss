@@ -2,9 +2,9 @@
 .profile-container{
     display: block;
     max-width:900px;
-    width:90%;
+    width:92%;
     margin:80px auto 120px auto;
-    font-family:"Kanit", sans-serif;
+    font-family:"Kanit", sans-serif;   
     .title{
         text-align: center;
         @extend .heading-6;
@@ -29,6 +29,15 @@
                         height:50px;
                         background-color: transparent;
                         @extend .d-flex;
+                        @media(max-width:900px){
+                            width:160px;
+                            .rc-tabs-tab-btn{
+                                font-size:14px!important;
+                            }                            
+                        }
+                        @media(max-width:380px){
+                            width:140px;
+                        }
                         .rc-tabs-tab-btn{
                             font-size:16px;
                             line-height: auto;
@@ -81,7 +90,10 @@
                     justify-content:start;
                     align-items: center;
                     gap:16px;
-                    width:100%;                    
+                    width:100%;  
+                    @media(max-width:900px){
+                        flex-direction: column;
+                    }                  
                     .order-detail{
                         display: block;
                         width: 100%;

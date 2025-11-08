@@ -5,7 +5,7 @@
   border-radius: 16px;
   border:1px solid #C8C8C8;
   @media(max-width:700px){
-    width: 80%;
+    width: 100%;
     border:none;
     margin-top:3rem;
   }
@@ -45,11 +45,23 @@
     svg{
       color:#fff;
     }
+    @media(max-width:1024px){
+      bottom:-6rem;
+      top:auto;
+    }
   }
   .slick-slider .navNext.ban{
       right: -3.5rem;
+      @media(max-width:1024px){
+        right:50%;
+        margin-right:8px;
+      }
   }
   .slick-slider .navPrev.bap{
       left: -3.5rem;
+      @media(max-width:1024px){
+        left:50%;
+        margin-left:8px;
+      }
   }
 }

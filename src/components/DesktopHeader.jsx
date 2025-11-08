@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { User, ChevronDown } from "lucide-react";
+import { User, ChevronDown, UserPen } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import { setOpenSheet, setOpenBookNow } from "../redux/slices/sheetSlice";
 import Logo from "../assets/images/logo.png";
 import whatsApp from "../assets/images/whatsapp.png";
+import LogoutBtn from "../assets/images/logout.svg"
 import BookNowIcon from "./BookNowIcon";
+import { clearCustomer } from '../redux/slices/customerSlice';
 
 const DesktopHeader = () => {
   const navigate = useNavigate();
@@ -47,6 +49,10 @@ const DesktopHeader = () => {
   const goToBookNowPage = () => {
     dispatch(setOpenBookNow(true));
   };
+
+  const logOutCustomer = ()=>{
+    dispatch(clearCustomer(customer));
+  }
 
   return (
     <motion.section
@@ -122,9 +128,22 @@ const DesktopHeader = () => {
         <div className="section-contact">
           {customer ? (
             <div className="user-dropdown">
-              <div className="user-icon" onClick={() => navigate("/profile")}>
+              <div className="user-icon">
                 {initials}
               </div>
+                <ul className="nav-dropdown">
+                  <li>
+                    <NavLink to="/profile" end>
+                      <UserPen size={16} /> <span style={{marginLeft:"8px"}}>My Account</span>
+                    </NavLink>
+                  </li>
+                  <li className="divider">
+                    <span></span>
+                  </li>
+                  <li onClick={logOutCustomer}>
+                   <img src={LogoutBtn} alt="logout"/> <span style={{marginLeft:"8px"}}>Logout</span>
+                  </li>
+                </ul>
             </div>
           ) : (
             <div className="user-dropdown">

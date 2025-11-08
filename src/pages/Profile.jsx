@@ -41,20 +41,20 @@ const OrderHistory = ({ customer }) => {
           </div>
           <div className="order-detail">
             <p>
-              <span className="dark">Order: {item.orderId}</span>
-              <span>Placed on {new Date(item.orderDate).toLocaleDateString()}</span>
+              <span className="dark"><strong>Order:</strong> {item.orderId}</span>
+              <span><strong>Placed on:</strong> {new Date(item.orderDate).toLocaleDateString()}</span>
             </p>
             <p>
-              <span>Payment Mode: {item.paymentMode}</span>
-              <span className="dark">Order Amount: ₹{item.orderAmount}</span>
+              <span><strong>Payment Mode:</strong> {item.paymentMode}</span>
+              <span className="dark"><strong>Order Amount:</strong> ₹{item.orderAmount}</span>
             </p>
             <p>
-              <span>No of Items: {item.numberOfItems}</span>
-              <span>Status: {item.orderStatus}</span>
+              <span><strong>No of Items:</strong> {item.numberOfItems}</span>
+              <span><strong>Status:</strong> {item.orderStatus}</span>
             </p>
             <p>
-              <span>Expected Delivery Date: {new Date(item.expectedDeliveryDate).toLocaleDateString()}</span>
-              <span>Actual Delivery Date: {new Date(item.actualDeliveryDate).toLocaleDateString()}</span>
+              <span><strong>Expected Delivery Date:</strong> {new Date(item.expectedDeliveryDate).toLocaleDateString()}</span>
+              <span className="text-right"><strong>Actual Delivery Date:</strong> {new Date(item.actualDeliveryDate).toLocaleDateString()}</span>
             </p>
           </div>
         </div>

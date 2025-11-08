@@ -41,6 +41,14 @@ const BeforeAfterSliderCarousel = ({imageData}) => {
     //touchMove: false,
     nextArrow: <NavNextArrow />,
     prevArrow: <NavPrevArrow />,
+    //  responsive: [
+    //     {
+    //       breakpoint:1024,
+    //       settings: {
+    //         dots: true,
+    //       }
+    //     },
+    //  ]
       
   };
 
