@@ -8,6 +8,7 @@ import { expertiseData } from '../api/expertiseData';
 import {useDispatch } from "react-redux";
 import { setOpenBookNow } from "../redux/slices/sheetSlice";
 import { Image } from '@imagekit/react';
+import { openSheet } from '../redux/slices/sideSheetSlice';
 
 //experience
 import { Button } from '../components/common/Button';
@@ -20,6 +21,10 @@ import ReviewSlider from '../components/ReviewSlider';
 
 //Short Testimonial
 const CustomerReviewHighlight = () => {
+   const dispatch = useDispatch();
+    const handleOpen = () => {
+      dispatch(openSheet());
+    };
   return (
     <div className="section-container mb-120">
       <div className="customer-highlight">
@@ -36,7 +41,7 @@ const CustomerReviewHighlight = () => {
         </div>
 
         {/* Right */}
-        <div className="right lg-hide sm-show">
+        <div className="right lg-hide sm-show" onClick={handleOpen} style={{cursor:"pointer"}}>
           <div className="avatars">
             <img src="https://i.pravatar.cc/40?img=1" alt="user" />
             <img src="https://i.pravatar.cc/40?img=2" alt="user" />

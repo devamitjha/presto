@@ -2,6 +2,9 @@
 .contact-page{
     overflow: hidden;
     padding: 0 1.5rem;
+    @media(max-width:900px){
+        padding:0;
+    }
     .contact-us-container {
         @extend .d-flex;
         justify-content: space-between;
@@ -58,11 +61,13 @@
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 1.5rem;
+            gap: 8px;            
             font-size: 14px;
             color: #4E4B66;
             font-weight: 300;
+            +.contact-item{
+                margin-top: 1.5rem;
+            }
 
         a {
             text-decoration: none;
@@ -163,9 +168,11 @@
         gap:2rem;
         width:100%;
         overflow: hidden;
-         @media(max-width:700px){
+        @media(max-width:1024px){
             flex-direction: column;
-         }
+            width:100%;
+            gap:3.25rem;
+        }
         .left,
         .right {
             display: flex;
@@ -185,24 +192,17 @@
             .label {
                 @extend .heading-6;
                 margin:0;
-            }
+            }           
             @media(max-width:1024px){
-                &.lg-hide{
-                    display:none;
-                }
-            }
-            @media(max-width:700px){                
-                &.lg-hide{
-                    &.sm-show{
-                        display: flex;
-                        width: 100%;
-                        justify-content: center;
-                    }
-                }
+                width:100%;
+                justify-content: center;
             }
         }
         .right {
             justify-content: end;
+            @media(max-width:1024px){
+                justify-content: center;
+            }
             .avatars {
                 display: flex;
                 align-items: center;

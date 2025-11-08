@@ -81,7 +81,7 @@
         }
         .slider-container{
             .grid-item{
-                width:75vw;
+                width:85vw;
                 box-shadow: $elevation-3;
                 .item {
                     position: relative;
@@ -144,6 +144,11 @@
         gap:2rem;
         width:100%;
         overflow: hidden;
+        @media(max-width:1024px){
+            flex-direction: column;
+            width:100%;
+            gap:3.25rem;
+        }
         .left,
         .right {
             display: flex;
@@ -166,13 +171,15 @@
                 margin:0;
             }
             @media(max-width:1024px){
-                &.lg-hide{
-                    display:none;
-                }
+                width:100%;
+                justify-content: center;
             }
         }
         .right {
             justify-content: end;
+            @media(max-width:1024px){
+                justify-content: center;
+            }
             .avatars {
                 display: flex;
                 align-items: center;

@@ -66,7 +66,7 @@ const Benefits = () => {
 
             <Swiper
               slidesPerView={'auto'}
-              spaceBetween={15}
+              spaceBetween={28}
               modules={[Pagination]}
               className="slider"
             >

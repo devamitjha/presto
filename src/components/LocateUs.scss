@@ -62,7 +62,7 @@
     .find-stores-btn {
       padding: 10px 30px;
       border: 1px solid #333;
-      border-radius: 20px;
+      border-radius: 9999px;
       background: white;
       font-size: 13px;
       cursor: pointer;
@@ -74,7 +74,7 @@
         color: #fff;
       }
       @media(max-width:825px){
-        height:56px;
+        height:52px;
         font-size:16px;
       }
     }

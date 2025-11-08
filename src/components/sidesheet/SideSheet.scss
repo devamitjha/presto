@@ -50,6 +50,16 @@
             cursor: pointer;
             line-height: 1;
             }
+            .review-header{
+              display: flex;
+              gap:1rem;
+              justify-content: start;
+              align-items: center;
+              .title{
+                font-size:20px;
+                font-weight: 400;
+              }
+            }
         }
 
         .side-content {

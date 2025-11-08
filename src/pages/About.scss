@@ -36,7 +36,8 @@
             margin: 3rem 1rem 5vw 1rem;
         }
         @media (max-width: 825px) {
-            margin: 2.5rem 1rem;
+            margin: 2.5rem 8px;
+            padding:0;
         }
         .item{
             @extend .d-flex;
@@ -55,6 +56,9 @@
             span{
                 font-size: 24px;
                 @extend .heading-6;
+                @media(max-width:900px){
+                    font-size:20px;
+                }
             }
             &.flex-2{
                 flex:2;
@@ -250,6 +254,7 @@
         gap:2rem;
         @media(max-width:825px){
             flex-direction: column;
+            padding:0 16px;
         }
         .exp-item{
             width:50%;
@@ -302,7 +307,7 @@
                     margin:0 0 12px 0;
                 }
                 p{
-                    font-size: 15px;
+                    font-size: 16px;
                     @extend .body-2;
                      margin:0 0 24px 0;
                      font-weight: 300;

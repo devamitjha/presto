@@ -43,6 +43,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         dispatch(clearCustomer(customer));
         setIsOpen(false)
     }
+    const goToStoretPage = () => {
+        setIsOpen(false)
+        navigate('/store');
+    };
   return (
     <div className={`sidebar ${isOpen ? "open" : ""}`}>
          {/* Header */}
@@ -127,7 +131,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     <div className="menu-service">Avail our Services</div>
                     <div className="row">
                         <div className="flex flex-column justify-content-start mb-3">
-                            <div className="item d-flex justify-content-between align-items-center">
+                            <div className="item d-flex justify-content-between align-items-center" onClick={goToStoretPage}>
                                 <div className="d-flex align-items-center s-item">
                                     <Image
                                         urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
@@ -143,7 +147,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 </div>  
                                 <span className="service-icon"> <ChevronRight size={16} /></span>                               
                             </div>  
-                            <div className="item d-flex justify-content-between align-items-center">
+                            <div className="item d-flex justify-content-between align-items-center" onClick={goToBookNowPage}>
                                 <div className="d-flex align-items-center s-item">
                                     <Image
                                         urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
