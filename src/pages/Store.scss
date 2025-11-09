@@ -381,9 +381,16 @@
                     justify-content: space-between;
                     align-items: start;              
                     margin-bottom:1.5rem;
+                    gap:2rem;
+                    @media(max-width:900px){
+                       flex-wrap: wrap;
+                    }
                     .store-info{
                         width:30%;
                         cursor:pointer;
+                        @media(max-width:900px){
+                            width:25%;
+                        }
                         .store-image{
                             width:120px;
                             height:120px;
@@ -495,6 +502,8 @@
                                 &.copy{
                                     margin-top:-3px;
                                     cursor: pointer;
+                                    position: relative;
+                                    z-index: 2;
                                 }
                             }
                         }
@@ -555,7 +564,7 @@
                                 @extend .body-2;
                                 width:49%;
                                 padding-right: 16px;
-                                gap:1rem;
+                                gap:1.5rem;
                                 @media(max-width:550px){
                                    justify-content:start;
                                    width: 100%;

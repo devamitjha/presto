@@ -74,18 +74,17 @@ const HeroSlider = ({ heroImages, dir, type }) => {
                 src={img.src}
                 alt={img.title}
             />
-            }
-           
-            <div className="hero-title">
-                <h3>Look Good, Feel Great</h3>
-                <div  className="btn btn-md base-btn secondary overflowHidden my-24" onClick={goToBookNowPage }>
-                  Schedule Pickup <span className="icon-box">{BookNowIcon}</span>
-                </div>
-            </div>  
+            }           
             <div className="overlay"></div>          
           </div>
         ))}
       </Slider>
+      <div className="hero-title">
+          <h3>Look Good, Feel Great</h3>
+          <div  className="btn btn-md base-btn secondary overflowHidden my-24" onClick={goToBookNowPage }>
+            Schedule Pickup <span className="icon-box">{BookNowIcon}</span>
+          </div>
+      </div>  
     </div>
   );
 };

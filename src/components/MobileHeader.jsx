@@ -14,6 +14,9 @@ const MobileHeader = () => {
   const dispatch = useDispatch();
   const customer = useSelector((state) => state.customer.customer);
 
+  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+  const [visible, setVisible] = useState(true);
+
   const initials = `${customer?.firstName?.charAt(0) || ""}${
     customer?.lastName?.charAt(0) || ""
   }`.toUpperCase();
@@ -29,13 +32,27 @@ const MobileHeader = () => {
         };
     }, [isOpen]);
 
+    useEffect(() => {
+      const handleScroll = () => {
+        const currentScrollPos = window.pageYOffset;
+        setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 60);
+        setPrevScrollPos(currentScrollPos);
+      };
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, [prevScrollPos]);
+
     const goToBookNowPage = () => {
       dispatch(setOpenBookNow(true));
     };
 
   return (
     <>
-      <div className="mobile-header navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm mb-3">
+      <div
+        id="navbar"
+        className={`mobile-header navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm mb-3 fixed-top transition-all duration-300 ${
+          visible ? "top-0" : "top-60" 
+        }`}>
         <div className="container-fluid d-flex justify-content-between align-items-center">
           <div className="section-logo">
             <Link to="/">

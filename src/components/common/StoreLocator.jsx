@@ -9,6 +9,7 @@ import Rating from 'react-rating';
 import Mumbai from "../../assets/images/store/Mumbai.jpg";
 import Delhi from "../../assets/images/store/Delhi.jpg";
 import Bangalore from "../../assets/images/store/Bangalore.jpg";
+import Hyderabad from "../../assets/images/store/Hyderabad.jpg";
 import Copy from "../../assets/images/copy.svg";
 import Direction from "../../assets/images/direction.svg";
 import 'leaflet/dist/leaflet.css';
@@ -322,7 +323,7 @@ const StoreLocator = () => {
                     <div className="direction-review">
                       {store.google_review_rating && (
                         <div className="google-review">
-                          <span className="rating-count">Rating:{store.google_review_rating}/{store.google_review_count}</span>                         
+                          <span className="rating-count">Rating: {store.google_review_rating}</span>                         
                           <span className="rating-stars">
                             <Rating
                               initialRating={parseFloat(store.google_review_rating)}
@@ -333,6 +334,7 @@ const StoreLocator = () => {
                               fractions={2}
                             />
                           </span>
+                          <span>({store.google_review_count})</span>
                         </div>                               
                       )}                                      
                       {store.direction && (
@@ -372,6 +374,13 @@ const StoreLocator = () => {
                 <div className="details">
                   <p>Bengaluru</p>
                   <span>{cityStoreCounts["Karnataka"] || 0} Stores</span>
+                </div>
+              </div>
+              <div className="store-info" onClick={() => handleTopStoreClick("Telangana", "Hyderabad")}>
+                <div className="store-image"><img src={Hyderabad} alt="Hyderabad Store" width="120" height="120" /></div>
+                <div className="details">
+                  <p>Hyderabad</p>
+                  <span>{cityStoreCounts["Telangana"] || 0} Stores</span>
                 </div>
               </div>
             </div>
