@@ -464,14 +464,14 @@
                             align-items: start;
                             margin-bottom:8px;
                             .title{
-                                @extend .body-1;
-                                font-size:24px;
-                                font-weight: 400;
+                                @extend .sub-heading-1;
+                                font-weight: 400;   
+                                margin-bottom:8px;                                                             
                             }
                             .sub-title{
-                                @extend .sub-heading-1;
-                                font-weight: 400;
-                                margin-top:8px;
+                                @extend .body-1;
+                                font-size:24px;
+                                font-weight: 400;                               
                             }
                         }
                         p{
@@ -564,7 +564,7 @@
                                 @extend .body-2;
                                 width:49%;
                                 padding-right: 16px;
-                                gap:1.5rem;
+                                gap:1rem;
                                 @media(max-width:550px){
                                    justify-content:start;
                                    width: 100%;

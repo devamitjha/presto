@@ -29,38 +29,38 @@ const items = [
 
 const sliderData = [
   {    
-    image: "service/DryCleaning/slider-2.jpg",
+    image: "service/DryCleaning/s1.jpg",
     title: "Slider 2"
   },
   {    
-    image: "service/DryCleaning/slider-1.jpg",
+    image: "service/DryCleaning/s2.jpg",
     title: "Slider 1"
   },  
   {    
-    image: "service/DryCleaning/slider-3.jpg",
+    image: "service/DryCleaning/s3.jpg",
     title: "Slider 3"
   },
   {    
-    image: "service/DryCleaning/slider-4.jpg",
+    image: "service/DryCleaning/s4.jpg",
     title: "Slider 4"
   }
 ];
 
 const sliderDataMobile = [
   {    
-    image: "mobile/service/DryCleaning/dc-slider-1.jpg",
+    image: "mobile/service/DryCleaning/s1.jpg",
     title: "Slider 2"
   },
   {    
-    image: "mobile/service/DryCleaning/dc-slider-2.jpg",
+    image: "mobile/service/DryCleaning/s2.jpg",
     title: "Slider 1"
   },  
   {    
-    image: "mobile/service/DryCleaning/dc-slider-3.jpg",
+    image: "mobile/service/DryCleaning/s3.jpg",
     title: "Slider 3"
   },
   {    
-    image: "mobile/service/DryCleaning/dc-slider-4.jpg",
+    image: "mobile/service/DryCleaning/s4.jpg",
     title: "Slider 4"
   }
 ];

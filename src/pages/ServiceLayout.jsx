@@ -6,14 +6,12 @@ import "./service.scss";
 
 
 const dryCleaningSlider = [
-    { src: "dc1.jpg", title: 'Look Good, Feel Great' },
-    { src: "dc2.jpg", title: 'Look Good, Feel Great' },
-    { src: "dc3.jpg", title: 'Look Good, Feel Great' },
-    { src: "dc4.jpg", title: 'Look Good, Feel Great' }
+    { src: "dc01.jpg", title: 'Look Good, Feel Great' },
+    { src: "dc02.jpg", title: 'Look Good, Feel Great' }
 ];
 const dryCleaningSliderMobile = [
-    { src: "dc1.jpg", title: 'Look Good, Feel Great' },
-    { src: "dc2.jpg", title: 'Look Good, Feel Great' },
+    { src: "dc01.jpg", title: 'Look Good, Feel Great' },
+    { src: "dc02.jpg", title: 'Look Good, Feel Great' },
 ];
 
 const restorationSlider = [

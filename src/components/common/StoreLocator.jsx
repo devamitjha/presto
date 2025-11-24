@@ -300,8 +300,8 @@ const StoreLocator = () => {
                 >
                   <div className="city-list-container">
                     <div className="store-name">
-                      <div className="title">{store.place_name}</div>
                       <div className="sub-title">{store.store_location}</div>
+                      <div className="title">{store.place_name}</div>
                     </div>
                     <p><span className="address">{store.address}</span></p>
                     <div className="city-name">

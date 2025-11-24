@@ -141,10 +141,19 @@ const About = () => {
       <div className="main-banner">
           <Image
             urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
-            src="about.jpg"
-            width={1872}
-            height={936}
+            src="about-full.jpg"
+            width={1392}
+            height={700}
             alt="About Banner"
+            className="desktop"
+          />
+           <Image
+            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+            src="about-small.jpg"
+            width={358}
+            height={627}
+            alt="About Banner mobile"
+            className="mobile"
           />
       </div>
       <section className="client my-88">

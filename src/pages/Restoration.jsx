@@ -30,32 +30,32 @@ const items = [
 
 
 
-const sliderData = [
+const sliderData = [ 
   {    
-    image: "service/Restoration/slider-2.jpg",
-    title: "Slider 2"
-  },
-  {    
-    image: "service/Restoration/slider-1.jpg",
+    image: "service/Restoration/s1.jpg",
     title: "Slider 1"
   }, 
   {    
-    image: "service/Restoration/slider-3.jpg",
+    image: "service/Restoration/s2.jpg",
+    title: "Slider 2"
+  },
+  {    
+    image: "service/Restoration/s3.jpg",
     title: "Slider 3"
   }
 ];
 
 const sliderDataMobile = [
   {    
-    image: "mobile/service/Restoration/slider-2.jpg",
-    title: "Slider 2"
+    image: "mobile/service/Restoration/s1.jpg",
+    title: "Slider 1"
   },
   {    
-    image: "mobile/service/Restoration/slider-1.jpg",
-    title: "Slider 1"
-  }, 
+    image: "mobile/service/Restoration/s2.jpg",
+    title: "Slider 2"
+  },   
   {    
-    image: "mobile/service/Restoration/slider-3.jpg",
+    image: "mobile/service/Restoration/s3.jpg",
     title: "Slider 3"
   }
 ];
