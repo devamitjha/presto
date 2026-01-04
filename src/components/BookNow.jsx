@@ -57,7 +57,7 @@ const BookNow = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const validateEmail = email => /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(email);
+  //const validateEmail = email => /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(email);
   const validatePhone = contact => /^\d{10}$/.test(contact);
 
   const validateStep = () => {
@@ -65,8 +65,8 @@ const BookNow = () => {
     if (step === 1) {
       if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
       if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
-      if (!formData.email.trim()) newErrors.email = 'Email is required';
-      else if (!validateEmail(formData.email)) newErrors.email = 'Invalid email format';
+      //if (!formData.email.trim()) newErrors.email = 'Email is required';
+      //else if (!validateEmail(formData.email)) newErrors.email = 'Invalid email format';
       if (!formData.contact.trim()) newErrors.contact = 'Phone is required';
       else if (!validatePhone(formData.contact)) newErrors.contact = 'Phone must be 10 digits';
     } else if (step === 2) {

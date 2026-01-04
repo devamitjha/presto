@@ -7,63 +7,126 @@ import Tabs from 'rc-tabs';
 import 'rc-tabs/assets/index.css';
 
 const ProfileData = ({ customer }) => {
-  console.log(customer);  
-  return customer ? (
+  if (!customer) {
+    return <p>Loading customer details...</p>;
+  }
+
+  const {
+    firstName,
+    lastName,
+    email,
+    mobile,
+    address,
+  } = customer;
+
+  return (
     <div className="profile-data">
+      {/* ================= Personal Details ================= */}
       <div className="bio">
         <h3>Personal Details</h3>
         <div className="info">
-          <p><strong>Name:</strong> {customer.firstName} {customer.lastName}</p>
-          {customer.email && <p><strong>Email:</strong> {customer.email}</p>}
-          <p><strong>Mobile:</strong> {customer.mobile}</p>  
+          <p>
+            <strong>Name:</strong> {firstName} {lastName}
+          </p>
+
+          {email && (
+            <p>
+              <strong>Email:</strong> {email}
+            </p>
+          )}
+
+          <p>
+            <strong>Mobile:</strong> {mobile}
+          </p>
         </div>
       </div>
+
+      {/* ================= Address Book ================= */}
       <div className="bio">
         <h3>Address Book</h3>
         <div className="info">
-          <p><strong>Name:</strong> {customer.firstName} {customer.lastName}</p>
-          <p><strong>Address:</strong> {customer.address}</p>  
+          <p>
+            <strong>Name:</strong> {firstName} {lastName}
+          </p>
+
+          <p>
+            <strong>Address:</strong> {address || "—"}
+          </p>
         </div>
       </div>
     </div>
-  ) : (
-    <p>Loading customer details...</p>
   );
 };
 
+
 const OrderHistory = ({ customer }) => {
-  return customer ? (
+  if (!customer) {
+    return <p>Loading customer order...</p>;
+  }
+
+  if (!customer.orderHistory || customer.orderHistory.length === 0) {
+    return <p>No orders found.</p>;
+  }
+
+  const formatDate = (date) =>
+    date ? new Date(date).toLocaleDateString() : "—";
+
+  return (
     <div className="order-history-list">
-      {customer?.orderHistory.map((item) => (
-        <div key={item.orderId} className="order-history">
+      {customer.orderHistory.map((item) => (
+        <div
+          key={item.orderId ?? `${item.orderDate}-${item.orderAmount}`}
+          className="order-history"
+        >
           <div className="history-icon">
-            <img src={HistoryIcon} alt="history" />
+            <img src={HistoryIcon} alt="Order history" />
           </div>
+
           <div className="order-detail">
             <p>
-              <span className="dark"><strong>Order:</strong> {item.orderId}</span>
-              <span><strong>Placed on:</strong> {new Date(item.orderDate).toLocaleDateString()}</span>
+              <span className="dark">
+                <strong>Order:</strong> {item.orderId}
+              </span>
+              <span>
+                <strong>Placed on:</strong> {formatDate(item.orderDate)}
+              </span>
             </p>
+
             <p>
-              <span><strong>Payment Mode:</strong> {item.paymentMode}</span>
-              <span className="dark"><strong>Order Amount:</strong> ₹{item.orderAmount}</span>
+              <span>
+                <strong>Payment Mode:</strong> {item.paymentMode}
+              </span>
+              <span className="dark">
+                <strong>Order Amount:</strong> ₹{item.orderAmount}
+              </span>
             </p>
+
             <p>
-              <span><strong>No of Items:</strong> {item.numberOfItems}</span>
-              <span><strong>Status:</strong> {item.orderStatus}</span>
+              <span>
+                <strong>No of Items:</strong> {item.numberOfItems}
+              </span>
+              <span>
+                <strong>Status:</strong> {item.orderStatus}
+              </span>
             </p>
+
             <p>
-              <span><strong>Expected Delivery Date:</strong> {new Date(item.expectedDeliveryDate).toLocaleDateString()}</span>
-              <span className="text-right"><strong>Actual Delivery Date:</strong> {new Date(item.actualDeliveryDate).toLocaleDateString()}</span>
+              <span>
+                <strong>Expected Delivery Date:</strong>{" "}
+                {formatDate(item.expectedDeliveryDate)}
+              </span>
+              <span className="text-right">
+                <strong>Actual Delivery Date:</strong>{" "}
+                {formatDate(item.actualDeliveryDate)}
+              </span>
             </p>
           </div>
         </div>
       ))}
     </div>
-  ) : (
-    <p>Loading customer order...</p>
   );
 };
+
 
 
 
