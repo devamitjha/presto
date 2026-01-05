@@ -122,7 +122,7 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
             value={formData.email || ""}
             onChange={handleChange}
             className={formData.email ? "filled" : ""}
-            disabled={userLoggedIn && formData.email?.trim() !== ""}
+           // disabled={userLoggedIn && formData.email?.trim() !== ""}
           />
           <label>Email</label>
         </div>
