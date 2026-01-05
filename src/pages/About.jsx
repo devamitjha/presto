@@ -42,28 +42,24 @@ const VisionaryMan = () => {
               src="leader.jpg"
               width={868}
               height={780}
-              alt="Yvo Metzelaar"
+              alt="Sumant Kasliwal"
             />
             <div className="caption">
-              <strong>Yvo Metzelaar</strong>
-              <span>Managing Director, Pressto India</span>
+              <strong>Sumant Kasliwal</strong>
+              <span>Managing Director and Chief Executive Officer, Pressto India</span>
             </div>
           </div>
           <div className="text-content">
             <div className="block mission">
               <h3>Mission</h3>
               <p>
-                Our mission is to deliver premium, personalized wardrobe care with precision,
-                passion, and integrity, ensuring every garment, accessory, and home textile receives
-                expert attention, so our customers always look and feel their best.
+                Our mission is to deliver premium, personalized wardrobe care with precision, passion, and integrity, ensuring every garment, accessory, and home textile receives expert attention, so our customers always look and feel their best.
               </p>
             </div>
             <div className="block vision">
               <h3>Vision</h3>
               <p>
-                To be the leading wardrobe care service provider in India while servicing
-                stylish individuals through quality cleaning methods and processes out of attractive,
-                convenient and transparent locations combined with courteous and knowledgeable staff.
+                To be the leading wardrobe care service provider in India while servicing to stylish individuals through quality cleaning methods and processes out of attractive, convenient and transparent locations combined with courteous and knowledgeable staff.
               </p>
             </div>
           </div>
