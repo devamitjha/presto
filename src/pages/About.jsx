@@ -40,8 +40,8 @@ const VisionaryMan = () => {
             <Image
               urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
               src="leader.jpg"
-              width={868}
-              height={780}
+              width={3024}
+              height={4032}
               alt="Sumant Kasliwal"
             />
             <div className="caption">
