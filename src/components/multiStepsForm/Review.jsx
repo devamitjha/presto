@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useEffect, useRef} from "react";
 import { useSelector } from "react-redux";
 
 const services = ['Garment Cleaning', 'Shoe Laundry', 'Bags Cleaning', 'Pressing'];
 
 const Review = ({ formData, setFormData, prevStep, handleSubmit }) => {
+  const firstInputRef = useRef(null);
   const isVisible = useSelector((state) => state.loadingUI.isVisible);
   const handleCountChange = (service, type) => {
     setFormData(prev => ({ 
@@ -19,8 +20,17 @@ const Review = ({ formData, setFormData, prevStep, handleSubmit }) => {
     setFormData(prev => ({ ...prev, instructions: e.target.value }));
   };
 
+  useEffect(() => {
+    firstInputRef.current?.focus();
+  }, []);
+
   return (
     <div className="form-step">
+      <div
+        ref={firstInputRef}
+        tabIndex={-1}
+        style={{height: "1px", outline: 'none' }}
+      />
       {services.map(service => (
         <div className="service-row" key={service}>
           <span>{service}</span>

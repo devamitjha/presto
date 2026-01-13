@@ -117,12 +117,28 @@ const SectionSpotlight = () => {
           >
             {spolightPopupItem.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="item" onClick={() => setCardOpen(item)}>
+                <div className="item" onClick={() => setCardOpen(item)} style={{position:'relative'}}>
                   <Image
                     urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
                     src={item.img}
                     alt="Showcase1"
                   />
+                  <div style={{
+                    width: "150px",
+                    height: "50px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "absolute",
+                    left: "50%",
+                    bottom: "20px",
+                    transform: "translateX(-50%)",
+                    cursor: "pointer",
+                    borderRadius:'99999px',
+                    border:"1px solid #333",
+                    backgroundColor:'white',
+                    zIndex:2
+                  }}>Know More</div>
                 </div>
               </SwiperSlide> 
             ))}       

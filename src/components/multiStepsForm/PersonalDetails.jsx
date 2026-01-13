@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 
 const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => {
+  const firstInputRef = useRef(null);
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(0); // seconds
@@ -83,8 +84,17 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
     return () => intervalId && clearInterval(intervalId);
   }, [intervalId]);
 
+  useEffect(() => {
+    firstInputRef.current?.focus();
+  }, []);
+
   return (
     <div className="form-step">
+      <div
+        ref={firstInputRef}
+        tabIndex={-1}
+        style={{height: "1px", outline: 'none' }}
+      />
       <div className="input-row">
         <div className="inputGroup floating-label with-button flex-input">
           <div className="input-container">

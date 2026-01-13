@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Calendar, Clock } from 'lucide-react';
 import { toast } from 'react-toastify';
 
 const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors, handleLocate, userLoggedIn }) => {
+  const firstInputRef = useRef(null);
   const [pickupDate, setPickupDate] = useState(formData.pickupDate ? new Date(formData.pickupDate) : null);
   // const [pickupTime, setPickupTime] = useState(
   //   formData.pickupTime ? new Date(`1970-01-01T${formData.pickupTime}`) : null
@@ -77,12 +78,21 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors, ha
       return times;
     };
 
+    useEffect(() => {
+      firstInputRef.current?.focus();
+    }, []);
+
   return (
     <div className="form-step">
+      <div
+        ref={firstInputRef}
+        tabIndex={-1}
+        style={{height: "1px", outline: 'none' }}
+      />
       {/* City */}
       <div className="inputGroup floating-label with-button">
         <div className="input-wrapper">
-          <input
+          <input            
             type="text"
             id="city"
             name="city"
