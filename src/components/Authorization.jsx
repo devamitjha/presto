@@ -298,7 +298,7 @@ const Authorization = () => {
               />
                <label>Enter OTP*</label>
             </div>
-           <div className="otp-actions">
+           <div className="otp-actions"> 
               <button onClick={handleVerifyOtp} disabled={!otp} className={`button${otp ? "" : " disable"}`}> {isVisible ? "Login..." : "Verify & Login"}</button>
               <button
                 type="button"
