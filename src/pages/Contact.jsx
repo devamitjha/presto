@@ -102,7 +102,7 @@ const Contact = () => {
 
               <div className="contact-item">
                 <Mail size={16} />
-                <Link to="mailto:pickmeup@presstoindia.com">pickmeup@presstoindia.com</Link>
+                <Link to="mailto:info@presstoindia.com">info@presstoindia.com</Link>
               </div>
 
               <div className="contact-item">

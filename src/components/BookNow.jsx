@@ -193,13 +193,14 @@ const BookNow = () => {
     try {
       await handleUserLoginOrRegister();
       localStorage.setItem("formData", JSON.stringify(formData));
+      const fullName = formData.firstName + formData.lastName
       await emailjs.send(
         "service_r4xqjrl", 
         "template_57923u2", 
         {
-          name: formData.name,
+          name:fullName,
           email: formData.email,
-          phone: formData.phone,
+          phone: formData.contact,
           city: formData.city,
           address: formData.address,
           pickupDate: formData.pickupDate,
@@ -209,6 +210,7 @@ const BookNow = () => {
         },
         "cawbEAs7EEHSVWlQI" 
       );
+      console.log(formData);
       setSuccessPopup(true);
       setIsSubmitted(true);
       setFormData({

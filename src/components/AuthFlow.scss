@@ -126,7 +126,7 @@
       @extend .d-flex;
       margin:auto;
       background: #0E0E1A;
-      width:200px;
+      width:170px;
       height:50px;
       border-radius:99999px;
       border: none;
@@ -139,6 +139,16 @@
         background: #eee;
         cursor:not-allowed;
          color: #888;
+      }
+      &.resendBtn{
+        border:1px solid #0E0E1A;
+        cursor:pointer;
+        color: #888;
+        background:transparent;
+        &:hover{
+            background: #0E0E1A;
+            color:#fff;
+        }
       }
     }
     input:-webkit-autofill,
@@ -225,4 +235,31 @@
             }
         }
     }
+}
+
+.mobile-card{
+     @extend .d-flex;
+      justify-content: space-between;
+      gap: 2rem;
+      background: #f8f8f8;
+      width:100%;
+      padding:8px 0 8px 12px;
+      font-size: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #333;
+      color:#707070;
+      border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+      .edit-icon{
+        @extend .d-flex;
+        justify-content:center;
+        width:50px;
+        height:50px;
+        cursor: pointer;
+      }
+}
+.otp-actions{
+    @extend .d-flex;
+    justify-content: center;
+    gap: 2rem;   
 }

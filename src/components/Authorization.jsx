@@ -10,6 +10,7 @@ import Heading from './common/Heading';
 import Experties from './Experties';
 import { expertiseData } from '../api/expertiseData';
 import { Image } from '@imagekit/react';
+import { Pencil } from 'lucide-react';
 
 
 const Authorization = () => {
@@ -209,6 +210,7 @@ const Authorization = () => {
                 `https://uat.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
               );
               const data = await loginResponse.json();
+              console.log(data)
 
               if (data?.customerUniqueId) {
                 toast.success("Registration successful.", { autoClose: 2500 });
@@ -272,6 +274,21 @@ const Authorization = () => {
         {step === "login-otp" && (
           <div className="inputGroup floating-label">
             <div className="sheetTitle">LOGIN & SIGNUP</div>
+            <div className="mobile-card">
+              <div>
+                <div className="mobile-label">Your Mobile Number :</div>
+                <div className="mobile-number">+91{mobile}</div>
+              </div>
+              <div
+                className="edit-icon"
+                onClick={() => {
+                  setOtp("");
+                  setStep("login-mobile");
+                }}
+              >
+               <Pencil />
+              </div>
+            </div>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -281,7 +298,16 @@ const Authorization = () => {
               />
                <label>Enter OTP*</label>
             </div>
-            <button onClick={handleVerifyOtp} disabled={!otp} className={`button${otp ? "" : " disable"}`}> {isVisible ? "Login..." : "Verify & Login"}</button>
+           <div className="otp-actions">
+              <button onClick={handleVerifyOtp} disabled={!otp} className={`button${otp ? "" : " disable"}`}> {isVisible ? "Login..." : "Verify & Login"}</button>
+              <button
+                type="button"
+                className="button resendBtn"
+                onClick={handleSendOtp}
+              >
+                Resend OTP
+              </button>
+            </div>
           </div>
         )}
 

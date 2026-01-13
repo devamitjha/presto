@@ -89,7 +89,7 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors, ha
             value={formData.city || ''}
             onChange={handleChange}
             className={formData.city ? 'filled' : ''}
-           disabled = {userLoggedIn && formData.city!==""}
+            //disabled = {userLoggedIn && formData.city!==""}
           />
           <label htmlFor="city">Enter City*</label>
         </div>
@@ -108,7 +108,7 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors, ha
             value={formData.pincode || ''}
             onChange={handleChange}
             className={formData.pincode ? 'filled' : ''}
-            disabled = {userLoggedIn && formData.pincode!==""}
+           // disabled = {userLoggedIn && formData.pincode!==""}
           />
           <label htmlFor="pincode">Pincode*</label>
         </div>
@@ -124,7 +124,7 @@ const ContactDetails = ({ formData, handleChange, nextStep, prevStep, errors, ha
             value={formData.address || ''}
             onChange={handleChange}
             className={formData.address ? 'filled' : ''}
-            disabled = {userLoggedIn}
+            //disabled = {userLoggedIn}
           />
           <label htmlFor="address">House Address/Street*</label>
         </div>

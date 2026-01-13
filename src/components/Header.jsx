@@ -10,7 +10,7 @@ import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 import "./Header.scss";
 import {X } from 'lucide-react';
-import Logo from "../assets/images/logo1.5x.png";
+import Logo from "../assets/images/logo.png";
 import SideSheet from "./sidesheet/SideSheet";
 
 const Header = () => {
@@ -46,7 +46,7 @@ const Header = () => {
         className="auth-bottom-sheet"
         header={
           <>
-            <div className="sheetHeader"> <img src={Logo} alt="pressto" width="208px" height="64px" /></div>
+            <div className="sheetHeader"> <img src={Logo} alt="pressto" width="208px" height="46px" /></div>
             <div className="closesheet" onClick={() => dispatch(setOpenSheet(false))}>
               <X size={22}/>
             </div>
@@ -71,7 +71,7 @@ const Header = () => {
         className="booknow-bottomsheet"
         header={
           <>
-            <div className="sheetHeader"> <img src={Logo} alt="pressto" width="208px" height="64px" /></div>
+            <div className="sheetHeader"> <img src={Logo} alt="pressto" width="208px" height="46px" /></div>
             <div className="closesheet" onClick={() => dispatch(setOpenBookNow(false))}>
               <X size={22}/>
             </div>
