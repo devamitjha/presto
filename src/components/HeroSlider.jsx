@@ -65,12 +65,12 @@ const HeroSlider = ({ heroImages, dir, type }) => {
             {
             type==="mobile" ? 
              <Image
-                urlEndpoint={`https://ik.imagekit.io/devamitjha/pressto/mobile/${dir ? `${dir}/` : ''}`}
+                urlEndpoint={`https://ik.imagekit.io/trozsbxte/pressto/mobile/${dir ? `${dir}/` : ''}`}
                 src={img.src}
                 alt={img.title}
             /> :  
             <Image
-                urlEndpoint={`https://ik.imagekit.io/devamitjha/pressto/${dir ? `${dir}/` : ''}`}
+                urlEndpoint={`https://ik.imagekit.io/trozsbxte/pressto/${dir ? `${dir}/` : ''}`}
                 src={img.src}
                 alt={img.title}
             />

@@ -36,7 +36,7 @@ const StackedSlider = ({ sliderData }) => {
           <SwiperSlide className="slide" key={index}>
             <div className="image-wrapper">
               <Image
-                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
                 src={slide.image}
                 alt={slide.title}
               />

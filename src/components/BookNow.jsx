@@ -322,7 +322,7 @@ const BookNow = () => {
                 <h3 className="mobile-only">Locate Store Near you</h3>
                 <div className="img-container">
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
+                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
                     src="exp-6.jpg"
                     width={416}
                     height={416}
@@ -339,7 +339,7 @@ const BookNow = () => {
                 <h3 className="mobile-only">Pickup & Drop</h3>
                 <div className="img-container">
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/exp/"
+                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
                     src="exp-7.jpg"
                     width={416}
                     height={416}

@@ -29,7 +29,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                <StaggerOnView className="row">
                   <div className="item">
                     <Image
-                        urlEndpoint={`https://ik.imagekit.io/devamitjha/pressto/${dir ? `${dir}/` : ''}`}
+                        urlEndpoint={`https://ik.imagekit.io/trozsbxte/pressto/${dir ? `${dir}/` : ''}`}
                         src={`${image[0]}`}
                         width={848}
                         height={848}
@@ -43,7 +43,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                   </div>
                   <div className="item">
                         <Image
-                            urlEndpoint={`https://ik.imagekit.io/devamitjha/pressto/${dir ? `${dir}/` : ''}`}
+                            urlEndpoint={`https://ik.imagekit.io/trozsbxte/pressto/${dir ? `${dir}/` : ''}`}
                             src={`${image[1]}`}
                             width={848}
                             height={848}
@@ -66,7 +66,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                 <SwiperSlide>
                       <div className="item mobile-width">
                         <Image
-                            urlEndpoint={`https://ik.imagekit.io/devamitjha/pressto/${dir ? `${dir}/` : ''}`}
+                            urlEndpoint={`https://ik.imagekit.io/trozsbxte/pressto/${dir ? `${dir}/` : ''}`}
                             src={`${image[0]}`}
                             width={848}
                             height={848}
@@ -82,7 +82,7 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
                   <SwiperSlide>                     
                       <div className="item mobile-width">
                           <Image
-                              urlEndpoint={`https://ik.imagekit.io/devamitjha/pressto/${dir ? `${dir}/` : ''}`}
+                              urlEndpoint={`https://ik.imagekit.io/trozsbxte/pressto/${dir ? `${dir}/` : ''}`}
                               src={`${image[1]}`}
                               width={848}
                               height={848}
