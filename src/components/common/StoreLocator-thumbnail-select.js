@@ -50,7 +50,7 @@ const StoreLocator = () => {
     const loadCSV = async () => {
       try {
         const response = await axios.get(
-          "https://www.presstoindia.com/react-pressto-blog/store_data.csv",
+          "https://www.presstoindia.com/api/store_data.csv",
           { responseType: "blob" }
         );
 

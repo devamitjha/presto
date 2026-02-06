@@ -38,7 +38,7 @@ const Authorization = () => {
     }
 
     try {
-      const response = await fetch('https://www.presstoindia.com/send-otp.php', {
+      const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // ✅ include session cookie
@@ -69,7 +69,7 @@ const Authorization = () => {
     }
 
     try {
-      const otpResponse = await fetch("https://www.presstoindia.com/verify-otp.php", {
+      const otpResponse = await fetch("https://www.presstoindia.com/api/verify-otp.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: 'include', // ✅ must match send OTP request
