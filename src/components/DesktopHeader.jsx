@@ -61,7 +61,7 @@ const DesktopHeader = () => {
       style={{
         position: "sticky",
         top: 0,
-        zIndex: 2,
+        zIndex:5,
         backgroundColor: bgColor,
         boxShadow: boxShadow,
         backdropFilter: "blur(10px)",
