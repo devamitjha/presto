@@ -68,7 +68,7 @@ const SectionSpotlight = () => {
           <div className="spotlight-item">
             <div className="item">
               <Image
-                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/spotlight/"
                 src="sp-1.jpg"
                 alt="Showcase1"
               />
@@ -76,7 +76,7 @@ const SectionSpotlight = () => {
 
             <div className="item md-hide">
               <Image
-                urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/spotlight/"
                 src="sp-2.jpg"
                 alt="Showcase2"
               />
@@ -92,7 +92,7 @@ const SectionSpotlight = () => {
                 {["sp-3.jpg", "sp-4.jpg"].map((img, index) => (
                   <div className="grid" key={index}>
                     <Image
-                      urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+                      urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/spotlight/"
                       src={img}
                       alt={`Spotlight Collage ${index + 1}`}
                     />
@@ -119,7 +119,7 @@ const SectionSpotlight = () => {
               <SwiperSlide key={item.id}>
                 <div className="item" onClick={() => setCardOpen(item)} style={{position:'relative'}}>
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/spotlight/"
                     src={item.img}
                     alt="Showcase1"
                   />
@@ -221,7 +221,7 @@ const SectionSpotlight = () => {
                     <p>{selectedItem.description}</p>
                   </div>
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/spotlight/"
                     src={selectedItem.img}
                     alt={selectedItem.title}
                   />                 
@@ -254,14 +254,14 @@ const LuxaryExperience = () => {
         <div className="luxaryExperience-item">
           <div className="item">
             <Image
-              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+              urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
               src="exp-1.jpg"
               alt="Luxury Experience 1"
             />
           </div>
           <div className="item">
             <Image
-              urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+              urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
               src="exp-2.jpg"
               alt="Luxury Experience 2"
             />
@@ -271,7 +271,7 @@ const LuxaryExperience = () => {
               {["exp-3.jpg", "exp-4.jpg", "exp-5.jpg"].map((img, index) => (
                 <div className="grid" key={index}>
                   <Image
-                      urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                      urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
                       src={img}
                       alt={`Luxury Experience ${index + 3}`}
                     />
@@ -297,7 +297,7 @@ const LuxaryExperience = () => {
              <SwiperSlide>
                 <div className="luxurySlider">
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
                     src="exp-1.jpg"
                     alt="Luxury Experience 1"
                   />
@@ -306,7 +306,7 @@ const LuxaryExperience = () => {
               <SwiperSlide>
                 <div className="luxurySlider">
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/"
+                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
                     src="exp-2.jpg"
                     alt="Luxury Experience 2"
                   />
@@ -315,7 +315,7 @@ const LuxaryExperience = () => {
                <SwiperSlide>
                 <div className="luxurySlider">                 
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/mobile/"
+                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/mobile/"
                     src="service-3.jpg"
                     alt="Luxury Experience 2"
                   />
@@ -324,7 +324,7 @@ const LuxaryExperience = () => {
                <SwiperSlide>
                 <div className="luxurySlider">
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/mobile/"
+                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/mobile/"
                     src="service-4.jpg"
                     alt="Luxury Experience 2"
                   />
@@ -333,7 +333,7 @@ const LuxaryExperience = () => {
                <SwiperSlide>
                 <div className="luxurySlider">
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/mobile/"
+                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/mobile/"
                     src="service-5.jpg"
                     alt="Luxury Experience 2"
                   />

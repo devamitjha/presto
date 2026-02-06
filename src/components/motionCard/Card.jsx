@@ -14,7 +14,7 @@ const Card = ({ item, onClick }) => {
     >
       <div style={{position:'relative'}}>
         <Image
-            urlEndpoint="https://ik.imagekit.io/devamitjha/pressto/spotlight/"
+            urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/spotlight/"
             src={item.img}
             alt={item.title}
         />
