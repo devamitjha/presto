@@ -102,7 +102,7 @@ const BookNow = () => {
   try {
     // Login API
     const loginResponse = await fetch(
-      `https://uat.presstoindia.com/authApi.php?action=login&mobile=${formData.contact}`
+      `https://www.presstoindia.com/authApi.php?action=login&mobile=${formData.contact}`
     );
 
     let loginData = {};
@@ -133,7 +133,7 @@ const BookNow = () => {
 
     // Register API if login failed
     const registerResponse = await fetch(
-      "https://uat.presstoindia.com/authApi.php?action=register",
+      "https://www.presstoindia.com/authApi.php?action=register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -150,7 +150,7 @@ const BookNow = () => {
 
     if (registerData && !registerData.error) {
       const loginResponse = await fetch(
-        `https://uat.presstoindia.com/authApi.php?action=login&mobile=${formData.contact}`
+        `https://www.presstoindia.com/authApi.php?action=login&mobile=${formData.contact}`
       );
       let loginData = {};
       try {

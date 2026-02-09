@@ -89,7 +89,7 @@ const Authorization = () => {
     try {
       //const loginResponse = await getLoginInfoByMobile(mobile);
       const loginResponse = await fetch(
-        `https://uat.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
+        `https://www.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
       );
       const data = await loginResponse.json();
 
@@ -190,7 +190,7 @@ const Authorization = () => {
         if (mobile === storedMobile) {
          
           const response = await fetch(
-              "https://uat.presstoindia.com/authApi.php?action=register",
+              "https://www.presstoindia.com/authApi.php?action=register",
               {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -207,7 +207,7 @@ const Authorization = () => {
           
           if(registerData && !registerData.error){
               const loginResponse = await fetch(
-                `https://uat.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
+                `https://www.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
               );
               const data = await loginResponse.json();
               console.log(data)

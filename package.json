@@ -1,7 +1,7 @@
 {
   "name": "presto",
   "version": "0.1.0",
-  "homepage": "https://uat.presstoindia.com",
+  "homepage": "https://www.presstoindia.com/",
   "private": true,
   "dependencies": {
     "@imagekit/react": "^5.0.1",

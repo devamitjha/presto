@@ -143,7 +143,7 @@ useEffect(() => {
     try {
       if (customer?.customerUniqueId) {
         const response = await fetch(
-          `https://uat.presstoindia.com/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
+          `https://www.presstoindia.com/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
         );
 
         const data = await response.json();
