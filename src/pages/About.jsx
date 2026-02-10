@@ -38,7 +38,7 @@ const VisionaryMan = () => {
         <div className="visionary-content">
           <div className="image-container mobile">
             <Image
-              urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+              urlEndpoint="https://www.presstoindia.com/media/"
               src="leader.jpg"
               width={3024}
               height={4032}
@@ -88,7 +88,7 @@ const WhatWeStandBy = () => {
                       {items.map((item) => (
                         <div className="grid-item" key={item.label}>
                           <Image
-                              urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+                              urlEndpoint="https://www.presstoindia.com/media/"
                               src={item.img}
                               alt={item.label}
                             />
@@ -107,7 +107,7 @@ const WhatWeStandBy = () => {
                         <SwiperSlide key={item.label}>
                           <div className="gridItem">
                             <Image
-                                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+                                urlEndpoint="https://www.presstoindia.com/media/"
                                 src={item.img}
                                 alt={item.label}
                               />
@@ -136,7 +136,7 @@ const About = () => {
       <HelmetMeta/>
       <div className="main-banner">
           <Image
-            urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+            urlEndpoint="https://www.presstoindia.com/media/"
             src="about-full.jpg"
             width={1392}
             height={700}
@@ -144,7 +144,7 @@ const About = () => {
             className="desktop"
           />
            <Image
-            urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+            urlEndpoint="https://www.presstoindia.com/media/"
             src="about-small.jpg"
             width={358}
             height={627}
@@ -164,7 +164,7 @@ const About = () => {
         <div className="section-pressto-map">
           <div className="pressto-map">
               <Image
-                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+                urlEndpoint="https://www.presstoindia.com/media/"
                 src="map.jpg"
                 width={1760}
                 height={792}
@@ -182,7 +182,7 @@ const About = () => {
             <h3 className="only-mobile">Locate Store Near you</h3>
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+                urlEndpoint="https://www.presstoindia.com/media/"
                 src="exp-6.jpg"
                 width={416}
                 height={416}
@@ -199,7 +199,7 @@ const About = () => {
             <h3 className="only-mobile pickme">Pickup & Drop</h3>
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+                urlEndpoint="https://www.presstoindia.com/media/"
                 src="exp-7.jpg"
                 width={416}
                 height={416}

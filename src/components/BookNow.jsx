@@ -102,7 +102,7 @@ const BookNow = () => {
   try {
     // Login API
     const loginResponse = await fetch(
-      `https://www.presstoindia.com/authApi.php?action=login&mobile=${formData.contact}`
+      `https://www.presstoindia.com/api/authApi.php?action=login&mobile=${formData.contact}`
     );
 
     let loginData = {};
@@ -133,7 +133,7 @@ const BookNow = () => {
 
     // Register API if login failed
     const registerResponse = await fetch(
-      "https://www.presstoindia.com/authApi.php?action=register",
+      "https://www.presstoindia.com/api/authApi.php?action=register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -150,7 +150,7 @@ const BookNow = () => {
 
     if (registerData && !registerData.error) {
       const loginResponse = await fetch(
-        `https://www.presstoindia.com/authApi.php?action=login&mobile=${formData.contact}`
+        `https://www.presstoindia.com/api/authApi.php?action=login&mobile=${formData.contact}`
       );
       let loginData = {};
       try {
@@ -322,7 +322,7 @@ const BookNow = () => {
                 <h3 className="mobile-only">Locate Store Near you</h3>
                 <div className="img-container">
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
+                    urlEndpoint="https://www.presstoindia.com/media/exp/"
                     src="exp-6.jpg"
                     width={416}
                     height={416}
@@ -339,7 +339,7 @@ const BookNow = () => {
                 <h3 className="mobile-only">Pickup & Drop</h3>
                 <div className="img-container">
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
+                    urlEndpoint="https://www.presstoindia.com/media/exp/"
                     src="exp-7.jpg"
                     width={416}
                     height={416}

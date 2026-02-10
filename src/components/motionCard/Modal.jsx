@@ -28,7 +28,7 @@ const Modal = ({ item, onClose }) => {
           <p>{item.description}</p>
         </motion.div>
         <Image
-            urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/spotlight/"
+            urlEndpoint="https://www.presstoindia.com/media/spotlight/"
             src={item.img}
             alt={item.title}
         />       

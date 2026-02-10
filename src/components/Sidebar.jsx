@@ -134,7 +134,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                             <div className="item d-flex justify-content-between align-items-center" onClick={goToStoretPage}>
                                 <div className="d-flex align-items-center s-item">
                                     <Image
-                                        urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
+                                        urlEndpoint="https://www.presstoindia.com/media/exp/"
                                         src="exp-6.jpg"
                                         width={70}
                                         height={70}
@@ -150,7 +150,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                             <div className="item d-flex justify-content-between align-items-center" onClick={goToBookNowPage}>
                                 <div className="d-flex align-items-center s-item">
                                     <Image
-                                        urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
+                                        urlEndpoint="https://www.presstoindia.com/media/exp/"
                                         src="exp-7.jpg"
                                         width={70}
                                         height={70}

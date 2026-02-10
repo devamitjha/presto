@@ -75,7 +75,7 @@ const WhatWeStandBy = () => {
               {items.map((item, index) => (
                 <div className="grid-item" key={index}>
                   <Image
-                    urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+                    urlEndpoint="https://www.presstoindia.com/media/"
                     src={item.img}
                     alt="{item.title}"
                   />
@@ -97,7 +97,7 @@ const WhatWeStandBy = () => {
                       <SwiperSlide key={index}>
                         <div className={`gridItem gridItem-${index}`}>
                          <Image
-                            urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+                            urlEndpoint="https://www.presstoindia.com/media/"
                             src={item.img}
                             alt="{item.title}"
                           />
@@ -139,8 +139,8 @@ const Restoration = () => {
       <div className="section-container px-0 mb-120">
         <div className="center-banner">
           <FullWidthBackgroundVideo
-            src= "https://ik.imagekit.io/trozsbxte/pressto/video/Shoes-and-bag.mp4"
-            poster="https://ik.imagekit.io/trozsbxte/pressto/video/poster-re-3.jpg"
+            src= "https://www.presstoindia.com/media/video/Shoes-and-bag.mp4"
+            poster="https://www.presstoindia.com/media/video/poster-re-3.jpg"
           />
           <div className="info">
             <h4>Beyond Repair</h4>

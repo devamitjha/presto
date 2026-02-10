@@ -129,7 +129,7 @@ const BlogDetail = () => {
             <h3 className="only-mobile">Locate Store Near you</h3>
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+                urlEndpoint="https://www.presstoindia.com/media/"
                 src="exp-6.jpg"
                 width={416}
                 height={416}
@@ -146,7 +146,7 @@ const BlogDetail = () => {
             <h3 className="only-mobile pickme">Pickup & Drop</h3>
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+                urlEndpoint="https://www.presstoindia.com/media/"
                 src="exp-7.jpg"
                 width={416}
                 height={416}

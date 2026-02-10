@@ -40,7 +40,7 @@ const Authorization = () => {
     }
 
     try {
-      const response = await fetch('https://www.presstoindia.com/send-otp.php', {
+      const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -89,7 +89,7 @@ const Authorization = () => {
     try {
       //const loginResponse = await getLoginInfoByMobile(mobile);
       const loginResponse = await fetch(
-        `https://www.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
+        `https://www.presstoindia.com/api/authApi.php?action=login&mobile=${mobile}`
       );
       const data = await loginResponse.json();
 
@@ -145,7 +145,7 @@ const Authorization = () => {
     }
 
      try {
-        const response = await fetch('https://www.presstoindia.com/send-otp.php', {
+        const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -190,7 +190,7 @@ const Authorization = () => {
         if (mobile === storedMobile) {
          
           const response = await fetch(
-              "https://www.presstoindia.com/authApi.php?action=register",
+              "https://www.presstoindia.com/api/authApi.php?action=register",
               {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -207,7 +207,7 @@ const Authorization = () => {
           
           if(registerData && !registerData.error){
               const loginResponse = await fetch(
-                `https://www.presstoindia.com/authApi.php?action=login&mobile=${mobile}`
+                `https://www.presstoindia.com/api/authApi.php?action=login&mobile=${mobile}`
               );
               const data = await loginResponse.json();
               console.log(data)
@@ -393,7 +393,7 @@ const Authorization = () => {
               <h3 className="mobile-only">Locate Store Near you</h3>
               <div className="img-container">
                 <Image
-                  urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
+                  urlEndpoint="https://www.presstoindia.com/media/exp/"
                   src="exp-6.jpg"
                   width={416}
                   height={416}
@@ -410,7 +410,7 @@ const Authorization = () => {
               <h3 className="mobile-only">Pickup & Drop</h3>
               <div className="img-container">
                 <Image
-                  urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
+                  urlEndpoint="https://www.presstoindia.com/media/exp/"
                   src="exp-7.jpg"
                   width={416}
                   height={416}
