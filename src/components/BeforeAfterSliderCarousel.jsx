@@ -58,7 +58,7 @@ const BeforeAfterSliderCarousel = ({imageData}) => {
         {imageData.map((item, index) => (
           <div className="slider-item" key={index}>
             <Image
-              urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/"
+              urlEndpoint="https://www.presstoindia.com/media/"
               src={item.image}
               alt={item.alt}
             />

@@ -32,7 +32,7 @@ const Authorization = () => {
     }
 
     try {
-      const response = await fetch('https://www.presstoindia.com/send-otp.php', {
+      const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -123,7 +123,7 @@ const Authorization = () => {
     }
 
      try {
-        const response = await fetch('https://www.presstoindia.com/send-otp.php', {
+        const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',

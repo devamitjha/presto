@@ -81,7 +81,7 @@ const Contact = () => {
           <div className="contact-us-container">
             <div className="contact-map"> 
               <Image
-                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/contact/"
+                urlEndpoint="https://www.presstoindia.com/media/contact/"
                 src="contact.jpg"
                 width={848}
                 height={848}
@@ -157,7 +157,7 @@ const Contact = () => {
             <h3 className="mobile-only">Locate Store Near you</h3>
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
+                urlEndpoint="https://www.presstoindia.com/media/exp/"
                 src="exp-6.jpg"
                 width={416}
                 height={416}
@@ -174,7 +174,7 @@ const Contact = () => {
             <h3 className="mobile-only">Pickup & Drop</h3>
             <div className="img-container">
               <Image
-                urlEndpoint="https://ik.imagekit.io/trozsbxte/pressto/exp/"
+                urlEndpoint="https://www.presstoindia.com/media/exp/"
                 src="exp-7.jpg"
                 width={416}
                 height={416}

@@ -8,7 +8,7 @@ const Reviews = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch("https://www.presstoindia.com/get-synup-reviews.php");
+        const res = await fetch("https://www.presstoindia.com/api/get-synup-reviews.php");
 
         if (!res.ok) {
           const errData = await res.json().catch(() => ({}));
