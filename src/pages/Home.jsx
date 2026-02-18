@@ -36,13 +36,13 @@ const SectionSpotlight = () => {
   const { width } = useWindowSize();
 
   const spolightPopupItem = [
-    { id: 1, img: "1.jpg", title: "VOGUE PROMOTION-1", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. one." },
-    { id: 2, img: "2.jpg", title: "VOGUE PROMOTION-2", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. two." },
-    { id: 3, img: "3.jpg", title: "VOGUE PROMOTION-3", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. three." },
-    { id: 4, img: "4.jpg", title: "VOGUE PROMOTION-4", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. four." },
-    { id: 5, img: "5.jpg", title: "VOGUE PROMOTION-5", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. five." },
-    { id: 6, img: "6.jpg", title: "VOGUE PROMOTION-6", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. six." },
-    { id: 7, img: "7.jpg", title: "VOGUE PROMOTION-7", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. seven." },
+    { id: 1, img: "7.jpg", title: "VOGUE PROMOTION-1", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. seven." },
+    { id: 2, img: "1.jpg", title: "VOGUE PROMOTION-2", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. one." },
+    { id: 3, img: "2.jpg", title: "VOGUE PROMOTION-3", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. two." },
+    { id: 4, img: "3.jpg", title: "VOGUE PROMOTION-4", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. three." },
+    { id: 5, img: "4.jpg", title: "VOGUE PROMOTION-5", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. four." },
+    { id: 6, img: "5.jpg", title: "VOGUE PROMOTION-6", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. five." },
+    { id: 7, img: "6.jpg", title: "VOGUE PROMOTION-7", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. six." },
   ];
 
   const setCardOpen = (item) => {
@@ -69,7 +69,7 @@ const SectionSpotlight = () => {
             <div className="item">
               <Image
                 urlEndpoint="https://www.presstoindia.com/media/spotlight/"
-                src="sp-1.jpg"
+                src="7.jpg"
                 alt="Showcase1"
               />
             </div>
@@ -85,7 +85,7 @@ const SectionSpotlight = () => {
             <div className="item collage">
               <p className="md-hide">In the Spotlight</p>
               <div className="info md-hide">
-                At Pressto, every Presstodian brings our motto - Look Good, Feel Better; to life with heartfelt care,
+                At Pressto, every Presstodian brings our motto - Free Pickup & Drop; to life with heartfelt care,
                 sharp skill, and an eye for detail. It’s not just what we do, it’s how we do it, with quiet precision and pride in every fold
               </div>
               <div className="image-collage md-hide">
@@ -360,15 +360,19 @@ const RealStories = ({reviewRef}) => (
 );
 
  const heroImages = [
-    { src: "banner-1.jpg", title: 'Look Good, Feel Great' },
-    { src: "banner-2.jpg", title: 'Look Good, Feel Great' },
-    { src: "banner-3.jpg", title: 'Look Good, Feel Great' }
+    { src: "banner.jpeg", title: 'Free Pickup & Drop' },
+    { src: "banner-0.jpeg", title: 'Free Pickup & Drop' },
+    { src: "banner-1.jpg", title: 'Free Pickup & Drop' },
+    { src: "banner-2.jpg", title: 'Free Pickup & Drop' },
+    { src: "banner-3.jpg", title: 'Free Pickup & Drop' }
  ];
 
  const heroImagesMobile = [
-    { src: "banner-1.jpg", title: 'Look Good, Feel Great' },
-    { src: "banner-2.jpg", title: 'Look Good, Feel Great' },
-    { src: "banner-3.jpg", title: 'Look Good, Feel Great' }
+    { src: "banner.jpeg", title: 'Free Pickup & Drop' },
+    { src: "banner-0.jpeg", title: 'Free Pickup & Drop' },
+    { src: "banner-1.jpg", title: 'Free Pickup & Drop' },
+    { src: "banner-2.jpg", title: 'Free Pickup & Drop' },
+    { src: "banner-3.jpg", title: 'Free Pickup & Drop' }
  ];
 
  
@@ -384,15 +388,15 @@ const Home = () => {
   return (
     <section className="home">
       <Helmet>
-        <title>Premium Luxury Dry Cleaning & Garment Care - Pressto India | Expert Artisans</title>
+        <title>Experience the Best Laundry, Dry Cleaning and Cobbler Services with Pressto India</title>
         <meta
           name="description"
-          content="India's premium garment care specialists serving luxury brands. Expert artisans, soft water technology & eco-friendly processes across 45+ locations in Mumbai, Delhi & Bangalore"/>
+          content="At Pressto, we offer top-notch dry cleaning services to keep your garments as good as new. Trust us to handle all of your cleaning needs with ease."/>
         <meta name="keywords" content=" premium dry cleaning, luxury garment care, expert artisans, soft water cleaning, eco-friendly premium, Mumbai Delhi Bangalore, designer clothes care, pickup delivery, bespoke service, European standards, Pressto India"/>
         <link rel="canonical" href="https://www.presstoindia.com/" />
       </Helmet>
       {
-        width >1024 ?<HeroSlider heroImages={heroImages} dir="mainbanner" type="desktop"/> :<HeroSlider heroImages={heroImagesMobile} dir="mainbanner" type="mobile"/>
+        width >1024 ?<HeroSlider heroImages={heroImages} dir="mainbanner" type="desktop" hideTitleOnFirstSlideDesktop/> :<HeroSlider heroImages={heroImagesMobile} dir="mainbanner" type="mobile"/>
       }      
       
       <Client />

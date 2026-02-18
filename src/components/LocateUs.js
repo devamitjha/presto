@@ -38,7 +38,7 @@ const LocateUsMap = () => {
 
         <div className="info-section">
             <div className="content">
-                <h3>We are now at 30+ Locations</h3>
+                <h3>We are now at 55+ Locations</h3>
                 <p>Best in Class Dry Cleaning for Luxury and Branded Clothes, You know who has been the face of the town.</p>  
           </div>
           <Link to="/store" className="find-stores-btn">FIND STORES</Link>        

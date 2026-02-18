@@ -28,8 +28,8 @@ const SixColumnlayout = () => {
                   />
                   <div className="title-container">
                       <h4>Care Beyond Clean</h4>
-                      <p>Get a premium umbrella on bill 10K and above</p>
-                      <div className="link" onClick={goToBookNowPage}>Avail Now <span className="icon-box"><ArrowUpRight /></span></div>
+                      <p>Schedule a free pickup & drop as per your convenience</p>
+                      <div className="link" onClick={goToBookNowPage}>Schedule Now <span className="icon-box"><ArrowUpRight /></span></div>
                   </div>
               </div>
               <div className="item">

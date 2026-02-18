@@ -46,7 +46,9 @@ const GoogleReviews = () => {
     (review) => review?.node?.rating > 3
   );
 
-  console.log(reviews);
+  const getReviewComment = (review) =>
+    review?.node?.content ?? review?.node?.reviewText ?? review?.node?.comment ?? review?.content ?? '';
+
   return (
     <div className="google-reviews">
       <div className="review-header">
@@ -85,14 +87,19 @@ const GoogleReviews = () => {
           ) : (
             filteredReviews.slice(0, 6).map((review) => (
               <div className="review" key={review.node.id}>
-                <Link className="left" to={review.node.permalink} target="_blank" rel="noopener noreferrer">
-                  <img src={review.node.authorAvatar} alt={review.node.authorName} className="avatar" referrerPolicy="no-referrer"/>
-                  <div>
-                    <div className="name">{review.node.authorName}</div>                    
-                    <div className="stars"><StarRating rating={review.node.rating} /></div>
-                  </div>
-                </Link>
-                <div className="date">{new Date(review.node.date).toLocaleDateString()}</div>
+                <div className="review-top">
+                  <Link className="left" to={review.node.permalink} target="_blank" rel="noopener noreferrer">
+                    <img src={review.node.authorAvatar} alt={review.node.authorName} className="avatar" referrerPolicy="no-referrer"/>
+                    <div>
+                      <div className="name">{review.node.authorName}</div>
+                      <div className="stars"><StarRating rating={review.node.rating} /></div>
+                    </div>
+                  </Link>
+                  <div className="date">{new Date(review.node.date).toLocaleDateString()}</div>
+                </div>
+                {getReviewComment(review) && (
+                  <p className="review-comment">{getReviewComment(review)}</p>
+                )}
               </div>
             ))
         )}

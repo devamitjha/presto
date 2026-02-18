@@ -59,7 +59,7 @@ const HelmetMeta = () => {
   return (
       <Helmet>
         <title>Contact Pressto India - Premium Garment Care Specialists | Luxury Service</title>
-        <meta name="Contact Pressto India for premium garment care. Call 1800229199 or email pickmeup@presstoindia.com. Luxury service specialists in Mumbai, Delhi & Bangalore."/>
+        <meta name="description" content="Contact Pressto India for premium garment care. Call 1800229199 or email pickmeup@presstoindia.com. Luxury service specialists in Mumbai, Delhi & Bangalore."/>
         <meta name="keywords" content="contact Pressto India, premium garment care contact, luxury service specialists, expert customer service, premium pickup booking, luxury dry cleaning contact, high-end garment care, designer clothes care contact"/>
         <link rel="canonical" href="https://www.presstoindia.com/contact" />
       </Helmet>
@@ -92,7 +92,7 @@ const Contact = () => {
               <h3>Contact us</h3>
               <div className="contact-item">
                 <MapPin size={18} />
-                <span>Lower Parel, Mumbai 400013</span>
+                <span>Head office, Lower Parel, Mumbai 400013</span>
               </div>
 
               <div className="contact-item">

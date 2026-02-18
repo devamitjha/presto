@@ -24,7 +24,7 @@ const items = [
   { img:"service/sl-1.jpg", title: "Quality", info:"Every detail matters, we treat your garments with precision and care that shows."},
   { img: "service/sl-2.jpg", title: "Speed", info:"Quick turnarounds, without cutting corners - because your time is valuable."},
   { img: "service/sl-3.jpg", title: "Service", info:"Thoughtful care, personalised for you - from pick-up to delivery."},
-  { img: "service/sl-4.jpg", title: "Transparency", info:"No surprises, just honesty, you’ll always know what we’re doing and why."},
+  { img: "service/sl-4.jpg", title: "Transparency", info:"No surprises, just honesty, you'll always know what we're doing and why."},
 ];
 
 const sliderData = [
@@ -35,14 +35,6 @@ const sliderData = [
   {    
     image: "service/DryCleaning/s2.jpg",
     title: "Slider 1"
-  },  
-  {    
-    image: "service/DryCleaning/s3.jpg",
-    title: "Slider 3"
-  },
-  {    
-    image: "service/DryCleaning/s4.jpg",
-    title: "Slider 4"
   }
 ];
 
@@ -54,14 +46,6 @@ const sliderDataMobile = [
   {    
     image: "mobile/service/DryCleaning/s2.jpg",
     title: "Slider 1"
-  },  
-  {    
-    image: "mobile/service/DryCleaning/s3.jpg",
-    title: "Slider 3"
-  },
-  {    
-    image: "mobile/service/DryCleaning/s4.jpg",
-    title: "Slider 4"
   }
 ];
 

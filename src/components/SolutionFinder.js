@@ -15,7 +15,6 @@ const SolutionFinder = ({ selected }) => {
   const materialImages = {
     drycleaning: [
       { image: "beforeAfter/dry-cleaning/desktop/49.png", title: "Dry Cleaning 49" },
-      { image: "beforeAfter/dry-cleaning/desktop/50.png", title: "Dry Cleaning 50" },
       { image: "beforeAfter/dry-cleaning/desktop/51.png", title: "Dry Cleaning 51" },
       { image: "beforeAfter/dry-cleaning/desktop/52.png", title: "Dry Cleaning 52" },
       { image: "beforeAfter/dry-cleaning/desktop/53.png", title: "Dry Cleaning 53" },

@@ -22,8 +22,8 @@ import { Image } from '@imagekit/react';
 const HelmetMeta = () => {
   return (
       <Helmet>
-        <title>About Pressto India - Premium Garment Care Specialists Since Global Expansion</title>
-        <meta name="description" content="Led by Managing Director Yvo Metzelaar, Pressto India delivers bespoke wardrobe care for luxury brands across 45+ locations. Trusted by Gucci, Hermes & featured in Vogue." />
+        <title>Expert Dry Cleaning and Laundry Services in Mumbai, Delhi, Gurgaon, Bangalore</title>
+        <meta name="description" content="Experience premium dry cleaning and laundry services with Pressto India. Our expert team uses advanced technology for spotless result. Schedule your pick-up now" />
         <meta name="keywords" content="about Pressto India, Yvo Metzelaar, premium garment care specialists, luxury brand care, bespoke wardrobe care, sustainable cleaning, artisan expertise, European standards, Gucci Hermes care, Vogue featured"/>
         <link rel="canonical" href="https://www.presstoindia.com/about" />
       </Helmet>

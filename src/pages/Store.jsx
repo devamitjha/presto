@@ -27,8 +27,8 @@ import { openSheet } from '../redux/slices/sideSheetSlice';
 const HelmetMeta = () => {
   return (
     <Helmet>
-      <title>Pressto Luxury Care Centers - 45+ Premium Locations | Mumbai Delhi Bangalore</title>
-      <meta name="description" content="Find your nearest Pressto premium care center across 45+ exclusive locations in Mumbai (22), Delhi NCR (14) & Karnataka (8). Expert garment care specialists." />
+      <title>Pressto Select State & City | Presto Cobbler Stores Locator!</title>
+      <meta name="description" content="Use Presto Store Locator to find Cobbler Stores fast. Pressto Select State, Select City, and Select Area to locate nearby services and shops open near you now!" />
       <meta name="keywords" content="Pressto luxury care centers, premium Services, exclusive garment care, Mumbai Delhi Bangalore stores, luxury dry cleaning centers, premium care specialists, find luxury drycleaners, expert garment care, high-end cleaning services"/>
       <link rel="canonical" href="https://www.presstoindia.com/store" />
     </Helmet>
@@ -139,7 +139,7 @@ const Store = () => {
       <section className="section-container mb-120">  
         <Heading title="Store Locator" />
         <div className="section-tab">
-          <p>With a legacy built on precision, care, and innovation, Pressto today operates across 45 locations in 3 major cities. From day one, we’ve led the way in responsible garment care - blending global standards with thoughtful, eco-conscious practices. Because for us, premium isn’t just about how it looks, but how it lasts.</p>          
+          <p>With a legacy built on precision, care, and innovation, Pressto today operates across 55+ locations in 4 major cities. From day one, we’ve led the way in responsible garment care - blending global standards with thoughtful, eco-conscious practices. Because for us, premium isn’t just about how it looks, but how it lasts.</p>          
         </div>
         <StoreLocator/>       
       </section>
