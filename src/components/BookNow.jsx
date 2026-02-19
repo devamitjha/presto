@@ -1,6 +1,6 @@
 // src/pages/BookNow.jsx
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import PersonalDetails from './multiStepsForm/PersonalDetails';
@@ -19,6 +19,13 @@ import { setOpenBookNow } from "../redux/slices/sheetSlice";
 
 const BookNow = () => {
   const dispatch = useDispatch();
+  const openBookNow = useSelector((state) => state.sheet.openBookNow);
+  const bookNowCloseType = useSelector((state) => state.sheet.bookNowCloseType);
+
+  const latestFormDataRef = useRef({});
+  const isSubmittedRef = useRef(false);
+  const abandonedEmailSentRef = useRef(false);
+  const prevOpenRef = useRef(openBookNow);
 
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -51,6 +58,50 @@ const BookNow = () => {
       dispatch(setCustomer(customer));
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    latestFormDataRef.current = formData;
+  }, [formData]);
+
+  useEffect(() => {
+    isSubmittedRef.current = isSubmitted;
+  }, [isSubmitted]);
+
+  // Send email when user closes sheet (backdrop or close button) without submitting
+  useEffect(() => {
+    const wasOpen = prevOpenRef.current;
+    prevOpenRef.current = openBookNow;
+
+    if (wasOpen && !openBookNow && bookNowCloseType === 'manual') {
+      if (!isSubmittedRef.current && !abandonedEmailSentRef.current) {
+        abandonedEmailSentRef.current = true;
+        const data = latestFormDataRef.current;
+        const hasAnyData = data.firstName || data.lastName || data.contact || data.email || data.city || data.address;
+        if (hasAnyData) {
+          const fullName = (data.firstName || '') + (data.lastName || '');
+          emailjs.send(
+            "service_r4xqjrl",
+            "template_57923u2",
+            {
+              name: fullName,
+              email: data.email || 'Not Provided',
+              phone: data.contact || 'Not Provided',
+              city: data.city || '',
+              address: data.address || '',
+              pickupDate: data.pickupDate || '',
+              pickupTime: data.pickupTime || '',
+              serviceCounts: JSON.stringify(data.serviceCounts || {}),
+              instructions: (data.instructions || '') + ' [Closed without submitting]',
+            },
+            "cawbEAs7EEHSVWlQI"
+          ).catch(err => console.error('Email on close failed:', err));
+        }
+      }
+    }
+    if (openBookNow) {
+      abandonedEmailSentRef.current = false;
+    }
+  }, [openBookNow, bookNowCloseType]);
 
   const handleChange = e => {
     const { name, value } = e.target;

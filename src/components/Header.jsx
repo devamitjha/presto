@@ -5,7 +5,7 @@ import "react-spring-bottom-sheet/dist/style.css";
 import useWindowSize from '../hooks/useWindowSize';
 import Authorization from "./Authorization";
 import BookNow from "./BookNow";
-import { setOpenSheet, setOpenBookNow } from "../redux/slices/sheetSlice";
+import { setOpenSheet, setOpenBookNow, closeBookNow } from "../redux/slices/sheetSlice";
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 import "./Header.scss";
@@ -61,7 +61,7 @@ const Header = () => {
       {/* Book Now Sheet */}
       <BottomSheet
         open={openBookNow}
-        onDismiss={() => dispatch(setOpenBookNow(false))}
+        onDismiss={() => dispatch(closeBookNow('manual'))}
          snapPoints={({ maxHeight }) => {
           const isMobile = window.innerWidth <= 768;
           return isMobile
@@ -72,7 +72,7 @@ const Header = () => {
         header={
           <>
             <div className="sheetHeader"> <img src={Logo} alt="pressto" width="208px" height="46px" /></div>
-            <div className="closesheet" onClick={() => dispatch(setOpenBookNow(false))}>
+            <div className="closesheet" onClick={() => dispatch(closeBookNow('manual'))}>
               <X size={22}/>
             </div>
           </>
