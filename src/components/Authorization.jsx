@@ -243,10 +243,22 @@ const Authorization = () => {
       }
   }; 
   const goToStoretPage = () => {
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "login_locate_store_btn_click",
+            event_type:"redirection_to_store"
+        });
       navigate('/store');
       dispatch(setOpenSheet(false));
   };
   const goToBookNowPage = () => {
+     //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "login_pickup_btn_click",
+          event_type:"book_now_popup_open"
+      });
       dispatch(setOpenBookNow(true));
       dispatch(setOpenSheet(false));
   };

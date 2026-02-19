@@ -49,6 +49,12 @@ const SectionSpotlight = () => {
     setSelectedItem(item);
     setOpen(false);
     setOpenCard(true);
+    //data layer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: "know_more_btn_click",
+        event_type:"media_popup_open"
+    });
   };
 
   const setPrevCardOpen = () => {
@@ -59,6 +65,16 @@ const SectionSpotlight = () => {
       console.log("hi");
     }
   };  
+
+  const openSheet = (item) => {   
+    setOpen(true);
+    //data layer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: "view_gallery_btn_click",
+        event_type:"media_popup_open"
+    });
+  };
 
   return (
     <section className="section-container spotlight autoSlider mb-120">
@@ -101,7 +117,7 @@ const SectionSpotlight = () => {
               </div>
               <div
                 className="btn btn-md base-btn outlined overflowHidden"
-                onClick={() => setOpen(true)}
+                onClick={openSheet}
               >
                 View Gallery
               </div>
@@ -146,7 +162,7 @@ const SectionSpotlight = () => {
             <div className="d-flex justify-center-center align-items-center mt-4 mb-5">
               <div
                   className="btn btn-md base-btn outlined overflowHidden"
-                  onClick={() => setOpen(true)}
+                  onClick={openSheet}
                 >
                 View Gallery
               </div>
@@ -244,6 +260,12 @@ const LuxaryExperience = () => {
   const { width } = useWindowSize();
   const navigate = useNavigate();
   const goToContactPage = () => {
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "home_aboutys_know_more_btn_click",
+          event_type:"about_us_navigatoin"
+      });
       navigate('/about');
   };
   return (
@@ -384,6 +406,12 @@ const Home = () => {
   const reviewRef = useRef(null);
   const handleScrollToReview = () => {
     reviewRef.current?.scrollIntoView({ behavior: "smooth" });
+    //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "read_review_btn_click",
+        event_type:"review_open"
+      });
   };
   return (
     <section className="home">

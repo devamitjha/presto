@@ -24,6 +24,12 @@ const CustomerReviewHighlight = () => {
    const dispatch = useDispatch();
     const handleOpen = () => {
       dispatch(openSheet());
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "brand_review_click",
+        event_type:"review_open"
+      });
     };
   return (
     <div className="section-container mb-120">
@@ -69,9 +75,21 @@ const Contact = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const goToStoretPage = () => {
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "contact_us_locate_store_btn_click",
+            event_type:"redirection_to_store"
+        });
       navigate('/store');
   };
   const goToBookNowPage = () => {
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "contact_us_pickup_btn_click",
+          event_type:"book_now_popup_open"
+      });
      dispatch(setOpenBookNow(true));
   };
   return (

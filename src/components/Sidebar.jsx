@@ -25,6 +25,12 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     };
     const handleClose = () => setIsOpen(false);
     const goToBookNowPage = () => {
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "header_book_now_btn_click",
+            event_type:"book_now_popup_open"
+        });
         setIsOpen(false)
         dispatch(setOpenBookNow(true));
     };

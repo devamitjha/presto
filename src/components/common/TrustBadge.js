@@ -14,6 +14,12 @@ const TrustBadge = () => {
   const handleOpen = () => {
     //document.body.style.overflow = "hidden";
     dispatch(openSheet());
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "stories_of_trust_click",
+        event_type:"review_open"
+      });
   };
   return (
     <div className="trust-badge" onClick={handleOpen}>

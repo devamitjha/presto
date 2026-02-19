@@ -42,6 +42,12 @@ const HeroSlider = ({ heroImages, dir, type, title, hideTitleOnFirstSlideDesktop
   const [currentSlide, setCurrentSlide] = useState(0);
   const goToBookNowPage = () => {
     dispatch(setOpenBookNow(true));
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "main_banner_cta_click",
+        event_type:"book_now_popup_open"
+      });
   };
 
   const settings = {

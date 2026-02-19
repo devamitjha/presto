@@ -47,6 +47,12 @@ const DesktopHeader = () => {
   }, [lastScrollY]);
 
   const goToBookNowPage = () => {
+     //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "header_book_now_btn_click",
+          event_type:"book_now_popup_open"
+      });
     dispatch(setOpenBookNow(true));
   };
 
