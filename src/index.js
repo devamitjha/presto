@@ -8,11 +8,13 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import ScrollToTop from './components/common/ScrollToTop';
 import "./assets/styles/placeholder-loading.css";
+import GTMBody from "./components/GTMBody";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
     <Provider store={store}>
+        <GTMBody />
         <ToastContainer position="top-right" closeOnClick />
          <ScrollToTop />
         <App />

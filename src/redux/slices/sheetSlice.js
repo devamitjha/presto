@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   openSheet: false,
   openBookNow: false,
+  bookNowCloseType: null, // ⭐ NEW
 };
 
 const sheetSlice = createSlice({
@@ -12,11 +13,22 @@ const sheetSlice = createSlice({
     setOpenSheet: (state, action) => {
       state.openSheet = action.payload;
     },
+
+    // OPEN
     setOpenBookNow: (state, action) => {
       state.openBookNow = action.payload;
+      if (action.payload === true) {
+        state.bookNowCloseType = null;
+      }
+    },
+
+    // CLOSE WITH REASON
+    closeBookNow: (state, action) => {
+      state.openBookNow = false;
+      state.bookNowCloseType = action.payload; // manual | submit | navigation
     },
   },
 });
 
-export const { setOpenSheet, setOpenBookNow } = sheetSlice.actions;
+export const { setOpenSheet, setOpenBookNow, closeBookNow } = sheetSlice.actions;
 export default sheetSlice.reducer;
