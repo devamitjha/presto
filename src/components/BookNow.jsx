@@ -302,6 +302,12 @@ const BookNow = () => {
 
   const navigate = useNavigate();
   const goToStoretPage = () => {
+    //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "book_now_popup_locate_store_btn_click",
+          event_type:"redirection_to_store"
+      });
       navigate('/store');
       dispatch(setOpenBookNow(false))
   };

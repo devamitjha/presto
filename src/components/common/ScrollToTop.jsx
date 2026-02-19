@@ -14,6 +14,12 @@ const ScrollToTop = () => {
       top: 0,
       behavior: 'smooth',
     });
+    //data layer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: "back_to_top_btn_click",
+        event_type:"scroll_event"
+    });
   };
 
   useEffect(() => {

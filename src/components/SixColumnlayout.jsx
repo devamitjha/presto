@@ -13,7 +13,21 @@ const SixColumnlayout = () => {
    const dispatch = useDispatch();
     const goToBookNowPage = () => {
         dispatch(setOpenBookNow(true));
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "rollout_banner_click",
+          event_type:"book_now_popup_open"
+        });
     };
+    const downloadPDF = ()=>{
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "download_brochure",
+          event_type:"download_pdf"
+        });
+    }
   return ( 
     <section className="section-container six-columns rollOut mb-120">
           <Heading title="Roll Out with Freedom" />
@@ -43,7 +57,7 @@ const SixColumnlayout = () => {
                   <div className="title-container black">
                     <h4>Know all about us</h4>
                     <p>A complete guide about Pressto  and how we do it!</p>
-                    <a href={PresstoGeneralBrochure} download className="link">
+                    <a href={PresstoGeneralBrochure} download className="link" onClick={downloadPDF}>
                         Download brochure <span className="icon-box"><Download /></span>
                     </a>
                   </div>

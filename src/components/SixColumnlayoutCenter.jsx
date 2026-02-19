@@ -19,6 +19,12 @@ const SixColumnlayoutCenter = ({ image, dir }) => {
     const dispatch = useDispatch();
     const goToBookNowPage = () => {
         dispatch(setOpenBookNow(true));
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "what_we_do_best_banner_click",
+            event_type:"book_now_popup_open"
+        });
     };
     
   return (
