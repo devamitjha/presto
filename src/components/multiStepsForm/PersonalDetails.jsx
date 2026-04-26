@@ -60,7 +60,7 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
     }
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     const { firstName, lastName, contact } = formData;
     const storedOtp = sessionStorage.getItem("otp");
     const storedMobile = sessionStorage.getItem("mobile");
@@ -72,9 +72,35 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
     if (!otp.trim()) return toast.error("Please enter OTP", { autoClose: 2500 });
     if (otp !== storedOtp || contact !== storedMobile) return toast.error("Incorrect OTP", { autoClose: 2500 });
 
-    sessionStorage.removeItem("otp");
-    sessionStorage.removeItem("mobile");
-    nextStep();
+    try {
+      // Check user existence and Fabklean availability
+      const response = await fetch(`${siteApiBaseUrl}/authApi.php?action=login&mobile=${contact}`);
+      const loginData = await response.json();
+
+      if (loginData?.customerId) {
+        // User exists, check Fabklean availability
+        handleChange({ target: { name: 'customerUniqueId', value: loginData.customerUniqueId || '' } });
+        handleChange({ target: { name: 'isAvailableOnFabklean', value: loginData.IsAvilableOnFebklean === "true" || loginData.IsAvilableOnFebklean === true } });
+        handleChange({ target: { name: 'customerId', value: loginData.customerId } });
+        
+        // Populate other fields if they are empty
+        if (!formData.firstName) handleChange({ target: { name: 'firstName', value: loginData.firstName || '' } });
+        if (!formData.lastName) handleChange({ target: { name: 'lastName', value: loginData.lastName || '' } });
+        if (!formData.email) handleChange({ target: { name: 'email', value: loginData.email || '' } });
+        if (!formData.address) handleChange({ target: { name: 'address', value: loginData.address || '' } });
+        if (!formData.pincode) handleChange({ target: { name: 'pincode', value: loginData.pincode || '' } });
+      } else {
+        // New user
+        handleChange({ target: { name: 'isAvailableOnFabklean', value: false } });
+      }
+
+      sessionStorage.removeItem("otp");
+      sessionStorage.removeItem("mobile");
+      nextStep();
+    } catch (err) {
+      console.error(err);
+      toast.error("Error verifying user information", { autoClose: 2500 });
+    }
   };
 
   const formatTimer = () => {

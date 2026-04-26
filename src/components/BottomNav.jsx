@@ -1,15 +1,18 @@
 import React from 'react';
-import { Home, Package, User, ClipboardList, Wallet } from 'lucide-react';
+import { Home, User, ClipboardList, Wallet } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router';
-import { setOpenSheet, setOpenBookNow } from '../redux/slices/sheetSlice';
+import { setOpenSheet, setOpenBookNow, closeBookNow } from '../redux/slices/sheetSlice';
 import './BottomNav.scss';
+import PickupDark from '../assets/icons/pickup-dark.svg';
+import PickupGray from '../assets/icons/pickup-gray.svg';
 
 const BottomNav = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const customer = useSelector((state) => state.customer.customer);
+  const { openBookNow } = useSelector((state) => state.sheet);
 
   const navItems = [
     {
@@ -20,9 +23,15 @@ const BottomNav = () => {
     },
     {
       label: 'Pick up & Drop',
-      icon: <Package size={20} />,
-      onClick: () => dispatch(setOpenBookNow(true)),
-      isActive: false,
+      icon: <img src={openBookNow ? PickupDark : PickupGray} alt="Pickup" style={{ width: '20px' }} />,
+      onClick: () => {
+        if (openBookNow) {
+          dispatch(closeBookNow('manual'));
+        } else {
+          dispatch(setOpenBookNow(true));
+        }
+      },
+      isActive: openBookNow,
     },
     {
       label: 'Profile',

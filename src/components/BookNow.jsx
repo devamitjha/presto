@@ -9,7 +9,6 @@ import Review from './multiStepsForm/Review';
 import SuccessMessage from './multiStepsForm/SuccessMessage';
 import { setCustomer } from '../redux/slices/customerSlice';
 import {show, hide } from "../redux/slices/uiSlice";
-import emailjs from "emailjs-com";
 import './BookNow.scss';
 import Heading from './common/Heading';
 import Experties from './Experties';
@@ -27,19 +26,20 @@ const BookNow = () => {
 
   const latestFormDataRef = useRef({});
   const isSubmittedRef = useRef(false);
-  const abandonedEmailSentRef = useRef(false);
   const prevOpenRef = useRef(openBookNow);
 
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [successPopup, setSuccessPopup] = useState(false);
+  const [orderResponse, setOrderResponse] = useState(null);
 
   const [formData, setFormData] = useState({
     firstName: '', lastName: '', email: '', contact: '',
     city: '', pincode: '', address: '',
     pickupDate: '', pickupTime: '',
-    serviceCounts: {}, instructions: ''
+    serviceCounts: {}, instructions: '',
+    customerUniqueId: '', isAvailableOnFabklean: false
   });
 
   const [errors, setErrors] = useState({});
@@ -55,7 +55,9 @@ const BookNow = () => {
         email: customer.email || '',
         contact: customer.mobile || '',
         address: customer.address || '',
-        pincode: customer.pincode || ''
+        pincode: customer.pincode || '',
+        customerUniqueId: customer.customerUniqueId || '',
+        isAvailableOnFabklean: customer.isAvailableOnFabklean || false
       }));
       setUserLoggedIn(true);
       dispatch(setCustomer(customer));
@@ -70,55 +72,27 @@ const BookNow = () => {
     isSubmittedRef.current = isSubmitted;
   }, [isSubmitted]);
 
-  // Send email when user closes sheet (backdrop or close button) without submitting
+  // Track closure without submission via dataLayer
   useEffect(() => {
     const wasOpen = prevOpenRef.current;
     prevOpenRef.current = openBookNow;
 
     if (wasOpen && !openBookNow && bookNowCloseType === 'manual') {
-      if (!isSubmittedRef.current && !abandonedEmailSentRef.current) {
-        abandonedEmailSentRef.current = true;
-        const data = latestFormDataRef.current;
-        const hasAnyData = data.firstName || data.lastName || data.contact || data.email || data.city || data.address;
-
+      if (!isSubmittedRef.current) {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: "manual_close",
           form_step: step
         });
-
-        if (hasAnyData) {
-          const fullName = (data.firstName || '') + (data.lastName || '');
-          emailjs.send(
-            "service_r4xqjrl",
-            "template_57923u2",
-            {
-              name: fullName,
-              email: data.email || 'Not Provided',
-              phone: data.contact || 'Not Provided',
-              city: data.city || '',
-              address: data.address || '',
-              pickupDate: data.pickupDate || '',
-              pickupTime: data.pickupTime || '',
-              serviceCounts: JSON.stringify(data.serviceCounts || {}),
-              instructions: (data.instructions || '') + ' [Closed without submitting]',
-            },
-            "cawbEAs7EEHSVWlQI"
-          ).catch(err => console.error('Email on close failed:', err));
-        }
       }
     }
-    if (openBookNow) {
-      abandonedEmailSentRef.current = false;
-    }
-  }, [openBookNow, bookNowCloseType]);
+  }, [openBookNow, bookNowCloseType, step]);
 
   const handleChange = e => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  //const validateEmail = email => /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(email);
   const validatePhone = contact => /^\d{10}$/.test(contact);
 
   const validateStep = () => {
@@ -126,8 +100,6 @@ const BookNow = () => {
     if (step === 1) {
       if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
       if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
-      //if (!formData.email.trim()) newErrors.email = 'Email is required';
-      //else if (!validateEmail(formData.email)) newErrors.email = 'Invalid email format';
       if (!formData.contact.trim()) newErrors.contact = 'Phone is required';
       else if (!validatePhone(formData.contact)) newErrors.contact = 'Phone must be 10 digits';
     } else if (step === 2) {
@@ -159,68 +131,24 @@ const BookNow = () => {
   const prevStep = () => setStep(prev => prev - 1);
 
   // Login or register user
- const handleUserLoginOrRegister = async () => {
-  try {
-    // Login API
-    const loginResponse = await fetch(
-      `${siteApiBaseUrl}/authApi.php?action=login&mobile=${formData.contact}`
-    );
-
-    let loginData = {};
+  const handleUserLoginOrRegister = async () => {
     try {
-      loginData = await loginResponse.json();
-    } catch {
-      loginData = {};
-    }
-    console.log(loginData);
-
-    if (loginData?.customerId) {
-      const customer = {
-        customerId: loginData.customerId,
-        firstName: loginData.firstName || '',
-        lastName: loginData.lastName || '',
-        email: loginData.email || '',
-        mobile: loginData.contact || '',
-        pincode: loginData.pincode || '',
-        address: loginData.address || '',
-        customerUniqueId: loginData.customerUniqueId || ''
-      };
-      localStorage.setItem("customer", JSON.stringify(customer));
-      dispatch(setCustomer(customer));
-      setFormData(prev => ({ ...prev, ...customer }));
-      setUserLoggedIn(true);
-      return true; // Already registered
-    }
-
-    // Register API if login failed
-    const registerResponse = await fetch(
-      `${siteApiBaseUrl}/authApi.php?action=register`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      }
-    );
-
-    let registerData = {};
-    try {
-      registerData = await registerResponse.json();
-    } catch {
-      registerData = {};
-    }
-
-    if (registerData && !registerData.error) {
+      // Login API
       const loginResponse = await fetch(
         `${siteApiBaseUrl}/authApi.php?action=login&mobile=${formData.contact}`
       );
+
       let loginData = {};
       try {
         loginData = await loginResponse.json();
       } catch {
         loginData = {};
       }
+
+      let finalCustomerData = null;
+
       if (loginData?.customerId) {
-        const customer = {
+        finalCustomerData = {
           customerId: loginData.customerId,
           firstName: loginData.firstName || '',
           lastName: loginData.lastName || '',
@@ -228,19 +156,76 @@ const BookNow = () => {
           mobile: loginData.contact || '',
           pincode: loginData.pincode || '',
           address: loginData.address || '',
-          customerUniqueId: loginData.customerUniqueId || ''
+          customerUniqueId: loginData.customerUniqueId || '',
+          isAvailableOnFabklean: loginData.IsAvilableOnFebklean === "true" || loginData.IsAvilableOnFebklean === true
         };
-        localStorage.setItem("customer", JSON.stringify(customer));
-        dispatch(setCustomer(customer));
-        setFormData(prev => ({ ...prev, ...customer }));
-        setUserLoggedIn(true);
-        return false; 
+      } else {
+        // Register API if login failed
+        const registerResponse = await fetch(
+          `${siteApiBaseUrl}/authApi.php?action=register`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+          }
+        );
+
+        let registerData = await registerResponse.json();
+
+        if (registerData && !registerData.error) {
+          const secondLoginResponse = await fetch(
+            `${siteApiBaseUrl}/authApi.php?action=login&mobile=${formData.contact}`
+          );
+          loginData = await secondLoginResponse.json();
+          if (loginData?.customerId) {
+            finalCustomerData = {
+              customerId: loginData.customerId,
+              firstName: loginData.firstName || '',
+              lastName: loginData.lastName || '',
+              email: loginData.email || '',
+              mobile: loginData.contact || '',
+              pincode: loginData.pincode || '',
+              address: loginData.address || '',
+              customerUniqueId: loginData.customerUniqueId || '',
+              isAvailableOnFabklean: loginData.IsAvilableOnFebklean === "true" || loginData.IsAvilableOnFebklean === true
+            };
+          }
+        } else {
+          toast.error(registerData.message || "Failed to register user", { autoClose: 2500 });
+          return false;
+        }
       }
-    }
 
-    toast.error(registerData.message || "Failed to register user", { autoClose: 2500 });
-    return false;
+      if (finalCustomerData) {
+        localStorage.setItem("customer", JSON.stringify(finalCustomerData));
+        dispatch(setCustomer(finalCustomerData));
 
+        // If not on Fabklean, create user there
+        if (!finalCustomerData.isAvailableOnFabklean) {
+          try {
+            const createRes = await fetch(`${siteApiBaseUrl}/bookingApi.php?action=createUser`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ ...formData, ...finalCustomerData })
+            });
+            const createData = await createRes.json();
+            
+            // If user already exists in Fabklean, it's fine to proceed
+            if (createData?.error && createData.error !== "Client Exists with this phone Number") {
+              console.error("Fabklean user creation error:", createData.error);
+              // We don't necessarily block the whole flow, but we log it
+            }
+          } catch (e) {
+            console.error("Failed to call createUser API:", e);
+          }
+        }
+
+        setFormData(prev => ({ ...prev, ...finalCustomerData }));
+        setUserLoggedIn(true);
+        return true;
+      }
+
+      return false;
     } catch (err) {
       console.error(err);
       toast.error("Error during login/register", { autoClose: 2500 });
@@ -252,47 +237,45 @@ const BookNow = () => {
     if (!validateStep()) return;
     dispatch(show());
     try {
-      await handleUserLoginOrRegister();
-      localStorage.setItem("formData", JSON.stringify(formData));
-      const fullName = formData.firstName + formData.lastName
-      await emailjs.send(
-        "service_r4xqjrl", 
-        "template_57923u2", 
-        {
-          name:fullName,
-          email: formData.email,
-          phone: formData.contact,
-          city: formData.city,
-          address: formData.address,
-          pickupDate: formData.pickupDate,
-          pickupTime: formData.pickupTime,
-          serviceCounts: JSON.stringify(formData.serviceCounts),
-          instructions: formData.instructions,
-        },
-        "cawbEAs7EEHSVWlQI" 
-      );
-      console.log(formData);
+      const loggedIn = await handleUserLoginOrRegister();
+      if (!loggedIn) {
+        dispatch(hide());
+        return;
+      }
+
+      // Latest customer data
+      const currentCustomer = JSON.parse(localStorage.getItem("customer"));
+      const submissionData = { ...formData, ...currentCustomer };
+
+      // 1. Schedule Pickup
+      const pickupResponse = await fetch(`${siteApiBaseUrl}/bookingApi.php?action=schedulePickup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submissionData)
+      });
+      const pickupResult = await pickupResponse.json();
+      setOrderResponse(pickupResult);
+
       setSuccessPopup(true);
       setIsSubmitted(true);
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: "form_submitted",
         form_step: step,
-        message:"thank_you"
+        message: "thank_you",
+        orderId: pickupResult.orderIdStr || pickupResult.orderId
       });
+
       setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        city: "",
-        address: "",
-        pickupDate: "",
-        pickupTime: "",
-        serviceCounts: {},
-        instructions: "",
+        firstName: "", lastName: "", email: "", contact: "",
+        city: "", address: "", pincode: "",
+        pickupDate: "", pickupTime: "",
+        serviceCounts: {}, instructions: "",
+        customerUniqueId: '', isAvailableOnFabklean: false
       });
       dispatch(hide());
     } catch (error) {
+      dispatch(hide());
       toast.error("Error submitting form: " + error.message, { autoClose: 3000 });
     }
   }; 
@@ -318,7 +301,6 @@ const BookNow = () => {
 
   const navigate = useNavigate();
   const goToStoretPage = () => {
-    //data layer
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
           event: "book_now_popup_locate_store_btn_click",
@@ -338,7 +320,7 @@ const BookNow = () => {
       <div className="section-container">
         {isSubmitted ? (
           <SuccessMessage
-            showGoToOrders={successPopup}
+            orderResponse={orderResponse}
           />
         ) : (
           <div className="multi-step-form">
