@@ -1,15 +1,15 @@
 import axios from 'axios';
+import config from '../config/env';
 
-//const API_URL = process.env.REACT_APP_API_BASE_URL;
-//const TOKEN = process.env.REACT_APP_API_TOKEN;
+const { apiBaseUrl, apiToken } = config;
 
-//Login API
+// Login API
 export const getLoginInfoByMobile = async (mobile) => {
   try {
-    const response = await axios.get(`http://itpvuatcapi.press2india.com:8084/api/iTPVCentralAPI/GetLoginInfoByMobile`, {
+    const response = await axios.get(`${apiBaseUrl}/GetLoginInfoByMobile`, {
       params: { mobile },
       headers: {
-        Token: "7Jx7ou6DwTvK79ig3ZiZbW7SCXoJ5B7kB1IAjg8AL14=",
+        Token: apiToken,
       },
       maxBodyLength: Infinity,
     });
@@ -19,12 +19,12 @@ export const getLoginInfoByMobile = async (mobile) => {
   }
 };
 
-//Register API
+// Register API
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post(`http://itpvuatcapi.press2india.com:8084/api/iTPVCentralAPI/RegisterUser`, userData, {
+    const response = await axios.post(`${apiBaseUrl}/RegisterUser`, userData, {
       headers: {
-        'Token': "7Jx7ou6DwTvK79ig3ZiZbW7SCXoJ5B7kB1IAjg8AL14=",
+        Token: apiToken,
         'Content-Type': 'application/json',
       },
       maxBodyLength: Infinity,
@@ -38,10 +38,10 @@ export const registerUser = async (userData) => {
 // Get customer details by ID
 export const getCustomerDetailsById = async (CustomerUniqueId) => {
   try {
-    const response = await axios.get(`http://itpvuatcapi.press2india.com:8084/api/iTPVCentralAPI/GetCustomerDetailsById`, {
+    const response = await axios.get(`${apiBaseUrl}/GetCustomerDetailsById`, {
       params: { CustomerUniqueId },
       headers: {
-        token: "7Jx7ou6DwTvK79ig3ZiZbW7SCXoJ5B7kB1IAjg8AL14=",
+        Token: apiToken,
       },
       maxBodyLength: Infinity,
     });

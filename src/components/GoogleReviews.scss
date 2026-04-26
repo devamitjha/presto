@@ -44,8 +44,25 @@
 
     .review {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .review-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .review-comment {
+        font-size: 13px;
+        color: $gray600;
+        line-height: 1.4;
+        margin: 0;
+        padding-left: 56px;
+        @media (max-width: 768px) {
+          padding-left: 0;
+        }
+      }
 
       .left {
         display: flex;

@@ -24,13 +24,22 @@ import ScrollAnimatedNumber from '../hooks/ScrollAnimatedNumber';
 import ReviewSlider from '../components/ReviewSlider';
 import { openSheet } from '../redux/slices/sideSheetSlice';
 
+const storeSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'LocalBusiness', '@id': 'https://www.presstoindia.com/#localbusiness', name: 'Pressto India', url: 'https://www.presstoindia.com/' },
+    { '@type': 'ItemList', name: 'Pressto Store Locations', itemListElement: [] },
+  ],
+};
+
 const HelmetMeta = () => {
   return (
     <Helmet>
-      <title>Pressto Luxury Care Centers - 45+ Premium Locations | Mumbai Delhi Bangalore</title>
-      <meta name="description" content="Find your nearest Pressto premium care center across 45+ exclusive locations in Mumbai (22), Delhi NCR (14) & Karnataka (8). Expert garment care specialists." />
-      <meta name="keywords" content="Pressto luxury care centers, premium Services, exclusive garment care, Mumbai Delhi Bangalore stores, luxury dry cleaning centers, premium care specialists, find luxury drycleaners, expert garment care, high-end cleaning services"/>
+      <title>Pressto Store Locator | Find Laundry & Dry Cleaners Near You</title>
+      <meta name="description" content="Use the Pressto store locator to find nearby dry cleaning and laundry services. Locate Pressto outlets and services available in your city." />
+      <meta name="keywords" content="Pressto Store Locator, Pressto near me, Pressto stores near me, Pressto laundry near me, Pressto dry cleaners near me, Pressto locations"/>
       <link rel="canonical" href="https://www.presstoindia.com/store" />
+      <script type="application/ld+json">{JSON.stringify(storeSchema)}</script>
     </Helmet>
   )
 };
@@ -108,7 +117,7 @@ const CustomerReviewHighlight = () => {
       <div className="customer-highlight">
         {/* Left */}
         <div className="left lg-hide">
-          <p className="count"><ScrollAnimatedNumber value={10000} format={{ notation: 'compact' }} />+</p>
+          <p className="count"><ScrollAnimatedNumber value={50000} format={{ notation: 'compact' }} />+</p>
           <p className="label">Happiness Delivered</p>
         </div>
 
@@ -125,7 +134,7 @@ const CustomerReviewHighlight = () => {
             <img src="https://i.pravatar.cc/40?img=3" alt="user" />
             <div className="more">+32</div>
           </div>
-          <p className="label">Brand Reviews</p>
+          <p className="label">Real Stories, Real Trust</p>
         </div>
       </div>
     </div>
@@ -137,9 +146,9 @@ const Store = () => {
     <section className="store">
       <HelmetMeta />
       <section className="section-container mb-120">  
-        <Heading title="Store Locator" />
+        <h1 className="store-page-title">Pressto Store Locator</h1>
         <div className="section-tab">
-          <p>With a legacy built on precision, care, and innovation, Pressto today operates across 45 locations in 3 major cities. From day one, we’ve led the way in responsible garment care - blending global standards with thoughtful, eco-conscious practices. Because for us, premium isn’t just about how it looks, but how it lasts.</p>          
+          <p>With a legacy built on precision, care, and innovation, Pressto today operates across 55+ locations in 4 major cities. From day one, we’ve led the way in responsible garment care - blending global standards with thoughtful, eco-conscious practices. Because for us, premium isn’t just about how it looks, but how it lasts.</p>          
         </div>
         <StoreLocator/>       
       </section>

@@ -4,14 +4,17 @@ import "./AuthFlow.scss";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import { getLoginInfoByMobile, registerUser } from '../services/userServices';
+import config from '../config/env';
+
+const { siteApiBaseUrl } = config;
 
 const HelmetMeta = () => {
   return (
       <Helmet>
-        <title>Login Page | Login Page</title>
-        <meta name="description" content="Learn more about our company and mission." />
-        <meta name="keywords" content="about us, company, mission, values" />
-        <link rel="canonical" href="https://www.yoursite.com" />
+        <title>Login | Pressto India</title>
+        <meta name="description" content="Login to your Pressto India account. Manage your laundry, dry cleaning and shoe care orders and preferences." />
+        <meta name="keywords" content="Pressto login, Pressto India account, laundry account" />
+        <link rel="canonical" href="https://www.presstoindia.com/authorization" />
       </Helmet>
   )
 }
@@ -38,7 +41,7 @@ const Authorization = () => {
     }
 
     try {
-      const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
+      const response = await fetch(`${siteApiBaseUrl}/send-otp.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // ✅ include session cookie
@@ -69,7 +72,7 @@ const Authorization = () => {
     }
 
     try {
-      const otpResponse = await fetch("https://www.presstoindia.com/api/verify-otp.php", {
+      const otpResponse = await fetch(`${siteApiBaseUrl}/verify-otp.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: 'include', // ✅ must match send OTP request

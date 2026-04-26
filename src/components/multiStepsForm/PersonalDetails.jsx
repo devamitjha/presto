@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
+import config from '../../config/env';
+
+const { siteApiBaseUrl } = config;
 
 const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => {
   const firstInputRef = useRef(null);
@@ -33,7 +36,7 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
     if (!validateMobile(contact)) return toast.error("Phone must be 10 digits", { autoClose: 2500 });
 
     try {
-      const response = await fetch("https://www.presstoindia.com/api/send-otp.php", {
+      const response = await fetch(`${siteApiBaseUrl}/send-otp.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

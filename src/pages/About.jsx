@@ -19,13 +19,24 @@ import useWindowSize from '../hooks/useWindowSize';
 //experience
 import { Image } from '@imagekit/react';
 
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': 'https://www.presstoindia.com/#organization', name: 'Pressto India', url: 'https://www.presstoindia.com/' },
+    { '@type': 'LocalBusiness', '@id': 'https://www.presstoindia.com/#localbusiness', name: 'Pressto India', url: 'https://www.presstoindia.com/' },
+    { '@type': 'Service', name: 'Dry Cleaning & Laundry', provider: { '@id': 'https://www.presstoindia.com/#organization' } },
+    { '@type': 'WebSite', '@id': 'https://www.presstoindia.com/#website', url: 'https://www.presstoindia.com/', name: 'Pressto India', publisher: { '@id': 'https://www.presstoindia.com/#organization' } },
+  ],
+};
+
 const HelmetMeta = () => {
   return (
       <Helmet>
-        <title>About Pressto India - Premium Garment Care Specialists Since Global Expansion</title>
-        <meta name="description" content="Led by Managing Director Yvo Metzelaar, Pressto India delivers bespoke wardrobe care for luxury brands across 45+ locations. Trusted by Gucci, Hermes & featured in Vogue." />
-        <meta name="keywords" content="about Pressto India, Yvo Metzelaar, premium garment care specialists, luxury brand care, bespoke wardrobe care, sustainable cleaning, artisan expertise, European standards, Gucci Hermes care, Vogue featured"/>
+        <title>About Pressto India - Premium Laundry & Dry Cleaning Brand</title>
+        <meta name="description" content="About Pressto India, a trusted global dry cleaning and laundry brand offering premium cleaning services powered by advanced technology across major cities in India." />
+        <meta name="keywords" content="About Pressto, Premium laundry brand in India, Dry cleaning company India, Laundry franchise brand India"/>
         <link rel="canonical" href="https://www.presstoindia.com/about" />
+        <script type="application/ld+json">{JSON.stringify(aboutSchema)}</script>
       </Helmet>
   )
 }
@@ -126,10 +137,22 @@ const About = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const goToStoretPage = () => {
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "about_us_locate_store_btn_click",
+            event_type:"redirection_to_store"
+        });
       navigate('/store');
   };
   const goToBookNowPage = () => {
       dispatch(setOpenBookNow(true));
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "about_us_pickup_btn_click",
+          event_type:"book_now_popup_open"
+      });
   };
   return (
     <div className="aboutpage">
@@ -152,6 +175,7 @@ const About = () => {
             className="mobile"
           />
       </div>
+      <h1 className="about-page-title">Global Dry Cleaning & Laundry Brand</h1>
       <section className="client my-88">
         <div className="item">
             <span>Pioneering Sustainable Care Since </span>
@@ -174,7 +198,7 @@ const About = () => {
         </div>
       </div>
       <WhatWeStandBy />
-      <SixColumnlayoutCenter image={["whatwedo1.jpg", "whatwedo2.jpg"]}/>
+      <SixColumnlayoutCenter image={["whatwedo1.jpeg", "whatwedo2.jpg"]}/>
       <div className="section-container luxaryExperience  mb-120">
         <Heading title="Experience Pressto" />
         <div className="section-luxaryExperience-item">

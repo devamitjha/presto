@@ -2,6 +2,13 @@
 .store{
     margin-top:2rem;
     overflow: hidden;
+    .store-page-title {
+        @extend .heading-2;
+        text-align: center;
+        margin: 0 0 1.5rem;
+        padding: 0 1rem;
+        @media(max-width: 768px) { font-size: 1.5rem; }
+    }
     .section-tab{
         max-width:550px;
         width:90%;

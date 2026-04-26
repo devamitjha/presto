@@ -40,6 +40,7 @@ import {
 } from './pages';
 import Profile from './pages/Profile';
 import ProtectedRoute from "./components/ProtectedRoute";
+import GTMPageTracker from './components/GTMPageTracker';
 
 function App() {
   const router = createBrowserRouter([
@@ -48,6 +49,7 @@ function App() {
       element: (
         <>
           <ScrollRestoration />
+          <GTMPageTracker />
           <Layout />
         </>
       ),

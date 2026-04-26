@@ -24,7 +24,7 @@ import FullWidthBackgroundVideo from '../components/FullWidthBackgroundVideo';
 const items = [
   { img: "service/sl-1.jpg", title: "Quality", info:"Every detail matters, we treat your garments with precision and care that shows."},
   { img: "service/sl-2.jpg", title: "Speed", info:"Quick turnarounds, without cutting corners - because your time is valuable."},
-  { img: "service/sl-3.jpg", title: "Service", info:"Thoughtful care, personalised for you - from pick-up to delivery."},
+  { img: "service/sl-5.jpg", title: "Service", info:"Thoughtful care, personalised for you - from pick-up to delivery."},
   { img: "service/sl-4.jpg", title: "Transparency", info:"No surprises, just honesty, you’ll always know what we’re doing and why."},
 ];
 
@@ -42,6 +42,22 @@ const sliderData = [
   {    
     image: "service/Restoration/s3.jpg",
     title: "Slider 3"
+  },
+  {    
+    image: "service/Restoration/s4.jpg",
+    title: "Slider 4"
+  },
+  {    
+    image: "service/Restoration/s5.jpg",
+    title: "Slider 5"
+  },
+  {    
+    image: "service/Restoration/s6.jpg",
+    title: "Slider 6"
+  },
+  {    
+    image: "service/Restoration/s7.jpg",
+    title: "Slider 7"
   }
 ];
 
@@ -57,6 +73,22 @@ const sliderDataMobile = [
   {    
     image: "mobile/service/Restoration/s3.jpg",
     title: "Slider 3"
+  },
+  {    
+    image: "mobile/service/Restoration/s4.jpg",
+    title: "Slider 4"
+  },
+  {    
+    image: "mobile/service/Restoration/s5.jpg",
+    title: "Slider 5"
+  },
+  {    
+    image: "mobile/service/Restoration/s6.jpg",
+    title: "Slider 6"
+  },
+  {    
+    image: "mobile/service/Restoration/s7.jpg",
+    title: "Slider 7"
   }
 ];
 
@@ -116,12 +148,23 @@ const WhatWeStandBy = () => {
   );
 };
 
+const shoeBagSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': 'https://www.presstoindia.com/#organization', name: 'Pressto India', url: 'https://www.presstoindia.com/' },
+    { '@type': 'LocalBusiness', '@id': 'https://www.presstoindia.com/#localbusiness', name: 'Pressto India', url: 'https://www.presstoindia.com/' },
+    { '@type': 'Service', name: 'Shoe & Bag Repair Services', provider: { '@id': 'https://www.presstoindia.com/#organization' } },
+    { '@type': 'Review', author: { '@type': 'Organization', name: 'Pressto India' }, itemReviewed: { '@id': 'https://www.presstoindia.com/#localbusiness' } },
+  ],
+};
+
 const HelmetMeta = () => (
   <Helmet>
-    <title>Luxury Shoe & Bag Restoration - Premium Leather Care Specialists | Pressto</title>
-    <meta name="description" content="Expert restoration for luxury shoes & designer bags. Precision leather care, suede cleaning & premium restoration services. Trusted by luxury fashion brands." />
-    <meta name="keywords" content="luxury shoe restoration, premium bag care, leather care specialists, designer bag cleaning, suede restoration, luxury leather goods, premium shoe care, precision restoration, fashion brand trusted, leather repair services"/>
+    <title>Shoe & Bag Repair Services | Luxury Restoration | Pressto</title>
+    <meta name="description" content="Expert shoe repair and bag restoration services by Pressto. Professional leather repair, sneaker cleaning and luxury bag care with precision craftsmanship." />
+    <meta name="keywords" content="Shoe Repair Services, Shoe Restoration, Bag Restoration, Luxury Shoe Repair, Leather Bag Repair, Shoe Cleaning Service"/>
     <link rel="canonical" href="https://www.presstoindia.com/service/shoes-and-bag-care" />
+    <script type="application/ld+json">{JSON.stringify(shoeBagSchema)}</script>
   </Helmet> 
 );
 
@@ -130,6 +173,7 @@ const Restoration = () => {
   return (
     <>
       <HelmetMeta />
+      <h1 className="service-page-title">Shoe & Bag Repair Services</h1>
       <div className="section-container serviceSlider mb-120">
         <Heading title="Carry the Mint Look" />   
         {

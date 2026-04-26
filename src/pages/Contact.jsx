@@ -24,13 +24,19 @@ const CustomerReviewHighlight = () => {
    const dispatch = useDispatch();
     const handleOpen = () => {
       dispatch(openSheet());
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "brand_review_click",
+        event_type:"review_open"
+      });
     };
   return (
     <div className="section-container mb-120">
       <div className="customer-highlight">
         {/* Left */}
         <div className="left lg-hide">
-          <p className="count"><ScrollAnimatedNumber value={10000} format={{ notation: 'compact' }} />+</p>
+          <p className="count"><ScrollAnimatedNumber value={50000} format={{ notation: 'compact' }} />+</p>
           <p className="label">Happiness Delivered</p>
         </div>
 
@@ -48,20 +54,29 @@ const CustomerReviewHighlight = () => {
             <img src="https://i.pravatar.cc/40?img=3" alt="user" />
             <div className="more">+32</div>
           </div>
-          <p className="label">Brand Reviews</p>
+          <p className="label">Real Stories, Real Trust</p>
         </div>
       </div>
     </div>
   );
 };
 
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': 'https://www.presstoindia.com/#organization', name: 'Pressto India', url: 'https://www.presstoindia.com/' },
+    { '@type': 'LocalBusiness', '@id': 'https://www.presstoindia.com/#localbusiness', name: 'Pressto India', url: 'https://www.presstoindia.com/' },
+  ],
+};
+
 const HelmetMeta = () => {
   return (
       <Helmet>
-        <title>Contact Pressto India - Premium Garment Care Specialists | Luxury Service</title>
-        <meta name="Contact Pressto India for premium garment care. Call 1800229199 or email pickmeup@presstoindia.com. Luxury service specialists in Mumbai, Delhi & Bangalore."/>
-        <meta name="keywords" content="contact Pressto India, premium garment care contact, luxury service specialists, expert customer service, premium pickup booking, luxury dry cleaning contact, high-end garment care, designer clothes care contact"/>
+        <title>Contact Pressto India | Laundry & Dry Cleaning Support</title>
+        <meta name="description" content="Contact Pressto India for dry cleaning, laundry and shoe care services. Call or email our support team for store information, pickup requests and service help."/>
+        <meta name="keywords" content="Pressto India Contact, Contact Pressto India, Pressto Customer Care, Pressto Laundry Contact, Pressto Dry Cleaning Contact, Pressto Store Contact"/>
         <link rel="canonical" href="https://www.presstoindia.com/contact" />
+        <script type="application/ld+json">{JSON.stringify(contactSchema)}</script>
       </Helmet>
   )
 }
@@ -69,9 +84,21 @@ const Contact = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const goToStoretPage = () => {
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "contact_us_locate_store_btn_click",
+            event_type:"redirection_to_store"
+        });
       navigate('/store');
   };
   const goToBookNowPage = () => {
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "contact_us_pickup_btn_click",
+          event_type:"book_now_popup_open"
+      });
      dispatch(setOpenBookNow(true));
   };
   return (
@@ -89,10 +116,10 @@ const Contact = () => {
               />
             </div>
             <div className="contact-info">
-              <h3>Contact us</h3>
+              <h1 className="contact-page-title">Contact Pressto India</h1>
               <div className="contact-item">
                 <MapPin size={18} />
-                <span>Lower Parel, Mumbai 400013</span>
+                <span>Head office, Lower Parel, Mumbai 400013</span>
               </div>
 
               <div className="contact-item">
@@ -175,7 +202,7 @@ const Contact = () => {
             <div className="img-container">
               <Image
                 urlEndpoint="https://www.presstoindia.com/media/exp/"
-                src="exp-7.jpg"
+                src="exp-8.jpg"
                 width={416}
                 height={416}
                 alt="exp7"
@@ -189,7 +216,7 @@ const Contact = () => {
           </div>
         </div>
       </div>      
-      <SixColumnlayoutCenter image={["whatwedo1.jpg", "whatwedo2.jpg"]} dir="contact"/>
+      <SixColumnlayoutCenter image={["whatwedo1.jpeg", "whatwedo2.jpg"]} dir="contact"/>
 
       <CustomerReviewHighlight/>
     </div>

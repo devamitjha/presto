@@ -42,8 +42,7 @@ const AwardsSection = () => {
         </div>
         <div className="awards-section__sidebar">
           <p className="body-2 mb-20">
-            At Pressto, every Presstodian brings our motto – Look Good, Feel
-            Better; to life with heartfelt care, sharp skill, and an eye for
+            At Pressto, every Presstodian brings our motto – Free Pickup & Drop; to life with heartfelt care, sharp skill, and an eye for
             detail. It’s not just what we do, it’s how we do it, with quiet
             precision and pride in every fold
           </p>

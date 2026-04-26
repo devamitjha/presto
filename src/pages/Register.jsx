@@ -4,10 +4,10 @@ import { Helmet } from "react-helmet";
 const HelmetMeta = () => {
   return (
       <Helmet>
-        <title>Register Page | Register Page</title>
-        <meta name="description" content="Learn more about our company and mission." />
-        <meta name="keywords" content="about us, company, mission, values" />
-        <link rel="canonical" href="https://www.yoursite.com" />
+        <title>Register | Pressto India</title>
+        <meta name="description" content="Create your Pressto India account. Register for laundry, dry cleaning and shoe care services." />
+        <meta name="keywords" content="Pressto register, Pressto India sign up, create account" />
+        <link rel="canonical" href="https://www.presstoindia.com/register" />
       </Helmet>
   )
 }

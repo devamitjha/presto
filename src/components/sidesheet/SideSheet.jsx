@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { X } from 'lucide-react';
 import { closeSheet } from "../../redux/slices/sideSheetSlice";
+import config from "../../config/env";
 import "./SideSheet.scss";
 import { Link } from 'react-router';
 import Google from "../../assets/images/google.jpg";
+
+const { siteApiBaseUrl } = config;
 
 const StarRating = ({ rating, maxRating = 5 }) => {
   return (
@@ -33,7 +36,7 @@ const SideSheet = () => {
     useEffect(() => {
       const fetchReviews = async () => {
         try {
-          const res = await fetch("https://www.presstoindia.com/api/get-synup-reviews.php");
+          const res = await fetch(`${siteApiBaseUrl}/get-synup-reviews.php`);
   
           if (!res.ok) {
             const errData = await res.json().catch(() => ({}));

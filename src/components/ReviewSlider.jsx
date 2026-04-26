@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { ChevronRight, ChevronLeft, Star } from 'lucide-react';
 import { Link } from 'react-router';
+import config from '../config/env';
 import './ReviewSlider.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+const { siteApiBaseUrl } = config;
 
 function NavNextArrow(props) {
   const {onClick } = props;
@@ -48,7 +51,7 @@ const ReviewSlider = () => {
     useEffect(() => {
     const fetchReviews = async () => {
         try {
-        const res = await fetch("https://www.presstoindia.com/api/get-synup-reviews.php");
+        const res = await fetch(`${siteApiBaseUrl}/get-synup-reviews.php`);
 
         if (!res.ok) {
             const errData = await res.json().catch(() => ({}));

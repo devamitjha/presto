@@ -3,7 +3,10 @@ import "./Profile.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setCustomer } from "../redux/slices/customerSlice"; // adjust path
 import { getCustomerDetailsById } from "../services/userServices"; // adjust path
+import config from "../config/env";
 import HistoryIcon from "../assets/images/history.svg"
+
+const { siteApiBaseUrl } = config;
 import Tabs from 'rc-tabs';
 import 'rc-tabs/assets/index.css';
 
@@ -81,7 +84,7 @@ useEffect(() => {
     try {
       if (customer?.customerUniqueId) {
         const response = await fetch(
-          `https://www.presstoindia.com/api/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
+          `${siteApiBaseUrl}/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
         );
 
         const data = await response.json();

@@ -6,7 +6,9 @@ import { getLoginInfoByMobile, registerUser } from '../services/userServices';
 import { useDispatch } from "react-redux";
 import { setCustomer } from "../redux/slices/customerSlice"; 
 import { setOpenSheet } from "../redux/slices/sheetSlice";
+import config from '../config/env';
 
+const { siteApiBaseUrl } = config;
 
 const Authorization = () => {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ const Authorization = () => {
     }
 
     try {
-      const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
+      const response = await fetch(`${siteApiBaseUrl}/send-otp.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -123,7 +125,7 @@ const Authorization = () => {
     }
 
      try {
-        const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
+        const response = await fetch(`${siteApiBaseUrl}/send-otp.php`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',

@@ -18,10 +18,10 @@ import Heading from '../components/common/Heading';
 
 const HelmetMeta = () => (
   <Helmet>
-    <title>Book Now</title>
-    <meta name="description" content="Learn more about our company and mission." />
-    <meta name="keywords" content="about us, company, mission, values" />
-    <link rel="canonical" href="https://www.yoursite.com" />
+    <title>Book Now | Schedule Pickup & Delivery | Pressto India</title>
+    <meta name="description" content="Book Pressto laundry, dry cleaning and shoe care services. Schedule free pickup and delivery at your convenience across India." />
+    <meta name="keywords" content="book Pressto, schedule pickup, dry cleaning pickup, laundry delivery, Pressto India" />
+    <link rel="canonical" href="https://www.presstoindia.com/book-now" />
   </Helmet>
 );
 

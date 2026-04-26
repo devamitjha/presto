@@ -52,7 +52,7 @@ const Review = ({ formData, setFormData, prevStep, handleSubmit }) => {
               id="instructions"
               className={formData.instructions ? 'filled' : ''}
             />
-          <label htmlFor="instructions">Add Insutructions</label>
+          <label htmlFor="instructions">Add Instructions</label>
         </div>
       </div>
 

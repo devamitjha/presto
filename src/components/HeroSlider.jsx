@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import './HeroSlider.scss';
@@ -37,10 +37,17 @@ function NavPrevArrow(props) {
 
 
 
-const HeroSlider = ({ heroImages, dir, type }) => {  
+const HeroSlider = ({ heroImages, dir, type, title, hideTitleOnFirstSlideDesktop }) => {  
   const dispatch = useDispatch();
+  const [currentSlide, setCurrentSlide] = useState(0);
   const goToBookNowPage = () => {
     dispatch(setOpenBookNow(true));
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "main_banner_cta_click",
+        event_type:"book_now_popup_open"
+      });
   };
 
   const settings = {
@@ -54,7 +61,8 @@ const HeroSlider = ({ heroImages, dir, type }) => {
     arrows: true,
     pauseOnHover: true,
     nextArrow: <NavNextArrow />,
-    prevArrow: <NavPrevArrow />
+    prevArrow: <NavPrevArrow />,
+    afterChange: (index) => setCurrentSlide(index),
   };
 
   return (
@@ -80,7 +88,9 @@ const HeroSlider = ({ heroImages, dir, type }) => {
         ))}
       </Slider>
       <div className="hero-title">
-          <h3>Look Good, Feel Great</h3>
+          {!(hideTitleOnFirstSlideDesktop && type === 'desktop' && currentSlide === 0) && (
+            <h3>{title ?? 'Free Pickup & Drop'}</h3>
+          )}
           <div  className="btn btn-md base-btn secondary overflowHidden my-24" onClick={goToBookNowPage }>
             Schedule Pickup <span className="icon-box">{BookNowIcon}</span>
           </div>

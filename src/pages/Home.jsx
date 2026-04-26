@@ -36,19 +36,25 @@ const SectionSpotlight = () => {
   const { width } = useWindowSize();
 
   const spolightPopupItem = [
-    { id: 1, img: "1.jpg", title: "VOGUE PROMOTION-1", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. one." },
-    { id: 2, img: "2.jpg", title: "VOGUE PROMOTION-2", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. two." },
-    { id: 3, img: "3.jpg", title: "VOGUE PROMOTION-3", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. three." },
-    { id: 4, img: "4.jpg", title: "VOGUE PROMOTION-4", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. four." },
-    { id: 5, img: "5.jpg", title: "VOGUE PROMOTION-5", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. five." },
-    { id: 6, img: "6.jpg", title: "VOGUE PROMOTION-6", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. six." },
-    { id: 7, img: "7.jpg", title: "VOGUE PROMOTION-7", description: "Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. seven." },
+    { id: 1, img: "7.jpg", title: "Excellence, Done Right", description: "A perfect blend of skill and modern technology to deliver results you can trust." },
+    { id: 2, img: "1.jpg", title: "Where Care Meets Craft", description: "Thoughtfully managed with expert hands and modern solutions, ensuring every detail is treated with the respect it deserves." },
+    { id: 3, img: "2.jpg", title: "Trusted Craftsmanship", description: "Our commitment to quality means every step is carefully executed using the right expertise and up-to-date techniques." },
+    { id: 4, img: "3.jpg", title: "Quality, Thoughtfully Delivered", description: "Combining skilled professionals with efficient technology, we aim to provide consistent results you can always count on." },
+    { id: 5, img: "4.jpg", title: "Precision in Every Detail", description: "Our approach focuses on accuracy, care, and the right technology to deliver clean, reliable results every single time." },
+    { id: 6, img: "5.jpg", title: "Standards You Can See", description: "We follow a refined process that prioritises detail, cleanliness, and precision to ensure quality that truly stands out." },
+    { id: 7, img: "6.jpg", title: "Made with Purpose", description: "We believe that attention to detail is what separates ordinary from exceptional. That is why we take the time to ensure every stage is handled carefully and thoughtfully. Skilled hands, supported by advanced systems, allow us to maintain consistent standards and dependable results." },
   ];
 
   const setCardOpen = (item) => {
     setSelectedItem(item);
     setOpen(false);
     setOpenCard(true);
+    //data layer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: "know_more_btn_click",
+        event_type:"media_popup_open"
+    });
   };
 
   const setPrevCardOpen = () => {
@@ -60,6 +66,16 @@ const SectionSpotlight = () => {
     }
   };  
 
+  const openSheet = (item) => {   
+    setOpen(true);
+    //data layer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: "view_gallery_btn_click",
+        event_type:"media_popup_open"
+    });
+  };
+
   return (
     <section className="section-container spotlight autoSlider mb-120">
       <Heading title="In the Spotlight" />
@@ -69,7 +85,7 @@ const SectionSpotlight = () => {
             <div className="item">
               <Image
                 urlEndpoint="https://www.presstoindia.com/media/spotlight/"
-                src="sp-1.jpg"
+                src="7.jpg"
                 alt="Showcase1"
               />
             </div>
@@ -85,7 +101,7 @@ const SectionSpotlight = () => {
             <div className="item collage">
               <p className="md-hide">In the Spotlight</p>
               <div className="info md-hide">
-                At Pressto, every Presstodian brings our motto - Look Good, Feel Better; to life with heartfelt care,
+                At Pressto, every Presstodian brings our motto - Free Pickup & Drop; to life with heartfelt care,
                 sharp skill, and an eye for detail. It’s not just what we do, it’s how we do it, with quiet precision and pride in every fold
               </div>
               <div className="image-collage md-hide">
@@ -101,7 +117,7 @@ const SectionSpotlight = () => {
               </div>
               <div
                 className="btn btn-md base-btn outlined overflowHidden"
-                onClick={() => setOpen(true)}
+                onClick={openSheet}
               >
                 View Gallery
               </div>
@@ -146,7 +162,7 @@ const SectionSpotlight = () => {
             <div className="d-flex justify-center-center align-items-center mt-4 mb-5">
               <div
                   className="btn btn-md base-btn outlined overflowHidden"
-                  onClick={() => setOpen(true)}
+                  onClick={openSheet}
                 >
                 View Gallery
               </div>
@@ -244,6 +260,12 @@ const LuxaryExperience = () => {
   const { width } = useWindowSize();
   const navigate = useNavigate();
   const goToContactPage = () => {
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "home_aboutys_know_more_btn_click",
+          event_type:"about_us_navigatoin"
+      });
       navigate('/about');
   };
   return (
@@ -360,15 +382,17 @@ const RealStories = ({reviewRef}) => (
 );
 
  const heroImages = [
-    { src: "banner-1.jpg", title: 'Look Good, Feel Great' },
-    { src: "banner-2.jpg", title: 'Look Good, Feel Great' },
-    { src: "banner-3.jpg", title: 'Look Good, Feel Great' }
+    { src: "banner.jpeg", title: 'Free Pickup & Drop' },
+    { src: "banner-0.jpeg", title: 'Free Pickup & Drop' },
+    { src: "banner-1.jpg", title: 'Free Pickup & Drop' },
+    { src: "banner-4.jpeg", title: 'Free Pickup & Drop' },
  ];
 
  const heroImagesMobile = [
-    { src: "banner-1.jpg", title: 'Look Good, Feel Great' },
-    { src: "banner-2.jpg", title: 'Look Good, Feel Great' },
-    { src: "banner-3.jpg", title: 'Look Good, Feel Great' }
+    { src: "banner.jpeg", title: 'Free Pickup & Drop' },
+    { src: "banner-0.jpeg", title: 'Free Pickup & Drop' },
+    { src: "banner-1.jpg", title: 'Free Pickup & Drop' },
+    { src: "banner-4.jpeg", title: 'Free Pickup & Drop' },
  ];
 
  
@@ -380,21 +404,71 @@ const Home = () => {
   const reviewRef = useRef(null);
   const handleScrollToReview = () => {
     reviewRef.current?.scrollIntoView({ behavior: "smooth" });
+    //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "read_review_btn_click",
+        event_type:"review_open"
+      });
   };
+  const homeSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://www.presstoindia.com/#organization',
+        name: 'Pressto India',
+        url: 'https://www.presstoindia.com/',
+      },
+      {
+        '@type': 'LocalBusiness',
+        '@id': 'https://www.presstoindia.com/#localbusiness',
+        name: 'Pressto India',
+        description: 'Pressto India offers premium laundry, dry cleaning, shoe cleaning and cobbler services with pickup & delivery.',
+        url: 'https://www.presstoindia.com/',
+      },
+      {
+        '@type': 'Service',
+        name: 'Dry Cleaning & Laundry Services',
+        provider: { '@id': 'https://www.presstoindia.com/#organization' },
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://www.presstoindia.com/#website',
+        url: 'https://www.presstoindia.com/',
+        name: 'Pressto India',
+        publisher: { '@id': 'https://www.presstoindia.com/#organization' },
+      },
+      {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        reviewCount: '500',
+        bestRating: '5',
+        itemReviewed: { '@id': 'https://www.presstoindia.com/#localbusiness' },
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Organization', name: 'Pressto India' },
+        itemReviewed: { '@id': 'https://www.presstoindia.com/#localbusiness' },
+      },
+    ],
+  };
+
   return (
     <section className="home">
       <Helmet>
-        <title>Premium Luxury Dry Cleaning & Garment Care - Pressto India | Expert Artisans</title>
+        <title>Best Dry Cleaning & Laundry Service | Pressto India</title>
         <meta
           name="description"
-          content="India's premium garment care specialists serving luxury brands. Expert artisans, soft water technology & eco-friendly processes across 45+ locations in Mumbai, Delhi & Bangalore"/>
-        <meta name="keywords" content=" premium dry cleaning, luxury garment care, expert artisans, soft water cleaning, eco-friendly premium, Mumbai Delhi Bangalore, designer clothes care, pickup delivery, bespoke service, European standards, Pressto India"/>
+          content="Pressto India offers premium laundry, dry cleaning, shoe cleaning and cobbler services with pickup & delivery. Professional garment care across India."/>
+        <meta name="keywords" content="Dry Cleaning Services, Laundry Services, Dry Cleaners Near Me, Laundry Near Me, Shoe Cleaning Service, Pressto India, Pressto Dry Cleaning, Pressto Laundry"/>
         <link rel="canonical" href="https://www.presstoindia.com/" />
+        <script type="application/ld+json">{JSON.stringify(homeSchema)}</script>
       </Helmet>
       {
-        width >1024 ?<HeroSlider heroImages={heroImages} dir="mainbanner" type="desktop"/> :<HeroSlider heroImages={heroImagesMobile} dir="mainbanner" type="mobile"/>
-      }      
-      
+        width >1024 ?<HeroSlider heroImages={heroImages} dir="mainbanner" type="desktop" hideTitleOnFirstSlideDesktop/> :<HeroSlider heroImages={heroImagesMobile} dir="mainbanner" type="mobile"/>
+      }
+      <h1 className="home-page-title">Dry Cleaning & Laundry Services in India</h1>
       <Client />
       {
         width <1025 &&  <div className="d-flex justify-center-center align-items-center mt-4 mb-5">

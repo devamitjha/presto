@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Volume2, VolumeX, Play, ChevronLeft, ChevronRight } from "lucide-react";
@@ -12,9 +12,9 @@ import NandiniBhalla from "../assets/video/Nandini-Bhalla.mp4";
 import RinaDhaka from "../assets/video/Rina-Dhaka.mp4";
 
 const mediaItems = [
-  { type: "video", src: Gabriella },
-  { type: "video", src: NandiniBhalla },
-  { type: "video", src: RinaDhaka },
+  { type: "video", src: Gabriella, name: "Gabriella Demetriades", designation: "Fashion Designer" },
+  { type: "video", src: NandiniBhalla, name: "Nandini Bhalla", designation: "Editor, Cosmopolitan India" },
+  { type: "video", src: RinaDhaka, name: "Rina Dhaka", designation: "Indian Fashion Designer" },
 ];
 
 const RealSlider = () => {
@@ -25,44 +25,17 @@ const RealSlider = () => {
   const [pausedVideos, setPausedVideos] = useState({});
   const [mutedVideos, setMutedVideos] = useState({});
 
-  useEffect(() => {
-    const playFirstVideo = () => {
-      const firstVideo = videoRefs.current[0];
-      if (firstVideo) {
-        firstVideo.muted = true; 
-        firstVideo.play()
-          .then(() => {
-            setPausedVideos({ 0: false });
-            setMutedVideos({ 0: true }); 
-          })
-          .catch(() => {
-            setPausedVideos({ 0: true });
-            setMutedVideos({ 0: true });
-          });
-      }
-    };
-
-    const timeout = setTimeout(playFirstVideo, 100); 
-    return () => clearTimeout(timeout);
-  }, []);
-
   const handleSlideChange = (swiper) => {
     const newIndex = swiper.realIndex;
     setActiveIndex(newIndex);
 
+    // Pause all videos when changing slides; do not auto-play the new slide
     videoRefs.current.forEach((video, idx) => {
       if (video) {
-        if (idx === newIndex) {
-          video.muted = false;
-          video.play().catch(() => {});
-          setPausedVideos((prev) => ({ ...prev, [idx]: false }));
-          setMutedVideos((prev) => ({ ...prev, [idx]: false }));
-        } else {
-          video.pause();
-          video.muted = true;
-          setPausedVideos((prev) => ({ ...prev, [idx]: true }));
-          setMutedVideos((prev) => ({ ...prev, [idx]: true }));
-        }
+        video.pause();
+        video.muted = true;
+        setPausedVideos((prev) => ({ ...prev, [idx]: true }));
+        setMutedVideos((prev) => ({ ...prev, [idx]: true }));
       }
     });
   };
@@ -109,8 +82,8 @@ const RealSlider = () => {
                 style={{ width: "100%", height: "500px" }}
               />
 
-              {/* Play button only if paused */}
-              {pausedVideos[index] && (
+              {/* Play button only if paused (default to paused so no autoplay) */}
+              {(pausedVideos[index] ?? true) && (
                 <button
                   className="play-btn"
                   onClick={(e) => {
@@ -129,6 +102,12 @@ const RealSlider = () => {
               >
                 {mutedVideos[index] ? <VolumeX /> : <Volume2 />}
               </button>
+
+              {/* Name and designation */}
+              <div className="slider-caption">
+                <div className="slider-caption-name">{item.name}</div>
+                <div className="slider-caption-designation">{item.designation}</div>
+              </div>
             </div>
           </SwiperSlide>
         ))}

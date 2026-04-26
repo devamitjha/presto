@@ -49,9 +49,21 @@ const BlogDetail = () => {
 
 
   const goToStoretPage = () => {
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "blog_details_locate_store_btn_click",
+            event_type:"redirection_to_store"
+        });
       navigate('/store');
   };
   const goToBookNowPage = () => {
+      //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "blog_details_pickup_btn_click",
+          event_type:"book_now_popup_open"
+      });
       dispatch(setOpenBookNow(true));
   }; 
   
@@ -161,7 +173,7 @@ const BlogDetail = () => {
           </div>
         </div>
       </div>
-      <SixColumnlayoutCenter image={["whatwedo1.jpg", "whatwedo2.jpg"]}/>
+      <SixColumnlayoutCenter image={["whatwedo1.jpeg", "whatwedo2.jpg"]}/>
     </div>
   )
 }

@@ -41,7 +41,17 @@
                 }
             }  
         }
-    }    
+    }
+    .about-page-title {
+        @extend .heading-2;
+        text-align: center;
+        margin: 2rem 0 0;
+        padding: 0 1rem;
+        @media(max-width: 768px) {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 0;
+        }
+    }
     .client{
         @extend .d-flex;
         gap:1rem;

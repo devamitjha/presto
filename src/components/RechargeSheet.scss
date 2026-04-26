@@ -1,0 +1,134 @@
+@import "../assets/styles/theme";
+
+.recharge-bottomsheet {
+    [data-rsbs-overlay] {
+        max-width: 1220px;
+        margin: 0 auto;
+        z-index: 1100;
+    }
+
+    [data-rsbs-header] {
+        position: relative;
+        padding-top: 34px;
+        padding-bottom: 48px;
+        border: none;
+        box-shadow: none;
+        
+        @media(max-width: 900px) {
+            padding-bottom: 30px;
+        }
+
+        .sheetHeader {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            img {
+                width: 208px;
+                height: 46px;
+                @media(max-width: 900px) {
+                    width: 150px;
+                    height: auto;
+                }
+            }
+        }
+
+        .closesheet {
+            position: absolute;
+            right: 30px;
+            top: 40%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            @media(max-width: 900px) {
+                right: 0;
+            }
+        }
+    }
+}
+
+.recharge-sheet-content {
+    padding: 24px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+    font-family: "Kanit", sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+
+    .sheet-header {
+        text-align: center;
+        margin-bottom: 32px;
+        
+        h2 {
+            @extend .sub-heading-1;
+            margin: 0 0 8px 0;
+            color: $black;
+            font-size: 20px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        p {
+            @extend .body-3;
+            color: $gray700;
+            margin: 0;
+        }
+    }
+
+    .input-group {
+        margin-bottom: 32px;
+        
+        label {
+            display: block;
+            @extend .body-3;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: $black;
+        }
+
+        input {
+            width: 100%;
+            height: 56px;
+            border: 1px solid $gray200;
+            border-radius: 12px;
+            padding: 0 16px;
+            font-size: 18px;
+            font-weight: 600;
+            color: $black;
+            outline: none;
+            transition: border-color 0.2s ease;
+
+            &:focus {
+                border-color: $black;
+            }
+
+            &::placeholder {
+                font-weight: 400;
+                color: $gray400;
+                font-size: 16px;
+            }
+        }
+    }
+
+    .recharge-submit-btn {
+        width: 100%;
+        height: 56px;
+        background-color: $black;
+        color: $white;
+        border: none;
+        border-radius: 100px;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+
+        &:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+    }
+}

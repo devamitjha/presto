@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setCustomer } from "../redux/slices/customerSlice";
+import config from "../config/env";
 import HistoryIcon from "../assets/images/history.svg"
-import Tabs from 'rc-tabs';
-import 'rc-tabs/assets/index.css';
+import { useLocation, useNavigate } from "react-router";
+import { ClipboardList, Package } from "lucide-react";
+import { setOpenRecharge } from "../redux/slices/sheetSlice";
+
+const { siteApiBaseUrl } = config;
 
 const ProfileData = ({ customer }) => {
   if (!customer) {
@@ -127,74 +131,214 @@ const OrderHistory = ({ customer }) => {
   );
 };
 
+const Wallet = ({ customer, transactions, loading }) => {
+  const dispatch = useDispatch();
+  if (!customer) {
+    return <p>Loading wallet details...</p>;
+  }
 
+  const walletBalance = customer.walletBalance || 0;
 
+  const formatDate = (date) => {
+    if (!date) return "—";
+    const d = new Date(date);
+    return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+  };
+
+  return (
+    <div className="wallet-view">
+      {/* Balance Card */}
+      <div className="balance-card">
+        <h3>PRESSTO WALLET</h3>
+        <div className="balance-amount">
+          <span>Available Balance</span>
+          <strong>₹{walletBalance}</strong>
+        </div>
+        
+        {walletBalance === 0 && (
+          <button 
+            className="recharge-btn-inline"
+            onClick={() => dispatch(setOpenRecharge(true))}
+          >
+            Recharge Wallet
+          </button>
+        )}
+
+        <p className="balance-note">
+          Pressto wallet could be used completely on any order, your redeemed coupons benefits are added here.
+        </p>
+      </div>
+
+      {/* Transaction History Section */}
+      <div className="transaction-section">
+        <div className="transaction-header">
+          <div className="active-tab">
+             <ClipboardList size={18} />
+             <span>Transaction history</span>
+          </div>
+        </div>
+        
+        <p className="tap-hint">Tap on a transaction to see more details</p>
+
+        <div className="transaction-list">
+          {loading ? (
+            <p style={{ textAlign: 'center', padding: '20px' }}>Loading transactions...</p>
+          ) : transactions && transactions.length > 0 ? (
+            transactions.map((tx, index) => {
+              const isDebit = tx.transactionType?.toLowerCase() === 'redeem';
+              return (
+                <div key={index} className="transaction-item">
+                  <div className="tx-icon">
+                    <img src={HistoryIcon} alt="Transaction" style={{ width: '24px' }} />
+                  </div>
+                  <div className="tx-details">
+                    <div className="tx-main">
+                      <span className="tx-title">{isDebit ? `Paid for Order #${tx.orderId || '—'}` : `Recharge Wallet`}</span>
+                      <span className={`tx-amount ${isDebit ? 'negative' : 'positive'}`}>
+                        {isDebit ? '-' : '+'} ₹{tx.amount}
+                      </span>
+                    </div>
+                    <span className="tx-date">
+                      {isDebit ? 'Used on' : 'Added on'} {formatDate(tx.createdOn)}
+                    </span>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+             <p style={{ textAlign: 'center', padding: '20px', color: '#8a8fb5' }}>No transactions found.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function Profile() {
   const dispatch = useDispatch();
   const customer = useSelector((state) => state.customer.customer);
-  const items = [
-  { key: '1', label: 'Profile', children:<ProfileData customer={customer}/> },
-  { key: '2', label: 'Order History', children: <OrderHistory customer={customer}/> },
-];
+  const location = useLocation();
+  const navigate = useNavigate();
 
-useEffect(() => {
-  const fetchCustomerDetails = async () => {
-    try {
-      if (customer?.customerUniqueId) {
-        const response = await fetch(
-          `https://www.presstoindia.com/api/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
-        );
+  const queryParams = new URLSearchParams(location.search);
+  const tabParam = queryParams.get("tab");
 
-        const data = await response.json();
-        console.log(data);
+  const [activeTab, setActiveTab] = useState("profile");
+  const [walletTransactions, setWalletTransactions] = useState([]);
+  const [loadingTransactions, setLoadingTransactions] = useState(false);
 
-        if (data && !data.error) {
-          dispatch(setCustomer(data)); // store in Redux & localStorage
-        } else {
-          console.error("Error from API:", data.error || "Unknown error");
+  useEffect(() => {
+    if (tabParam === "orders") {
+      setActiveTab("orders");
+    } else if (tabParam === "wallet") {
+      setActiveTab("wallet");
+    } else {
+      setActiveTab("profile");
+    }
+  }, [tabParam]);
+
+  useEffect(() => {
+    const fetchCustomerDetails = async () => {
+      try {
+        if (customer?.customerUniqueId) {
+          const response = await fetch(
+            `${siteApiBaseUrl}/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
+          );
+
+          const data = await response.json();
+          console.log(data);
+
+          if (data && !data.error) {
+            dispatch(setCustomer(data)); // store in Redux & localStorage
+          } else {
+            console.error("Error from API:", data.error || "Unknown error");
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching customer details:", error);
+      }
+    };
+
+    fetchCustomerDetails();
+  }, [customer?.customerUniqueId, dispatch]);
+
+  useEffect(() => {
+    const fetchWalletTransactions = async () => {
+      if (activeTab === 'wallet' && customer?.mobile) {
+        setLoadingTransactions(true);
+        try {
+          const today = new Date();
+          const toDate = today.toLocaleDateString('en-GB'); // dd/mm/yyyy
+          const fromDate = "01/01/2024";
+
+          const response = await fetch(
+            `${siteApiBaseUrl}/walletApi.php?Contact=${customer.mobile}&FromDate=${fromDate}&ToDate=${toDate}`
+          );
+          const result = await response.json();
+          
+          if (result.message === "Success" && result.data) {
+            setWalletTransactions(result.data);
+          } else if (result.message === "Wallet not found") {
+            setWalletTransactions([]); // Graceful handle for no wallet
+          } else {
+            console.error("Failed to fetch transactions:", result.message);
+          }
+        } catch (error) {
+          console.error("Error fetching wallet transactions:", error);
+        } finally {
+          setLoadingTransactions(false);
         }
       }
-    } catch (error) {
-      console.error("Error fetching customer details:", error);
-    }
+    };
+
+    fetchWalletTransactions();
+  }, [activeTab, customer?.mobile]);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    if (tab === "profile") navigate("/profile");
+    else if (tab === "orders") navigate("/profile?tab=orders");
+    else if (tab === "wallet") navigate("/profile?tab=wallet");
   };
 
-  fetchCustomerDetails();
-}, [customer?.customerUniqueId, dispatch]);
+  return (
+    <div className="profile-container">
+      <div className="title">My Account</div>
+      
+      <div className="custom-tabs">
+        <div className="tabs-header">
+          <button 
+            className={`tab-btn ${activeTab === 'profile' ? 'active' : ''}`}
+            onClick={() => handleTabChange('profile')}
+          >
+            Profile
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'orders' ? 'active' : ''}`}
+            onClick={() => handleTabChange('orders')}
+          >
+            Order History
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'wallet' ? 'active' : ''}`}
+            onClick={() => handleTabChange('wallet')}
+          >
+            Pressto Wallet
+          </button>
+        </div>
 
-
-  // useEffect(() => {
-  //   const fetchCustomerDetails = async () => {
-  //     try {
-  //       if (customer?.customerUniqueId) {
-  //         const response = await getCustomerDetailsById(customer.customerUniqueId);
-  //         console.log(response);
-
-  //         if (response.data) {
-  //           dispatch(setCustomer(response.data)); // store in Redux & localStorage
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching customer details:", error);
-  //     }
-  //   };
-
-  //   fetchCustomerDetails();
-  // }, [customer?.customerUniqueId, dispatch]);
-
-  return (     
-      <div className="profile-container">
-        <div className="title">My Account</div>
-        <Tabs
-          items={items}
-          defaultActiveKey="1"
-          tabPosition="top"
-          tabBarGutter={32}
-          onChange={(key) => console.log('Tab switched to:', key)}
-          animated={{ inkBar: true, tabPane: false }}
-          className="test"
-        />
+        <div className="tabs-content">
+          {activeTab === 'profile' && <ProfileData customer={customer} />}
+          {activeTab === 'orders' && <OrderHistory customer={customer} />}
+          {activeTab === 'wallet' && (
+            <Wallet 
+              customer={customer} 
+              transactions={walletTransactions} 
+              loading={loadingTransactions} 
+            />
+          )}
+        </div>
       </div>
+    </div>
   );
 }

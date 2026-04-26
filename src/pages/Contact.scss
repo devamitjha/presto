@@ -41,6 +41,12 @@
         @media(max-width:550px){
             width:100%;
         }
+        .contact-page-title {
+            @extend .heading-2;
+            font-weight: 400;
+            margin: 0 0 0.5rem;
+            @media(max-width:550px) { text-align: center; width: 100%; }
+        }
         h3 {
             @extend .heading-2;
             font-weight: 400;

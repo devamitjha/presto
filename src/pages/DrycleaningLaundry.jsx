@@ -6,10 +6,10 @@ import { Link } from 'react-router';
 
 const HelmetMeta = () => (
   <Helmet>
-    <title>Luxury Garment Care Tips & Expert Guides - Pressto India Premium Blog</title>
-    <meta name="description" content="Discover premium garment care tips, luxury fabric guides & expert cleaning advice. Learn from Pressto India's luxury care specialists and artisan expertise." />
-    <meta name="keywords" content="luxury garment care tips, premium fabric care guides, expert cleaning advice, luxury clothing maintenance, designer garment care, premium care specialists, artisan expertise, luxury fabric guides, high-end garment tips"/>
-    <link rel="canonical" href="https://www.presstoindia.com/blog" />
+    <title>Dry Cleaning & Laundry Blog | Pressto India</title>
+    <meta name="description" content="Tips and guides on dry cleaning and laundry care from Pressto India. Expert advice for fabric care, stain removal and garment maintenance." />
+    <meta name="keywords" content="dry cleaning blog, laundry tips, garment care, Pressto India blog, fabric care guides"/>
+    <link rel="canonical" href="https://www.presstoindia.com/blog/dry-cleaning-and-laundry" />
   </Helmet>
 );
 

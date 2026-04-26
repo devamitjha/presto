@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import config from '../config/env';
+
+const { siteApiBaseUrl } = config;
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -8,7 +11,7 @@ const Reviews = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch("https://www.presstoindia.com/api/get-synup-reviews.php");
+        const res = await fetch(`${siteApiBaseUrl}/get-synup-reviews.php`);
 
         if (!res.ok) {
           const errData = await res.json().catch(() => ({}));

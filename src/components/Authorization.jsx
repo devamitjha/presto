@@ -11,7 +11,9 @@ import Experties from './Experties';
 import { expertiseData } from '../api/expertiseData';
 import { Image } from '@imagekit/react';
 import { Pencil } from 'lucide-react';
+import config from '../config/env';
 
+const { siteApiBaseUrl } = config;
 
 const Authorization = () => {
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ const Authorization = () => {
     }
 
     try {
-      const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
+      const response = await fetch(`${siteApiBaseUrl}/send-otp.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -89,7 +91,7 @@ const Authorization = () => {
     try {
       //const loginResponse = await getLoginInfoByMobile(mobile);
       const loginResponse = await fetch(
-        `https://www.presstoindia.com/api/authApi.php?action=login&mobile=${mobile}`
+        `${siteApiBaseUrl}/authApi.php?action=login&mobile=${mobile}`
       );
       const data = await loginResponse.json();
 
@@ -145,7 +147,7 @@ const Authorization = () => {
     }
 
      try {
-        const response = await fetch('https://www.presstoindia.com/api/send-otp.php', {
+        const response = await fetch(`${siteApiBaseUrl}/send-otp.php`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -190,7 +192,7 @@ const Authorization = () => {
         if (mobile === storedMobile) {
          
           const response = await fetch(
-              "https://www.presstoindia.com/api/authApi.php?action=register",
+              `${siteApiBaseUrl}/authApi.php?action=register`,
               {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -207,7 +209,7 @@ const Authorization = () => {
           
           if(registerData && !registerData.error){
               const loginResponse = await fetch(
-                `https://www.presstoindia.com/api/authApi.php?action=login&mobile=${mobile}`
+                `${siteApiBaseUrl}/authApi.php?action=login&mobile=${mobile}`
               );
               const data = await loginResponse.json();
               console.log(data)
@@ -243,10 +245,22 @@ const Authorization = () => {
       }
   }; 
   const goToStoretPage = () => {
+        //data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "login_locate_store_btn_click",
+            event_type:"redirection_to_store"
+        });
       navigate('/store');
       dispatch(setOpenSheet(false));
   };
   const goToBookNowPage = () => {
+     //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "login_pickup_btn_click",
+          event_type:"book_now_popup_open"
+      });
       dispatch(setOpenBookNow(true));
       dispatch(setOpenSheet(false));
   };

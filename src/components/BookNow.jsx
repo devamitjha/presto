@@ -1,6 +1,6 @@
 // src/pages/BookNow.jsx
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import PersonalDetails from './multiStepsForm/PersonalDetails';
@@ -16,9 +16,19 @@ import Experties from './Experties';
 import { expertiseData } from '../api/expertiseData';
 import { Image } from '@imagekit/react';
 import { setOpenBookNow } from "../redux/slices/sheetSlice";
+import config from '../config/env';
+
+const { siteApiBaseUrl } = config;
 
 const BookNow = () => {
   const dispatch = useDispatch();
+  const openBookNow = useSelector((state) => state.sheet.openBookNow);
+  const bookNowCloseType = useSelector((state) => state.sheet.bookNowCloseType);
+
+  const latestFormDataRef = useRef({});
+  const isSubmittedRef = useRef(false);
+  const abandonedEmailSentRef = useRef(false);
+  const prevOpenRef = useRef(openBookNow);
 
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -51,6 +61,57 @@ const BookNow = () => {
       dispatch(setCustomer(customer));
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    latestFormDataRef.current = formData;
+  }, [formData]);
+
+  useEffect(() => {
+    isSubmittedRef.current = isSubmitted;
+  }, [isSubmitted]);
+
+  // Send email when user closes sheet (backdrop or close button) without submitting
+  useEffect(() => {
+    const wasOpen = prevOpenRef.current;
+    prevOpenRef.current = openBookNow;
+
+    if (wasOpen && !openBookNow && bookNowCloseType === 'manual') {
+      if (!isSubmittedRef.current && !abandonedEmailSentRef.current) {
+        abandonedEmailSentRef.current = true;
+        const data = latestFormDataRef.current;
+        const hasAnyData = data.firstName || data.lastName || data.contact || data.email || data.city || data.address;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "manual_close",
+          form_step: step
+        });
+
+        if (hasAnyData) {
+          const fullName = (data.firstName || '') + (data.lastName || '');
+          emailjs.send(
+            "service_r4xqjrl",
+            "template_57923u2",
+            {
+              name: fullName,
+              email: data.email || 'Not Provided',
+              phone: data.contact || 'Not Provided',
+              city: data.city || '',
+              address: data.address || '',
+              pickupDate: data.pickupDate || '',
+              pickupTime: data.pickupTime || '',
+              serviceCounts: JSON.stringify(data.serviceCounts || {}),
+              instructions: (data.instructions || '') + ' [Closed without submitting]',
+            },
+            "cawbEAs7EEHSVWlQI"
+          ).catch(err => console.error('Email on close failed:', err));
+        }
+      }
+    }
+    if (openBookNow) {
+      abandonedEmailSentRef.current = false;
+    }
+  }, [openBookNow, bookNowCloseType]);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -102,7 +163,7 @@ const BookNow = () => {
   try {
     // Login API
     const loginResponse = await fetch(
-      `https://www.presstoindia.com/api/authApi.php?action=login&mobile=${formData.contact}`
+      `${siteApiBaseUrl}/authApi.php?action=login&mobile=${formData.contact}`
     );
 
     let loginData = {};
@@ -133,7 +194,7 @@ const BookNow = () => {
 
     // Register API if login failed
     const registerResponse = await fetch(
-      "https://www.presstoindia.com/api/authApi.php?action=register",
+      `${siteApiBaseUrl}/authApi.php?action=register`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -150,7 +211,7 @@ const BookNow = () => {
 
     if (registerData && !registerData.error) {
       const loginResponse = await fetch(
-        `https://www.presstoindia.com/api/authApi.php?action=login&mobile=${formData.contact}`
+        `${siteApiBaseUrl}/authApi.php?action=login&mobile=${formData.contact}`
       );
       let loginData = {};
       try {
@@ -213,6 +274,12 @@ const BookNow = () => {
       console.log(formData);
       setSuccessPopup(true);
       setIsSubmitted(true);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "form_submitted",
+        form_step: step,
+        message:"thank_you"
+      });
       setFormData({
         name: "",
         email: "",
@@ -251,6 +318,12 @@ const BookNow = () => {
 
   const navigate = useNavigate();
   const goToStoretPage = () => {
+    //data layer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+          event: "book_now_popup_locate_store_btn_click",
+          event_type:"redirection_to_store"
+      });
       navigate('/store');
       dispatch(setOpenBookNow(false))
   };

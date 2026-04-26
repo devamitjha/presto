@@ -6,23 +6,23 @@ import "./service.scss";
 
 
 const dryCleaningSlider = [
-    { src: "dc01.jpg", title: 'Look Good, Feel Great' },
-    { src: "dc02.jpg", title: 'Look Good, Feel Great' }
+    { src: "dc00.jpg", title: 'Free Pickup & Drop' },
+    { src: "dc01.jpg", title: 'Free Pickup & Drop' }
 ];
 const dryCleaningSliderMobile = [
-    { src: "dc01.jpg", title: 'Look Good, Feel Great' },
-    { src: "dc02.jpg", title: 'Look Good, Feel Great' },
+    { src: "dc00.jpg", title: 'Free Pickup & Drop' },
+    { src: "dc01.jpg", title: 'Free Pickup & Drop' }
 ];
 
 const restorationSlider = [
-    { src: "res1.jpg", title: 'Look Good, Feel Great' },
-    { src: "res2.jpg", title: 'Look Good, Feel Great' },
-    { src: "res3.jpg", title: 'Look Good, Feel Great' }
+    { src: "res1.jpg", title: 'Free Pickup & Drop' },
+    { src: "res2.jpg", title: 'Free Pickup & Drop' },
+    { src: "res3.jpg", title: 'Free Pickup & Drop' }
  ];
 
  const restorationSliderMobile = [
-    { src: "res1.jpg", title: 'Look Good, Feel Great' },
-    { src: "res2.jpg", title: 'Look Good, Feel Great' },
+    { src: "res1.jpg", title: 'Free Pickup & Drop' },
+    { src: "res2.jpg", title: 'Free Pickup & Drop' },
  ];
 
 
@@ -52,10 +52,10 @@ const ServiceLayout = () => {
     <div className="servicePage px-0">
       <div className="main-banner">
           {location.pathname.includes('dry-cleaning') && (
-            width >1024 ?<HeroSlider heroImages={dryCleaningSlider} dir="service/DryCleaning" type="desktop"/> :<HeroSlider heroImages={dryCleaningSliderMobile} dir="service/DryCleaning" type="mobile"/>
+            width >1024 ?<HeroSlider heroImages={dryCleaningSlider} dir="service/DryCleaning" type="desktop" title="Free Pickup & Drop"/> :<HeroSlider heroImages={dryCleaningSliderMobile} dir="service/DryCleaning" type="mobile" title="Free Pickup & Drop"/>
           )}
           {location.pathname.includes('shoes-and-bag-care') && (
-            width >1024 ?<HeroSlider heroImages={restorationSlider} dir="service/Restoration" type="desktop"/> :<HeroSlider heroImages={restorationSliderMobile} dir="service/Restoration" type="mobile"/>
+            width >1024 ?<HeroSlider heroImages={restorationSlider} dir="service/Restoration" type="desktop" title="Free Pickup & Drop"/> :<HeroSlider heroImages={restorationSliderMobile} dir="service/Restoration" type="mobile" title="Free Pickup & Drop"/>
         )}   
       </div>
       <div className="service-tab">
