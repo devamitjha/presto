@@ -79,10 +79,11 @@ const PersonalDetails = ({ formData, handleChange, nextStep, userLoggedIn }) => 
 
       if (loginData?.customerId) {
         // User exists, check Fabklean availability
+        const isFabklean = loginData.IsAvilableOnFebklean === "true" || loginData.IsAvilableOnFebklean === true || loginData.isAvailableOnFabklean === true;
+
         handleChange({ target: { name: 'customerUniqueId', value: loginData.customerUniqueId || '' } });
-        handleChange({ target: { name: 'isAvailableOnFabklean', value: loginData.IsAvilableOnFebklean === "true" || loginData.IsAvilableOnFebklean === true } });
-        handleChange({ target: { name: 'customerId', value: loginData.customerId } });
-        
+        handleChange({ target: { name: 'isAvailableOnFabklean', value: isFabklean } });
+        handleChange({ target: { name: 'customerId', value: loginData.customerId } });        
         // Populate other fields if they are empty
         if (!formData.firstName) handleChange({ target: { name: 'firstName', value: loginData.firstName || '' } });
         if (!formData.lastName) handleChange({ target: { name: 'lastName', value: loginData.lastName || '' } });

@@ -131,13 +131,23 @@ const OrderHistory = ({ customer }) => {
   );
 };
 
-const Wallet = ({ customer, transactions, loading }) => {
+const Wallet = ({ customer, walletDetails, transactions, loading, loadingWallet }) => {
   const dispatch = useDispatch();
   if (!customer) {
     return <p>Loading wallet details...</p>;
   }
 
-  const walletBalance = customer.walletBalance || 0;
+  // Aggressive balance extraction
+  const findBalance = (obj) => {
+    if (!obj) return null;
+    if (Array.isArray(obj)) return findBalance(obj[0]);
+    if (obj.data) return findBalance(obj.data);
+    // Check both lowercase and PascalCase
+    return obj.currentBalance ?? obj.CurrentBalance ?? obj.walletBalance ?? obj.WalletBalance ?? obj.balance ?? obj.Balance ?? null;
+  };
+
+  const rawBalance = findBalance(walletDetails);
+  const walletBalance = rawBalance ?? customer.walletBalance ?? 0;
 
   const formatDate = (date) => {
     if (!date) return "—";
@@ -152,17 +162,15 @@ const Wallet = ({ customer, transactions, loading }) => {
         <h3>PRESSTO WALLET</h3>
         <div className="balance-amount">
           <span>Available Balance</span>
-          <strong>₹{walletBalance}</strong>
+          <strong>{loadingWallet ? "..." : `₹${walletBalance}`}</strong>
         </div>
         
-        {walletBalance === 0 && (
-          <button 
-            className="recharge-btn-inline"
-            onClick={() => dispatch(setOpenRecharge(true))}
-          >
-            Recharge Wallet
-          </button>
-        )}
+        <button 
+          className="recharge-btn-inline"
+          onClick={() => dispatch(setOpenRecharge(true))}
+        >
+          Recharge Wallet
+        </button>
 
         <p className="balance-note">
           Pressto wallet could be used completely on any order, your redeemed coupons benefits are added here.
@@ -225,7 +233,9 @@ export default function Profile() {
 
   const [activeTab, setActiveTab] = useState("profile");
   const [walletTransactions, setWalletTransactions] = useState([]);
+  const [walletDetails, setWalletDetails] = useState(null);
   const [loadingTransactions, setLoadingTransactions] = useState(false);
+  const [loadingWallet, setLoadingWallet] = useState(false);
 
   useEffect(() => {
     if (tabParam === "orders") {
@@ -237,6 +247,128 @@ export default function Profile() {
     }
   }, [tabParam]);
 
+  const fetchWalletDetails = async () => {
+    if (customer?.mobile || customer?.contact) {
+      const mobile = customer.mobile || customer.contact;
+      setLoadingWallet(true);
+      try {
+        const response = await fetch(
+          `${siteApiBaseUrl}/walletApi.php?action=getWalletDetails&Contact=${mobile}`
+        );
+        
+        const responseText = await response.text();
+
+        let data;
+        try {
+          data = JSON.parse(responseText);
+        } catch (parseError) {
+          setLoadingWallet(false);
+          return;
+        }
+
+        if (data && !data.error) {
+          setWalletDetails(data);
+        }
+      } catch (error) {
+        // Error handled silently
+      } finally {
+        setLoadingWallet(false);
+      }
+    }
+  };
+
+  const fetchWalletTransactions = async () => {
+    if (customer?.mobile || customer?.contact) {
+      const mobile = customer.mobile || customer.contact;
+      setLoadingTransactions(true);
+      try {
+        const today = new Date();
+        const sixMonthsAgo = new Date();
+        sixMonthsAgo.setDate(today.getDate() - 179); // Exactly 179 days to be safe
+
+        const toDate = today.toLocaleDateString('en-GB'); // dd/mm/yyyy
+        const fromDate = sixMonthsAgo.toLocaleDateString('en-GB'); // dd/mm/yyyy
+
+        const response = await fetch(
+          `${siteApiBaseUrl}/walletApi.php?action=getTransactions&Contact=${mobile}&FromDate=${fromDate}&ToDate=${toDate}`
+        );
+        const result = await response.json();
+        
+        if (result.message === "Success" && result.data) {
+          setWalletTransactions(result.data);
+        } else {
+          setWalletTransactions([]);
+        }
+      } catch (error) {
+        // Error handled silently
+      } finally {
+        setLoadingTransactions(false);
+      }
+    }
+  };
+
+  // Handle Razorpay Callback
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const paymentStatus = params.get("payment");
+    const razorpayPaymentId = params.get("razorpay_payment_id");
+    
+    if (paymentStatus === "success" && razorpayPaymentId && customer) {
+      const amount = localStorage.getItem("pending_recharge_amount");
+
+      if (amount) {
+        const finalizeRecharge = async () => {
+          try {
+            const rechargeData = {
+              CustomerId: String(customer.customerId || ""),
+              Contact: String(customer.mobile),
+              StoreId: String(customer.storeId || "ST058"),
+              CustomerUniqueId: String(customer.customerUniqueId),
+              Amount: String(amount),
+              User: "AD00001",
+              PaymentType: "Razorpay",
+              TransactionType: "Recharge",
+              CreditNoteNo: String(razorpayPaymentId),
+              IsActive: true
+            };
+
+            const response = await fetch(`${siteApiBaseUrl}/walletApi.php?action=rechargeWallet`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(rechargeData)
+            });
+            
+            const text = await response.text();
+
+            let result;
+            try {
+              result = JSON.parse(text);
+            } catch (jsonErr) {
+              return;
+            }
+            
+            if (result.status === "Success" || result.message === "Wallet recharge successful.") {
+              localStorage.removeItem("pending_recharge_amount");
+              // Refresh wallet details
+              fetchWalletDetails();
+              fetchWalletTransactions();
+            }
+          } catch (e) {
+            // Error handled silently
+          }
+        };
+        finalizeRecharge();
+      }
+    }
+  }, [customer, location.search]);
+
+  useEffect(() => {
+    if (activeTab === 'wallet') {
+      fetchWalletDetails();
+      fetchWalletTransactions();
+    }
+  }, [activeTab, customer?.mobile, customer?.contact]);
+
   useEffect(() => {
     const fetchCustomerDetails = async () => {
       try {
@@ -246,53 +378,18 @@ export default function Profile() {
           );
 
           const data = await response.json();
-          console.log(data);
 
           if (data && !data.error) {
             dispatch(setCustomer(data)); // store in Redux & localStorage
-          } else {
-            console.error("Error from API:", data.error || "Unknown error");
           }
         }
       } catch (error) {
-        console.error("Error fetching customer details:", error);
+        // Error handled silently
       }
     };
 
     fetchCustomerDetails();
   }, [customer?.customerUniqueId, dispatch]);
-
-  useEffect(() => {
-    const fetchWalletTransactions = async () => {
-      if (activeTab === 'wallet' && customer?.mobile) {
-        setLoadingTransactions(true);
-        try {
-          const today = new Date();
-          const toDate = today.toLocaleDateString('en-GB'); // dd/mm/yyyy
-          const fromDate = "01/01/2024";
-
-          const response = await fetch(
-            `${siteApiBaseUrl}/walletApi.php?Contact=${customer.mobile}&FromDate=${fromDate}&ToDate=${toDate}`
-          );
-          const result = await response.json();
-          
-          if (result.message === "Success" && result.data) {
-            setWalletTransactions(result.data);
-          } else if (result.message === "Wallet not found") {
-            setWalletTransactions([]); // Graceful handle for no wallet
-          } else {
-            console.error("Failed to fetch transactions:", result.message);
-          }
-        } catch (error) {
-          console.error("Error fetching wallet transactions:", error);
-        } finally {
-          setLoadingTransactions(false);
-        }
-      }
-    };
-
-    fetchWalletTransactions();
-  }, [activeTab, customer?.mobile]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -333,8 +430,10 @@ export default function Profile() {
           {activeTab === 'wallet' && (
             <Wallet 
               customer={customer} 
+              walletDetails={walletDetails}
               transactions={walletTransactions} 
               loading={loadingTransactions} 
+              loadingWallet={loadingWallet}
             />
           )}
         </div>
