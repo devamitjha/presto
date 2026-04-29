@@ -23,15 +23,11 @@ const BottomNav = () => {
     },
     {
       label: 'Pick up & Drop',
-      icon: <img src={openBookNow ? PickupDark : PickupGray} alt="Pickup" style={{ width: '20px' }} />,
+      icon: <img src={location.pathname === '/book-now' ? PickupDark : PickupGray} alt="Pickup" style={{ width: '20px' }} />,
       onClick: () => {
-        if (openBookNow) {
-          dispatch(closeBookNow('manual'));
-        } else {
-          dispatch(setOpenBookNow(true));
-        }
+        navigate('/book-now');
       },
-      isActive: openBookNow,
+      isActive: location.pathname === '/book-now',
     },
     {
       label: 'Profile',

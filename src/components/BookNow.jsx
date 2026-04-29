@@ -60,6 +60,7 @@ const BookNow = () => {
         isAvailableOnFabklean: customer.isAvailableOnFabklean || false
       }));
       setUserLoggedIn(true);
+      setStep(2); // Skip to step 2 if logged in
       dispatch(setCustomer(customer));
     }
   }, [dispatch]);

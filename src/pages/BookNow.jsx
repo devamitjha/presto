@@ -1,20 +1,20 @@
 // src/pages/BookNow.jsx
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from "react-helmet";
-import PersonalDetails from '../components/multiStepsForm/PersonalDetails';
-import ContactDetails from '../components/multiStepsForm/ContactDetails';
-import Review from '../components/multiStepsForm/Review';
-import SuccessMessage from '../components/multiStepsForm/SuccessMessage';
-import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { Shirt } from 'lucide-react';
+import { setOpenBookNow } from '../redux/slices/sheetSlice';
+import { setCustomer } from '../redux/slices/customerSlice';
+import config from '../config/env';
 import "./BookNow.scss";
 import Experties from '../components/Experties';
 import { expertiseData } from '../api/expertiseData';
-import { useNavigate } from 'react-router';
-
-//services 
+import Heading from '../components/common/Heading';
 import Exp6 from "../assets/images/exp/exp-6.jpg";
 import Exp7 from "../assets/images/exp/exp-7.jpg";
-import Heading from '../components/common/Heading';
+
+const { siteApiBaseUrl } = config;
 
 const HelmetMeta = () => (
   <Helmet>
@@ -26,144 +26,120 @@ const HelmetMeta = () => (
 );
 
 const BookNow = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const goToStoretPage = () => {
-      navigate('/store');
-  };
-  const goToBookNowPage = () => {
-      navigate('/book-now');
-  };
-  const [step, setStep] = useState(1);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '', email: '', phone: '',
-    city: '', address: '',
-    pickupDate: '', pickupTime: '',
-    serviceCounts: {}, instructions: ''
-  });
-  const [errors, setErrors] = useState({});
-
-  const validateEmail = email => /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(email);
-  const validatePhone = phone => /^\d{10}$/.test(phone);
-
-  const validateStep = () => {
-    const newErrors = {};
-    if (step === 1) {
-      if (!formData.name.trim()) newErrors.name = 'Name is required';
-      if (!formData.email.trim()) newErrors.email = 'Email is required';
-      else if (!validateEmail(formData.email)) newErrors.email = 'Invalid email format';
-      if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
-      else if (!validatePhone(formData.phone)) newErrors.phone = 'Phone must be 10 digits';
-    } else if (step === 2) {
-      if (!formData.city.trim()) newErrors.city = 'City is required';
-      if (!formData.address.trim()) newErrors.address = 'Address is required';
-      //else if (/[^a-zA-Z0-9\s,.-]/.test(formData.address)) newErrors.address = 'Address contains invalid characters';
-      if (!formData.pickupDate) newErrors.pickupDate = 'Pickup date is required';
-      if (!formData.pickupTime) newErrors.pickupTime = 'Pickup time is required';
-    } else if (step === 3) {
-      const hasService = Object.values(formData.serviceCounts || {}).some(count => count > 0);
-      if (!hasService) {
-        toast.error('Please select at least one service.', { autoClose: 2500 });
-        return false;
-      }
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      Object.values(newErrors).forEach(msg => toast.error(msg, { autoClose: 2500 }));
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const nextStep = () => {
-    if (validateStep()) setStep(prev => prev + 1);
-  };
-
-  const prevStep = () => setStep(prev => prev - 1);
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleLocate = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(async position => {
-        const { latitude, longitude } = position.coords;
-        try {
-          const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+  const customer = useSelector((state) => state.customer.customer);
+  
+  useEffect(() => {
+    const fetchCustomerDetails = async () => {
+      try {
+        if (customer?.customerUniqueId) {
+          const response = await fetch(
+            `${siteApiBaseUrl}/authApi.php?action=customerDetails&CustomerUniqueId=${encodeURIComponent(customer.customerUniqueId)}`
+          );
           const data = await response.json();
-          const city = data.address.city || data.address.town || data.address.village || '';
-          const address = data.display_name;
-          setFormData(prev => ({ ...prev, city, address }));
-        } catch (err) {
-          toast.error('Failed to fetch address.');
+          if (data && !data.error) {
+            dispatch(setCustomer({
+              ...customer,
+              ...data,
+              walletBalance: data.walletBalance || 0,
+              dueAmount: data.dueAmount || 0,
+              orderHistory: data.orderHistory || []
+            }));
+          }
         }
-      });
-    } else {
-      toast.error('Geolocation not supported.');
+      } catch (error) {
+        console.error("Error fetching customer details:", error);
+      }
+    };
+
+    if (customer) {
+      fetchCustomerDetails();
     }
-  };
+  }, [customer?.customerUniqueId, dispatch]);
 
-  const handleSubmit = async () => {
-    if (!validateStep()) return;
-
-    try {
-      localStorage.setItem('formData', JSON.stringify(formData));
-      // const response = await fetch('https://example.com/api/submit-form', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // });
-
-      // if (!response.ok) throw new Error('Submission failed');
-
-      toast.success('Form submitted successfully!', { position: 'top-center', autoClose: 3000 });
-      setIsSubmitted(true);
-      setFormData({
-        name: '', email: '', phone: '',
-        city: '', address: '',
-        pickupDate: '', pickupTime: '',
-        serviceCounts: {}, instructions: ''
-      });
-      setStep(1);
-    } catch (error) {
-      toast.error('Error submitting form: ' + error.message, { position: 'top-center', autoClose: 3000 });
-    }
-  };
+  const goToStoretPage = () => navigate('/store');
+  const openPickupSheet = () => dispatch(setOpenBookNow(true));
 
   return (
     <div className="book-now-page mt-5">
       <HelmetMeta />
       <div className="section-container">
-        <Heading title="BOOK SERVICE" />                 
-          {isSubmitted ? (
-            <SuccessMessage />
-          ) : (              
-            <div className="multi-step-form"> 
-                {step === 1 && <h2 className="stepTitle">Personal Details</h2>}
-                {step === 2 && <h2 className="stepTitle">Address Details</h2>}
-                {step === 3 && <h2 className="stepTitle">Choose Service</h2>}
-                <div className="step-indicator">
-                  <div className={step === 1 ? 'active' : ''}></div>
-                  <div className={step === 2 ? 'active' : ''}></div>
-                  <div className={step === 3 ? 'active' : ''}></div>
+        <Heading title="BOOK SERVICE" />
+        <div className="book-now-dashboard">
+          
+          {/* Action Buttons at the Top */}
+          <div className="action-buttons">
+            <button className="btn-action schedule-pickup" onClick={openPickupSheet}>
+              SCHEDULE PICKUP
+            </button>
+            <button className="btn-action rate-card">
+              RATE CARD
+            </button>
+          </div>
+
+          {/* Dashboard Cards (Logged In) */}
+          {customer && (
+            <>
+              <div className="dashboard-cards">
+                <div className="card wallet-card">
+                  <h3>PRESSTO WALLET</h3>
+                  <div className="card-content">
+                    <span className="label">Available Balance</span>
+                    <span className="value">₹{customer.walletBalance || 0}</span>
+                  </div>
                 </div>
-              {step === 1 && (
-                <PersonalDetails formData={formData} handleChange={handleChange} nextStep={nextStep} errors={errors} />
-              )}
-              {step === 2 && (
-                <ContactDetails formData={formData} handleChange={handleChange} nextStep={nextStep} prevStep={prevStep} errors={errors} handleLocate={handleLocate} />
-              )}
-              {step === 3 && (
-                <Review formData={formData} setFormData={setFormData} prevStep={prevStep} handleSubmit={handleSubmit} />
-              )}
-            </div>
+                <div className="card due-card">
+                  <h3>DUE</h3>
+                  <div className="card-content">
+                    <span className="label">&nbsp;</span>
+                    <span className="value">₹{customer.dueAmount || 0}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Recent Orders */}
+              <div className="recent-orders">
+                <h2>Recent Orders</h2>
+                {customer.orderHistory && customer.orderHistory.length > 0 ? (
+                  customer.orderHistory.slice(0, 3).map((order, index) => (
+                    <div className="order-item" key={index}>
+                      <div className="order-icon">
+                        <Shirt size={24} color="#000" />
+                      </div>
+                      <div className="order-details">
+                        <div className="order-header">
+                          <span className="order-id">#{order.orderId}</span>
+                          <span className="order-date">Placed on {new Date(order.orderDate).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}</span>
+                        </div>
+                        <div className="order-info">
+                          <span className="payment-mode">Payment Mode : {order.paymentMode || 'Cash / Card / UPI'}</span>
+                          <span className="order-amount">₹{order.orderAmount}</span>
+                        </div>
+                        <div className="order-footer">
+                          <span className="order-qty">qty : {order.numberOfItems || 0}</span>
+                          <div className="order-status-pill">
+                            <span className="status-badge">{order.orderStatus || 'Pick up'}</span>
+                            <span className="time-slot">{order.pickupTime || '09:00 AM - 10:00AM'}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p style={{textAlign: 'center'}}>No recent orders found.</p>
+                )}
+              </div>
+            </>
           )}
-       
-        <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
-        <div className="section-container">
+        </div>
+
+        {/* Existing expertise and experience sections */}
+        <div style={{marginTop: '5rem', marginBottom: '5rem'}}>
+          <Experties title="Timeless Care, Unmatched Expertise" data={expertiseData} item="4" />
+        </div>
+        
+        <div className="section-container service-container" style={{marginBottom: '7rem'}}>
           <Heading title="Experience Pressto" />
           <div className="section-luxaryExperience-item">
             <div className="exp-item">
@@ -183,7 +159,7 @@ const BookNow = () => {
               <div className="exp-content">
                 <h3>Pickup & Drop</h3>
                 <p>Schedule a pickup and let premium care come to you.</p>
-                <div className="btn btn-md base-btn secondary overflowHidden" onClick={goToBookNowPage}>Book an Appointment</div>
+                <div className="btn btn-md base-btn secondary overflowHidden" onClick={openPickupSheet}>Book an Appointment</div>
               </div>
             </div>
           </div>
