@@ -1,10 +1,10 @@
 // src/pages/BookNow.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { Shirt } from 'lucide-react';
-import { setOpenBookNow } from '../redux/slices/sheetSlice';
+import { Shirt, CreditCard, Download } from 'lucide-react';
+import { setOpenBookNow, setOpenRecharge } from '../redux/slices/sheetSlice';
 import { setCustomer } from '../redux/slices/customerSlice';
 import config from '../config/env';
 import "./BookNow.scss";
@@ -13,6 +13,7 @@ import { expertiseData } from '../api/expertiseData';
 import Heading from '../components/common/Heading';
 import Exp6 from "../assets/images/exp/exp-6.jpg";
 import Exp7 from "../assets/images/exp/exp-7.jpg";
+import Brochure from "../assets/images/Pressto-General-Brochure.pdf";
 
 const { siteApiBaseUrl } = config;
 
@@ -29,6 +30,8 @@ const BookNow = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const customer = useSelector((state) => state.customer.customer);
+  const [walletDetails, setWalletDetails] = useState(null);
+  const [loadingWallet, setLoadingWallet] = useState(false);
   
   useEffect(() => {
     const fetchCustomerDetails = async () => {
@@ -49,17 +52,49 @@ const BookNow = () => {
           }
         }
       } catch (error) {
-        console.error("Error fetching customer details:", error);
+        // Error handled silently
+      }
+    };
+
+    const fetchWalletDetails = async () => {
+      const mobile = customer?.mobile || customer?.contact;
+      if (mobile) {
+        setLoadingWallet(true);
+        try {
+          const response = await fetch(
+            `${siteApiBaseUrl}/walletApi.php?action=getWalletDetails&Contact=${mobile}`
+          );
+          const data = await response.json();
+          if (data && !data.error) {
+            setWalletDetails(data);
+          }
+        } catch (error) {
+          // Error handled silently
+        } finally {
+          setLoadingWallet(false);
+        }
       }
     };
 
     if (customer) {
       fetchCustomerDetails();
+      fetchWalletDetails();
     }
-  }, [customer?.customerUniqueId, dispatch]);
+  }, [customer?.customerUniqueId, customer?.mobile, customer?.contact, dispatch]);
+
+  const findBalance = (obj) => {
+    if (!obj) return null;
+    if (Array.isArray(obj)) return findBalance(obj[0]);
+    if (obj.data) return findBalance(obj.data);
+    return obj.currentBalance ?? obj.CurrentBalance ?? obj.walletBalance ?? obj.WalletBalance ?? obj.balance ?? obj.Balance ?? null;
+  };
+
+  const rawBalance = findBalance(walletDetails);
+  const displayBalance = rawBalance ?? customer?.walletBalance ?? 0;
 
   const goToStoretPage = () => navigate('/store');
   const openPickupSheet = () => dispatch(setOpenBookNow(true));
+  const openRechargeSheet = () => dispatch(setOpenRecharge(true));
 
   return (
     <div className="book-now-page mt-5">
@@ -73,9 +108,9 @@ const BookNow = () => {
             <button className="btn-action schedule-pickup" onClick={openPickupSheet}>
               SCHEDULE PICKUP
             </button>
-            <button className="btn-action rate-card">
-              RATE CARD
-            </button>
+            <a href={Brochure} download="Pressto-General-Brochure.pdf" className="btn-action rate-card">
+              RATE CARD <Download size={18} style={{marginLeft: '8px'}} />
+            </a>
           </div>
 
           {/* Dashboard Cards (Logged In) */}
@@ -86,14 +121,16 @@ const BookNow = () => {
                   <h3>PRESSTO WALLET</h3>
                   <div className="card-content">
                     <span className="label">Available Balance</span>
-                    <span className="value">₹{customer.walletBalance || 0}</span>
+                    <span className="value">
+                      {loadingWallet ? "..." : `₹${displayBalance}`}
+                    </span>
                   </div>
                 </div>
-                <div className="card due-card">
-                  <h3>DUE</h3>
+                <div className="card recharge-card" onClick={openRechargeSheet}>
+                  <h3>RECHARGE CARD</h3>
                   <div className="card-content">
-                    <span className="label">&nbsp;</span>
-                    <span className="value">₹{customer.dueAmount || 0}</span>
+                    <span className="label">Add Money</span>
+                    <span className="value"><CreditCard size={28} /></span>
                   </div>
                 </div>
               </div>

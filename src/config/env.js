@@ -6,7 +6,7 @@
 
 const getEnv = (key, fallback = '') => (process.env[key] !== undefined ? process.env[key] : fallback);
 
-const apiBaseUrl = getEnv('REACT_APP_API_BASE_URL', 'http://itpvuatcapi.press2india.com:8084/api/iTPVCentralAPI');
+const apiBaseUrl = getEnv('REACT_APP_API_BASE_URL', 'https://www.presstoindia.com/test-api');
 
 export const config = {
   // iTPV Central API (userServices – login, register, customer details)
@@ -14,7 +14,7 @@ export const config = {
   apiToken: getEnv('REACT_APP_API_TOKEN', '7Jx7ou6DwTvK79ig3ZiZbW7SCXoJ5B7kB1IAjg8AL14='),
 
   // Site API base (auth, OTP, reviews – e.g. https://www.presstoindia.com/api)
-  siteApiBaseUrl: getEnv('REACT_APP_SITE_API_BASE_URL', 'https://www.presstoindia.com/api'),
+  siteApiBaseUrl: getEnv('REACT_APP_SITE_API_BASE_URL', 'https://www.presstoindia.com/test-api'),
 };
 
 /** Human-readable flow for testing: "Production" or "UAT" based on apiBaseUrl */

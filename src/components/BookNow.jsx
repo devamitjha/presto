@@ -203,6 +203,7 @@ const BookNow = () => {
 
         // If not on Fabklean, create user there
         if (!finalCustomerData.isAvailableOnFabklean) {
+          console.log("User not on Fabklean, attempting to create...");
           try {
             const createRes = await fetch(`${siteApiBaseUrl}/bookingApi.php?action=createUser`, {
               method: "POST",
@@ -210,11 +211,16 @@ const BookNow = () => {
               body: JSON.stringify({ ...formData, ...finalCustomerData })
             });
             const createData = await createRes.json();
+            console.log("Fabklean create response:", createData);
             
             // If user already exists in Fabklean, it's fine to proceed
             if (createData?.error && createData.error !== "Client Exists with this phone Number") {
               console.error("Fabklean user creation error:", createData.error);
-              // We don't necessarily block the whole flow, but we log it
+            } else {
+              // Successfully created or already exists, we can update local state
+              finalCustomerData.isAvailableOnFabklean = true;
+              localStorage.setItem("customer", JSON.stringify(finalCustomerData));
+              dispatch(setCustomer(finalCustomerData));
             }
           } catch (e) {
             console.error("Failed to call createUser API:", e);

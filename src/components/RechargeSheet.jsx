@@ -6,20 +6,57 @@ import { setOpenRecharge } from '../redux/slices/sheetSlice';
 import './RechargeSheet.scss';
 import { X } from 'lucide-react';
 import Logo from "../assets/images/logo.png";
+import config from '../config/env';
+import { toast } from 'react-toastify';
+
+const { siteApiBaseUrl } = config;
 
 const RechargeSheet = () => {
   const dispatch = useDispatch();
   const openRecharge = useSelector((state) => state.sheet.openRecharge);
+  const customer = useSelector((state) => state.customer.customer);
   const [amount, setAmount] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleRecharge = () => {
+  const handleRecharge = async () => {
     if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
-      alert("Please enter a valid amount");
+      toast.error("Please enter a valid amount");
       return;
     }
-    console.log("Recharging amount:", amount);
-    // Add logic here to integrate with payment gateway
-    dispatch(setOpenRecharge(false));
+
+    if (!customer) {
+      toast.error("Please log in to recharge");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch(`${siteApiBaseUrl}/razorpay.php?action=createPaymentLink`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: parseFloat(amount),
+          contact: customer.mobile,
+          email: customer.email || "",
+          name: `${customer.firstName} ${customer.lastName}`.trim()
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.short_url) {
+        // Save amount to finalize later
+        localStorage.setItem("pending_recharge_amount", amount);
+        // Redirect to Razorpay Payment Link
+        window.location.href = result.short_url;
+      } else {
+        toast.error("Failed to initiate payment");
+      }
+    } catch (error) {
+      toast.error("Error initiating recharge");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -56,11 +93,16 @@ const RechargeSheet = () => {
             placeholder="e.g. 500"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
+            disabled={loading}
           />
         </div>
 
-        <button className="recharge-submit-btn" onClick={handleRecharge}>
-          Recharge Now
+        <button 
+          className="recharge-submit-btn" 
+          onClick={handleRecharge}
+          disabled={loading}
+        >
+          {loading ? "Processing..." : "Recharge Now"}
         </button>
       </div>
     </BottomSheet>
